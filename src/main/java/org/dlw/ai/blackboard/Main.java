@@ -16,8 +16,6 @@
  */
 package org.dlw.ai.blackboard;
 
-import java.io.IOException;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.util.SystemConstants;

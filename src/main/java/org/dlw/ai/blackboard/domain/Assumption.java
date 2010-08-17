@@ -16,6 +16,9 @@
  */
 package org.dlw.ai.blackboard.domain;
 
+import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.util.UniversalContext;
+
 /**
  * <p>
  * The {@link Assumption} class is a retractable statement made about a
@@ -72,6 +75,20 @@ public class Assumption extends BlackboardObject {
 	public void notifyParticipants() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void register() {
+		Blackboard blackboard = (Blackboard) UniversalContext
+				.getApplicationContext().getBean("blackboard");
+		blackboard.add(this);
+	}
+
+	@Override
+	public void resign() {
+		Blackboard blackboard = (Blackboard) UniversalContext
+		.getApplicationContext().getBean("blackboard");
+		blackboard.remove(this);
 	}
 
 

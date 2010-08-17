@@ -92,6 +92,7 @@ public class FrameNode {
 	/**
 	 * @return the map
 	 */
+	@SuppressWarnings("unchecked")
 	public HashMap getMap() {
 		return map;
 	}
@@ -99,6 +100,7 @@ public class FrameNode {
 	/**
 	 * @param map the map to set
 	 */
+	@SuppressWarnings("unchecked")
 	public void setMap(HashMap map) {
 		this.map = map;
 	}

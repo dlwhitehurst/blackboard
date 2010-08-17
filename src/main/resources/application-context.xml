@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="cryptographer"
+          class="org.dlw.ai.blackboard.Cryptographer"> 
+          <property name="blackboard" ref="blackboard" />
+          <property name="brain" ref="brain" />
+          <property name="controller" ref="controller" />
+    </bean>
+
+    <bean id="controller"
+          class="org.dlw.ai.blackboard.Controller" />
+
+    <bean id="brain"
+          class="org.dlw.ai.blackboard.Brain" />
+
+    <bean id="blackboard"
+          class="org.dlw.ai.blackboard.Blackboard" >
+    </bean>
+          
+	<!-- all working knowledge sources -->
+    <bean id="solvedKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.SolvedKnowledgeSource" />
+	
+    <bean id="sentenceStructureKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.SentenceStructureKnowledgeSource" />
+
+    <bean id="patternMatchingKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.PatternMatchingKnowledgeSource" />
+
+    <bean id="smallWordKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.SmallWordKnowledgeSource" />
+
+    <bean id="wordStructureKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.WordStructureKnowledgeSource" />
+
+    <bean id="legalStringKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.LegalStringKnowledgeSource" />
+
+    <bean id="doubleLetterKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.DoubleLetterKnowledgeSource" />
+
+    <bean id="commonSuffixKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.CommonSuffixKnowledgeSource" />
+
+    <bean id="commonPrefixKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.CommonPrefixKnowledgeSource" />
+
+    <bean id="letterFrequencyKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.LetterFrequencyKnowledgeSource" />
+
+    <bean id="consonantKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.ConsonantKnowledgeSource" />
+
+    <bean id="vowelKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.VowelKnowledgeSource" />
+
+    <bean id="directSubstitutionKnowledgeSource"
+          class="org.dlw.ai.blackboard.knowledge.DirectSubstitutionKnowledgeSource" />
+          
+</beans>

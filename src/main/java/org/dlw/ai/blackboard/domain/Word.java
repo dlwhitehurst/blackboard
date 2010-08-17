@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.util.UniversalContext;
+
 /**
  * @author dlwhitehurst
  * 
@@ -165,6 +168,20 @@ public class Word extends BlackboardObject {
 	public void notifyParticipants() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void register() {
+		Blackboard blackboard = (Blackboard) UniversalContext
+				.getApplicationContext().getBean("blackboard");
+		blackboard.add(this);
+	}
+
+	@Override
+	public void resign() {
+		Blackboard blackboard = (Blackboard) UniversalContext
+		.getApplicationContext().getBean("blackboard");
+		blackboard.remove(this);
 	}
 
 }

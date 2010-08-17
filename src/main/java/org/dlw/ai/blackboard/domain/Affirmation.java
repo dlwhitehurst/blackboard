@@ -20,10 +20,10 @@ import java.util.Stack;
 
 /**
  *<p>
- * This class is very similar to the underlines that are used in the book
- * "Object Oriented Analysis and Design". The underlines represent a state of
- * partial solution at least for a single character in the cryptogram.
- * </p>
+ * This class is a literal {@link java.util.Stack} of assumptions about a 
+ * particular blackboard object. Some assumptions are more opportunistic, 
+ * such as assertions. 
+ *</p>
  * 
  * <p>
  * The public method {@link Affirmation#cipherText} will return the cipherText

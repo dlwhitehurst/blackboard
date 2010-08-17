@@ -19,10 +19,18 @@ package org.dlw.ai.blackboard;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.type.KnowledgeSources;
+import org.dlw.ai.blackboard.util.SystemConstants;
 
 public class Brain {
 
+	/**
+	 * Attribute collection and entire problem domain of knowledge sources
+	 */
 	private KnowledgeSources knowledgeSources;
+	
+	/**
+	 * Attribute class logger
+	 */
 	private final Log log = LogFactory.getLog(Brain.class);
 
 	/**
@@ -30,13 +38,31 @@ public class Brain {
 	 * 
 	 */
 	public void engage() {
+
+		/**
+		 * Create collection container
+		 */
 		knowledgeSources = new KnowledgeSources();
+		
+		/**
+		 * Clear and load domain knowledge
+		 */
 		knowledgeSources.reset();
-		log.info("New knowledge sources instanced and reset.");
+
+		/**
+		 * Notify
+		 */
+		if (log.isInfoEnabled()) {
+			log.info("New knowledge sources instanced and reset.");
+		} else {
+			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+			System.exit(0); // die
+		}
+		
 	}
 	
 	/**
-	 * Reset existing intelligence
+	 * Reset existing domain knowledge or intelligence
 	 */
 	public void reset() {
 		knowledgeSources.reset();

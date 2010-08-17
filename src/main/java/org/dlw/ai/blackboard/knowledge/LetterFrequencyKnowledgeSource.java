@@ -28,7 +28,6 @@ public class LetterFrequencyKnowledgeSource extends LetterKnowledgeSource {
 	@Override
 	public void evaluate() {
 		// TODO Auto-generated method stub
-		super.evaluate();
 	}
 
 }

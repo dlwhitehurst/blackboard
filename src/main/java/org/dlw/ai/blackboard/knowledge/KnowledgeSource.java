@@ -27,15 +27,24 @@ import org.dlw.ai.blackboard.domain.Participant;
  * @author dlwhitehurst
  *
  */
-public class KnowledgeSource extends Participant {
+public abstract class KnowledgeSource extends Participant {
 	
+	/**
+	 * TODO - comment
+	 */
 	protected Blackboard blackboard;
+	
+	/**
+	 * TODO - comment
+	 */
 	protected Controller controller;
+	
+	/**
+	 * TODO - comment
+	 */
 	protected ConcurrentLinkedQueue<Assumption> pastAssumptions;
 	
-	public void evaluate() {
-		// TODO - fix
-	}
+	public abstract void evaluate();
 
 
 }

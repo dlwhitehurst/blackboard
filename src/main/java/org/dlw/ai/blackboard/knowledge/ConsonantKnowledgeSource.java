@@ -28,7 +28,6 @@ public class ConsonantKnowledgeSource extends LetterKnowledgeSource {
 	@Override
 	public void evaluate() {
 		// TODO Auto-generated method stub
-		super.evaluate();
 	}
 
 }

@@ -28,7 +28,6 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 	@Override
 	public void evaluate() {
 		// TODO Auto-generated method stub
-		super.evaluate();
 	}
 
 }

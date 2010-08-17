@@ -19,6 +19,9 @@ package org.dlw.ai.blackboard.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.util.UniversalContext;
+
 /**
  * @author dlwhitehurst
  * 
@@ -26,17 +29,18 @@ import java.util.List;
 public class Sentence extends BlackboardObject {
 
 	/**
-	 * Domain object definition, <i>never</i> set as constant. This object attribute
-	 * is very important to our understanding, knowledge, intelligence, etc. because it
-	 * answers the question "what is it?". And, how do our senses perceive this 
-	 * impression (image, sound, thought, experience, smell, touch, etc.)? Therefore,
-	 * this impression(s) is different for each individual.  Webster, Oxford, and or any
-	 * other dictionary provides a definition for us that provides a baseline 
-	 * impression for our <i>knowledge</i>if we seek this impression and <i>definition</i>
-	 * for our own understanding.
+	 * Domain object definition, <i>never</i> set as constant. This object
+	 * attribute is very important to our understanding, knowledge,
+	 * intelligence, etc. because it answers the question "what is it?". And,
+	 * how do our senses perceive this impression (image, sound, thought,
+	 * experience, smell, touch, etc.)? Therefore, this impression(s) is
+	 * different for each individual. Webster, Oxford, and or any other
+	 * dictionary provides a definition for us that provides a baseline
+	 * impression for our <i>knowledge</i>if we seek this impression and
+	 * <i>definition</i> for our own understanding.
 	 */
 	protected String def;
-	
+
 	/**
 	 * Collection of words that make up the sentence
 	 */
@@ -136,7 +140,8 @@ public class Sentence extends BlackboardObject {
 	}
 
 	/**
-	 * @param def the def to set
+	 * @param def
+	 *            the def to set
 	 */
 	public void setDef(String def) {
 		this.def = def;
@@ -144,7 +149,21 @@ public class Sentence extends BlackboardObject {
 
 	public void notifyParticipants() {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void register() {
+		Blackboard blackboard = (Blackboard) UniversalContext
+				.getApplicationContext().getBean("blackboard");
+		blackboard.add(this);
+	}
+
+	@Override
+	public void resign() {
+		Blackboard blackboard = (Blackboard) UniversalContext
+		.getApplicationContext().getBean("blackboard");
+		blackboard.remove(this);
 	}
 
 }

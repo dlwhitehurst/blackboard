@@ -4,7 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
     <bean id="cryptographer"
           class="org.dlw.ai.blackboard.Cryptographer"> 
           <property name="blackboard" ref="blackboard" />

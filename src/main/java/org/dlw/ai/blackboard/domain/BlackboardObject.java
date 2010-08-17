@@ -17,6 +17,7 @@
 package org.dlw.ai.blackboard.domain;
 
 
+
 /**
  * @author dlwhitehurst
  *
@@ -26,18 +27,12 @@ public abstract class BlackboardObject extends Domain implements Dependent {
 	/**
 	 * 
 	 */
-	public void register() {
-		// find blackboard and add "this"
-		// TODO - implement or resolve
-	}
+	public abstract void register();
 	
 	/**
 	 * 
 	 */
-	public void resign() {
-		// find blackboard and remove "this"
-		// TODO - implement or resolve
-	}
+	public abstract void resign();
 
 
 }

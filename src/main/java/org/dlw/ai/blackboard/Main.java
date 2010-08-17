@@ -19,8 +19,6 @@ package org.dlw.ai.blackboard;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.util.UniversalContext;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * The Blackboard project is an example of an Artificial Intelligence

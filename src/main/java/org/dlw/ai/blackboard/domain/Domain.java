@@ -12,7 +12,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
  * @author dlwhitehurst
  *
  */
-public abstract class Domain {
+public abstract class Domain extends Universe {
 
 	/**
 	 * 

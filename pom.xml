@@ -31,6 +31,17 @@
         <system></system>
         <url></url>
     </issueManagement>
+    
+    <distributionManagement>
+        <site>
+            <id>website</id>
+            <url>ftp://capehenrytech.com/dlwhitehurst/blackboard</url>
+        </site>
+        <repository>
+            <id>repo</id>
+            <url>ftp://capehenrytech.com/dlwhitehurst/repo</url>
+        </repository>
+    </distributionManagement>
 
     <developers>
         <developer>
@@ -100,6 +111,14 @@
                 <filtering>false</filtering>
             </resource>
         </resources>
+        <extensions>
+            <!-- Enabling the use of FTP -->
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>1.0-beta-6</version>
+            </extension>
+        </extensions>
     </build>
 
     <repositories>

@@ -33,7 +33,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * A cryptic sentence e.g. Q AZWS DSSC KAS DXZNN DASNN is solved by
  * this system to be I HAVE SEEN THE SMALL SHELL.
  *  
- * @author dlwhitehurst
+ * @author dlwhitehurst (dude)
  *
  */
 public class Main {

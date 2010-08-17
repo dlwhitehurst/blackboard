@@ -28,7 +28,6 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 	@Override
 	public void evaluate() {
 		// TODO Auto-generated method stub
-		super.evaluate();
 	}
 
 }

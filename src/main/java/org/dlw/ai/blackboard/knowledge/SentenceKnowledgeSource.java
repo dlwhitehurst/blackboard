@@ -29,7 +29,6 @@ public class SentenceKnowledgeSource extends KnowledgeSource {
 	@Override
 	public void evaluate() {
 		// TODO Auto-generated method stub
-		super.evaluate();
 	}
 
 }

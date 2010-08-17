@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.Main;
 import org.dlw.ai.blackboard.knowledge.CommonPrefixKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.CommonSuffixKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.ConsonantKnowledgeSource;

@@ -18,6 +18,7 @@ package org.dlw.ai.blackboard;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.util.UniversalContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -51,7 +52,7 @@ public class Main {
 	/**
 	 * Attribute final static Spring application context
 	 */
-	private final static ApplicationContext applicationContext = new ClassPathXmlApplicationContext("/application-context.xml");
+//	private final static ApplicationContext applicationContext = new ClassPathXmlApplicationContext("/application-context.xml");
 
 	/**
 	 * Main method to solve ciphertext problem. Coded string is passed
@@ -73,9 +74,9 @@ public class Main {
 	/**
 	 * @return the applicationContext
 	 */
-	public static ApplicationContext getApplicationContext() {
-		return applicationContext;
-	}
+//	public static ApplicationContext getApplicationContext() {
+//		return applicationContext;
+//	}
 	
 	/**
 	 * private method solveProblem
@@ -88,8 +89,7 @@ public class Main {
 		/**
 		 * hire the cryptographer
 		 */
-
-		Cryptographer theCryptographer = (Cryptographer) applicationContext.getBean("cryptographer");
+		Cryptographer theCryptographer = (Cryptographer) UniversalContext.getApplicationContext().getBean("cryptographer");
 		
 		/**
 		 * contract the cryptographer to decode the message

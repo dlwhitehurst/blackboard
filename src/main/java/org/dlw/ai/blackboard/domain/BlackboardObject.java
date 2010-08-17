@@ -16,23 +16,29 @@
  */
 package org.dlw.ai.blackboard.domain;
 
-
-
 /**
+ * This class defines the abstract blackboard object. All objects that make up
+ * part of the problem domain are classified as a blackboard object. The
+ * blackboard object extends the domain because in the future other types of
+ * domain objects may allow for the resolution of other problems that do not use
+ * the blackboard model of opportunistic reasoning.
+ * 
  * @author dlwhitehurst
- *
+ * 
  */
 public abstract class BlackboardObject extends Domain implements Dependent {
-	
+
 	/**
-	 * 
+	 * Each blackboard object adds itself or registers with the blackboard. Each
+	 * object also represents itself within the blackboard domain.
 	 */
 	public abstract void register();
-	
+
 	/**
-	 * 
+	 * Each blackboard object can also remove itself or resign from the problem
+	 * domain, e.g. {@link CipherLetter} objects can remove themselves and allow
+	 * an {@link Alphabet} or plaintext equivalent to be its representative
 	 */
 	public abstract void resign();
-
 
 }

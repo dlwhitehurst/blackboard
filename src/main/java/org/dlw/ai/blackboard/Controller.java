@@ -20,6 +20,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.util.SystemConstants;
+import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
  * The Controller class is used to orchestrate the problem solving that occurs
@@ -129,7 +130,7 @@ public class Controller {
 		 * Get an instance of a fresh Brain
 		 */
 
-		brain = (Brain) Main.getApplicationContext().getBean("brain");
+		brain = (Brain) UniversalContext.getApplicationContext().getBean("brain");
 
 	}
 

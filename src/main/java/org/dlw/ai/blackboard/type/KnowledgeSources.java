@@ -36,6 +36,7 @@ import org.dlw.ai.blackboard.knowledge.SolvedKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.VowelKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.WordStructureKnowledgeSource;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
  * @author dlwhitehurst
@@ -86,7 +87,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load SolvedKnowledgeSource
 		 */
 
-		SolvedKnowledgeSource solvedKnowledgeSource = (SolvedKnowledgeSource) Main
+		SolvedKnowledgeSource solvedKnowledgeSource = (SolvedKnowledgeSource) UniversalContext
 				.getApplicationContext().getBean(
 						KnowledgeSourceConstants.SOLVED_KNOWLEDGE_SOURCE);
 
@@ -100,7 +101,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load SentenceStructureKnowledgeSource
 		 */
 
-		SentenceStructureKnowledgeSource sentenceStructureKnowledgeSource = (SentenceStructureKnowledgeSource) Main
+		SentenceStructureKnowledgeSource sentenceStructureKnowledgeSource = (SentenceStructureKnowledgeSource) UniversalContext
 				.getApplicationContext()
 				.getBean(
 						KnowledgeSourceConstants.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE);
@@ -115,7 +116,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load PatternMatchingKnowledgeSource
 		 */
 
-		PatternMatchingKnowledgeSource patternMatchingKnowledgeSource = (PatternMatchingKnowledgeSource) Main
+		PatternMatchingKnowledgeSource patternMatchingKnowledgeSource = (PatternMatchingKnowledgeSource) UniversalContext
 				.getApplicationContext()
 				.getBean(
 						KnowledgeSourceConstants.PATTERN_MATCHING_KNOWLEDGE_SOURCE);
@@ -130,7 +131,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load SmallWordKnowledgeSource
 		 */
 
-		SmallWordKnowledgeSource smallWordKnowledgeSource = (SmallWordKnowledgeSource) Main
+		SmallWordKnowledgeSource smallWordKnowledgeSource = (SmallWordKnowledgeSource) UniversalContext
 				.getApplicationContext().getBean(
 						KnowledgeSourceConstants.SMALL_WORD_KNOWLEDGE_SOURCE);
 
@@ -144,7 +145,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load WordStructureKnowledgeSource
 		 */
 
-		WordStructureKnowledgeSource wordStructureKnowledgeSource = (WordStructureKnowledgeSource) Main
+		WordStructureKnowledgeSource wordStructureKnowledgeSource = (WordStructureKnowledgeSource) UniversalContext
 				.getApplicationContext()
 				.getBean(
 						KnowledgeSourceConstants.WORD_STRUCTURE_KNOWLEDGE_SOURCE);
@@ -159,7 +160,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load LegalStringKnowledgeSource
 		 */
 
-		LegalStringKnowledgeSource legalStringKnowledgeSource = (LegalStringKnowledgeSource) Main
+		LegalStringKnowledgeSource legalStringKnowledgeSource = (LegalStringKnowledgeSource) UniversalContext
 				.getApplicationContext().getBean(
 						KnowledgeSourceConstants.LEGAL_STRING_KNOWLEDGE_SOURCE);
 
@@ -173,7 +174,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load DoubleLetterKnowledgeSource
 		 */
 
-		DoubleLetterKnowledgeSource doubleLetterKnowledgeSource = (DoubleLetterKnowledgeSource) Main
+		DoubleLetterKnowledgeSource doubleLetterKnowledgeSource = (DoubleLetterKnowledgeSource) UniversalContext
 				.getApplicationContext()
 				.getBean(
 						KnowledgeSourceConstants.DOUBLE_LETTER_KNOWLEDGE_SOURCE);
@@ -188,7 +189,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load CommonSuffixKnowledgeSource
 		 */
 
-		CommonSuffixKnowledgeSource commonSuffixKnowledgeSource = (CommonSuffixKnowledgeSource) Main
+		CommonSuffixKnowledgeSource commonSuffixKnowledgeSource = (CommonSuffixKnowledgeSource) UniversalContext
 				.getApplicationContext()
 				.getBean(
 						KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE);
@@ -203,7 +204,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load CommonPrefixKnowledgeSource
 		 */
 
-		CommonPrefixKnowledgeSource commonPrefixKnowledgeSource = (CommonPrefixKnowledgeSource) Main
+		CommonPrefixKnowledgeSource commonPrefixKnowledgeSource = (CommonPrefixKnowledgeSource) UniversalContext
 				.getApplicationContext()
 				.getBean(
 						KnowledgeSourceConstants.COMMON_PREFIX_KNOWLEDGE_SOURCE);
@@ -218,7 +219,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load LetterFrequencyKnowledgeSource
 		 */
 
-		LetterFrequencyKnowledgeSource letterFrequencyKnowledgeSource = (LetterFrequencyKnowledgeSource) Main
+		LetterFrequencyKnowledgeSource letterFrequencyKnowledgeSource = (LetterFrequencyKnowledgeSource) UniversalContext
 				.getApplicationContext()
 				.getBean(
 						KnowledgeSourceConstants.LETTER_FREQUENCY_KNOWLEDGE_SOURCE);
@@ -233,7 +234,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load ConsonantKnowledgeSource
 		 */
 
-		ConsonantKnowledgeSource consonantKnowledgeSource = (ConsonantKnowledgeSource) Main
+		ConsonantKnowledgeSource consonantKnowledgeSource = (ConsonantKnowledgeSource) UniversalContext
 				.getApplicationContext().getBean(
 						KnowledgeSourceConstants.CONSONANT_KNOWLEDGE_SOURCE);
 
@@ -247,7 +248,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load VowelKnowledgeSource
 		 */
 
-		VowelKnowledgeSource vowelKnowledgeSource = (VowelKnowledgeSource) Main
+		VowelKnowledgeSource vowelKnowledgeSource = (VowelKnowledgeSource) UniversalContext
 				.getApplicationContext().getBean(
 						KnowledgeSourceConstants.VOWEL_KNOWLEDGE_SOURCE);
 
@@ -261,7 +262,7 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		 * Load DirectSubstitutionKnowledgeSource
 		 */
 
-		DirectSubstitutionKnowledgeSource directSubstitutionKnowledgeSource = (DirectSubstitutionKnowledgeSource) Main
+		DirectSubstitutionKnowledgeSource directSubstitutionKnowledgeSource = (DirectSubstitutionKnowledgeSource) UniversalContext
 				.getApplicationContext()
 				.getBean(
 						KnowledgeSourceConstants.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE);

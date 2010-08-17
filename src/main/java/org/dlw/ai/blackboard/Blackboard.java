@@ -28,6 +28,7 @@ import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.CipherLetter;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.util.StringTrimmer;
 import org.dlw.ai.blackboard.util.SystemConstants;
 
@@ -65,8 +66,6 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 			return new Sentence(SystemConstants.EARLY_RETRIEVAL_ERROR);
 		}
 
-		// TODO - this is probably incorrect, should only return Sentence if
-		// isSolved()
 		Sentence sentence = null;
 
 		for (BlackboardObject obj : this) {
@@ -91,8 +90,12 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 		/**
 		 * Notify
 		 */
-		log.info("Blackboard has been cleaned and ready for problem solving.");
-		// TODO - wrap
+		if (log.isInfoEnabled()) {
+			log.info("Blackboard has been cleaned and ready for problem solving.");
+		} else {
+			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+			System.exit(0); // die
+		}
 	}
 
 	/**
@@ -154,8 +157,13 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 				sentence = (Sentence) obj;
 			}
 		}
-		// TODO - wrap
-		log.info("PROGRESS: " + sentence.value());
+
+		if (log.isInfoEnabled()) {
+			log.info("PROGRESS: " + sentence.value());
+		} else {
+			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+			System.exit(0); // die
+		}
 		
 		String markers = getAffirmations(sentence);
 		
@@ -181,7 +189,7 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 	 * @return
 	 */
 	public final boolean assertProblem(String code) {
-		// TODO - Test for code being null as a method argument here
+
 		boolean result = true;
 
 		code = StringTrimmer.trim(code);
@@ -193,9 +201,21 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 		Sentence sentence = new Sentence(code);
 		List<Word> words = getWords(sentence);
 		sentence.setWords(words);
-		this.add(sentence);
+
+		/**
+		 * This is important!
+		 */
+		sentence.register();
 
 		return result;
+	}
+	
+	/**
+	 * Connect a knowledge source and allow it to evaluate the problem domain
+	 * @param ks
+	 */
+	public void connect(KnowledgeSource ks) {
+		// TODO - implement
 	}
 
 	/**
@@ -213,9 +233,12 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 		while (toker.hasMoreTokens()) {
 
 			String tmpWord = toker.nextToken();
-			// TODO - wrap
+
 			if (log.isInfoEnabled()) {
 				log.info("Word: " + tmpWord);
+			} else {
+				System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+				System.exit(0); // die
 			}
 
 			Word word = new Word(tmpWord);
@@ -223,8 +246,10 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 			word.setLetters(letters);
 			listOfWords.add(word);
 
-			this.add(word);
-
+			/**
+			 * This is important!
+			 */
+			word.register();
 		}
 
 		return listOfWords;
@@ -248,12 +273,23 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 			CipherLetter letter = new CipherLetter(word.value().substring(i,
 					i + 1));
 			listOfLetters.add(letter);
-			this.add(letter);
+			
+			/**
+			 * This is important!
+			 */
+			letter.register();
+			
 		}
 
 		return listOfLetters;
 	}
 	
+	/**
+	 * Private method to get affirmations against the sentence object
+	 * 
+	 * @param sentence
+	 * @return
+	 */
 	private String getAffirmations(Sentence sentence) {
 
 		String markerLine = new String("");

@@ -18,7 +18,9 @@ package org.dlw.ai.blackboard.domain;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.Blackboard;
 import org.dlw.ai.blackboard.util.SystemConstants;
+import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
  * <p>
@@ -166,6 +168,20 @@ public class Alphabet extends BlackboardObject {
 	public void notifyParticipants() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void register() {
+		Blackboard blackboard = (Blackboard) UniversalContext
+				.getApplicationContext().getBean("blackboard");
+		blackboard.add(this);
+	}
+
+	@Override
+	public void resign() {
+		Blackboard blackboard = (Blackboard) UniversalContext
+		.getApplicationContext().getBean("blackboard");
+		blackboard.remove(this);
 	}
 
 }

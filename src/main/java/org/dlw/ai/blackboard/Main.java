@@ -64,6 +64,7 @@ public class Main {
 
 		final String answer = solveProblem(CODED_STRING); 
 
+		// TODO - fix
 		if (log.isInfoEnabled()) {
 			log.info("SYSTEM FINAL REPLY: " + answer);
 		}

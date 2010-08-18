@@ -113,15 +113,13 @@ public class Cryptographer {
 				return blackboard.retrieveSolution().value();
 			}
 			
-			break; // added only to limit runaway loop during implementation
+			break; // TODO - remove when ready to begin functional testing.
 		}
 		
 		return SystemConstants.NO_SOLVE_ERROR;
 	}
 
 	/**
-	 * Public setter for private member myBlackboard
-	 * 
 	 * @param blackboard
 	 *            the blackboard to set
 	 */
@@ -130,8 +128,6 @@ public class Cryptographer {
 	}
 
 	/**
-	 * Public getter for private member myBlackboard
-	 * 
 	 * @return the blackboard
 	 */
 	public Blackboard getBlackboard() {
@@ -139,8 +135,6 @@ public class Cryptographer {
 	}
 
 	/**
-	 * Public setter for private member myController
-	 * 
 	 * @param controller
 	 *            the controller to set
 	 */
@@ -149,8 +143,6 @@ public class Cryptographer {
 	}
 
 	/**
-	 * Public getter for private member myController
-	 * 
 	 * @return the controller
 	 */
 	public Controller getController() {
@@ -158,8 +150,6 @@ public class Cryptographer {
 	}
 
 	/**
-	 * Public setter for private member myBrain
-	 * 
 	 * @param brain
 	 *            the brain to set
 	 */
@@ -168,8 +158,6 @@ public class Cryptographer {
 	}
 
 	/**
-	 * Public getter for private member myBrain
-	 * 
 	 * @return the brain
 	 */
 	public Brain getBrain() {

@@ -82,5 +82,25 @@ public interface KnowledgeSourceConstants {
 	 * Direct substitution knowledge source bean name
 	 */
 	public static final String DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE = "directSubstitutionKnowledgeSource";
-	
+
+	/**
+	 * Parent knowledge source
+	 */
+	public static final String LETTER_KNOWLEDGE_SOURCE = "letterKnowledgeSource";
+
+	/**
+	 * Parent knowledge source
+	 */
+	public static final String WORD_KNOWLEDGE_SOURCE = "wordKnowledgeSource";
+
+	/**
+	 * Parent knowledge source
+	 */
+	public static final String SENTENCE_KNOWLEDGE_SOURCE = "sentenceKnowledgeSource";
+
+	/**
+	 * Parent knowledge source
+	 */
+	public static final String STRING_KNOWLEDGE_SOURCE = "stringKnowledgeSource";
+
 }

@@ -27,7 +27,7 @@ public class Brain {
 	 * Attribute collection and entire problem domain of knowledge sources
 	 */
 	private KnowledgeSources knowledgeSources;
-	
+
 	/**
 	 * Attribute class logger
 	 */

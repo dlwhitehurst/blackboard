@@ -16,11 +16,7 @@
  */
 package org.dlw.ai.blackboard.util;
 
-public final class KnowledgeSourceConstants {
-	
-	private KnowledgeSourceConstants() {
-		// non-accessible default constructor
-	}
+public interface KnowledgeSourceConstants {
 	
 	/**
 	 * Pattern matching knowledge source bean name

@@ -33,6 +33,9 @@ import org.dlw.ai.blackboard.util.UniversalContext;
  */
 public class Controller {
 
+	/**
+	 * Attribute for solved status
+	 */
 	private boolean done = false;
 	
 	/**
@@ -54,11 +57,22 @@ public class Controller {
 	 * Attribute brain or source of intelligence
 	 */
 	private Brain brain;
+	
+	/**
+	 * Attribute blackboard or problem solving sandbox
+	 */
+	private Blackboard blackboard;
 
 	/**
 	 * Public constructor
 	 */
 	public Controller() {
+
+		/**
+		 * Get an instance of our blackboard (application initialization)
+		 */
+
+		setBlackboard((Blackboard) UniversalContext.getApplicationContext().getBean("blackboard"));
 	}
 
 	/**
@@ -86,6 +100,7 @@ public class Controller {
 	}
 
 	public boolean unableToProceed() {
+		// TODO - implement
 		return false;
 	}
 
@@ -140,28 +155,16 @@ public class Controller {
 	 * @param hint
 	 */
 	public void addHint(KnowledgeSource hint) {
-		// TODO - implement
-	}
 
-	/**
-	 * Private method to increment the index of the knowledge source collection
-	 * and reset to zero at the last index
-	 */
-	private void incrementIndex() {
-		int size = brain.getKnowledgeSources().size();
+		blackboard.connect(hint);
 
 		if (log.isInfoEnabled()) {
-			log.info("No. of KnowledgeSources: " + size);
+			log.info("Controller has provided to blackboard, KnowledgeSource hint:" + hint.toString());
 		} else {
 			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
 			System.exit(0); // die
 		}
-		
-		if (index == size-1) {
-			index = 0;
-		} else {
-			index++;
-		}
+
 	}
 
 	/**
@@ -170,7 +173,16 @@ public class Controller {
 	 * @param hint
 	 */
 	public void removeHint(KnowledgeSource hint) {
-		// TODO - implement
+
+		blackboard.disconnect(hint);
+
+		if (log.isInfoEnabled()) {
+			log.info("Controller disconnected from blackboard, KnowledgeSource hint:" + hint.toString());
+		} else {
+			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+			System.exit(0); // die
+		}
+		
 	}
 
 	/**
@@ -200,6 +212,41 @@ public class Controller {
 	 */
 	public KnowledgeSource getActiveKnowledgeSource() {
 		return activeKnowledgeSource;
+	}
+
+	/**
+	 * @param blackboard the blackboard to set
+	 */
+	public void setBlackboard(Blackboard blackboard) {
+		this.blackboard = blackboard;
+	}
+
+	/**
+	 * @return the blackboard
+	 */
+	public Blackboard getBlackboard() {
+		return blackboard;
+	}
+
+	/**
+	 * Private method to increment the index of the knowledge source collection
+	 * and reset to zero at the last index
+	 */
+	private void incrementIndex() {
+		int size = brain.getKnowledgeSources().size();
+
+		if (log.isInfoEnabled()) {
+			log.info("No. of KnowledgeSources: " + size);
+		} else {
+			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+			System.exit(0); // die
+		}
+		
+		if (index == size-1) {
+			index = 0;
+		} else {
+			index++;
+		}
 	}
 
 }

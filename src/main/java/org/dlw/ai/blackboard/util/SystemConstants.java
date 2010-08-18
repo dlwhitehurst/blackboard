@@ -23,32 +23,32 @@ package org.dlw.ai.blackboard.util;
 public interface SystemConstants {
 
 	/**
-	 * This should be a sentence.
+	 * The cryptogram sentence or string could not be asserted.
 	 */
 	public static final String NO_ASSERT_ERROR = "Could not assert problem!";
 
 	/**
-	 * This should be a sentence.
+	 * The system could not solve the cipher.
 	 */
 	public static final String NO_SOLVE_ERROR = "Could not decipher the asserted problem!";
 
 	/**
-	 * This should be a sentence.
+	 * The empty string is not acceptable as a cipher letter input.
 	 */
 	public static final String EMPTY_CIPHER_LETTER_ERROR = "Cannot accept an empty cipher letter.";
 
 	/**
-	 * This should be a sentence.
+	 * The empty string is not acceptable as a plain-text letter input.
 	 */
 	public static final String EMPTY_PLAIN_LETTER_ERROR = "Cannot accept an empty plain letter.";
 
 	/**
-	 * This should be a sentence.
+	 * This error string is given when a solution is requested prematurely.
 	 */
 	public static final String EARLY_RETRIEVAL_ERROR = "This method should only be called after the blackboard problem has been solved.";
 
 	/**
-	 * This should be a sentence.
+	 * This error indicates that INFO level logging needs to be configured.
 	 */
 	public static final String INFO_LEVEL_FATAL = "FATAL ERROR: The system requires INFO level logging.";
 }

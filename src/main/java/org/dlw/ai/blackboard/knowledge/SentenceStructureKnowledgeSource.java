@@ -16,11 +16,39 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
+import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
+
 /**
  * @author dlwhitehurst
  *
  */
 public class SentenceStructureKnowledgeSource extends SentenceKnowledgeSource {
+
+	/* (non-Javadoc)
+	 * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#toString()
+	 */
+	@Override
+	public String toString() {
+		return KnowledgeSourceConstants.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE;
+	}
 
 	/* (non-Javadoc)
 	 * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#evaluate()

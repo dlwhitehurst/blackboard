@@ -16,11 +16,39 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
+import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
+
 /**
  * @author dlwhitehurst
  *
  */
 public class SmallWordKnowledgeSource extends WordKnowledgeSource {
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return KnowledgeSourceConstants.SMALL_WORD_KNOWLEDGE_SOURCE;
+	}
 
 	/* (non-Javadoc)
 	 * @see org.dlw.ai.blackboard.knowledge.WordKnowledgeSource#evaluate()

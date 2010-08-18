@@ -49,6 +49,8 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 	 */
 	private final Log log = LogFactory.getLog(Blackboard.class);
 
+	private KnowledgeSource activeKnowledgeSource;
+	
 	/**
 	 * Default constructor
 	 */
@@ -174,12 +176,14 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 			markers = "___________________________";
 		}
 		
+
 		if (log.isInfoEnabled()) {
 			log.info("########: " + markers);
 		} else {
 			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
 			System.exit(0); // die
 		}
+	
 	}
 
 	/**
@@ -215,7 +219,16 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 	 * @param ks
 	 */
 	public void connect(KnowledgeSource ks) {
-		// TODO - implement
+
+		/**
+		 * This setter allows knowledge source access to the collection of
+		 * participating objects and their knowledge source references.
+		 */
+		this.activeKnowledgeSource = ks; // allows knowledge source access 
+	}
+	
+	public void disconnect(KnowledgeSource ks) {
+		this.activeKnowledgeSource = null;
 	}
 
 	/**
@@ -320,5 +333,19 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 			}
 		}
 		return markerLine;
+	}
+
+	/**
+	 * @param activeKnowledgeSource the activeKnowledgeSource to set
+	 */
+	public void setActiveKnowledgeSource(KnowledgeSource activeKnowledgeSource) {
+		this.activeKnowledgeSource = activeKnowledgeSource;
+	}
+
+	/**
+	 * @return the activeKnowledgeSource
+	 */
+	public KnowledgeSource getActiveKnowledgeSource() {
+		return activeKnowledgeSource;
 	}
 }

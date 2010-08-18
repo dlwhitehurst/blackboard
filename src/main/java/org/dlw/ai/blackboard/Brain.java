@@ -21,6 +21,23 @@ import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.type.KnowledgeSources;
 import org.dlw.ai.blackboard.util.SystemConstants;
 
+/**
+ * <p>
+ * This class manages the collection of
+ * {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource} type instances. It
+ * acts as a brain or collection of cummulative knowledge sources. The
+ * {@link Controller} will get these knowledge sources when the problem solving
+ * begins. An interesting class, the {@link Brain} acts as the librarian and
+ * gathers all intelligent resources for our blackboard problem.
+ * </p>
+ * 
+ * <blockquote><i>Brain - "(def.) an organ of soft nervous tissue contained in
+ * the skull of vertebrates, functioning as the coordinating center of sensation
+ * and intellectual and nervous activity.</i></blockquote>
+ * 
+ * @author dlwhitehurst
+ * 
+ */
 public class Brain {
 
 	/**
@@ -43,7 +60,7 @@ public class Brain {
 		 * Create collection container
 		 */
 		knowledgeSources = new KnowledgeSources();
-		
+
 		/**
 		 * Clear and load domain knowledge
 		 */
@@ -58,19 +75,31 @@ public class Brain {
 			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
 			System.exit(0); // die
 		}
-		
+
 	}
-	
+
 	/**
 	 * Reset existing domain knowledge or intelligence
 	 */
 	public void reset() {
+
 		knowledgeSources.reset();
-		log.info("Existing knowledge sources reset.");
+
+		/**
+		 * Notify
+		 */
+		if (log.isInfoEnabled()) {
+			log.info("Existing knowledge sources reset.");
+		} else {
+			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+			System.exit(0); // die
+		}
+
 	}
 
 	/**
-	 * @param knowledgeSources the knowledgeSources to set
+	 * @param knowledgeSources
+	 *            the knowledgeSources to set
 	 */
 	public void setKnowledgeSources(KnowledgeSources knowledgeSources) {
 		this.knowledgeSources = knowledgeSources;

@@ -20,12 +20,7 @@ package org.dlw.ai.blackboard.util;
  * @author dlwhitehurst
  * 
  */
-public final class SystemConstants {
-
-	/**
-	 * non-access default constructor
-	 */
-	private SystemConstants() {}
+public interface SystemConstants {
 
 	/**
 	 * This should be a sentence.

@@ -17,9 +17,16 @@
 package org.dlw.ai.blackboard.domain;
 
 /**
+ * This class represents the top level domain object, however at this time
+ * a particular use for this has not been specified.  The class remains an
+ * abstraction until such time as the "problem domain" has increased in depth
+ * and complexity.
+ * 
+ * <blockquote><i>Universe - "(def.) a sphere of thought or activity.</i></blockquote>
+ * 
  * @author dlwhitehurst
  *
  */
 public abstract class Universe {
-
+	// namespace abstraction only
 }

@@ -23,22 +23,9 @@ import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.util.SystemConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
-import org.dlw.ai.blackboard.knowledge.CommonPrefixKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.CommonSuffixKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.ConsonantKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.DirectSubstitutionKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.DoubleLetterKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSources;
-import org.dlw.ai.blackboard.knowledge.LegalStringKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.LetterFrequencyKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.PatternMatchingKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.SentenceStructureKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.SmallWordKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.SolvedKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.VowelKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.WordStructureKnowledgeSource;
 
 public class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> implements KnowledgeSources {
 
@@ -95,7 +82,7 @@ public class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> implements 
 				.getApplicationContext().getBean(
 						KnowledgeSourceConstants.SOLVED_KNOWLEDGE_SOURCE);
 
-		if (this.add(solvedKnowledgeSource) && log.isInfoEnabled()) {
+		if (this.add((SolvedKnowledgeSource) solvedKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("1-SolvedKnowledgeSource added.");
 		} else {
 			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);

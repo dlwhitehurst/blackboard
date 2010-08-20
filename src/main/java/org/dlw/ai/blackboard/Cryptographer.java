@@ -28,7 +28,7 @@ import org.dlw.ai.blackboard.util.SystemConstants;
  * @author dlwhitehurst
  * 
  */
-public class Cryptographer {
+public final class Cryptographer {
 
 	/**
 	 * Attribute blackboard where problem is solved

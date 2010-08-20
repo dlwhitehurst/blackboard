@@ -26,6 +26,7 @@ import org.dlw.ai.blackboard.knowledge.ConsonantKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.DirectSubstitutionKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.DoubleLetterKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.LegalStringKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.LetterFrequencyKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.PatternMatchingKnowledgeSource;
@@ -34,7 +35,7 @@ import org.dlw.ai.blackboard.knowledge.SmallWordKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.SolvedKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.VowelKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.WordStructureKnowledgeSource;
-import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.util.SystemConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
@@ -93,7 +94,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(solvedKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("1-SolvedKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -108,7 +110,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(sentenceStructureKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("2-SentenceStructureKnowledgeSource added.");
 		} else {
-			// TODO -handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -123,7 +126,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(patternMatchingKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("3-PatternMatchingKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -137,7 +141,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(smallWordKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("4-SmallWordKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -152,7 +157,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(wordStructureKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("5-WordStructureKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -166,7 +172,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(legalStringKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("6-LegalStringKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -181,7 +188,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(doubleLetterKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("7-DoubleLetterKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -196,7 +204,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(commonSuffixKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("8-CommonSuffixKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -211,7 +220,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(commonPrefixKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("9-CommonPrefixKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -226,7 +236,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(letterFrequencyKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("10-LetterFrequencyKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -240,7 +251,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(consonantKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("11-ConsonantKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -254,7 +266,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(vowelKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("12-VowelKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 		/**
@@ -269,7 +282,8 @@ public class KnowledgeSources extends ArrayList<KnowledgeSource> {
 		if (this.add(directSubstitutionKnowledgeSource) && log.isInfoEnabled()) {
 			log.info("13-DirectSubstitutionKnowledgeSource added.");
 		} else {
-			// TODO - handle
+			System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
+			System.exit(0); // die
 		}
 
 	}

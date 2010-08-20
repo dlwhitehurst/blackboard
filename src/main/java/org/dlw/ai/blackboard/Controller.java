@@ -19,14 +19,15 @@ package org.dlw.ai.blackboard;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.KnowledgeSourcesImpl;
 import org.dlw.ai.blackboard.util.SystemConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
- * The Controller class is used to orchestrate the problem solving that occurs
- * at the blackboard. Knowledge sources are called to evaluate the current
- * blackboard state and accept hints and try them in turn until the problem is
- * solved.
+ * The Controller class is used to orchestrate (state machine controller) the
+ * problem solving that occurs at the blackboard. Knowledge sources are called
+ * to evaluate the current blackboard state and accept hints and try them in
+ * turn until the problem is solved.
  * 
  * @author dlwhitehurst
  * 
@@ -37,12 +38,12 @@ public class Controller {
 	 * Attribute for solved status
 	 */
 	private boolean done = false;
-	
+
 	/**
 	 * Attribute active or current knowledge source
 	 */
 	private KnowledgeSource activeKnowledgeSource;
-	
+
 	/**
 	 * Attribute class logger
 	 */
@@ -57,7 +58,7 @@ public class Controller {
 	 * Attribute brain or source of intelligence
 	 */
 	private Brain brain;
-	
+
 	/**
 	 * Attribute blackboard or problem solving sandbox
 	 */
@@ -66,40 +67,34 @@ public class Controller {
 	/**
 	 * Public constructor
 	 */
-	public Controller() {
-
-		/**
-		 * Get an instance of our blackboard (application initialization)
-		 */
-
-		setBlackboard((Blackboard) UniversalContext.getApplicationContext().getBean("blackboard"));
-	}
+	public Controller() {}
+	
 
 	/**
-	 * Public method to tell the controller that his work is done
+	 * Public method to signal halt of the controller
 	 * 
 	 */
-	public void done() {
+	public final void done() {
 		done = true;
 	}
-	
+
 	/**
-	 * Public method to determine if the controller is finished
+	 * Public method to determine if the controller is really finished
 	 * 
 	 * @return
 	 */
-	public boolean isSolved() {
+	public final boolean isSolved() {
 
 		boolean result = false;
-		
+
 		if (this.done) {
 			result = true;
 		}
-		
-		return result; 
+
+		return result;
 	}
 
-	public boolean unableToProceed() {
+	public final boolean unableToProceed() {
 		// TODO - implement
 		return false;
 	}
@@ -108,32 +103,32 @@ public class Controller {
 	 * Public method to cycle each KnowledgeSource and evaluate the current
 	 * blackboard problem string
 	 */
-	public void processNextHint() {
+	public final void processNextHint() {
 
 		/**
 		 * Set the active knowledge source to evaluate
 		 */
-
-		setActiveKnowledgeSource(brain.getKnowledgeSources().get(index));
+		KnowledgeSourcesImpl knowledgesources = (KnowledgeSourcesImpl) brain.getKnowledgeSources();
+		 activeKnowledgeSource = knowledgesources.get(index);
 
 		/**
 		 * Evaluate the current knowledge source
 		 */
-		getActiveKnowledgeSource().evaluate();
+		 activeKnowledgeSource.evaluate();
 
 		/**
 		 * Increment the index used to obtain the knowledge source next time
 		 * this method is called
 		 */
 		incrementIndex();
-		
+
 	}
 
 	/**
 	 * Public reset method to null the brain and knowledge sources and create a
 	 * new brain and ultimately new knowledge sources.
 	 */
-	public void reset() {
+	public final void reset() {
 
 		/**
 		 * kill any existing Brain
@@ -145,7 +140,8 @@ public class Controller {
 		 * Get an instance of a fresh Brain
 		 */
 
-		brain = (Brain) UniversalContext.getApplicationContext().getBean("brain");
+		brain = (Brain) UniversalContext.getApplicationContext().getBean(
+				"brain");
 
 	}
 
@@ -155,11 +151,15 @@ public class Controller {
 	 * @param hint
 	 */
 	public void addHint(KnowledgeSource hint) {
+		
+		blackboard = (Blackboard) UniversalContext.getApplicationContext().getBean("blackboard");
 
 		blackboard.connect(hint);
 
 		if (log.isInfoEnabled()) {
-			log.info("Controller has provided to blackboard, KnowledgeSource hint:" + hint.toString());
+			log
+					.info("Controller has provided to blackboard, KnowledgeSource hint:"
+							+ hint.toString());
 		} else {
 			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
 			System.exit(0); // die
@@ -177,18 +177,20 @@ public class Controller {
 		blackboard.disconnect(hint);
 
 		if (log.isInfoEnabled()) {
-			log.info("Controller disconnected from blackboard, KnowledgeSource hint:" + hint.toString());
+			log
+					.info("Controller disconnected from blackboard, KnowledgeSource hint:"
+							+ hint.toString());
 		} else {
 			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
 			System.exit(0); // die
 		}
-		
+
 	}
 
 	/**
 	 * Connect and manage the Brain
 	 */
-	public void connect() {
+	public final void connect() {
 		brain.engage();
 
 		if (log.isInfoEnabled()) {
@@ -200,40 +202,12 @@ public class Controller {
 	}
 
 	/**
-	 * @param activeKnowledgeSource
-	 *            the activeKnowledgeSource to set
-	 */
-	public void setActiveKnowledgeSource(KnowledgeSource activeKnowledgeSource) {
-		this.activeKnowledgeSource = activeKnowledgeSource;
-	}
-
-	/**
-	 * @return the activeKnowledgeSource
-	 */
-	public KnowledgeSource getActiveKnowledgeSource() {
-		return activeKnowledgeSource;
-	}
-
-	/**
-	 * @param blackboard the blackboard to set
-	 */
-	public void setBlackboard(Blackboard blackboard) {
-		this.blackboard = blackboard;
-	}
-
-	/**
-	 * @return the blackboard
-	 */
-	public Blackboard getBlackboard() {
-		return blackboard;
-	}
-
-	/**
 	 * Private method to increment the index of the knowledge source collection
 	 * and reset to zero at the last index
 	 */
 	private void incrementIndex() {
-		int size = brain.getKnowledgeSources().size();
+		KnowledgeSourcesImpl knowledgesources = (KnowledgeSourcesImpl) brain.getKnowledgeSources();
+		int size = knowledgesources.size();
 
 		if (log.isInfoEnabled()) {
 			log.info("No. of KnowledgeSources: " + size);
@@ -241,8 +215,8 @@ public class Controller {
 			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
 			System.exit(0); // die
 		}
-		
-		if (index == size-1) {
+
+		if (index == size - 1) {
 			index = 0;
 		} else {
 			index++;

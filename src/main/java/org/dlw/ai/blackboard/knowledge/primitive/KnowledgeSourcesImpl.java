@@ -57,6 +57,8 @@ public class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> implements 
 	 */
 	private KnowledgeSource active;
 
+	public KnowledgeSourcesImpl() {}
+	
 	/**
 	 * Public method to clear and create all fresh knowledge sources
 	 */

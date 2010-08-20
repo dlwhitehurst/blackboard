@@ -27,24 +27,27 @@ import org.dlw.ai.blackboard.domain.Participant;
  * @author dlwhitehurst
  *
  */
-public abstract class KnowledgeSource extends Participant {
+public interface KnowledgeSource {
 	
 	/**
 	 * TODO - comment
 	 */
-	protected Blackboard blackboard;
+	//protected Blackboard blackboard;
 	
 	/**
 	 * TODO - comment
 	 */
-	protected Controller controller;
+	//protected Controller controller;
 	
 	/**
 	 * TODO - comment
 	 */
-	protected ConcurrentLinkedQueue<Assumption> pastAssumptions;
+	//protected ConcurrentLinkedQueue<Assumption> pastAssumptions;
 	
-	public abstract void evaluate();
+	/**
+	 * The method to implement
+	 */
+	public void evaluate();
 
 
 }

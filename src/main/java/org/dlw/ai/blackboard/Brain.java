@@ -18,7 +18,8 @@ package org.dlw.ai.blackboard;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.type.KnowledgeSources;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSources;
+import org.dlw.ai.blackboard.knowledge.primitive.KnowledgeSourcesImpl;
 import org.dlw.ai.blackboard.util.SystemConstants;
 
 /**
@@ -43,7 +44,7 @@ public class Brain {
 	/**
 	 * Attribute collection and entire problem domain of knowledge sources
 	 */
-	private KnowledgeSources knowledgeSources;
+	private final KnowledgeSourcesImpl knowledgeSources = new KnowledgeSourcesImpl();
 
 	/**
 	 * Attribute class logger
@@ -55,11 +56,6 @@ public class Brain {
 	 * 
 	 */
 	public void engage() {
-
-		/**
-		 * Create collection container
-		 */
-		knowledgeSources = new KnowledgeSources();
 
 		/**
 		 * Clear and load domain knowledge
@@ -95,14 +91,6 @@ public class Brain {
 			System.exit(0); // die
 		}
 
-	}
-
-	/**
-	 * @param knowledgeSources
-	 *            the knowledgeSources to set
-	 */
-	public void setKnowledgeSources(KnowledgeSources knowledgeSources) {
-		this.knowledgeSources = knowledgeSources;
 	}
 
 	/**

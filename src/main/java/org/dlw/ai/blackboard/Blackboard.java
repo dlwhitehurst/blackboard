@@ -62,7 +62,7 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 	 * 
 	 * @return
 	 */
-	public final Sentence retrieveSolution() {
+	public Sentence retrieveSolution() {
 
 		if (!isSolved()) {
 			return new Sentence(SystemConstants.EARLY_RETRIEVAL_ERROR);
@@ -82,7 +82,7 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 	/**
 	 * Reset the blackboard
 	 */
-	public final void reset() {
+	public void reset() {
 
 		/**
 		 * Clear the blackboard array
@@ -105,7 +105,7 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 	 * 
 	 * @return
 	 */
-	public final boolean isSolved() {
+	public boolean isSolved() {
 
 		boolean result = false;
 
@@ -192,7 +192,7 @@ public class Blackboard extends ArrayList < BlackboardObject > {
 	 * @param code
 	 * @return
 	 */
-	public final boolean assertProblem(String code) {
+	public boolean assertProblem(String code) {
 
 		boolean result = true;
 

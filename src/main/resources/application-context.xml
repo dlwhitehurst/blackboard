@@ -23,42 +23,42 @@
           
 	<!-- all working knowledge sources -->
     <bean id="solvedKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.SolvedKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource" />
 	
     <bean id="sentenceStructureKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.SentenceStructureKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource" />
 
     <bean id="patternMatchingKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.PatternMatchingKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource" />
 
     <bean id="smallWordKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.SmallWordKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource" />
 
     <bean id="wordStructureKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.WordStructureKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource" />
 
     <bean id="legalStringKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.LegalStringKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource" />
 
     <bean id="doubleLetterKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.DoubleLetterKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource" />
 
     <bean id="commonSuffixKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.CommonSuffixKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource" />
 
     <bean id="commonPrefixKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.CommonPrefixKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource" />
 
     <bean id="letterFrequencyKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.LetterFrequencyKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource" />
 
     <bean id="consonantKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.ConsonantKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource" />
 
     <bean id="vowelKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.VowelKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource" />
 
     <bean id="directSubstitutionKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.DirectSubstitutionKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource" />
           
 </beans>

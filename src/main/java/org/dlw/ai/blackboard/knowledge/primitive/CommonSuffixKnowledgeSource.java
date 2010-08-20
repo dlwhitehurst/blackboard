@@ -18,13 +18,13 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
-
+import org.dlw.ai.blackboard.BlackboardContext;
 
 /**
  * @author dlwhitehurst
  *
  */
-public class CommonSuffixKnowledgeSource implements KnowledgeSource {
+public class CommonSuffixKnowledgeSource extends BlackboardContext implements KnowledgeSource {
 
 
 

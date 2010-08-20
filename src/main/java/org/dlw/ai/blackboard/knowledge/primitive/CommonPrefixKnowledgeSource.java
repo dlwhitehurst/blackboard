@@ -16,6 +16,7 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
+import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
@@ -24,7 +25,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * @author dlwhitehurst
  *
  */
-public class CommonPrefixKnowledgeSource implements KnowledgeSource {
+public class CommonPrefixKnowledgeSource extends BlackboardContext implements KnowledgeSource {
 
 
 	/* (non-Javadoc)

@@ -16,6 +16,8 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
+import org.dlw.ai.blackboard.BlackboardContext;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
 
@@ -23,7 +25,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * @author dlwhitehurst
  *
  */
-public class VowelKnowledgeSource extends LetterKnowledgeSource {
+public class VowelKnowledgeSource extends BlackboardContext implements KnowledgeSource {
 
 	/* (non-Javadoc)
 	 * @see org.dlw.ai.blackboard.knowledge.LetterKnowledgeSource#equals(java.lang.Object)
@@ -54,7 +56,6 @@ public class VowelKnowledgeSource extends LetterKnowledgeSource {
 	/* (non-Javadoc)
 	 * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
 	 */
-	@Override
 	public void evaluate() {
 		// TODO Auto-generated method stub
 	}

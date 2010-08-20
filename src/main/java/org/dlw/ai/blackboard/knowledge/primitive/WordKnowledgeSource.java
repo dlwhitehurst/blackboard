@@ -16,15 +16,17 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
+import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
+// TODO - this class may be meaningless
 
 /**
  * @author dlwhitehurst
  *
  */
-public class WordKnowledgeSource implements KnowledgeSource {
+public class WordKnowledgeSource extends BlackboardContext implements KnowledgeSource {
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)

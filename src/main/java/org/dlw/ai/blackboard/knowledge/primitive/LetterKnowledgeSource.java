@@ -19,6 +19,7 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
+// TODO - this class may be meaningless
 
 /**
  * @author dlwhitehurst

@@ -68,7 +68,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * 
      * @return
      */
-    public Sentence retrieveSolution() {
+    public final Sentence retrieveSolution() {
 
         if (!isSolved()) {
             return new Sentence(SystemConstants.EARLY_RETRIEVAL_ERROR);
@@ -88,7 +88,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
     /**
      * Reset the blackboard
      */
-    public void reset() {
+    public final void reset() {
 
         /**
          * Clear the blackboard array
@@ -112,7 +112,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * 
      * @return
      */
-    public boolean isSolved() {
+    public final boolean isSolved() {
 
         boolean result = false;
 
@@ -198,7 +198,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * @param code
      * @return
      */
-    public boolean assertProblem(String code) {
+    public final boolean assertProblem(String code) {
 
         boolean result = true;
 
@@ -225,7 +225,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * 
      * @param ks
      */
-    public void connect(KnowledgeSource ks) {
+    public final void connect(KnowledgeSource ks) {
 
         /**
          * This setter allows knowledge source access to the collection of
@@ -234,7 +234,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         this.activeKnowledgeSource = ks; // allows knowledge source access
     }
 
-    public void disconnect(KnowledgeSource ks) {
+    public final void disconnect(KnowledgeSource ks) {
         this.activeKnowledgeSource = null;
     }
 

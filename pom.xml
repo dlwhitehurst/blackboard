@@ -28,8 +28,8 @@
     </scm>
 
     <issueManagement>
-        <system></system>
-        <url></url>
+        <system>jira</system>
+        <url>http://www.solutionvisual.com:8080/jira/browse/BLKBD</url>
     </issueManagement>
     
     <distributionManagement>
@@ -163,23 +163,44 @@
 
     <reporting>
         <plugins>
+          <!-- NOTE: this is on hold because of some error   
             <plugin>
                 <artifactId>maven-changes-plugin</artifactId>
             </plugin>
+          -->
             <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                    <outputEncoding>UTF-8</outputEncoding>
+                    <configLocation>checkstyle.xml</configLocation>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <outputEncoding>UTF-8</outputEncoding>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-jxr-plugin</artifactId>
+                <configuration>
+                  <goal>jxr:jxr</goal>
+                  <goal>jxr:test-jxr</goal>
+                    <outputEncoding>UTF-8</outputEncoding>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <configuration>
                     <linkXref>true</linkXref>
                     <targetJdk>1.5</targetJdk>
+                    <outputEncoding>UTF-8</outputEncoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <configuration>
+                    <outputEncoding>UTF-8</outputEncoding>
                 </configuration>
             </plugin>
         </plugins>

@@ -3,6 +3,9 @@ package org.dlw.ai.blackboard;
 
 import static org.junit.Assert.*;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.util.UniversalContext;
 import org.junit.After;
 import org.junit.Before;
@@ -19,13 +22,13 @@ public class BlackboardContextTest {
 	private Blackboard blackboard;
 	private Controller controller;
 	private BlackboardContext blackboardContext;
-	
+	private ConcurrentLinkedQueue<Assumption> pastAssumptions;
 	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception{
 
 		blackboard = (Blackboard) UniversalContext
 		.getApplicationContext().getBean("blackboard");
@@ -34,6 +37,9 @@ public class BlackboardContextTest {
 		controller = (Controller) UniversalContext
 		.getApplicationContext().getBean("controller");
 		blackboardContext = new BlackboardContext();
+		
+		pastAssumptions = new ConcurrentLinkedQueue<Assumption>();
+		
 		
 	}
 
@@ -63,6 +69,18 @@ public class BlackboardContextTest {
         assertNotNull(controller);
     }
 	
+	@Test
+	public void testSetPastAssumptions() {
+		blackboardContext.setPastAssumptions(pastAssumptions);
+		// should continue
+	}
+	
+	@Test
+	public void testGetPastAssumtions() throws AssertionError {
+		blackboardContext.setPastAssumptions(pastAssumptions);
+		pastAssumptions = blackboardContext.getPastAssumptions();
+		assertNotNull(pastAssumptions);
+	}
 	/**
 	 * @throws java.lang.Exception
 	 */

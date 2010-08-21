@@ -16,20 +16,19 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
-
 /**
  * @author dlwhitehurst
  * 
  */
 public interface KnowledgeSources {
 
-	public void reset();
-	
-	public void startKnowledgeSource(KnowledgeSource active);
-	
-	public void loadKnowledgeSources();
-	
-	public void setActive(KnowledgeSource active);
-	
-	public KnowledgeSource getActive();
+    public void reset();
+
+    public void startKnowledgeSource(KnowledgeSource active);
+
+    public void loadKnowledgeSources();
+
+    public void setActive(KnowledgeSource active);
+
+    public KnowledgeSource getActive();
 }

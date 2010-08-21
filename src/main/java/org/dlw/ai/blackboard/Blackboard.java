@@ -37,315 +37,323 @@ import org.dlw.ai.blackboard.util.SystemConstants;
  * the sandbox of the problem domain. This class was derived from the book,
  * Object Oriented Analysis and Design by Grady Booch, however the blackboard
  * model itself was first introduced by ... (add background)
- *
+ * 
+ * <p>
+ * This class is not extendable and therefore not part of the API. Its use is
+ * specific to the problem domain being solved by
+ * {@link org.dlw.ai.blackboard.Main}.
+ * </p>
+ * 
  * @author dlwhitehurst
- *
+ * 
  */
 @SuppressWarnings("serial")
-public class Blackboard extends ArrayList < BlackboardObject > {
+public class Blackboard extends ArrayList<BlackboardObject> {
 
-	/**
-	 * Commons logging class instance
-	 */
-	private final Log log = LogFactory.getLog(Blackboard.class);
+    /**
+     * Commons logging class instance
+     */
+    private final Log log = LogFactory.getLog(Blackboard.class);
 
-	private KnowledgeSource activeKnowledgeSource;
-	
-	/**
-	 * Default constructor
-	 */
-	public Blackboard() {
-	}
+    private KnowledgeSource activeKnowledgeSource;
 
-	/**
-	 * Return decoded sentence
-	 * 
-	 * @return
-	 */
-	public Sentence retrieveSolution() {
+    /**
+     * Default constructor
+     */
+    public Blackboard() {
+    }
 
-		if (!isSolved()) {
-			return new Sentence(SystemConstants.EARLY_RETRIEVAL_ERROR);
-		}
+    /**
+     * Return decoded sentence
+     * 
+     * @return
+     */
+    public Sentence retrieveSolution() {
 
-		Sentence sentence = null;
+        if (!isSolved()) {
+            return new Sentence(SystemConstants.EARLY_RETRIEVAL_ERROR);
+        }
 
-		for (BlackboardObject obj : this) {
-			if (obj.getClass().equals(
-					org.dlw.ai.blackboard.domain.Sentence.class)) {
-				sentence = (Sentence) obj;
-			}
-		}
-		return sentence;
-	}
+        Sentence sentence = null;
 
-	/**
-	 * Reset the blackboard
-	 */
-	public void reset() {
+        for (BlackboardObject obj : this) {
+            if (obj.getClass().equals(
+                    org.dlw.ai.blackboard.domain.Sentence.class)) {
+                sentence = (Sentence) obj;
+            }
+        }
+        return sentence;
+    }
 
-		/**
-		 * Clear the blackboard array
-		 */
-		this.clear();
+    /**
+     * Reset the blackboard
+     */
+    public void reset() {
 
-		/**
-		 * Notify
-		 */
-		if (log.isInfoEnabled()) {
-			log.info("Blackboard has been cleaned and ready for problem solving.");
-		} else {
-			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-			System.exit(0); // die
-		}
-	}
+        /**
+         * Clear the blackboard array
+         */
+        this.clear();
 
-	/**
-	 * Public method used to determine if the blackboard problem is solved
-	 * 
-	 * @return
-	 */
-	public boolean isSolved() {
+        /**
+         * Notify
+         */
+        if (log.isInfoEnabled()) {
+            log
+                    .info("Blackboard has been cleaned and ready for problem solving.");
+        } else {
+            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+            System.exit(0); // die
+        }
+    }
 
-		boolean result = false;
+    /**
+     * Public method used to determine if the blackboard problem is solved
+     * 
+     * @return
+     */
+    public boolean isSolved() {
 
-		Sentence sentence = null;
+        boolean result = false;
 
-		/**
-		 * Search the ArrayList for a sentence
-		 */
-		for (BlackboardObject obj : this) {
-			if (obj.getClass().equals(
-					org.dlw.ai.blackboard.domain.Sentence.class)) {
-				sentence = (Sentence) obj;
-			}
-		}
+        Sentence sentence = null;
 
-		/**
-		 * If we have a sentence and the sentence is solved, then the blackboard
-		 * problem is solved.
-		 */
-		if (sentence != null) {
-			result = sentence.isSolved();
-		}
+        /**
+         * Search the ArrayList for a sentence
+         */
+        for (BlackboardObject obj : this) {
+            if (obj.getClass().equals(
+                    org.dlw.ai.blackboard.domain.Sentence.class)) {
+                sentence = (Sentence) obj;
+            }
+        }
 
-		/**
-		 * need method to show blackboard solution anytime this method is
-		 * called. Also, the entire sentence should be underline with
-		 * affirmations.
-		 */
+        /**
+         * If we have a sentence and the sentence is solved, then the blackboard
+         * problem is solved.
+         */
+        if (sentence != null) {
+            result = sentence.isSolved();
+        }
 
-		outputProgress();
+        /**
+         * need method to show blackboard solution anytime this method is
+         * called. Also, the entire sentence should be underline with
+         * affirmations.
+         */
 
-		return result;
+        outputProgress();
 
-	}
+        return result;
 
-	/**
-	 * Private method to output the sentence and underline any corrected cipher
-	 * letters. Also any letters that are underlined are plaintext letters
-	 * (Alphabets) and also Affirmations exist in blackboard problem domain.
-	 */
-	private void outputProgress() {
-		
-		Sentence sentence = null;
+    }
 
-		/**
-		 * Get the sentence object
-		 */
-		for (BlackboardObject obj : this) {
-			if (obj.getClass().equals(
-					org.dlw.ai.blackboard.domain.Sentence.class)) {
-				sentence = (Sentence) obj;
-			}
-		}
+    /**
+     * Private method to output the sentence and underline any corrected cipher
+     * letters. Also any letters that are underlined are plaintext letters
+     * (Alphabets) and also Affirmations exist in blackboard problem domain.
+     */
+    private void outputProgress() {
 
-		if (log.isInfoEnabled()) {
-			log.info("PROGRESS: " + sentence.value());
-		} else {
-			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-			System.exit(0); // die
-		}
-		
-		String markers = getAffirmations(sentence);
-		
-		/**
-		 * Use this to show that no markers exist
-		 */
-		if (markers.equals("")) {
-			markers = "___________________________";
-		}
-		
+        Sentence sentence = null;
 
-		if (log.isInfoEnabled()) {
-			log.info("########: " + markers);
-		} else {
-			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-			System.exit(0); // die
-		}
-	
-	}
+        /**
+         * Get the sentence object
+         */
+        for (BlackboardObject obj : this) {
+            if (obj.getClass().equals(
+                    org.dlw.ai.blackboard.domain.Sentence.class)) {
+                sentence = (Sentence) obj;
+            }
+        }
 
-	/**
-	 * Public boolean method to assert our problem with the blackboard
-	 * 
-	 * @param code
-	 * @return
-	 */
-	public boolean assertProblem(String code) {
+        if (log.isInfoEnabled()) {
+            log.info("PROGRESS: " + sentence.value());
+        } else {
+            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+            System.exit(0); // die
+        }
 
-		boolean result = true;
+        String markers = getAffirmations(sentence);
 
-		code = StringTrimmer.trim(code);
+        /**
+         * Use this to show that no markers exist
+         */
+        if (markers.equals("")) {
+            markers = "___________________________";
+        }
 
-		if (code.equals("")) {
-			result = false;
-		}
+        if (log.isInfoEnabled()) {
+            log.info("########: " + markers);
+        } else {
+            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+            System.exit(0); // die
+        }
 
-		Sentence sentence = new Sentence(code);
-		List<Word> words = getWords(sentence);
-		sentence.setWords(words);
+    }
 
-		/**
-		 * This is important!
-		 */
-		sentence.register();
+    /**
+     * Public boolean method to assert our problem with the blackboard
+     * 
+     * @param code
+     * @return
+     */
+    public boolean assertProblem(String code) {
 
-		return result;
-	}
-	
-	/**
-	 * Connect a knowledge source and allow it to evaluate the problem domain
-	 * @param ks
-	 */
-	public void connect(KnowledgeSource ks) {
+        boolean result = true;
 
-		/**
-		 * This setter allows knowledge source access to the collection of
-		 * participating objects and their knowledge source references.
-		 */
-		this.activeKnowledgeSource = ks; // allows knowledge source access 
-	}
-	
-	public void disconnect(KnowledgeSource ks) {
-		this.activeKnowledgeSource = null;
-	}
+        code = StringTrimmer.trim(code);
 
-	/**
-	 * Private method to return a List of Word objects based on the Sentence
-	 * object provided
-	 * 
-	 * @param sentence
-	 * @return
-	 */
-	private List<Word> getWords(Sentence sentence) {
+        if (code.equals("")) {
+            result = false;
+        }
 
-		StringTokenizer toker = new StringTokenizer(sentence.value());
-		List<Word> listOfWords = sentence.getWords();
+        Sentence sentence = new Sentence(code);
+        List<Word> words = getWords(sentence);
+        sentence.setWords(words);
 
-		while (toker.hasMoreTokens()) {
+        /**
+         * This is important!
+         */
+        sentence.register();
 
-			String tmpWord = toker.nextToken();
+        return result;
+    }
 
-			if (log.isInfoEnabled()) {
-				log.info("Word: " + tmpWord);
-			} else {
-				System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-				System.exit(0); // die
-			}
+    /**
+     * Connect a knowledge source and allow it to evaluate the problem domain
+     * 
+     * @param ks
+     */
+    public void connect(KnowledgeSource ks) {
 
-			Word word = new Word(tmpWord);
-			List<CipherLetter> letters = getLetters(word);
-			word.setLetters(letters);
-			listOfWords.add(word);
+        /**
+         * This setter allows knowledge source access to the collection of
+         * participating objects and their knowledge source references.
+         */
+        this.activeKnowledgeSource = ks; // allows knowledge source access
+    }
 
-			/**
-			 * This is important!
-			 */
-			word.register();
-		}
+    public void disconnect(KnowledgeSource ks) {
+        this.activeKnowledgeSource = null;
+    }
 
-		return listOfWords;
-	}
+    /**
+     * Private method to return a List of Word objects based on the Sentence
+     * object provided
+     * 
+     * @param sentence
+     * @return
+     */
+    private List<Word> getWords(Sentence sentence) {
 
-	/**
-	 * Private method to return a List of CipherLetter objects based on Word
-	 * provided
-	 * 
-	 * @param word
-	 * @return
-	 */
-	private List<CipherLetter> getLetters(Word word) {
+        StringTokenizer toker = new StringTokenizer(sentence.value());
+        List<Word> listOfWords = sentence.getWords();
 
-		List<CipherLetter> listOfLetters = word.getLetters();
+        while (toker.hasMoreTokens()) {
 
-		// char[] chars = word.value().toCharArray();
-		int i = 0;
+            String tmpWord = toker.nextToken();
 
-		for (i = 0; i < word.value().length(); i++) {
-			CipherLetter letter = new CipherLetter(word.value().substring(i,
-					i + 1));
-			listOfLetters.add(letter);
-			
-			/**
-			 * This is important!
-			 */
-			letter.register();
-			
-		}
+            if (log.isInfoEnabled()) {
+                log.info("Word: " + tmpWord);
+            } else {
+                System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+                System.exit(0); // die
+            }
 
-		return listOfLetters;
-	}
-	
-	/**
-	 * Private method to get affirmations against the sentence object
-	 * 
-	 * @param sentence
-	 * @return
-	 */
-	private String getAffirmations(Sentence sentence) {
+            Word word = new Word(tmpWord);
+            List<CipherLetter> letters = getLetters(word);
+            word.setLetters(letters);
+            listOfWords.add(word);
 
-		String markerLine = new String("");
-		int wordcount = 0;
-		int loopcount = 0;
-		
-		List<Word> words = sentence.getWords();
-		wordcount = words.size();
-		
-		for (Word word: words) {
-			loopcount++;
-			List<CipherLetter> list = word.getLetters();
+            /**
+             * This is important!
+             */
+            word.register();
+        }
 
-			for (CipherLetter letter : list) {
-				Stack<Assumption> stack = letter.getAffirmations().getStatements();
-				for (int i = 0; i < stack.size(); i++) {
-					Assumption assumption = stack.pop();
-					if (!assumption.isRetractable()) {
-						// affirmation and we have an assertion
-						markerLine.concat("#");
-					} else {
-						markerLine.concat(" ");
-					}
-				}
-			}
-			if (loopcount < wordcount) {
-				markerLine.concat(" ");
-			}
-		}
-		return markerLine;
-	}
+        return listOfWords;
+    }
 
-	/**
-	 * @param activeKnowledgeSource the activeKnowledgeSource to set
-	 */
-	public void setActiveKnowledgeSource(KnowledgeSource activeKnowledgeSource) {
-		this.activeKnowledgeSource = activeKnowledgeSource;
-	}
+    /**
+     * Private method to return a List of CipherLetter objects based on Word
+     * provided
+     * 
+     * @param word
+     * @return
+     */
+    private List<CipherLetter> getLetters(Word word) {
 
-	/**
-	 * @return the activeKnowledgeSource
-	 */
-	public KnowledgeSource getActiveKnowledgeSource() {
-		return activeKnowledgeSource;
-	}
+        List<CipherLetter> listOfLetters = word.getLetters();
+
+        int i = 0;
+
+        for (i = 0; i < word.value().length(); i++) {
+            CipherLetter letter = new CipherLetter(word.value().substring(i,
+                    i + 1));
+            listOfLetters.add(letter);
+
+            /**
+             * This is important!
+             */
+            letter.register();
+
+        }
+
+        return listOfLetters;
+    }
+
+    /**
+     * Private method to get affirmations against the sentence object
+     * 
+     * @param sentence
+     * @return
+     */
+    private String getAffirmations(Sentence sentence) {
+
+        String markerLine = new String("");
+        int wordcount = 0;
+        int loopcount = 0;
+
+        List<Word> words = sentence.getWords();
+        wordcount = words.size();
+
+        for (Word word : words) {
+            loopcount++;
+            List<CipherLetter> list = word.getLetters();
+
+            for (CipherLetter letter : list) {
+                Stack<Assumption> stack = letter.getAffirmations()
+                        .getStatements();
+                for (int i = 0; i < stack.size(); i++) {
+                    Assumption assumption = stack.pop();
+                    if (!assumption.isRetractable()) {
+                        // affirmation and we have an assertion
+                        markerLine.concat("#");
+                    } else {
+                        markerLine.concat(" ");
+                    }
+                }
+            }
+            if (loopcount < wordcount) {
+                markerLine.concat(" ");
+            }
+        }
+        return markerLine;
+    }
+
+    /**
+     * @param activeKnowledgeSource
+     *            the activeKnowledgeSource to set
+     */
+    public void setActiveKnowledgeSource(KnowledgeSource activeKnowledgeSource) {
+        this.activeKnowledgeSource = activeKnowledgeSource;
+    }
+
+    /**
+     * @return the activeKnowledgeSource
+     */
+    public KnowledgeSource getActiveKnowledgeSource() {
+        return activeKnowledgeSource;
+    }
 }

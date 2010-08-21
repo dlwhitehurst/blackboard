@@ -32,58 +32,64 @@ import org.dlw.ai.blackboard.util.UniversalContext;
  * A cryptic sentence e.g. Q AZWS DSSC KAS DXZNN DASNN is solved by this system
  * to be I HAVE SEEN THE SMALL SHELL.
  * 
+ * <p>
+ * This class is not extendable and therefore not part of the API. Its use is
+ * specific to the problem domain being solved by
+ * {@link org.dlw.ai.blackboard.Main}.
+ * </p>
+ * 
  * @author dlwhitehurst
  * 
  */
 public class Main {
 
-	/**
-	 * Attribute cipher string sentence
-	 */
-	final static String CODED_STRING = "Q AZWS DSSC KAS DXZNN DASNN";
+    /**
+     * Attribute cipher string sentence
+     */
+    private static final String CODED_STRING = "Q AZWS DSSC KAS DXZNN DASNN";
 
-	/**
-	 * Attribute class logger
-	 */
-	private final static Log log = LogFactory.getLog(Main.class);
+    /**
+     * Attribute class logger
+     */
+    private static final Log log = LogFactory.getLog(Main.class);
 
-	/**
-	 * Main method to solve ciphertext problem. Coded string is passed to
-	 * solveProblem and {@link Cryptographer} is instantiated to optimistically decode
-	 * the string until it is solved
-	 * 
-	 * @param args
-	 */
-	@SuppressWarnings("unused")
-	public static void main(String[] args) {
+    /**
+     * Main method to solve ciphertext problem. Coded string is passed to
+     * solveProblem and {@link Cryptographer} is instantiated to optimistically
+     * decode the string until it is solved
+     * 
+     * @param args
+     */
+    @SuppressWarnings("unused")
+    public static void main(String[] args) {
 
-		/**
-		 * Solve our problem
-		 */
-		final String answer = solveProblem(CODED_STRING);
+        /**
+         * Solve our problem
+         */
+        final String answer = solveProblem(CODED_STRING);
 
-		/**
-		 * Notify results
-		 */
-		if (log.isInfoEnabled()) {
-			log.info("SYSTEM FINAL REPLY: " + answer);
-		} else {
-			System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-			System.exit(0); // die
-		}
-	}
+        /**
+         * Notify results
+         */
+        if (log.isInfoEnabled()) {
+            log.info("SYSTEM FINAL REPLY: " + answer);
+        } else {
+            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+            System.exit(0); // die
+        }
+    }
 
-	/**
-	 * Private method to solve the problem
-	 * 
-	 * @param ciphertext
-	 * @return
-	 */
-	private static String solveProblem(String ciphertext) {
+    /**
+     * Private method to solve the problem
+     * 
+     * @param ciphertext
+     * @return
+     */
+    private static String solveProblem(String ciphertext) {
 
-		Cryptographer theCryptographer = (Cryptographer) UniversalContext
-				.getApplicationContext().getBean("cryptographer");
-		return theCryptographer.decipher(ciphertext);
-	}
+        Cryptographer theCryptographer = (Cryptographer) UniversalContext
+                .getApplicationContext().getBean("cryptographer");
+        return theCryptographer.decipher(ciphertext);
+    }
 
 }

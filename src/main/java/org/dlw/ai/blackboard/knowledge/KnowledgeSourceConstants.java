@@ -17,90 +17,90 @@
 package org.dlw.ai.blackboard.knowledge;
 
 public interface KnowledgeSourceConstants {
-	
-	/**
-	 * Pattern matching knowledge source bean name
-	 */
-	public static final String PATTERN_MATCHING_KNOWLEDGE_SOURCE = "patternMatchingKnowledgeSource";
-	
-	/**
-	 * Problem solved knowledge source bean name
-	 */
-	public static final String SOLVED_KNOWLEDGE_SOURCE = "solvedKnowledgeSource";
-	
-	/**
-	 * Sentence structure knowledge source bean name 
-	 */
-	public static final String SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE = "sentenceStructureKnowledgeSource";
-	
-	/**
-	 * Small word knowledge source bean name
-	 */
-	public static final String SMALL_WORD_KNOWLEDGE_SOURCE = "smallWordKnowledgeSource";
-	
-	/**
-	 * Word structure knowledge bean name
-	 */
-	public static final String WORD_STRUCTURE_KNOWLEDGE_SOURCE = "wordStructureKnowledgeSource";
-	
-	/**
-	 * Legal string knowledge source bean name
-	 */
-	public static final String LEGAL_STRING_KNOWLEDGE_SOURCE = "legalStringKnowledgeSource";
-	
-	/**
-	 * Double letter knowledge source bean name
-	 */
-	public static final String DOUBLE_LETTER_KNOWLEDGE_SOURCE = "doubleLetterKnowledgeSource";
-	
-	/**
-	 * Common suffix knowledge source bean name
-	 */
-	public static final String COMMON_SUFFIX_KNOWLEDGE_SOURCE = "commonSuffixKnowledgeSource";
-	
-	/**
-	 * Common prefix knowledge source bean name
-	 */
-	public static final String COMMON_PREFIX_KNOWLEDGE_SOURCE = "commonPrefixKnowledgeSource";
-	
-	/**
-	 * Letter frequency knowledge source bean name
-	 */
-	public static final String LETTER_FREQUENCY_KNOWLEDGE_SOURCE = "letterFrequencyKnowledgeSource";
-	
-	/**
-	 * Consonant knowledge source bean name
-	 */
-	public static final String CONSONANT_KNOWLEDGE_SOURCE = "consonantKnowledgeSource";
-	
-	/**
-	 * Vowel knowledge source bean name
-	 */
-	public static final String VOWEL_KNOWLEDGE_SOURCE = "vowelKnowledgeSource";
-	
-	/**
-	 * Direct substitution knowledge source bean name
-	 */
-	public static final String DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE = "directSubstitutionKnowledgeSource";
 
-	/**
-	 * Parent knowledge source
-	 */
-	public static final String LETTER_KNOWLEDGE_SOURCE = "letterKnowledgeSource";
+    /**
+     * Pattern matching knowledge source bean name
+     */
+    public static final String PATTERN_MATCHING_KNOWLEDGE_SOURCE = "patternMatchingKnowledgeSource";
 
-	/**
-	 * Parent knowledge source
-	 */
-	public static final String WORD_KNOWLEDGE_SOURCE = "wordKnowledgeSource";
+    /**
+     * Problem solved knowledge source bean name
+     */
+    public static final String SOLVED_KNOWLEDGE_SOURCE = "solvedKnowledgeSource";
 
-	/**
-	 * Parent knowledge source
-	 */
-	public static final String SENTENCE_KNOWLEDGE_SOURCE = "sentenceKnowledgeSource";
+    /**
+     * Sentence structure knowledge source bean name
+     */
+    public static final String SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE = "sentenceStructureKnowledgeSource";
 
-	/**
-	 * Parent knowledge source
-	 */
-	public static final String STRING_KNOWLEDGE_SOURCE = "stringKnowledgeSource";
+    /**
+     * Small word knowledge source bean name
+     */
+    public static final String SMALL_WORD_KNOWLEDGE_SOURCE = "smallWordKnowledgeSource";
+
+    /**
+     * Word structure knowledge bean name
+     */
+    public static final String WORD_STRUCTURE_KNOWLEDGE_SOURCE = "wordStructureKnowledgeSource";
+
+    /**
+     * Legal string knowledge source bean name
+     */
+    public static final String LEGAL_STRING_KNOWLEDGE_SOURCE = "legalStringKnowledgeSource";
+
+    /**
+     * Double letter knowledge source bean name
+     */
+    public static final String DOUBLE_LETTER_KNOWLEDGE_SOURCE = "doubleLetterKnowledgeSource";
+
+    /**
+     * Common suffix knowledge source bean name
+     */
+    public static final String COMMON_SUFFIX_KNOWLEDGE_SOURCE = "commonSuffixKnowledgeSource";
+
+    /**
+     * Common prefix knowledge source bean name
+     */
+    public static final String COMMON_PREFIX_KNOWLEDGE_SOURCE = "commonPrefixKnowledgeSource";
+
+    /**
+     * Letter frequency knowledge source bean name
+     */
+    public static final String LETTER_FREQUENCY_KNOWLEDGE_SOURCE = "letterFrequencyKnowledgeSource";
+
+    /**
+     * Consonant knowledge source bean name
+     */
+    public static final String CONSONANT_KNOWLEDGE_SOURCE = "consonantKnowledgeSource";
+
+    /**
+     * Vowel knowledge source bean name
+     */
+    public static final String VOWEL_KNOWLEDGE_SOURCE = "vowelKnowledgeSource";
+
+    /**
+     * Direct substitution knowledge source bean name
+     */
+    public static final String DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE = "directSubstitutionKnowledgeSource";
+
+    /**
+     * Parent knowledge source
+     */
+    public static final String LETTER_KNOWLEDGE_SOURCE = "letterKnowledgeSource";
+
+    /**
+     * Parent knowledge source
+     */
+    public static final String WORD_KNOWLEDGE_SOURCE = "wordKnowledgeSource";
+
+    /**
+     * Parent knowledge source
+     */
+    public static final String SENTENCE_KNOWLEDGE_SOURCE = "sentenceKnowledgeSource";
+
+    /**
+     * Parent knowledge source
+     */
+    public static final String STRING_KNOWLEDGE_SOURCE = "stringKnowledgeSource";
 
 }

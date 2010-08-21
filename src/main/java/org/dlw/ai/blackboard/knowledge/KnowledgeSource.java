@@ -16,38 +16,29 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
-
-import org.dlw.ai.blackboard.Blackboard;
-import org.dlw.ai.blackboard.Controller;
-import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Participant;
 
 /**
  * @author dlwhitehurst
- *
+ * 
  */
-public interface KnowledgeSource {
-	
-	/**
-	 * TODO - comment
-	 */
-	//protected Blackboard blackboard;
-	
-	/**
-	 * TODO - comment
-	 */
-	//protected Controller controller;
-	
-	/**
-	 * TODO - comment
-	 */
-	//protected ConcurrentLinkedQueue<Assumption> pastAssumptions;
-	
-	/**
-	 * The method to implement
-	 */
-	public void evaluate();
+public interface KnowledgeSource extends Participant {
 
+    /**
+     * TODO - comment
+     */
+    // protected Blackboard blackboard;
+    /**
+     * TODO - comment
+     */
+    // protected Controller controller;
+    /**
+     * TODO - comment
+     */
+    // protected ConcurrentLinkedQueue<Assumption> pastAssumptions;
+    /**
+     * The method to implement
+     */
+    public void evaluate();
 
 }

@@ -5,7 +5,7 @@
  * (the "License"); You may not use this file except 
  * in compliance with the License. You may obtain a 
  * copy of the License at http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  * Unless required by applicable law or agreed to in writing, 
  * software distributed under the License is distributed on an 
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
@@ -15,6 +15,9 @@
  * 
  */
 package org.dlw.ai.blackboard.domain;
+
+import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
  * This class defines the abstract blackboard object. All objects that make up
@@ -28,17 +31,25 @@ package org.dlw.ai.blackboard.domain;
  */
 public abstract class BlackboardObject extends Domain implements Dependent {
 
-	/**
-	 * Each blackboard object adds itself or registers with the blackboard. Each
-	 * object also represents itself within the blackboard domain.
-	 */
-	public abstract void register();
+    /**
+     * Each blackboard object adds itself or registers with the blackboard. Each
+     * object also represents itself within the blackboard domain.
+     */
+    public final void register() {
+        Blackboard blackboard = (Blackboard) UniversalContext
+                .getApplicationContext().getBean("blackboard");
+        blackboard.add(this);
+    }
 
-	/**
-	 * Each blackboard object can also remove itself or resign from the problem
-	 * domain, e.g. {@link CipherLetter} objects can remove themselves and allow
-	 * an {@link Alphabet} or plaintext equivalent to be its representative
-	 */
-	public abstract void resign();
+    /**
+     * Each blackboard object can also remove itself or resign from the problem
+     * domain, e.g. {@link CipherLetter} objects can remove themselves and allow
+     * an {@link Alphabet} or plaintext equivalent to be its representative
+     */
+    public final void resign() {
+        Blackboard blackboard = (Blackboard) UniversalContext
+                .getApplicationContext().getBean("blackboard");
+        blackboard.remove(this);
+    }
 
 }

@@ -22,43 +22,50 @@ import org.dlw.ai.blackboard.BlackboardContext;
 
 /**
  * @author dlwhitehurst
- *
+ * 
  */
-public class CommonSuffixKnowledgeSource extends BlackboardContext implements KnowledgeSource {
+public class CommonSuffixKnowledgeSource extends BlackboardContext implements
+        KnowledgeSource {
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        // TODO Auto-generated method stub
+        return super.equals(obj);
+    }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return super.hashCode();
+    }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE;
+    }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
-	 */
-	public void evaluate() {
-		// TODO Auto-generated method stub
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
+     */
+    public void evaluate() {
+        // TODO Auto-generated method stub
+    }
 
 }

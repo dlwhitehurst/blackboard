@@ -21,147 +21,155 @@ import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.util.SystemConstants;
 
 /**
+ * <p>
  * The Cryptographer class represents the host of the blackboard problem. He
  * mediates and tends the problem until it is solved. This class provides the
  * management logic behind the resolution of a cryptogram puzzle.
+ * </p>
+ * 
+ * <p>
+ * This class is not extendable and therefore not part of the API. Its use is
+ * specific to the problem domain being solved by
+ * {@link org.dlw.ai.blackboard.Main}.
+ * </p>
  * 
  * @author dlwhitehurst
  * 
  */
 public final class Cryptographer {
 
-	/**
-	 * Attribute blackboard where problem is solved
-	 */
-	private Blackboard blackboard;
-	
-	/**
-	 * Attribute controller for problem solving logic
-	 */
-	private Controller controller;
-	
-	/**
-	 * Attribute brain or source of knowledge
-	 */
-	private Brain brain;
-	
-	/**
-	 * Attribute class logger
-	 */
-	private final Log log = LogFactory.getLog(Cryptographer.class);
+    /**
+     * Attribute blackboard where problem is solved
+     */
+    private Blackboard blackboard;
 
-	/**
-	 * Public method to decipher the coded cipher text
-	 * 
-	 * @param ciphertext
-	 * @return
-	 */
-	public String decipher(String ciphertext) {
+    /**
+     * Attribute controller for problem solving logic
+     */
+    private Controller controller;
 
-		/**
-		 * Reset the domain objects and all knowledge sources and clean the
-		 * blackboard for our new problem.
-		 */
+    /**
+     * Attribute brain or source of knowledge
+     */
+    private Brain brain;
 
-		controller.reset();
+    /**
+     * Attribute class logger
+     */
+    private final Log log = LogFactory.getLog(Cryptographer.class);
 
-		/**
-		 * Connect to the brain and wake the system
-		 */
+    /**
+     * Public method to decipher the coded cipher text
+     * 
+     * @param ciphertext
+     * @return
+     */
+    public String decipher(String ciphertext) {
 
-		controller.connect();
+        /**
+         * Reset the domain objects and all knowledge sources and clean the
+         * blackboard for our new problem.
+         */
 
-		/**
-		 * Clean the blackboard
-		 */
+        controller.reset();
 
-		blackboard.reset();
+        /**
+         * Connect to the brain and wake the system
+         */
 
-		/**
-		 * Assert the problem at the blackboard
-		 */
+        controller.connect();
 
-		if (!blackboard.assertProblem(ciphertext)) {
-			if (log.isErrorEnabled()) {
-				log.error(SystemConstants.NO_ASSERT_ERROR);
-			}
-			
-			return SystemConstants.NO_ASSERT_ERROR;
-		}
+        /**
+         * Clean the blackboard
+         */
 
-		/**
-		 * Kick start the controller
-		 */
-		return runController();
+        blackboard.reset();
 
-	}
+        /**
+         * Assert the problem at the blackboard
+         */
 
-	/**
-	 * Private method to loop while the controller processes hints to solve the
-	 * puzzle.
-	 * 
-	 * @return
-	 */
-	private String runController() {
+        if (!blackboard.assertProblem(ciphertext)) {
+            if (log.isErrorEnabled()) {
+                log.error(SystemConstants.NO_ASSERT_ERROR);
+            }
 
-		while (!controller.isSolved() || controller.unableToProceed()) {
-			
-			controller.processNextHint();
-			
-			if (blackboard.isSolved()) {
-				this.getController().done();
-				return blackboard.retrieveSolution().value();
-			}
-			
-			break; // TODO - remove when ready to begin functional testing.
-		}
-		
-		return SystemConstants.NO_SOLVE_ERROR;
-	}
+            return SystemConstants.NO_ASSERT_ERROR;
+        }
 
-	/**
-	 * @param blackboard
-	 *            the blackboard to set
-	 */
-	public void setBlackboard(Blackboard blackboard) {
-		this.blackboard = blackboard;
-	}
+        /**
+         * Kick start the controller
+         */
+        return runController();
 
-	/**
-	 * @return the blackboard
-	 */
-	public Blackboard getBlackboard() {
-		return blackboard;
-	}
+    }
 
-	/**
-	 * @param controller
-	 *            the controller to set
-	 */
-	public void setController(Controller controller) {
-		this.controller = controller;
-	}
+    /**
+     * Private method to loop while the controller processes hints to solve the
+     * puzzle.
+     * 
+     * @return
+     */
+    private String runController() {
 
-	/**
-	 * @return the controller
-	 */
-	public Controller getController() {
-		return controller;
-	}
+        while (!controller.isSolved() || controller.unableToProceed()) {
 
-	/**
-	 * @param brain
-	 *            the brain to set
-	 */
-	public void setBrain(Brain brain) {
-		this.brain = brain;
-	}
+            controller.processNextHint();
 
-	/**
-	 * @return the brain
-	 */
-	public Brain getBrain() {
-		return brain;
-	}
+            if (blackboard.isSolved()) {
+                this.getController().done();
+                return blackboard.retrieveSolution().value();
+            }
+
+            break; // TODO - remove when ready to begin functional testing.
+        }
+
+        return SystemConstants.NO_SOLVE_ERROR;
+    }
+
+    /**
+     * @param blackboard
+     *            the blackboard to set
+     */
+    public void setBlackboard(Blackboard blackboard) {
+        this.blackboard = blackboard;
+    }
+
+    /**
+     * @return the blackboard
+     */
+    public Blackboard getBlackboard() {
+        return blackboard;
+    }
+
+    /**
+     * @param controller
+     *            the controller to set
+     */
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    /**
+     * @return the controller
+     */
+    public Controller getController() {
+        return controller;
+    }
+
+    /**
+     * @param brain
+     *            the brain to set
+     */
+    public void setBrain(Brain brain) {
+        this.brain = brain;
+    }
+
+    /**
+     * @return the brain
+     */
+    public Brain getBrain() {
+        return brain;
+    }
 
 }

@@ -20,44 +20,54 @@ import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
-
 /**
  * @author dlwhitehurst
- *
+ * 
  */
-public class SentenceStructureKnowledgeSource extends BlackboardContext implements KnowledgeSource {
+public class SentenceStructureKnowledgeSource extends BlackboardContext
+        implements KnowledgeSource {
 
-	/* (non-Javadoc)
-	 * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#equals(java.lang
+     * .Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        // TODO Auto-generated method stub
+        return super.equals(obj);
+    }
 
-	/* (non-Javadoc)
-	 * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return super.hashCode();
+    }
 
-	/* (non-Javadoc)
-	 * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#toString()
-	 */
-	@Override
-	public String toString() {
-		return KnowledgeSourceConstants.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#toString()
+     */
+    @Override
+    public String toString() {
+        return KnowledgeSourceConstants.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE;
+    }
 
-	/* (non-Javadoc)
-	 * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#evaluate()
-	 */
-	public void evaluate() {
-		// TODO Auto-generated method stub
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#evaluate()
+     */
+    public void evaluate() {
+        // TODO Auto-generated method stub
+    }
 
 }

@@ -8,10 +8,9 @@ Overview
   I was given my copy of the book years ago when I worked for Newport News Shipbuilding.
 
   The author outlines the problem using C++ classes and methods, however he does
-  not completely solve the problem or provide code implementations. He only claims that 
-  a similar problem was implemented in the early 70's called HEARSAY.
-
-  I am in the process of solving the problem addressed in chapter 11 of the book.  I will 
+  not completely solve the problem or provide code implementations. He speaks to 
+  a similar problem was implemented in the early 70's called HEARSAY. I am in the process 
+  of solving a lesser problem addressed in chapter 11 of the book.  I will 
   revise this README when the problem is finally solved.  This system is not complete.  
 
   The cryptogram is "Q AZWS DSSC KAS DXZNN DASNN" and the solution is "I HAVE SEEN THE SMALL SHELL".

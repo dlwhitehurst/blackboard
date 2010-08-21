@@ -18,18 +18,18 @@ package org.dlw.ai.blackboard.util;
 
 /**
  * @author dlwhitehurst
- *
+ * 
  */
 public final class StringTrimmer {
 
-	private StringTrimmer() { 
-		// non-accessible default constructor
-	} 
-	
-	/* remove leading whitespace */
-	/**
-	 * TODO - comment
-	 */
+    private StringTrimmer() {
+        // non-accessible default constructor
+    }
+
+    /* remove leading whitespace */
+    /**
+     * TODO - comment
+     */
     public static String ltrim(String source) {
         return source.replaceAll("^\\s+", "");
     }
@@ -60,10 +60,11 @@ public final class StringTrimmer {
 
     /**
      * TODO- comment
+     * 
      * @param source
      * @return
      */
-    public static String lrtrim(String source){
+    public static String lrtrim(String source) {
         return ltrim(rtrim(source));
     }
 

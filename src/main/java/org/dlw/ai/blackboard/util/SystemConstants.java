@@ -22,33 +22,39 @@ package org.dlw.ai.blackboard.util;
  */
 public interface SystemConstants {
 
-	/**
-	 * The cryptogram sentence or string could not be asserted.
-	 */
-	public static final String NO_ASSERT_ERROR = "Could not assert problem!";
+    /**
+     * The cryptogram sentence or string could not be asserted.
+     */
+    public static final String NO_ASSERT_ERROR = "Could not assert problem!";
 
-	/**
-	 * The system could not solve the cipher.
-	 */
-	public static final String NO_SOLVE_ERROR = "Could not decipher the asserted problem!";
+    /**
+     * The system could not solve the cipher.
+     */
+    public static final String NO_SOLVE_ERROR = "Could not decipher the asserted problem!";
 
-	/**
-	 * The empty string is not acceptable as a cipher letter input.
-	 */
-	public static final String EMPTY_CIPHER_LETTER_ERROR = "Cannot accept an empty cipher letter.";
+    /**
+     * The empty string is not acceptable as a cipher letter input.
+     */
+    public static final String EMPTY_CIPHER_LETTER_ERROR = "Cannot accept an empty cipher letter.";
 
-	/**
-	 * The empty string is not acceptable as a plain-text letter input.
-	 */
-	public static final String EMPTY_PLAIN_LETTER_ERROR = "Cannot accept an empty plain letter.";
+    /**
+     * The empty string is not acceptable as a plain-text letter input.
+     */
+    public static final String EMPTY_PLAIN_LETTER_ERROR = "Cannot accept an empty plain letter.";
 
-	/**
-	 * This error string is given when a solution is requested prematurely.
-	 */
-	public static final String EARLY_RETRIEVAL_ERROR = "This method should only be called after the blackboard problem has been solved.";
+    /**
+     * This error string is given when a solution is requested prematurely.
+     */
+    public static final String EARLY_RETRIEVAL_ERROR = "This method should only be called after the blackboard problem has been solved.";
 
-	/**
-	 * This error indicates that INFO level logging needs to be configured.
-	 */
-	public static final String INFO_LEVEL_FATAL = "FATAL ERROR: The system requires INFO level logging.";
+    /**
+     * This error indicates that INFO level logging needs to be configured.
+     */
+    public static final String INFO_LEVEL_FATAL = "FATAL ERROR: The system requires INFO level logging.";
+
+    /**
+     * This error indicates that INFO level logging needs to be configured.
+     */
+    public static final String INFO_LEVEL_KS_FAIL = "FATAL ERROR: Either the knowledge source could not be loaded or INFO level logging is not configured.";
+
 }

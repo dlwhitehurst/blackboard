@@ -5,7 +5,7 @@
  * (the "License"); You may not use this file except 
  * in compliance with the License. You may obtain a 
  * copy of the License at http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  * Unless required by applicable law or agreed to in writing, 
  * software distributed under the License is distributed on an 
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
@@ -41,7 +41,7 @@ import org.dlw.ai.blackboard.util.UniversalContext;
  * @author dlwhitehurst
  * 
  */
-public class Main {
+public final class Main {
 
     /**
      * Attribute cipher string sentence
@@ -59,8 +59,9 @@ public class Main {
      * decode the string until it is solved
      * 
      * @param args
+     *      the String array of program arguments
      */
-    public static void main(String[] args) {
+    public void main(String[] args) {
 
         /**
          * Solve our problem

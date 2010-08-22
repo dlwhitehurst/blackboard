@@ -60,7 +60,6 @@ public class Main {
      * 
      * @param args
      */
-    @SuppressWarnings("unused")
     public static void main(String[] args) {
 
         /**
@@ -85,7 +84,7 @@ public class Main {
      * @param ciphertext
      * @return
      */
-    private static String solveProblem(String ciphertext) {
+    private static String solveProblem(final String ciphertext) {
 
         Cryptographer theCryptographer = (Cryptographer) UniversalContext
                 .getApplicationContext().getBean("cryptographer");

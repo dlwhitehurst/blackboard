@@ -73,7 +73,7 @@ public final class Brain {
             log.info("Knowledge sources reset and loaded.");
         } else {
             System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-            System.exit(0); // die
+            System.exit(0);
         }
 
     }

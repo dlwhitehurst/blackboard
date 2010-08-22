@@ -66,7 +66,8 @@ public class Blackboard extends ArrayList<BlackboardObject> {
     /**
      * Return decoded sentence
      * 
-     * @return
+     * @return {@link org.dlw.ai.blackboard.domain.Sentence} object for the
+     *         solution
      */
     public final Sentence retrieveSolution() {
 
@@ -110,7 +111,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
     /**
      * Public method used to determine if the blackboard problem is solved
      * 
-     * @return
+     * @return boolean primitive
      */
     public final boolean isSolved() {
 
@@ -196,7 +197,8 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * Public boolean method to assert our problem with the blackboard
      * 
      * @param code
-     * @return
+     *            the String code or initial cryptogram
+     * @return boolean primitive
      */
     public final boolean assertProblem(String code) {
 
@@ -221,9 +223,12 @@ public class Blackboard extends ArrayList<BlackboardObject> {
     }
 
     /**
-     * Connect a knowledge source and allow it to evaluate the problem domain
+     * Public method allowing expert (knowledge source) a chance at the
+     * blackboard model to evaluate the problem domain
      * 
      * @param ks
+     *            the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource} at
+     *            the board (presently)
      */
     public final void connect(KnowledgeSource ks) {
 
@@ -231,9 +236,18 @@ public class Blackboard extends ArrayList<BlackboardObject> {
          * This setter allows knowledge source access to the collection of
          * participating objects and their knowledge source references.
          */
-        this.activeKnowledgeSource = ks; // allows knowledge source access
+        this.activeKnowledgeSource = ks;
+
     }
 
+    /**
+     * Public method to removing expert (knowledge source) from the blackboard
+     * model
+     * 
+     * @param ks
+     *            the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
+     *            steps back from the board
+     */
     public final void disconnect(KnowledgeSource ks) {
         this.activeKnowledgeSource = null;
     }

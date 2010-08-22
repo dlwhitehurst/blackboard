@@ -1,11 +1,11 @@
 /**
  * Copyright 2010 David L. Whitehurst
- * 
+ *
  * Licensed under the Apache License, Version 2.0 
  * (the "License"); You may not use this file except 
  * in compliance with the License. You may obtain a 
  * copy of the License at http://www.apache.org/licenses/LICENSE-2.0
- *  
+ * 
  * Unless required by applicable law or agreed to in writing, 
  * software distributed under the License is distributed on an 
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
@@ -19,7 +19,20 @@ package org.dlw.ai.blackboard;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.primitive.KnowledgeSourcesImpl;
+import org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource;
 import org.dlw.ai.blackboard.util.SystemConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
@@ -37,7 +50,7 @@ public class Controller {
     /**
      * Attribute for solved status
      */
-    private boolean done = false;
+    private boolean done;
 
     /**
      * Attribute active or current knowledge source
@@ -47,12 +60,12 @@ public class Controller {
     /**
      * Attribute class logger
      */
-    private final static Log log = LogFactory.getLog(Controller.class);
+    private static final Log log = LogFactory.getLog(Controller.class);
 
     /**
      * Attribute knowledge source collection index
      */
-    private static int index = 0;
+    private int index;
 
     /**
      * Attribute brain or source of intelligence
@@ -68,6 +81,8 @@ public class Controller {
      * Public constructor
      */
     public Controller() {
+        this.done = false;
+        this.index = 0;
     }
 
     /**
@@ -81,7 +96,7 @@ public class Controller {
     /**
      * Public method to determine if the controller is really finished
      * 
-     * @return
+     * @return boolean primitive
      */
     public final boolean isSolved() {
 
@@ -94,6 +109,11 @@ public class Controller {
         return result;
     }
 
+    /**
+     * Public method to determine if the controller is stuck and cannot proceed
+     * 
+     * @return boolean primitive
+     */
     public final boolean unableToProceed() {
         // TODO - implement
         return false;
@@ -101,7 +121,7 @@ public class Controller {
 
     /**
      * Public method to cycle each KnowledgeSource and evaluate the current
-     * blackboard problem string
+     * blackboard problem string (repeatable method)
      */
     public final void processNextHint() {
 
@@ -110,12 +130,31 @@ public class Controller {
          */
         KnowledgeSourcesImpl knowledgesources = (KnowledgeSourcesImpl) brain
                 .getKnowledgeSources();
+
+        /**
+         * Get next knowledge source
+         */
         activeKnowledgeSource = knowledgesources.get(index);
 
         /**
-         * Evaluate the current knowledge source
+         * Load BlackboardContext
          */
-        activeKnowledgeSource.evaluate();
+        resourceKnowledgeSourceType(activeKnowledgeSource);
+
+        /**
+         * Pass expert to the blackboard
+         */
+        addHint(activeKnowledgeSource);
+
+        /**
+         * Tell the expert to evaluate or do his thing at the blackboard
+         */
+        blackboard.getActiveKnowledgeSource().evaluate();
+
+        /**
+         * Expert stands down
+         */
+        removeHint(activeKnowledgeSource);
 
         /**
          * Increment the index used to obtain the knowledge source next time
@@ -142,12 +181,23 @@ public class Controller {
          */
         brain = (Brain) UniversalContext.getApplicationContext().getBean(
                 "brain");
+
+        /**
+         * Reset knowledge source index
+         */
+        this.index = 0;
+
+        /**
+         * Reset done to false
+         */
+        this.done = false;
     }
 
     /**
      * Public method to add a hint to the blackboard problem
      * 
      * @param hint
+     *            the KnowledgeSource (or Expert) to provide hint for solution
      */
     public void addHint(KnowledgeSource hint) {
 
@@ -171,6 +221,7 @@ public class Controller {
      * Public method to remove a hint from the blackboard problem
      * 
      * @param hint
+     *            the KnowledgeSource (or Expert)
      */
     public void removeHint(KnowledgeSource hint) {
 
@@ -224,6 +275,112 @@ public class Controller {
         } else {
             index++;
         }
+    }
+
+    /**
+     * Private method to load the implemented KnowledgeSource (interface) with
+     * BlackboardContext
+     * 
+     * @param ks
+     *            the Knowledge source to be loaded
+     * @return {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource} loaded
+     *         interface
+     */
+    private KnowledgeSource resourceKnowledgeSourceType(KnowledgeSource ks) {
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource) {
+            CommonPrefixKnowledgeSource tmp = (CommonPrefixKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource) {
+            CommonSuffixKnowledgeSource tmp = (CommonSuffixKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource) {
+            ConsonantKnowledgeSource tmp = (ConsonantKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource) {
+            DirectSubstitutionKnowledgeSource tmp = (DirectSubstitutionKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource) {
+            DoubleLetterKnowledgeSource tmp = (DoubleLetterKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource) {
+            LegalStringKnowledgeSource tmp = (LegalStringKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource) {
+            LetterFrequencyKnowledgeSource tmp = (LetterFrequencyKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource) {
+            PatternMatchingKnowledgeSource tmp = (PatternMatchingKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource) {
+            SentenceStructureKnowledgeSource tmp = (SentenceStructureKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource) {
+            SmallWordKnowledgeSource tmp = (SmallWordKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource) {
+            SolvedKnowledgeSource tmp = (SolvedKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource) {
+            VowelKnowledgeSource tmp = (VowelKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource) {
+            WordStructureKnowledgeSource tmp = (WordStructureKnowledgeSource) ks;
+            tmp.setBlackboard(blackboard);
+            tmp.setController(this);
+            ks = tmp;
+        }
+
+        return ks;
+
     }
 
 }

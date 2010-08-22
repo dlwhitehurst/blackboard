@@ -56,7 +56,7 @@ public final class Cryptographer {
     /**
      * Attribute class logger
      */
-    private final Log log = LogFactory.getLog(Cryptographer.class);
+    private static final Log log = LogFactory.getLog(Cryptographer.class);
 
     /**
      * Public method to decipher the coded cipher text
@@ -105,29 +105,6 @@ public final class Cryptographer {
     }
 
     /**
-     * Private method to loop while the controller processes hints to solve the
-     * puzzle.
-     * 
-     * @return
-     */
-    private String runController() {
-
-        while (!controller.isSolved() || controller.unableToProceed()) {
-
-            controller.processNextHint();
-
-            if (blackboard.isSolved()) {
-                this.getController().done();
-                return blackboard.retrieveSolution().value();
-            }
-
-            break; // TODO - remove when ready to begin functional testing.
-        }
-
-        return SystemConstants.NO_SOLVE_ERROR;
-    }
-
-    /**
      * @param blackboard
      *            the blackboard to set
      */
@@ -171,5 +148,27 @@ public final class Cryptographer {
     public Brain getBrain() {
         return brain;
     }
+    
+    /**
+     * Private method to loop while the controller processes hints to solve the
+     * puzzle.
+     * 
+     * @return
+     */
+    private String runController() {
+
+        while (!controller.isSolved() || controller.unableToProceed()) {
+
+            controller.processNextHint();
+
+            if (blackboard.isSolved()) {
+                this.getController().done();
+                return blackboard.retrieveSolution().value();
+            }
+        }
+
+        return SystemConstants.NO_SOLVE_ERROR;
+    }
+
 
 }

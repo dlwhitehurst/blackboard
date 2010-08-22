@@ -5,7 +5,7 @@
  * (the "License"); You may not use this file except 
  * in compliance with the License. You may obtain a 
  * copy of the License at http://www.apache.org/licenses/LICENSE-2.0
- *  
+ * 
  * Unless required by applicable law or agreed to in writing, 
  * software distributed under the License is distributed on an 
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
@@ -62,7 +62,9 @@ public final class Cryptographer {
      * Public method to decipher the coded cipher text
      * 
      * @param ciphertext
-     * @return
+     *            the String to be decoded or translated into a meaningful
+     *            sentence
+     * @return String decrypted
      */
     public String decipher(String ciphertext) {
 
@@ -148,7 +150,7 @@ public final class Cryptographer {
     public Brain getBrain() {
         return brain;
     }
-    
+
     /**
      * Private method to loop while the controller processes hints to solve the
      * puzzle.
@@ -169,6 +171,5 @@ public final class Cryptographer {
 
         return SystemConstants.NO_SOLVE_ERROR;
     }
-
 
 }

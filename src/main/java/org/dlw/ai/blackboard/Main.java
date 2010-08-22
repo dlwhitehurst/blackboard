@@ -79,7 +79,7 @@ public class Main {
     }
 
     /**
-     * Private method to solve the problem
+     * Private method to solve the cryptogram problem
      * 
      * @param ciphertext
      * @return

@@ -63,11 +63,14 @@ public class BlackboardContext {
      * Loaded constructor
      * 
      * @param blackboard
-     * @param controller
+     *              the {@link Blackboard} object needed
+     * @param controller 
+     *              the {@link Controller} object needed
      * @param pastAssumptions
+     *              the {@link ConcurrentLinkedQueue} object data structure
      */
-    public BlackboardContext(Blackboard blackboard, Controller controller,
-            ConcurrentLinkedQueue<Assumption> pastAssumptions) {
+    public BlackboardContext(final Blackboard blackboard, final Controller controller,
+            final ConcurrentLinkedQueue<Assumption> pastAssumptions) {
         this.blackboard = blackboard;
         this.controller = controller;
         this.pastAssumptions = pastAssumptions;

@@ -74,7 +74,7 @@ public class BlackboardContext {
     }
 
     /**
-     * @return the blackboard
+     * @return the {@link Blackboard} object
      */
     public final Blackboard getBlackboard() {
         return blackboard;
@@ -82,14 +82,14 @@ public class BlackboardContext {
 
     /**
      * @param blackboard
-     *            the blackboard to set
+     *            the {@link Blackboard} object to set
      */
     public final void setBlackboard(Blackboard blackboard) {
         this.blackboard = blackboard;
     }
 
     /**
-     * @return the controller
+     * @return the {@link Controller} object
      */
     public final Controller getController() {
         return controller;
@@ -97,14 +97,14 @@ public class BlackboardContext {
 
     /**
      * @param controller
-     *            the controller to set
+     *            the {@link Controller} object to set
      */
     public final void setController(Controller controller) {
         this.controller = controller;
     }
 
     /**
-     * @return the pastAssumptions
+     * @return the {@link ConcurrentLinkedQueue} object pastAssumptions
      */
     public final ConcurrentLinkedQueue<Assumption> getPastAssumptions() {
         return pastAssumptions;
@@ -112,7 +112,7 @@ public class BlackboardContext {
 
     /**
      * @param pastAssumptions
-     *            the pastAssumptions to set
+     *            the {@link ConcurrentLinkedQueue} pastAssumptions to set
      */
     public final void setPastAssumptions(
             ConcurrentLinkedQueue<Assumption> pastAssumptions) {

@@ -16,10 +16,13 @@
  */
 package org.dlw.ai.blackboard;
 
+import java.io.IOException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSources;
 import org.dlw.ai.blackboard.knowledge.primitive.KnowledgeSourcesImpl;
+import org.dlw.ai.blackboard.util.Communications;
 import org.dlw.ai.blackboard.util.SystemConstants;
 
 /**
@@ -66,11 +69,14 @@ public final class Brain {
 
         knowledgeSources.reset();
 
+        Communications communications = Communications.getInstance();
+        
         /**
          * Notify
          */
         if (log.isInfoEnabled()) {
             log.info("Knowledge sources reset and loaded.");
+            communications.sayMac("Knowledge sources reset and loaded");
         } else {
             System.err.println(SystemConstants.INFO_LEVEL_FATAL);
             System.exit(0);

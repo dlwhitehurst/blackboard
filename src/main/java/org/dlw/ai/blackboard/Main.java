@@ -61,7 +61,7 @@ public final class Main {
      * @param args
      *      the String array of program arguments
      */
-    public void main(String[] args) {
+    public static void main(String[] args) {
 
         /**
          * Solve our problem

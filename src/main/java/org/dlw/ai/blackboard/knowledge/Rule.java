@@ -5,7 +5,7 @@
  * (the "License"); You may not use this file except 
  * in compliance with the License. You may obtain a 
  * copy of the License at http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  * Unless required by applicable law or agreed to in writing, 
  * software distributed under the License is distributed on an 
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
@@ -44,7 +44,9 @@ public class Rule {
      * Loaded constructor
      * 
      * @param antecedent
+     *      the String antecedent defining this rule.
      * @param consequents
+     *      the ArrayList of consequents following this rule and antecedent
      */
     public Rule(final String antecedent, final ArrayList<String> consequents) {
 
@@ -65,7 +67,8 @@ public class Rule {
      * 
      * 
      * @param antecedent
-     * @return
+     *      the String antecedent to remove
+     * @return boolean primitive
      */
     public boolean removeAntecedent(final String antecedent) {
         return false;
@@ -75,7 +78,8 @@ public class Rule {
      * 
      * 
      * @param consequent
-     * @return
+     *      the String consequent to remove
+     * @return boolean primitive
      */
     public boolean removeConsequent(final String consequent) {
         return false;
@@ -85,8 +89,10 @@ public class Rule {
      * Accept antecedent and consequent pair, only single antecedent exists
      * 
      * @param antecedent
+     *      the String antecedent to bind
      * @param consequent
-     * @return
+     *      the String consequent to bing
+     * @return boolean primitive
      */
     public boolean bind(final String antecedent, final String consequent) {
 
@@ -127,14 +133,15 @@ public class Rule {
      * Antecedent exists, possible consequent matching
      * 
      * @param antecedent
-     * @return
+     *      the String antecedent matching
+     * @return boolean primitive
      */
     public boolean isPossible(final String antecedent) {
         return false;
     }
 
     /**
-     * @return the antecedent
+     * @return String
      */
     public String getAntecedent() {
         return antecedent;
@@ -142,14 +149,14 @@ public class Rule {
 
     /**
      * @param antecedent
-     *            the antecedent to set
+     *            the String to set
      */
     public void setAntecedent(String antecedent) {
         this.antecedent = antecedent;
     }
 
     /**
-     * @return the consequents
+     * @return ArrayList
      */
     public ArrayList<String> getConsequents() {
         return consequents;
@@ -157,7 +164,7 @@ public class Rule {
 
     /**
      * @param consequents
-     *            the consequents to set
+     *            the ArrayList to set
      */
     public void setConsequents(ArrayList<String> consequents) {
         this.consequents = consequents;

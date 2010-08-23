@@ -167,6 +167,8 @@ public final class Cryptographer {
                 this.getController().done();
                 return blackboard.retrieveSolution().value();
             }
+            break; // TODO - remove
+            
         }
 
         return SystemConstants.NO_SOLVE_ERROR;

@@ -27,11 +27,24 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSources;
 
-public class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> implements
-        KnowledgeSources {
+/**
+ * This class provides a data structure for the collection of {@link KnowledgeSources}
+ * implemented.  It implements 13 knowledge sources at present to solve a cryptogram
+ * problem using a blackboard artificial intelligence model.
+ * 
+ * <p>
+ * This class is not extendable and therefore not part of the API. Its use is
+ * specific to the problem domain being solved by
+ * {@link org.dlw.ai.blackboard.Main}.
+ * </p>
+ * @author dlwhitehurst
+ *
+ */
+public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
+        implements KnowledgeSources {
 
     /**
-	 * 
+	 * unique serial identifier
 	 */
     private static final long serialVersionUID = -7058137814441379445L;
 
@@ -41,10 +54,8 @@ public class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> implements
     private final Log log = LogFactory.getLog(KnowledgeSources.class);
 
     /**
-     * Attribute active knowledge source
+     * Default constructor
      */
-    private KnowledgeSource active;
-
     public KnowledgeSourcesImpl() {
     }
 
@@ -67,12 +78,8 @@ public class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> implements
 
     }
 
-    public void startKnowledgeSource(KnowledgeSource active) {
-        active.evaluate();
-    }
-
     /**
-	 * 
+	 * Public method to load this data structure with (13) unique knowledge sources
 	 */
     public void loadKnowledgeSources() {
 
@@ -282,18 +289,4 @@ public class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource> implements
 
     }
 
-    /**
-     * @param active
-     *            the active to set
-     */
-    public void setActive(KnowledgeSource active) {
-        this.active = active;
-    }
-
-    /**
-     * @return the active
-     */
-    public KnowledgeSource getActive() {
-        return active;
-    }
 }

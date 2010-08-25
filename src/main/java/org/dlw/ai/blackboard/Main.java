@@ -18,8 +18,6 @@ package org.dlw.ai.blackboard;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.rule.RuleFactory;
-import org.dlw.ai.blackboard.rule.RuleType;
 import org.dlw.ai.blackboard.util.SystemConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
@@ -65,9 +63,6 @@ public final class Main {
      */
     public static void main(String[] args) {
 
-        //RuleFactory.createRule(RuleType.SINGLE_LETTER);
-        //RuleFactory.createRule(RuleType.DOUBLE_LETTER);
-        
         /**
          * Solve our problem
          */

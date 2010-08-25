@@ -19,20 +19,9 @@ package org.dlw.ai.blackboard;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourceType;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
 import org.dlw.ai.blackboard.knowledge.primitive.KnowledgeSourcesImpl;
-import org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource;
 import org.dlw.ai.blackboard.util.SystemConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
@@ -137,7 +126,7 @@ public class Controller {
         activeKnowledgeSource = knowledgesources.get(index);
 
         /**
-         * Load BlackboardContext
+         * Load BlackboardContext and Rules
          */
         resourceKnowledgeSourceType(activeKnowledgeSource);
 
@@ -289,98 +278,75 @@ public class Controller {
     private KnowledgeSource resourceKnowledgeSourceType(KnowledgeSource ks) {
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource) {
-            CommonPrefixKnowledgeSource tmp = (CommonPrefixKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.COMMON_PREFIX_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.COMMON_PREFIX_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource) {
-            CommonSuffixKnowledgeSource tmp = (CommonSuffixKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.COMMON_SUFFIX_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.COMMON_SUFFIX_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource) {
-            ConsonantKnowledgeSource tmp = (ConsonantKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.CONSONANT_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.CONSONANT_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource) {
-            DirectSubstitutionKnowledgeSource tmp = (DirectSubstitutionKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource) {
-            DoubleLetterKnowledgeSource tmp = (DoubleLetterKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.DOUBLE_LETTER_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.DOUBLE_LETTER_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource) {
-            LegalStringKnowledgeSource tmp = (LegalStringKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.LEGAL_STRING_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.LEGAL_STRING_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource) {
-            LetterFrequencyKnowledgeSource tmp = (LetterFrequencyKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.LETTER_FREQUENCY_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.LETTER_FREQUENCY_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource) {
-            PatternMatchingKnowledgeSource tmp = (PatternMatchingKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.PATTERN_MATCHING_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.PATTERN_MATCHING_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource) {
-            SentenceStructureKnowledgeSource tmp = (SentenceStructureKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource) {
-            SmallWordKnowledgeSource tmp = (SmallWordKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.SMALL_WORD_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.SMALL_WORD_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource) {
-            SolvedKnowledgeSource tmp = (SolvedKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.SOLVED_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.SOLVED_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource) {
-            VowelKnowledgeSource tmp = (VowelKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.VOWEL_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.VOWEL_KNOWLEDGE_SOURCE);
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource) {
-            WordStructureKnowledgeSource tmp = (WordStructureKnowledgeSource) ks;
-            tmp.setBlackboard(blackboard);
-            tmp.setController(this);
-            ks = tmp;
+        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.WORD_STRUCTURE_KNOWLEDGE_SOURCE, this, blackboard);
+            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.WORD_STRUCTURE_KNOWLEDGE_SOURCE);
+        } 
+        
+        else {
+            // TODO - handle this truly exceptional logic event
         }
 
         return ks;
 
     }
-
 }

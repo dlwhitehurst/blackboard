@@ -28,6 +28,7 @@ import org.dlw.ai.blackboard.rule.Rule;
 
 /**
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public class WordKnowledgeSource extends BlackboardContext implements

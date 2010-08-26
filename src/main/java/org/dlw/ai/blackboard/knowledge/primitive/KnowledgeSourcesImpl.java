@@ -37,7 +37,9 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSources;
  * specific to the problem domain being solved by
  * {@link org.dlw.ai.blackboard.Main}.
  * </p>
+ * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  *
  */
 public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>

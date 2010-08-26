@@ -22,6 +22,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
 /**
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public class CommonPrefixKnowledgeSource extends StringKnowledgeSource implements

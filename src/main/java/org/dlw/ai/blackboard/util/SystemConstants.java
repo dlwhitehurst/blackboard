@@ -17,10 +17,20 @@
 package org.dlw.ai.blackboard.util;
 
 /**
+ * This utility class provides string constants for system level needs. These
+ * constants are not part of the API. They are, however part of the default
+ * implementation.
+ * 
  * @author dlwhitehurst
  * 
  */
-public interface SystemConstants {
+public final class SystemConstants {
+
+    /**
+     * Hidden constructor
+     */
+    private SystemConstants() {
+    }
 
     /**
      * The cryptogram sentence or string could not be asserted.

@@ -30,6 +30,7 @@ import org.dlw.ai.blackboard.rule.RuleFactory;
  * data into all KnowledgeSources
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public class KnowledgeSourceUtil {

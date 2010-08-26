@@ -23,6 +23,7 @@ package org.dlw.ai.blackboard.knowledge;
  * API. These enumerations are specific to the default implementation.
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public enum KnowledgeSourceType {

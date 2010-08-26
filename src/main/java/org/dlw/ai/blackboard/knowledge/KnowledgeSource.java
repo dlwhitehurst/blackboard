@@ -27,6 +27,7 @@ import org.dlw.ai.blackboard.domain.Assumption;
  * directly within the implementation.
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public interface KnowledgeSource extends InferenceEngine {

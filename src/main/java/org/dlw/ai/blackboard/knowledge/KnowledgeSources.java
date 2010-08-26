@@ -23,6 +23,7 @@ package org.dlw.ai.blackboard.knowledge;
  * her requirements and handle these operations through implementation.
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public interface KnowledgeSources {

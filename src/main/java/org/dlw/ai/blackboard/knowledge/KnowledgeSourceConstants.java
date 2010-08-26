@@ -20,6 +20,7 @@ package org.dlw.ai.blackboard.knowledge;
  * This class is used to provide static constants for naming knowledge sources
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public final class KnowledgeSourceConstants {

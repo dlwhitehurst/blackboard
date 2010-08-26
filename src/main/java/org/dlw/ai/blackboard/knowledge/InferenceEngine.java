@@ -26,6 +26,7 @@ import org.dlw.ai.blackboard.rule.Rule;
  * objects similar and including the {@link KnowledgeSource}
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  *
  */
 public interface InferenceEngine {

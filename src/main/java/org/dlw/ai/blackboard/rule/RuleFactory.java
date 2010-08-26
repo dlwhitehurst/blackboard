@@ -22,6 +22,11 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceType;
 
 /**
+ * <p>
+ * This static factory class provides for the creation of the {@link Rule}
+ * object. The objects are returned from a static method based on the input of a
+ * {@link org.dlw.ai.blackboard.knowledge.KnowledgeSourceType}
+ * </p>
  * 
  * @author dlwhitehurst
  * @version 1.0.0-RC
@@ -34,7 +39,8 @@ public class RuleFactory {
      */
     private static final Log log = LogFactory.getLog(RuleFactory.class);
 
-    private RuleFactory() { }
+    private RuleFactory() {
+    }
 
     public static Rule createRule(KnowledgeSourceType type) {
 
@@ -56,52 +62,52 @@ public class RuleFactory {
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
                     + " rule.");
-            
+
         case DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE:
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
                     + " rule.");
-            
+
         case DOUBLE_LETTER_KNOWLEDGE_SOURCE:
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
                     + " rule.");
-            
+
         case LEGAL_STRING_KNOWLEDGE_SOURCE:
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
                     + " rule.");
-            
+
         case LETTER_FREQUENCY_KNOWLEDGE_SOURCE:
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
                     + " rule.");
-            
+
         case PATTERN_MATCHING_KNOWLEDGE_SOURCE:
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
                     + " rule.");
-            
+
         case SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE:
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
                     + " rule.");
-            
+
         case SMALL_WORD_KNOWLEDGE_SOURCE:
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
                     + " rule.");
-            
+
         case SOLVED_KNOWLEDGE_SOURCE:
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
                     + " rule.");
-            
+
         case VOWEL_KNOWLEDGE_SOURCE:
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
                     + " rule.");
-            
+
         case WORD_STRUCTURE_KNOWLEDGE_SOURCE:
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE

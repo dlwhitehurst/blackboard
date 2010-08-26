@@ -5,6 +5,12 @@ import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceType;
 
+/**
+ * 
+ * @author dlwhitehurst
+ * @version 1.0.0-RC
+ *
+ */
 public class RuleFactory {
 
     /**

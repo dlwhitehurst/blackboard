@@ -16,22 +16,33 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
-import org.dlw.ai.blackboard.domain.Participant;
+import org.dlw.ai.blackboard.domain.Assumption;
 
 /**
- * This interface defines the knowledge source object. Its one and only method
- * is is used to implement what each knowledge source does and how it
- * communicates with the {@link org.dlw.ai.blackboard.Blackboard} object.
+ * This interface defines the signature knowledge source object. Any default
+ * implementation e.g.
+ * {@link org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource}
+ * extends {@link InferenceEngine} ultimately through the implementation of this
+ * interface and the extension {@link org.dlw.ai.blackboard.BlackboardContext}
+ * directly within the implementation.
  * 
  * @author dlwhitehurst
  * 
  */
-public interface KnowledgeSource extends Participant {
+public interface KnowledgeSource extends InferenceEngine {
 
     /**
-     * Public method to evaluate the blackboard model domain problem and offer
-     * assumptions or assertions
+     * Reset knowledge source
      */
-    void evaluate();
+    void reset();
+
+    /**
+     * Find dependent knowledge sources and tell them to add, retract, etc. a
+     * statement
+     * 
+     * @param direction
+     * @param statement
+     */
+    void notifyDependents(String direction, Assumption statement);
 
 }

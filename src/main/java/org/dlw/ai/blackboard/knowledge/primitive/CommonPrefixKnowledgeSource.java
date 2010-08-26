@@ -16,7 +16,7 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.BlackboardContext;
+import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
@@ -24,7 +24,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * @author dlwhitehurst
  * 
  */
-public class CommonPrefixKnowledgeSource extends BlackboardContext implements
+public class CommonPrefixKnowledgeSource extends StringKnowledgeSource implements
         KnowledgeSource {
 
     /*
@@ -66,6 +66,24 @@ public class CommonPrefixKnowledgeSource extends BlackboardContext implements
      */
     public void evaluate() {
         // TODO - implement
+        // BlackboardContext parent has what we need for this method
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#reset()
+     */
+    @Override
+    public void reset() {
+        // TODO Auto-generated method stub
+        super.reset();
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
+     */
+    public void notifyDependents(String direction, Assumption statement) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

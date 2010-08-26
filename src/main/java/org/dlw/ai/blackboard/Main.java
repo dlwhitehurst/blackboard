@@ -39,6 +39,7 @@ import org.dlw.ai.blackboard.util.UniversalContext;
  * </p>
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public final class Main {

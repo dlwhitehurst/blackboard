@@ -34,6 +34,7 @@ import org.dlw.ai.blackboard.domain.Assumption;
  * </p>
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public class BlackboardContext {

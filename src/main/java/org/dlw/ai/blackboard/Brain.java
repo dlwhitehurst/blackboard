@@ -43,6 +43,7 @@ import org.dlw.ai.blackboard.util.SystemConstants;
  * and intellectual and nervous activity.</i></blockquote>
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public final class Brain {

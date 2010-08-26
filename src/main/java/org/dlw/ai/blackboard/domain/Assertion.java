@@ -27,7 +27,7 @@ package org.dlw.ai.blackboard.domain;
  * </p>
  * 
  * <blockquote><i>Assertion - "(def.) a confident or forceful statement of fact
- * or belief ... Oxford American Dictionary"</i></blockquote>
+ * or belief"</i></blockquote>
  * 
  * @author dlwhitehurst
  * 
@@ -42,26 +42,6 @@ public class Assertion extends Assumption {
     @Override
     public final boolean isRetractable() {
         return false;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.domain.Universe#getDef()
-     */
-    @Override
-    public String getDef() {
-        return this.def;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.domain.Universe#setDef(java.lang.String)
-     */
-    @Override
-    public void setDef(String def) {
-        this.def = def;
     }
 
 }

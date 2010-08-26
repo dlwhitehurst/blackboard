@@ -34,6 +34,7 @@ import org.dlw.ai.blackboard.util.SystemConstants;
  * </p>
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public final class Cryptographer {

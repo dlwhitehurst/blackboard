@@ -71,13 +71,8 @@ public class Affirmation {
     public Affirmation() {
     }
 
-    /**
-     * Make a statement
-     * 
-     * @param statement
-     */
-    public void make(String statement) {
-        // TODO - implement
+    public void push(Assumption assumption) {
+        statements.push(assumption);
     }
 
     /**
@@ -85,17 +80,20 @@ public class Affirmation {
      * 
      * @param statement
      */
-    public void retract(String statement) {
-        // TODO - implement
+    public Assumption pop() {
+        return statements.pop();
     }
 
+    public Assumption statementAt(int i) {
+        return statements.get(i);
+    }
     /**
      * Public method to get ciphertext (rarely, may not be finished)
      * 
      * @return String
      */
     public String cipherText() {
-        return cipherLetter.getLetter();
+        return cipherLetter.getCipherLetter();
     }
 
     /**

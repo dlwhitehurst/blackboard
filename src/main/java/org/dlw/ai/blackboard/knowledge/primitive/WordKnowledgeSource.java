@@ -16,9 +16,13 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
+import java.util.ArrayList;
+
 import org.dlw.ai.blackboard.BlackboardContext;
+import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.rule.Rule;
 
 // TODO - this class may be meaningless
 
@@ -68,6 +72,24 @@ public class WordKnowledgeSource extends BlackboardContext implements
      */
     public void evaluate() {
         // TODO Auto-generated method stub
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#reset()
+     */
+    public void reset() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void notifyDependents(String direction, Assumption statement) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void loadRules(ArrayList<Rule> rules) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -137,29 +137,12 @@ public class Word extends BlackboardObject {
         this.word = word;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.domain.Universe#getDef()
-     */
     @Override
-    public String getDef() {
-        return this.def;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.domain.Universe#setDef(java.lang.String)
-     */
-    @Override
-    public void setDef(String def) {
-        this.def = def;
-    }
-
-    public void notifyParticipants() {
+    public void notifyDependents() {
         // TODO Auto-generated method stub
-
+        
     }
+
+
 
 }

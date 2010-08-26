@@ -19,7 +19,19 @@ package org.dlw.ai.blackboard.rule;
 import java.util.ArrayList;
 
 /**
+ * <p>
+ * This class defines a rule for the blackboard framework. Rules are kept in a
+ * collection within the knowledge source for the default implementation and
+ * apply specifically to statements given by the subject
+ * {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}.
+ * </p>
+ * 
+ * <blockquote><i>Rule - "(def.) a law or principle that operates within a
+ * particular sphere of knowledge, describing or prescribing what is possible or
+ * allowable : the rules of grammar."</i></blockquote>
+ * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public class Rule {
@@ -44,9 +56,10 @@ public class Rule {
      * Loaded constructor
      * 
      * @param antecedent
-     *      the String antecedent defining this rule.
+     *            the String antecedent defining this rule.
      * @param consequents
-     *      the ArrayList of consequents following this rule and antecedent
+     *            the ArrayList of consequents following this rule and
+     *            antecedent
      */
     public Rule(final String antecedent, final ArrayList<String> consequents) {
 
@@ -67,7 +80,7 @@ public class Rule {
      * 
      * 
      * @param antecedent
-     *      the String antecedent to remove
+     *            the String antecedent to remove
      * @return boolean primitive
      */
     public boolean removeAntecedent(final String antecedent) {
@@ -78,7 +91,7 @@ public class Rule {
      * 
      * 
      * @param consequent
-     *      the String consequent to remove
+     *            the String consequent to remove
      * @return boolean primitive
      */
     public boolean removeConsequent(final String consequent) {
@@ -89,9 +102,9 @@ public class Rule {
      * Accept antecedent and consequent pair, only single antecedent exists
      * 
      * @param antecedent
-     *      the String antecedent to bind
+     *            the String antecedent to bind
      * @param consequent
-     *      the String consequent to bing
+     *            the String consequent to bing
      * @return boolean primitive
      */
     public boolean bind(final String antecedent, final String consequent) {
@@ -133,7 +146,7 @@ public class Rule {
      * Antecedent exists, possible consequent matching
      * 
      * @param antecedent
-     *      the String antecedent matching
+     *            the String antecedent matching
      * @return boolean primitive
      */
     public boolean isPossible(final String antecedent) {

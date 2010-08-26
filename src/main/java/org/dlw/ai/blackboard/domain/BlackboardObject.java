@@ -29,7 +29,7 @@ import org.dlw.ai.blackboard.util.UniversalContext;
  * @author dlwhitehurst
  * 
  */
-public abstract class BlackboardObject extends Domain implements Dependent {
+public abstract class BlackboardObject extends Dependent {
 
     /**
      * Each blackboard object adds itself or registers with the blackboard. Each

@@ -25,7 +25,7 @@ public class CipherLetter extends BlackboardObject {
     /**
      * TODO - comment
      */
-    protected String letter;
+    protected String cipherLetter;
 
     /**
      * TODO - comment
@@ -41,25 +41,26 @@ public class CipherLetter extends BlackboardObject {
     /**
      * Loaded constructor
      * 
-     * @param letter
+     * @param cipherLetter
+     *      the String cipherLetter
      */
-    public CipherLetter(String letter) {
-        this.letter = letter;
+    public CipherLetter(String cipherLetter) {
+        this.cipherLetter = cipherLetter;
     }
 
     /**
-     * @return the letter
+     * @return the cipherLetter
      */
-    public String getLetter() {
-        return letter;
+    public String getCipherLetter() {
+        return cipherLetter;
     }
 
     /**
-     * @param letter
-     *            the letter to set
+     * @param cipherLetter
+     *            the String cipherLetter
      */
-    public void setLetter(String letter) {
-        this.letter = letter;
+    public void setCipherLetter(String cipherLetter) {
+        this.cipherLetter = cipherLetter;
     }
 
     /**
@@ -77,29 +78,11 @@ public class CipherLetter extends BlackboardObject {
         this.affirmations = affirmations;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.domain.Universe#getDef()
-     */
     @Override
-    public String getDef() {
-        return this.def;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.domain.Universe#setDef(java.lang.String)
-     */
-    @Override
-    public void setDef(String def) {
-        this.def = def;
-    }
-
-    public void notifyParticipants() {
+    public void notifyDependents() {
         // TODO Auto-generated method stub
-
+        
     }
+
 
 }

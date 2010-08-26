@@ -46,29 +46,10 @@ public class Assumption extends BlackboardObject {
         return true;
     }
 
-    public void notifyParticipants() {
+    @Override
+    public void notifyDependents() {
         // TODO Auto-generated method stub
-
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.domain.Universe#getDef()
-     */
-    @Override
-    public String getDef() {
-        return this.def;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.domain.Universe#setDef(java.lang.String)
-     */
-    @Override
-    public void setDef(String def) {
-        this.def = def;
+        
     }
 
 }

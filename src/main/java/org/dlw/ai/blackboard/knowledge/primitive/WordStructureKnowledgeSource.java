@@ -16,7 +16,6 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
@@ -24,7 +23,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * @author dlwhitehurst
  * 
  */
-public class WordStructureKnowledgeSource extends BlackboardContext implements
+public class WordStructureKnowledgeSource extends WordKnowledgeSource implements
         KnowledgeSource {
 
     /*
@@ -68,6 +67,15 @@ public class WordStructureKnowledgeSource extends BlackboardContext implements
      */
     public void evaluate() {
         // TODO Auto-generated method stub
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.WordKnowledgeSource#reset()
+     */
+    @Override
+    public void reset() {
+        // TODO Auto-generated method stub
+        super.reset();
     }
 
 }

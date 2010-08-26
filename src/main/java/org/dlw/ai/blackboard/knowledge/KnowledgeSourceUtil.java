@@ -24,7 +24,6 @@ import org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource;
 import org.dlw.ai.blackboard.rule.Rule;
 import org.dlw.ai.blackboard.rule.RuleFactory;
-import org.dlw.ai.blackboard.rule.RuleType;
 
 /**
  * The KnowledgeSourceUtil class is used to provide static methods to stage-load
@@ -98,7 +97,7 @@ public class KnowledgeSourceUtil {
         case COMMON_PREFIX_KNOWLEDGE_SOURCE:
             tmp = (CommonPrefixKnowledgeSource) ks;
             rule = RuleFactory
-                    .createRule(RuleType.COMMON_PREFIX_KNOWLEDGE_SOURCE);
+                    .createRule(KnowledgeSourceType.COMMON_PREFIX_KNOWLEDGE_SOURCE);
             rules.add(rule);
             tmp.loadRules(rules);
             ks = tmp;
@@ -106,7 +105,7 @@ public class KnowledgeSourceUtil {
         case COMMON_SUFFIX_KNOWLEDGE_SOURCE:
             tmp = (CommonSuffixKnowledgeSource) ks;
             rule = RuleFactory
-                    .createRule(RuleType.COMMON_SUFFIX_KNOWLEDGE_SOURCE);
+                    .createRule(KnowledgeSourceType.COMMON_SUFFIX_KNOWLEDGE_SOURCE);
             rules.add(rule);
             tmp.loadRules(rules);
             ks = tmp;

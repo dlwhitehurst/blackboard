@@ -36,7 +36,7 @@ import org.dlw.ai.blackboard.util.SystemConstants;
  * 
  * <blockquote><i>Alphabet - "(def.) a set of letters or symbols in a fixed
  * order, used to represent the basic sounds of a language; in particular, the
- * set of letters from A to Z ... Oxford American Dictionary"</i></blockquote>
+ * set of letters from A to Z"</i></blockquote>
  * 
  * @author dlwhitehurst
  * @version 1.0.0-RC

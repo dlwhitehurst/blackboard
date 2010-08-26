@@ -17,6 +17,14 @@
 package org.dlw.ai.blackboard.domain;
 
 /**
+ * <p>This class is used to represent the cryptic letter or alphabet used by
+ * the initial cryptogram. These letter objects will ultimately be decoded
+ * into understandable {@link Alphabet}. No conversion is kept here, however
+ * the {@link Alphabet} class will keep a mapping as the cipher letters are
+ * decoded.</p>
+ * 
+ * <blockquote><i>Cipher - "(def.) a secret or disguised way of writing: a code."</i></blockquote>
+ * 
  * @author dlwhitehurst
  * @version 1.0.0-RC
  * 
@@ -24,12 +32,12 @@ package org.dlw.ai.blackboard.domain;
 public class CipherLetter extends BlackboardObject {
 
     /**
-     * TODO - comment
+     * Attribute String cipher code or letter
      */
     protected String cipherLetter;
 
     /**
-     * TODO - comment
+     * Attribute Affirmation object or data structure Stack of statements
      */
     protected Affirmation affirmations = new Affirmation();
 
@@ -50,7 +58,7 @@ public class CipherLetter extends BlackboardObject {
     }
 
     /**
-     * @return the cipherLetter
+     * @return the String cipherLetter
      */
     public String getCipherLetter() {
         return cipherLetter;
@@ -65,7 +73,7 @@ public class CipherLetter extends BlackboardObject {
     }
 
     /**
-     * @return the affirmations
+     * @return the Affirmation object affirmations
      */
     public Affirmation getAffirmations() {
         return affirmations;

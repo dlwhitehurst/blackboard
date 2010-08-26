@@ -22,6 +22,16 @@ import java.util.List;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 
 /**
+ * <p>
+ * This abstract class Dependent is used to model a host of knowledge sources
+ * that pertain or apply to any Blackboard object. This class is used with the
+ * default implementation of the blackboard system here and could be used in
+ * other design scenarios.
+ * </p>
+ * 
+ * <blockquote><i>Dependent - "(def.) relying on or contingent upon existential
+ * support or other context to define its meaning, structure, behavior, or
+ * definition"</i></blockquote>
  * 
  * @author dlwhitehurst
  * @version 1.0.0-RC
@@ -63,7 +73,7 @@ public abstract class Dependent {
     public boolean removeReference(KnowledgeSource ref) {
         return references.remove(ref);
     }
-    
+
     public abstract void notifyDependents();
 
 }

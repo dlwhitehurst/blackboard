@@ -20,6 +20,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * <p>
+ * This class is used to define a sentence object. This sentence can be cipher
+ * (code) or understandable. The object represents the data structure for a
+ * sentence object simply. This class can be extended and may be used outside of
+ * the default blackboard implementation in other design scenarios.
+ * </p>
+ * 
+ * <blockquote><i>Sentence - "(def.) a set of words that is complete in itself,
+ * typically containing a subject and predicate, conveying a statement,
+ * question, exclamation, or command, and consisting of a main clause and
+ * sometimes one or more subordinate clauses."</i></blockquote>
+ * 
  * @author dlwhitehurst
  * @version 1.0.0-RC
  * 
@@ -121,8 +133,7 @@ public class Sentence extends BlackboardObject {
     @Override
     public void notifyDependents() {
         // TODO Auto-generated method stub
-        
-    }
 
+    }
 
 }

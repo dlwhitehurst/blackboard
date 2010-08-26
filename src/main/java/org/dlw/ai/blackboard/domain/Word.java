@@ -21,6 +21,18 @@ import java.util.List;
 import java.util.Stack;
 
 /**
+ * <p>
+ * This class is used to model the Word object. This object is used as a data
+ * structure that best represents a word. This class can be extended and might
+ * be used for other design scenarios outside of the default implementation of
+ * the blackboard model here with this project.
+ * </p>
+ * 
+ * <blockquote><i>Word - "(def.) a single distinct meaningful element of speech
+ * or writing, used with others (or sometimes alone) to form a sentence and
+ * typically shown with a space on either side when written or
+ * printed."</i></blockquote>
+ * 
  * @author dlwhitehurst
  * @version 1.0.0-RC
  * 
@@ -141,9 +153,7 @@ public class Word extends BlackboardObject {
     @Override
     public void notifyDependents() {
         // TODO Auto-generated method stub
-        
+
     }
-
-
 
 }

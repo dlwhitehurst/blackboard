@@ -28,8 +28,7 @@ package org.dlw.ai.blackboard.domain;
  * </p>
  * 
  * <blockquote><i>Assumption -"(def.) a statement that is accepted as true or as
- * certain to happen, without proof " ... Oxford American
- * Dictionary</i></blockquote>
+ * certain to happen, without proof "</i></blockquote>
  * 
  * @author dlwhitehurst
  * @version 1.0.0-RC

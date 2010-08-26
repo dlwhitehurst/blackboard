@@ -22,13 +22,13 @@ import org.dlw.ai.blackboard.domain.Assumption;
 
 /**
  * <p>
- * This class is used as an attribute addition (extention) that defines the
+ * This class is used as an attribute addition (extension) that defines the
  * implemented {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}(s) in
  * package {@link org.dlw.ai.blackboard.knowledge.primitive}.
  * </p>
  * 
  * <p>
- * This class is not extendable and therefore not part of the API. Its use is
+ * This class cannot be extended and therefore not part of the API. Its use is
  * specific to the problem domain being solved by
  * {@link org.dlw.ai.blackboard.Main}.
  * </p>

@@ -2,6 +2,8 @@ package org.dlw.ai.blackboard.rule;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourceType;
 
 public class RuleFactory {
 
@@ -12,16 +14,22 @@ public class RuleFactory {
 
     private RuleFactory() { }
     
-    public static void createRule(RuleType type) {
-       
+    public static Rule createRule(KnowledgeSourceType type) {
+        
+        Rule rule = new Rule();
+        
         switch (type) {
-            case SINGLE_LETTER: log.info("SINGLE_LETTER passed");
+        
+            case COMMON_PREFIX_KNOWLEDGE_SOURCE: 
+                log.info("Creating " + KnowledgeSourceConstants.COMMON_PREFIX_KNOWLEDGE_SOURCE + " rule.");
                 
-            case DOUBLE_LETTER: log.info("DOUBLE_LETTER passed");
+            case COMMON_SUFFIX_KNOWLEDGE_SOURCE: 
+                log.info("Creating " + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE + " rule.");
             
-            default:
+            default: log.info("Default nothing doh!");
                 
         }
+        return rule; 
     }
 
 }

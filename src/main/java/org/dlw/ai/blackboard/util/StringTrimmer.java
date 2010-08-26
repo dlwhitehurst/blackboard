@@ -17,34 +17,48 @@
 package org.dlw.ai.blackboard.util;
 
 /**
- * @author dlwhitehurst
+ * This class is used to provide string utility functions for trimming String
+ * objects.
  * 
+ * @author dlwhitehurst
+ * @version 1.0.0-RC
  */
 public final class StringTrimmer {
 
+    /**
+     * Hidden constructor
+     */
     private StringTrimmer() {
-        // non-accessible default constructor
     }
 
-    /* remove leading whitespace */
     /**
-     * TODO - comment
+     * Public method to remove leading whitespace
+     * 
+     * @param source
+     *            the source String object to trim
+     * @return String
      */
     public static String ltrim(String source) {
         return source.replaceAll("^\\s+", "");
     }
 
-    /* remove trailing whitespace */
     /**
-     * TODO - comment
+     * Public method to remove trailing whitespace
+     * 
+     * @param source
+     *            the source String object to trim
+     * @return String
      */
     public static String rtrim(String source) {
         return source.replaceAll("\\s+$", "");
     }
 
-    /* replace multiple whitespaces between words with single blank */
     /**
-     * TODO - comment
+     * Public method to replace multiple whitespaces between words with a single
+     * whitespace or blank
+     * 
+     * @param source
+     *            the source String object to revise
      */
     public static String itrim(String source) {
         return source.replaceAll("\\b\\s{2,}\\b", " ");
@@ -52,14 +66,15 @@ public final class StringTrimmer {
 
     /* remove all superfluous whitespaces in source string */
     /**
-     * TODO - comment
+     * Public method to trim whitespace on ends and to fix any multiple
+     * whitespace issues within the string
      */
     public static String trim(String source) {
         return itrim(ltrim(rtrim(source)));
     }
 
     /**
-     * TODO- comment
+     * Public method to trim whitespace from ends only
      * 
      * @param source
      * @return

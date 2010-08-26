@@ -24,6 +24,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 /**
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public abstract class Dependent {

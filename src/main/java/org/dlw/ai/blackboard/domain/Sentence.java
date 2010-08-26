@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public class Sentence extends BlackboardObject {

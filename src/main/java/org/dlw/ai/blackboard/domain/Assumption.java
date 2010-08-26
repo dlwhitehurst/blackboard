@@ -32,6 +32,7 @@ package org.dlw.ai.blackboard.domain;
  * Dictionary</i></blockquote>
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public class Assumption extends BlackboardObject {

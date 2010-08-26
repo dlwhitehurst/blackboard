@@ -30,6 +30,7 @@ package org.dlw.ai.blackboard.domain;
  * or belief"</i></blockquote>
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public class Assertion extends Assumption {

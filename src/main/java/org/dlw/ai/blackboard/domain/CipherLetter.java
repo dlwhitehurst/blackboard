@@ -18,6 +18,7 @@ package org.dlw.ai.blackboard.domain;
 
 /**
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public class CipherLetter extends BlackboardObject {

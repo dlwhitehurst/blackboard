@@ -22,6 +22,7 @@ import java.util.Stack;
 
 /**
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public class Word extends BlackboardObject {

@@ -27,6 +27,7 @@ import org.dlw.ai.blackboard.util.UniversalContext;
  * the blackboard model of opportunistic reasoning.
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public abstract class BlackboardObject extends Dependent {

@@ -46,6 +46,8 @@ import java.util.Stack;
  * and publicly (at the blackboard perchance?)</i></blockquote>
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
+ * 
  */
 public class Affirmation {
 

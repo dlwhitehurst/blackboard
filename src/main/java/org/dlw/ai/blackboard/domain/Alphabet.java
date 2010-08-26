@@ -39,6 +39,7 @@ import org.dlw.ai.blackboard.util.SystemConstants;
  * set of letters from A to Z ... Oxford American Dictionary"</i></blockquote>
  * 
  * @author dlwhitehurst
+ * @version 1.0.0-RC
  * 
  */
 public class Alphabet extends BlackboardObject {

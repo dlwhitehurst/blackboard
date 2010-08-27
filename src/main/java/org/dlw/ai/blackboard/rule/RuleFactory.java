@@ -32,7 +32,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceType;
  * @version 1.0.0-RC
  * 
  */
-public class RuleFactory {
+public final class RuleFactory {
 
     /**
      * Attribute commons-logging class instance

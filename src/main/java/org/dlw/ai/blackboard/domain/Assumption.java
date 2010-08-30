@@ -36,6 +36,12 @@ package org.dlw.ai.blackboard.domain;
  */
 public class Assumption extends BlackboardObject {
 
+    protected String reason;
+    
+    protected String cipherLetter;
+    
+    protected String plainLetter;
+    
     /**
      * Assumption is always retractable. Please note that an Assertion (extends)
      * is not retractable and therefore overrides this method and returns false
@@ -50,6 +56,48 @@ public class Assumption extends BlackboardObject {
     public void notifyDependents() {
         // TODO Auto-generated method stub
         
+    }
+
+    /**
+     * @return the reason
+     */
+    public String getReason() {
+        return reason;
+    }
+
+    /**
+     * @param reason the reason to set
+     */
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    /**
+     * @return the cipherLetter
+     */
+    public String getCipherLetter() {
+        return cipherLetter;
+    }
+
+    /**
+     * @param cipherLetter the cipherLetter to set
+     */
+    public void setCipherLetter(String cipherLetter) {
+        this.cipherLetter = cipherLetter;
+    }
+
+    /**
+     * @return the plainLetter
+     */
+    public String getPlainLetter() {
+        return plainLetter;
+    }
+
+    /**
+     * @param plainLetter the plainLetter to set
+     */
+    public void setPlainLetter(String plainLetter) {
+        this.plainLetter = plainLetter;
     }
 
 }

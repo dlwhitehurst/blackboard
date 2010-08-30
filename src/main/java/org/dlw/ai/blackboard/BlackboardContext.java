@@ -36,6 +36,7 @@ import org.dlw.ai.blackboard.domain.Assumption;
  * @author dlwhitehurst
  * @version 1.0.0-RC
  * 
+ * 
  */
 public class BlackboardContext {
 
@@ -52,7 +53,7 @@ public class BlackboardContext {
     /**
      * Attribute queue of assumptions made by KnowledgeSource
      */
-    private ConcurrentLinkedQueue<Assumption> pastAssumptions;
+    private ConcurrentLinkedQueue<Assumption> pastAssumptions = new ConcurrentLinkedQueue<Assumption>();
 
     /**
      * Default constructor

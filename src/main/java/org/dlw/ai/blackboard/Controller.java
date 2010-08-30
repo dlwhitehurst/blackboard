@@ -40,8 +40,7 @@ public class Controller {
     /**
      * Attribute for solved status
      */
-    private boolean done;
-
+    // private boolean done;
     /**
      * Attribute active or current knowledge source
      */
@@ -53,9 +52,9 @@ public class Controller {
     private static final Log log = LogFactory.getLog(Controller.class);
 
     /**
-     * Attribute knowledge source collection index
+     * Attribute enum state of the controller
      */
-    private int index;
+    private ControllerState state;
 
     /**
      * Attribute brain or source of intelligence
@@ -71,8 +70,7 @@ public class Controller {
      * Public constructor
      */
     public Controller() {
-        this.done = false;
-        this.index = 0;
+        this.state = ControllerState.INITIALIZING;
     }
 
     /**
@@ -80,7 +78,7 @@ public class Controller {
      * 
      */
     public final void done() {
-        done = true;
+        state = ControllerState.SOLVED;
     }
 
     /**
@@ -92,7 +90,7 @@ public class Controller {
 
         boolean result = false;
 
-        if (this.done) {
+        if (state == ControllerState.SOLVED) {
             result = true;
         }
 
@@ -115,6 +113,17 @@ public class Controller {
      */
     public final void processNextHint() {
 
+        state = ControllerState.SELECTING;
+        // controller cycles all KS in collection and calls startKS on each
+
+        // controller picks (next) best hint based on priorities and assumptions
+
+        // controller adds hint (KS connects to blackboard)
+
+        // evaluate and makes or retract assumption
+
+        // update blackboard
+
         /**
          * Set the active knowledge source to evaluate
          */
@@ -124,33 +133,22 @@ public class Controller {
         /**
          * Get next knowledge source
          */
-        activeKnowledgeSource = knowledgesources.get(index);
-
-        /**
-         * Load BlackboardContext and Rules
-         */
-        resourceKnowledgeSourceType(activeKnowledgeSource);
-
+        // activeKnowledgeSource = knowledgesources.get(index);
         /**
          * Pass expert to the blackboard
          */
-        addHint(activeKnowledgeSource);
+        //addHint(activeKnowledgeSource);
 
         /**
-         * Tell the expert to evaluate or do his thing at the blackboard
+         * Tell the expert to evaluate or do his thing at the blackboard (checks
+         * rules and makes assertion on match consequent)
          */
-        blackboard.getActiveKnowledgeSource().evaluate();
+        //blackboard.getActiveKnowledgeSource().evaluate();
 
         /**
          * Expert stands down
          */
-        removeHint(activeKnowledgeSource);
-
-        /**
-         * Increment the index used to obtain the knowledge source next time
-         * this method is called
-         */
-        incrementIndex();
+        //removeHint(activeKnowledgeSource);
 
     }
 
@@ -173,14 +171,9 @@ public class Controller {
                 "brain");
 
         /**
-         * Reset knowledge source index
+         * Reset state
          */
-        this.index = 0;
-
-        /**
-         * Reset done to false
-         */
-        this.done = false;
+        state = ControllerState.INITIALIZING;
     }
 
     /**
@@ -197,8 +190,7 @@ public class Controller {
         blackboard.connect(hint);
 
         if (log.isInfoEnabled()) {
-            log
-                    .info("Controller-addHint(): Controller has connected knowledge source to blackboard: "
+            log.info("Controller-addHint(): Controller has connected knowledge source to blackboard: "
                             + hint.toString());
         } else {
             System.err.println(SystemConstants.INFO_LEVEL_FATAL);
@@ -244,110 +236,4 @@ public class Controller {
         }
     }
 
-    /**
-     * Private method to increment the index of the knowledge source collection
-     * and reset to zero at the last index
-     */
-    private void incrementIndex() {
-        KnowledgeSourcesImpl knowledgesources = (KnowledgeSourcesImpl) brain
-                .getKnowledgeSources();
-        int size = knowledgesources.size();
-
-        if (log.isInfoEnabled()) {
-            log.info("No. of KnowledgeSources: " + size);
-        } else {
-            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-            System.exit(0); // die
-        }
-
-        if (index == size - 1) {
-            index = 0;
-        } else {
-            index++;
-        }
-    }
-
-    /**
-     * Private method to load the implemented KnowledgeSource (interface) with
-     * BlackboardContext
-     * 
-     * @param ks
-     *            the Knowledge source to be loaded
-     * @return {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource} loaded
-     *         interface
-     */
-    private KnowledgeSource resourceKnowledgeSourceType(KnowledgeSource ks) {
-
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.COMMON_PREFIX_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.COMMON_PREFIX_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.COMMON_SUFFIX_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.COMMON_SUFFIX_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.CONSONANT_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.CONSONANT_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.DOUBLE_LETTER_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.DOUBLE_LETTER_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.LEGAL_STRING_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.LEGAL_STRING_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.LETTER_FREQUENCY_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.LETTER_FREQUENCY_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.PATTERN_MATCHING_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.PATTERN_MATCHING_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.SMALL_WORD_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.SMALL_WORD_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.SOLVED_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.SOLVED_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.VOWEL_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.VOWEL_KNOWLEDGE_SOURCE);
-        }
-
-        else if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource) {
-            KnowledgeSourceUtil.loadContext(ks, KnowledgeSourceType.WORD_STRUCTURE_KNOWLEDGE_SOURCE, this, blackboard);
-            KnowledgeSourceUtil.loadRules(ks, KnowledgeSourceType.WORD_STRUCTURE_KNOWLEDGE_SOURCE);
-        } 
-        
-        else {
-            // TODO - handle this truly exceptional logic event
-        }
-
-        return ks;
-
-    }
 }

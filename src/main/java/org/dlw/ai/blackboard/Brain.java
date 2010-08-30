@@ -59,24 +59,29 @@ public final class Brain {
     private final Log log = LogFactory.getLog(Brain.class);
 
     /**
-     * Engage the brain by loading and obtaining a fresh set of knowledge
-     * sources (intelligence)
-     * 
+     * Public method to engage and load knowledge sources (intelligence)
      */
     public void engage() {
 
-        knowledgeSources.reset();
+        knowledgeSources.init();
 
         /**
          * Notify
          */
         if (log.isInfoEnabled()) {
-            log.info("Knowledge sources reset and loaded.");
+            log.info("Knowledge sources loaded and primed.");
         } else {
             System.err.println(SystemConstants.INFO_LEVEL_FATAL);
             System.exit(0);
         }
 
+    }
+    
+    /**
+     * Public method to reset knowledge sources (intelligence)
+     */
+    public void reset() {
+        knowledgeSources.reset();
     }
 
     /**

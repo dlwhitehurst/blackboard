@@ -39,5 +39,12 @@ public interface KnowledgeSources {
      * knowledge sources.
      */
     void loadKnowledgeSources();
+    
+    /**
+     * 
+     * @param knowledgeSource
+     */
+    void startKnowledgeSource(KnowledgeSource knowledgeSource);
+    
 
 }

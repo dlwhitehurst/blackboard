@@ -17,20 +17,28 @@
 package org.dlw.ai.blackboard.knowledge.primitive;
 
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.Controller;
 import org.dlw.ai.blackboard.util.SystemConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
+import org.dlw.ai.blackboard.domain.Assertion;
+import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourceType;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSources;
 
 /**
- * This class provides a data structure for the collection of {@link KnowledgeSources}
- * implemented.  It implements 13 knowledge sources at present to solve a cryptogram
- * problem using a blackboard artificial intelligence model.
+ * This class provides a data structure for the collection of
+ * {@link KnowledgeSources} implemented. It implements 13 knowledge sources at
+ * present to solve a cryptogram problem using a blackboard artificial
+ * intelligence model.
  * 
  * <p>
  * This class is not extendable and therefore not part of the API. Its use is
@@ -40,14 +48,14 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSources;
  * 
  * @author dlwhitehurst
  * @version 1.0.0-RC
- *
+ * 
  */
 public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
         implements KnowledgeSources {
 
     /**
-	 * unique serial identifier
-	 */
+     * unique serial identifier
+     */
     private static final long serialVersionUID = -7058137814441379445L;
 
     /**
@@ -62,7 +70,25 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
     }
 
     /**
-     * Public method to clear and create all fresh knowledge sources
+     * Public method to initialize all knowledge sources
+     */
+    public void init() {
+
+        /**
+         * Load all Knowledge Sources
+         */
+
+        loadKnowledgeSources();
+
+        /**
+         * Load all with BlackboardContext and Rules
+         */
+        initializeKnowledgeSources();
+
+    }
+
+    /**
+     * Public method to clear and initialize all knowledge sources
      */
     public void reset() {
 
@@ -78,11 +104,17 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
 
         loadKnowledgeSources();
 
+        /**
+         * Load all with BlackboardContext and Rules
+         */
+        initializeKnowledgeSources();
+
     }
 
     /**
-	 * Public method to load this data structure with (13) unique knowledge sources
-	 */
+     * Public method to load this data structure with (13) unique knowledge
+     * sources
+     */
     public void loadKnowledgeSources() {
 
         /**
@@ -288,6 +320,192 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
             System.err.println(SystemConstants.INFO_LEVEL_KS_FAIL);
             System.exit(0); // die
         }
+
+    }
+
+    /**
+     * Public method to give DirectSubstitutionKnowledgeSource its initial
+     * conditions (our hint)
+     */
+    public void startKnowledgeSource(KnowledgeSource knowledgeSource) {
+
+        /**
+         * DirectSubstitutionKnowledgeSource (our hint cipher (W) equals
+         * plaintext (V)
+         */
+        if (knowledgeSource instanceof org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource) {
+
+            /**
+             * Create and load an Assertion
+             */
+            Assertion assertion = new Assertion();
+            assertion.setCipherLetter("W");
+            assertion.setPlainLetter("V");
+            assertion.setReason("This assertion was given as an initial hint.");
+
+            /**
+             * Create a data-structure to hold Assumptions
+             */
+            ConcurrentLinkedQueue<Assumption> queue = new ConcurrentLinkedQueue<Assumption>();
+
+            /**
+             * Load our Assertion
+             */
+            queue.add(assertion);
+
+            /**
+             * Add Assumption/Assertion queue to this specific knowledge source
+             */
+            ((org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource) knowledgeSource)
+                    .setPastAssumptions(queue);
+
+        }
+    }
+
+    /**
+     * Private method to iterate over all knowledgesources and load rules and
+     * context
+     */
+    private void initializeKnowledgeSources() {
+        for (KnowledgeSource knowledgeSource : this) {
+            
+            /**
+             * Initialize
+             */
+            loadRulesAndContext(knowledgeSource);
+            
+            /**
+             * Pre-load our given hint
+             */
+            startKnowledgeSource(knowledgeSource);
+        }
+    }
+
+    /**
+     * Private method to specifically load rules and context based on knowledge
+     * source type
+     * 
+     * @param ks
+     *            the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
+     *            needing rules and context
+     * @return {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
+     */
+    private KnowledgeSource loadRulesAndContext(KnowledgeSource ks) {
+
+        Blackboard blackboard = (Blackboard) UniversalContext
+                .getApplicationContext().getBean("blackboard");
+        Controller controller = (Controller) UniversalContext
+                .getApplicationContext().getBean("controller");
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.COMMON_PREFIX_KNOWLEDGE_SOURCE,
+                    controller, blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.COMMON_PREFIX_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.COMMON_SUFFIX_KNOWLEDGE_SOURCE,
+                    controller, blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.COMMON_SUFFIX_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.CONSONANT_KNOWLEDGE_SOURCE, controller,
+                    blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.CONSONANT_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE,
+                    controller, blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.DOUBLE_LETTER_KNOWLEDGE_SOURCE,
+                    controller, blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.DOUBLE_LETTER_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.LEGAL_STRING_KNOWLEDGE_SOURCE,
+                    controller, blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.LEGAL_STRING_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.LETTER_FREQUENCY_KNOWLEDGE_SOURCE,
+                    controller, blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.LETTER_FREQUENCY_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.PATTERN_MATCHING_KNOWLEDGE_SOURCE,
+                    controller, blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.PATTERN_MATCHING_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE,
+                    controller, blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.SMALL_WORD_KNOWLEDGE_SOURCE,
+                    controller, blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.SMALL_WORD_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.SOLVED_KNOWLEDGE_SOURCE, controller,
+                    blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.SOLVED_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.VOWEL_KNOWLEDGE_SOURCE, controller,
+                    blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.VOWEL_KNOWLEDGE_SOURCE);
+        }
+
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource) {
+            KnowledgeSourceUtil.loadContext(ks,
+                    KnowledgeSourceType.WORD_STRUCTURE_KNOWLEDGE_SOURCE,
+                    controller, blackboard);
+            KnowledgeSourceUtil.loadRules(ks,
+                    KnowledgeSourceType.WORD_STRUCTURE_KNOWLEDGE_SOURCE);
+        }
+
+        else {
+            // TODO - handle this truly exceptional logic event
+        }
+
+        return ks;
 
     }
 

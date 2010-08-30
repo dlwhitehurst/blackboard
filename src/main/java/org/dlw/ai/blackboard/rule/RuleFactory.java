@@ -52,71 +52,85 @@ public final class RuleFactory {
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_PREFIX_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case COMMON_SUFFIX_KNOWLEDGE_SOURCE:
             log.info("Creating "
                     + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case CONSONANT_KNOWLEDGE_SOURCE:
             log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
+                    + KnowledgeSourceConstants.CONSONANT_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE:
             log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
+                    + KnowledgeSourceConstants.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case DOUBLE_LETTER_KNOWLEDGE_SOURCE:
             log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
+                    + KnowledgeSourceConstants.DOUBLE_LETTER_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case LEGAL_STRING_KNOWLEDGE_SOURCE:
             log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
+                    + KnowledgeSourceConstants.LEGAL_STRING_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case LETTER_FREQUENCY_KNOWLEDGE_SOURCE:
             log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
+                    + KnowledgeSourceConstants.LETTER_FREQUENCY_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case PATTERN_MATCHING_KNOWLEDGE_SOURCE:
             log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
+                    + KnowledgeSourceConstants.PATTERN_MATCHING_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE:
             log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
+                    + KnowledgeSourceConstants.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case SMALL_WORD_KNOWLEDGE_SOURCE:
             log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
+                    + KnowledgeSourceConstants.SMALL_WORD_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case SOLVED_KNOWLEDGE_SOURCE:
             log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
+                    + KnowledgeSourceConstants.SOLVED_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case VOWEL_KNOWLEDGE_SOURCE:
             log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
+                    + KnowledgeSourceConstants.VOWEL_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         case WORD_STRUCTURE_KNOWLEDGE_SOURCE:
             log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
+                    + KnowledgeSourceConstants.WORD_STRUCTURE_KNOWLEDGE_SOURCE
                     + " rule.");
+            break;
 
         default:
             log.info("Default error!");
 
         }
+        
         return rule;
     }
 

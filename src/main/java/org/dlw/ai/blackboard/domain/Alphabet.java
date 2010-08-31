@@ -77,7 +77,7 @@ public class Alphabet extends BlackboardObject {
      * @param cipherLetter
      * @param plainLetter
      */
-    public Alphabet(String cipherLetter, String plainLetter) {
+    public Alphabet(final String cipherLetter, final String plainLetter) {
         if (cipherLetter.equals("") && log.isErrorEnabled()) {
             log.error(SystemConstants.EMPTY_CIPHER_LETTER_ERROR);
         }

@@ -182,7 +182,7 @@ public class Controller {
      * @param hint
      *            the KnowledgeSource (or Expert) to provide hint for solution
      */
-    private final void addHint(KnowledgeSource hint) {
+    private void addHint(KnowledgeSource hint) {
 
         blackboard = (Blackboard) UniversalContext.getApplicationContext()
                 .getBean("blackboard");
@@ -205,7 +205,7 @@ public class Controller {
      * @param hint
      *            the KnowledgeSource (or Expert)
      */
-    private final void removeHint(KnowledgeSource hint) {
+    private void removeHint(KnowledgeSource hint) {
 
         blackboard.disconnect(hint);
 

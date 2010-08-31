@@ -169,7 +169,6 @@ public final class Cryptographer {
                 return blackboard.retrieveSolution().value();
             }
             break; // TODO - remove
-            
         }
 
         return SystemConstants.NO_SOLVE_ERROR;

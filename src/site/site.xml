@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Sample Project">
+  <bannerLeft>
+    <name>Blackboard</name>
+    <src>images/banner.png</src>
+    <href>http://www.dlwhitehurst.com</href>
+  </bannerLeft>
+  <body>
+    <menu name="Sample Project">
+      <item name="Overview" href="index.html"/>      
+    </menu>
+    <menu ref="reports"/>
+  </body>
+</project>
+
+

@@ -53,7 +53,7 @@ public class CipherLetter extends BlackboardObject {
      * @param cipherLetter
      *      the String cipherLetter
      */
-    public CipherLetter(String cipherLetter) {
+    public CipherLetter(final String cipherLetter) {
         this.cipherLetter = cipherLetter;
     }
 

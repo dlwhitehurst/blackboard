@@ -16,11 +16,15 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
+import org.dlw.ai.blackboard.exception.CollectionLoadingException;
+import org.dlw.ai.blackboard.exception.InitializationException;
+
 /**
- * The KnowledgeSources interface represents some form of collections object that is
- * used to hold individual or unique {@link KnowSource} objects.  A reset and load method
- * signature are provided so that the developer can choose a collection type based on
- * her requirements and handle these operations through implementation.
+ * The KnowledgeSources interface represents some form of collections object
+ * that is used to hold individual or unique {@link KnowSource} objects. A reset
+ * and load method signature are provided so that the developer can choose a
+ * collection type based on her requirements and handle these operations through
+ * implementation.
  * 
  * @author dlwhitehurst
  * @version 1.0.0-RC
@@ -29,22 +33,38 @@ package org.dlw.ai.blackboard.knowledge;
 public interface KnowledgeSources {
 
     /**
-     * This method is used to flush, clear, reset, or null the knowledge sources
-     * collection
+     * This method is used to load and initial knowledge sources
+     * 
+     * @throws InitializationException
+     * @throws CollectionLoadingException
      */
-    void reset();
+    void init() throws InitializationException, CollectionLoadingException;
 
     /**
-     * This method is used to fill the knowledge sources collection with
-     * knowledge sources.
+     * This method is used to clear, reset, load and initialize the knowledge
+     * sources collection
      */
-    void loadKnowledgeSources();
-    
+    void reset() throws InitializationException, CollectionLoadingException;
+
+    /**
+     * This method is called by init() and reset() to load unique knowledge
+     * sources
+     */
+    void loadKnowledgeSources() throws CollectionLoadingException;
+
+    /**
+     * This method is called by init() and reset() to load knowledge sources
+     * with attribute data
+     * 
+     * @throws InitializationException
+     */
+    void initializeKnowledgeSources() throws InitializationException;
+
     /**
      * 
      * @param knowledgeSource
+     *   the {@link KnowledgeSource} to activate
      */
     void startKnowledgeSource(KnowledgeSource knowledgeSource);
-    
 
 }

@@ -18,6 +18,8 @@ package org.dlw.ai.blackboard;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.exception.CollectionLoadingException;
+import org.dlw.ai.blackboard.exception.InitializationException;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSources;
 import org.dlw.ai.blackboard.knowledge.primitive.KnowledgeSourcesImpl;
 import org.dlw.ai.blackboard.util.SystemConstants;
@@ -63,25 +65,29 @@ public final class Brain {
      */
     public void engage() {
 
-        knowledgeSources.init();
-
-        /**
-         * Notify
-         */
-        if (log.isInfoEnabled()) {
-            log.info("Knowledge sources loaded and primed.");
-        } else {
-            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-            System.exit(0);
+        try {
+            knowledgeSources.init();
+        } catch (InitializationException e) {
+            log.error("Could not engage and initialize knowledge sources.");
+        } catch (CollectionLoadingException e) {
+            log.error("Some failure occurred loading knowledge source collection.");
         }
 
     }
-    
+
     /**
      * Public method to reset knowledge sources (intelligence)
      */
     public void reset() {
-        knowledgeSources.reset();
+
+        try {
+            knowledgeSources.reset();
+        } catch (InitializationException e) {
+            log.error("Could not reset and initialize knowledge sources.");
+        } catch (CollectionLoadingException e) {
+            log.error("Some failure occurred loading knowledge source collection.");
+        }
+        
     }
 
     /**

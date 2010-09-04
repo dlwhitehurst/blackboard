@@ -18,7 +18,7 @@ package org.dlw.ai.blackboard;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.util.SystemConstants;
+import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
@@ -65,6 +65,12 @@ public final class Main {
     public static void main(String[] args) {
 
         /**
+         * Get our logger
+         */
+        Logger logger = Logger.getInstance();
+        logger.wrap(log);
+        
+        /**
          * Solve our problem
          */
         final String answer = solveProblem(CODED_STRING);
@@ -72,12 +78,7 @@ public final class Main {
         /**
          * Notify results
          */
-        if (log.isInfoEnabled()) {
-            log.info("SYSTEM FINAL REPLY: " + answer);
-        } else {
-            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-            System.exit(0); // die
-        }
+        logger.info("SYSTEM FINAL REPLY: " + answer);
     }
 
     /**

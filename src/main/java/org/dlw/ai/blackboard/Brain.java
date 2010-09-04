@@ -22,7 +22,7 @@ import org.dlw.ai.blackboard.exception.CollectionLoadingException;
 import org.dlw.ai.blackboard.exception.InitializationException;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSources;
 import org.dlw.ai.blackboard.knowledge.primitive.KnowledgeSourcesImpl;
-import org.dlw.ai.blackboard.util.SystemConstants;
+import org.dlw.ai.blackboard.util.Logger;
 
 /**
  * <p>
@@ -56,9 +56,23 @@ public final class Brain {
     private final KnowledgeSourcesImpl knowledgeSources = new KnowledgeSourcesImpl();
 
     /**
-     * Attribute class logger
+     * Attribute class log
      */
     private final Log log = LogFactory.getLog(Brain.class);
+    
+    private final Logger logger;
+    
+    /**
+     * Default constructor
+     */
+    public Brain() {
+
+        /**
+         * initialize logger
+         */
+        logger = Logger.getInstance();
+        logger.wrap(log);
+    }
 
     /**
      * Public method to engage and load knowledge sources (intelligence)
@@ -68,9 +82,9 @@ public final class Brain {
         try {
             knowledgeSources.init();
         } catch (InitializationException e) {
-            log.error("Could not engage and initialize knowledge sources.");
+            logger.error("Could not engage and initialize knowledge sources.");
         } catch (CollectionLoadingException e) {
-            log.error("Some failure occurred loading knowledge source collection.");
+            logger.error("Some failure occurred loading knowledge source collection.");
         }
 
     }

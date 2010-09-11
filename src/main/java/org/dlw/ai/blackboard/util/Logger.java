@@ -74,8 +74,12 @@ public class Logger implements Log {
     }
 
     public void error(Object message) {
-        // TODO Auto-generated method stub
-        
+        if (log.isInfoEnabled()) {
+            log.info(message);
+        } else {
+            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
+            System.exit(0);           
+        }
     }
 
     public void error(Object message, Throwable t) {

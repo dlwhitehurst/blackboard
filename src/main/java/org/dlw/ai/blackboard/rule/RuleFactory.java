@@ -16,6 +16,8 @@
  */
 package org.dlw.ai.blackboard.rule;
 
+import java.util.ArrayList;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
@@ -70,6 +72,12 @@ public final class RuleFactory {
             log.info("Creating "
                     + KnowledgeSourceConstants.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE
                     + " rule.");
+            rule.setAntecedent("W");
+            ArrayList<String> consequents = new ArrayList<String>();
+            String cons = "V";
+            consequents.add(cons);
+            rule.setConsequents(consequents);
+           
             break;
 
         case DOUBLE_LETTER_KNOWLEDGE_SOURCE:

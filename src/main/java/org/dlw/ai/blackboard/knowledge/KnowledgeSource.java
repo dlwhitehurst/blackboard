@@ -16,7 +16,12 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
+import java.util.ArrayList;
+
+import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.domain.Sentence;
+import org.dlw.ai.blackboard.rule.Rule;
 
 /**
  * This interface defines the signature knowledge source object. Any default
@@ -30,12 +35,16 @@ import org.dlw.ai.blackboard.domain.Assumption;
  * @version 1.0.0-RC
  * 
  */
-public interface KnowledgeSource extends InferenceEngine {
+public abstract class KnowledgeSource extends BlackboardContext implements InferenceEngine, Comparable<KnowledgeSource>{
 
+    private Integer priority;
+    
     /**
      * Reset knowledge source
      */
-    void reset();
+    public void reset() {
+        // TODO - implement
+    }
 
     /**
      * Find dependent knowledge sources and tell them to add, retract, etc. a
@@ -44,6 +53,44 @@ public interface KnowledgeSource extends InferenceEngine {
      * @param direction
      * @param statement
      */
-    void notifyDependents(String direction, Assumption statement);
+    public void notifyDependents(String direction, Assumption statement) {
+        // TODO - implement
+    }
+
+    public void evaluate() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void loadRules(ArrayList<Rule> rules) {
+
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    public abstract int compareTo(KnowledgeSource o);
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.InferenceEngine#evaluate(org.dlw.ai.blackboard.domain.Sentence)
+     */
+    public void evaluate(Sentence sentence) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /**
+     * @param priority the priority to set
+     */
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+    /**
+     * @return the priority
+     */
+    public Integer getPriority() {
+        return priority;
+    }
 
 }

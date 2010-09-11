@@ -18,6 +18,7 @@ package org.dlw.ai.blackboard.knowledge;
 
 import java.util.ArrayList;
 
+import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.rule.Rule;
 
 /**
@@ -35,10 +36,10 @@ public interface InferenceEngine {
      * Public method to evaluate the blackboard model domain problem and offer
      * assumptions or assertions
      */
-    void evaluate();
+    void evaluate(Sentence sentence);
 
     /**
-     * Public method to implement where a list of rules to be used for
+     * Public method to implement a list of rules to be used for
      * evaluation
      * 
      * @param rules

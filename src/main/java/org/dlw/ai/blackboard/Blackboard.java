@@ -18,17 +18,20 @@ package org.dlw.ai.blackboard;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.domain.Affirmation;
+import org.dlw.ai.blackboard.domain.Alphabet;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.CipherLetter;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.util.Logger;
+import org.dlw.ai.blackboard.util.SentenceUtil;
 import org.dlw.ai.blackboard.util.StringTrimmer;
 import org.dlw.ai.blackboard.util.SystemConstants;
 
@@ -56,12 +59,24 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      */
     private final Log log = LogFactory.getLog(Blackboard.class);
 
+    /**
+     * Attribute class logger
+     */
+    private Logger logger;
+
     private KnowledgeSource activeKnowledgeSource;
 
     /**
      * Default constructor
      */
     public Blackboard() {
+
+        /**
+         * Initialize logger
+         */
+        logger = Logger.getInstance();
+        logger.wrap(log);
+
     }
 
     /**
@@ -69,6 +84,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * 
      * @return {@link org.dlw.ai.blackboard.domain.Sentence} object for the
      *         solution
+     * 
      */
     public final Sentence retrieveSolution() {
 
@@ -100,13 +116,8 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         /**
          * Notify
          */
-        if (log.isInfoEnabled()) {
-            log
-                    .info("Blackboard has been cleaned and ready for problem solving.");
-        } else {
-            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-            System.exit(0); // die
-        }
+        logger
+                .info("Blackboard has been cleaned and ready for problem solving.");
     }
 
     /**
@@ -121,14 +132,9 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         Sentence sentence = null;
 
         /**
-         * Search the ArrayList for a sentence
+         * Search the ArrayList for our sentence
          */
-        for (BlackboardObject obj : this) {
-            if (obj.getClass().equals(
-                    org.dlw.ai.blackboard.domain.Sentence.class)) {
-                sentence = (Sentence) obj;
-            }
-        }
+        sentence = getSentence();
 
         /**
          * If we have a sentence and the sentence is solved, then the blackboard
@@ -144,7 +150,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
          * affirmations.
          */
 
-        outputProgress();
+        outputProgress(sentence);
 
         return result;
 
@@ -155,28 +161,11 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * letters. Also any letters that are underlined are plaintext letters
      * (Alphabets) and also Affirmations exist in blackboard problem domain.
      */
-    private void outputProgress() {
+    private void outputProgress(Sentence sentence) {
 
-        Sentence sentence = null;
+        logger.info("ORIGINAL: " + sentence.value());
 
-        /**
-         * Get the sentence object
-         */
-        for (BlackboardObject obj : this) {
-            if (obj.getClass().equals(
-                    org.dlw.ai.blackboard.domain.Sentence.class)) {
-                sentence = (Sentence) obj;
-            }
-        }
-
-        if (log.isInfoEnabled()) {
-            log.info("PROGRESS: " + sentence.value());
-        } else {
-            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-            System.exit(0); // die
-        }
-
-        String markers = getAffirmations(sentence);
+        String markers = getAffirmationMarkings(sentence);
 
         /**
          * Use this to show that no markers exist
@@ -185,12 +174,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
             markers = "___________________________";
         }
 
-        if (log.isInfoEnabled()) {
-            log.info("########: " + markers);
-        } else {
-            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-            System.exit(0); // die
-        }
+        logger.info("PROGRESS: " + markers);
 
     }
 
@@ -212,15 +196,57 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         }
 
         Sentence sentence = new Sentence(code);
-        List<Word> words = getWords(sentence);
-        sentence.setWords(words);
 
         /**
          * This is important!
          */
         sentence.register();
 
+        /**
+         * Establish initial sentence, word, and letter hierarchy. WARNING: This
+         * method should be called after any modification to the blackboard
+         * sentence.
+         */
+        updateSentenceHierarchy(true);
+
         return result;
+    }
+
+    /**
+     * Private method to update the hierarchical structure of the blackboard
+     * sentence object. This method also registers each object (and type) in the
+     * flat array of the blackboard data-structure if the initial parameter is
+     * set to true.
+     * 
+     * @param initial
+     */
+    private void updateSentenceHierarchy(boolean initial) {
+
+        /**
+         * Search the ArrayList for our one and only sentence
+         */
+        Sentence sentence = null;
+        sentence = getSentence();
+
+        List<Word> words = SentenceUtil.getWords(sentence);
+        sentence.setWords(words);
+
+        for (Word word : words) {
+
+            if (initial) {
+                word.register();
+            }
+
+            List<CipherLetter> letters = SentenceUtil.getLetters(word);
+            word.setLetters(letters);
+
+            for (CipherLetter letter : letters) {
+                if (initial) {
+                    letter.register();
+                }
+            }
+
+        }
     }
 
     /**
@@ -233,12 +259,55 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      */
     public final void connect(KnowledgeSource ks) {
 
-        /**
-         * This setter allows knowledge source access to the collection of
-         * participating objects and their knowledge source references.
-         */
-        this.activeKnowledgeSource = ks;
+        ConcurrentLinkedQueue<Assumption> queue = ks.getPastAssumptions();
+        Assumption assumption = queue.peek();
 
+        /**
+         * Is this an assertion (assumption)? If so, then replace every
+         * occurrence with an Alphabet type. Also, notify all dependent
+         * knowledge sources to make any adjustments if assertions are made.
+         */
+        if (!assumption.isRetractable()) { // assertion
+
+            /**
+             * Search the ArrayList for our one and only sentence
+             */
+            Sentence sentence = null;
+            sentence = getSentence();
+
+            /**
+             * replace all cipher letters with plaintext equivalent declared by
+             * the assertion
+             */
+            // updateSentence(sentence, assumption.getPlainLetter());
+            /**
+             * make affirmation statement on letter-stack (push assumption
+             * (assertion))
+             */
+            updateAffirmationAssertions(sentence, assumption);
+
+        } else { // assumption only
+
+        }
+
+    }
+
+    private void updateAffirmationAssertions(Sentence sentence,
+            Assumption assumption) {
+        for (Word word : sentence.getWords()) {
+            for (CipherLetter cipherLetter : word.getLetters()) {
+                if (cipherLetter.value().equals(assumption.getCipherLetter())) {
+                    Alphabet alphabet = new Alphabet(assumption
+                            .getCipherLetter(), assumption.getPlainLetter());
+                    alphabet.register();
+                    Affirmation affirmation = cipherLetter.getAffirmation();
+                    affirmation.setCipherLetter(cipherLetter);
+                    affirmation.setSolvedLetter(alphabet);
+                    affirmation.getStatements().push(assumption);
+                    cipherLetter.setAffirmation(affirmation);
+                }
+            }
+        }
     }
 
     /**
@@ -254,79 +323,15 @@ public class Blackboard extends ArrayList<BlackboardObject> {
     }
 
     /**
-     * Private method to return a List of Word objects based on the Sentence
-     * object provided
+     * Private method to get affirmation markings for console output line below
+     * working sentence
      * 
      * @param sentence
      * @return
      */
-    private List<Word> getWords(Sentence sentence) {
+    private String getAffirmationMarkings(Sentence sentence) {
 
-        StringTokenizer toker = new StringTokenizer(sentence.value());
-        List<Word> listOfWords = sentence.getWords();
-
-        while (toker.hasMoreTokens()) {
-
-            String tmpWord = toker.nextToken();
-
-            if (log.isInfoEnabled()) {
-                log.info("Word: " + tmpWord);
-            } else {
-                System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-                System.exit(0); // die
-            }
-
-            Word word = new Word(tmpWord);
-            List<CipherLetter> letters = getLetters(word);
-            word.setLetters(letters);
-            listOfWords.add(word);
-
-            /**
-             * This is important!
-             */
-            word.register();
-        }
-
-        return listOfWords;
-    }
-
-    /**
-     * Private method to return a List of CipherLetter objects based on Word
-     * provided
-     * 
-     * @param word
-     * @return
-     */
-    private List<CipherLetter> getLetters(Word word) {
-
-        List<CipherLetter> listOfLetters = word.getLetters();
-
-        int i = 0;
-
-        for (i = 0; i < word.value().length(); i++) {
-            CipherLetter letter = new CipherLetter(word.value().substring(i,
-                    i + 1));
-            listOfLetters.add(letter);
-
-            /**
-             * This is important!
-             */
-            letter.register();
-
-        }
-
-        return listOfLetters;
-    }
-
-    /**
-     * Private method to get affirmations against the sentence object
-     * 
-     * @param sentence
-     * @return
-     */
-    private String getAffirmations(Sentence sentence) {
-
-        String markerLine = new String("");
+        String markerLine = "";
         int wordcount = 0;
         int loopcount = 0;
 
@@ -334,25 +339,22 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         wordcount = words.size();
 
         for (Word word : words) {
-            loopcount++;
+
             List<CipherLetter> list = word.getLetters();
 
             for (CipherLetter letter : list) {
-                Stack<Assumption> stack = letter.getAffirmations()
-                        .getStatements();
-                for (int i = 0; i < stack.size(); i++) {
-                    Assumption assumption = stack.pop();
-                    if (!assumption.isRetractable()) {
+                if (letter.getAffirmation().getSolvedLetter() != null) {
                         // affirmation and we have an assertion
-                        markerLine.concat("#");
+                        markerLine = markerLine.concat(letter.getAffirmation().getSolvedLetter().getPlainLetter()); // was underscore
                     } else {
-                        markerLine.concat(" ");
+                        markerLine = markerLine.concat(letter.value()); // was space
                     }
-                }
             }
             if (loopcount < wordcount) {
-                markerLine.concat(" ");
+                markerLine = markerLine.concat(" ");
             }
+            loopcount++;
+
         }
         return markerLine;
     }
@@ -370,5 +372,27 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      */
     public KnowledgeSource getActiveKnowledgeSource() {
         return activeKnowledgeSource;
+    }
+
+    /**
+     * Public method to get the problem domain sentence
+     * 
+     * @return
+     */
+    public Sentence getSentence() {
+
+        Sentence sentence = null;
+
+        /**
+         * Search the ArrayList for our one and only sentence
+         */
+        for (BlackboardObject obj : this) {
+            if (obj.getClass().equals(
+                    org.dlw.ai.blackboard.domain.Sentence.class)) {
+                sentence = (Sentence) obj;
+            }
+        }
+
+        return sentence;
     }
 }

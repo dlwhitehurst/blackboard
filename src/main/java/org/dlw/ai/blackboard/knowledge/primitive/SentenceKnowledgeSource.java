@@ -18,8 +18,9 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 
 import java.util.ArrayList;
 
-import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.domain.Sentence;
+import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.rule.Rule;
@@ -31,8 +32,8 @@ import org.dlw.ai.blackboard.rule.Rule;
  * @version 1.0.0-RC
  * 
  */
-public class SentenceKnowledgeSource extends BlackboardContext implements
-        KnowledgeSource {
+public class SentenceKnowledgeSource extends KnowledgeSource implements
+        InferenceEngine {
 
     /*
      * (non-Javadoc)
@@ -91,6 +92,17 @@ public class SentenceKnowledgeSource extends BlackboardContext implements
     public void loadRules(ArrayList<Rule> rules) {
         // TODO Auto-generated method stub
         
+    }
+
+    public void evaluate(Sentence sentence) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public int compareTo(KnowledgeSource o) {
+        int priorityCmp = this.getPriority().compareTo(o.getPriority());
+        return (priorityCmp != 0 ? priorityCmp : 0 );
     }
 
 }

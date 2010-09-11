@@ -17,6 +17,7 @@
 package org.dlw.ai.blackboard.knowledge.primitive;
 
 import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
@@ -26,7 +27,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * 
  */
 public class CommonPrefixKnowledgeSource extends StringKnowledgeSource implements
-        KnowledgeSource {
+        InferenceEngine {
 
     /*
      * (non-Javadoc)
@@ -85,6 +86,15 @@ public class CommonPrefixKnowledgeSource extends StringKnowledgeSource implement
     public void notifyDependents(String direction, Assumption statement) {
         // TODO Auto-generated method stub
         
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#compareTo(org.dlw.ai.blackboard.knowledge.KnowledgeSource)
+     */
+    @Override
+    public int compareTo(KnowledgeSource o) {
+        int priorityCmp = this.getPriority().compareTo(o.getPriority());
+        return (priorityCmp != 0 ? priorityCmp : 0 );
     }
 
 }

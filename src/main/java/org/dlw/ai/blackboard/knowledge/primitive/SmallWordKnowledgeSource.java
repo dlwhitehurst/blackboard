@@ -16,8 +16,12 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import java.util.ArrayList;
+
+import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.rule.Rule;
 
 /**
  * @author dlwhitehurst
@@ -25,8 +29,10 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * 
  */
 public class SmallWordKnowledgeSource extends WordKnowledgeSource implements
-        KnowledgeSource {
+        InferenceEngine {
 
+    protected ArrayList<Rule> rules;
+    
     /*
      * (non-Javadoc)
      * 
@@ -65,7 +71,7 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource implements
      * @see org.dlw.ai.blackboard.knowledge.WordKnowledgeSource#evaluate()
      */
     public void evaluate() {
-        // TODO Auto-generated method stub
+        //this.getBlackboard().get(index)
     }
 
     /* (non-Javadoc)
@@ -75,6 +81,23 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource implements
     public void reset() {
         // TODO Auto-generated method stub
         super.reset();
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.WordKnowledgeSource#loadRules(java.util.ArrayList)
+     */
+    @Override
+    public void loadRules(ArrayList<Rule> rules) {
+        this.rules = rules;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.WordKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
+     */
+    @Override
+    public void notifyDependents(String direction, Assumption statement) {
+        // TODO Auto-generated method stub
+        super.notifyDependents(direction, statement);
     }
 
 }

@@ -16,7 +16,7 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
 /**
@@ -25,7 +25,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * 
  */
 public class CommonSuffixKnowledgeSource extends StringKnowledgeSource implements
-        KnowledgeSource {
+        InferenceEngine {
 
     /*
      * (non-Javadoc)

@@ -98,7 +98,7 @@ public class Word extends BlackboardObject {
         int count = list.size();
 
         for (CipherLetter letter : list) {
-            Stack<Assumption> stack = letter.getAffirmations().getStatements();
+            Stack<Assumption> stack = letter.getAffirmation().getStatements();
             for (int i = 0; i < stack.size(); i++) {
                 Assumption assumption = stack.pop();
                 if (!assumption.isRetractable()) {
@@ -133,21 +133,6 @@ public class Word extends BlackboardObject {
      */
     public List<CipherLetter> getLetters() {
         return letters;
-    }
-
-    /**
-     * @return the word
-     */
-    public String getWord() {
-        return word;
-    }
-
-    /**
-     * @param word
-     *            the word to set
-     */
-    public void setWord(String word) {
-        this.word = word;
     }
 
     @Override

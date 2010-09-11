@@ -7,6 +7,8 @@ package org.dlw.ai.blackboard;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.CipherLetter;
 import org.dlw.ai.blackboard.domain.Sentence;
@@ -23,6 +25,9 @@ public class BlackboardTest {
 
     private Blackboard blackboard;
     private int count = 0;
+    private int i = 0;
+    private int j = 0;
+    
     
     /**
      * @throws java.lang.Exception
@@ -55,10 +60,14 @@ public class BlackboardTest {
                 System.out.println("LETTER: " + letter.value());
             }
         }
+        
+        Sentence sentence = blackboard.getSentence();
+        assertTrue(sentence.value() == "I HAVE SEEN THE SMALL SHELL");
+        System.out.println(sentence.value());
     }
+    
     @Test
     public void testWordCount() throws AssertionError {
-        
         for (BlackboardObject obj: blackboard) {
             if (obj.getClass().equals(
                     org.dlw.ai.blackboard.domain.Word.class)) {
@@ -67,9 +76,26 @@ public class BlackboardTest {
                 count++;
             }
         }
-        
         System.out.println(count);
+
         assertTrue(count == 6);
     }
+    
+    @Test
+    public void testHierarchy() throws AssertionError {
+        Sentence sentence = blackboard.getSentence();
+        
+        List<Word> words = sentence.getWords();
+        for (Word word: words) {
+            System.out.println(i + ":" + word.value());
+            i++;
+            List<CipherLetter> letters = word.getLetters();
+            for (CipherLetter letter: letters) {
+                System.out.println(j + ":" + letter.value());
+                j++;
+            }
+        }
+        assertTrue(i == 6);
 
+    }
 }

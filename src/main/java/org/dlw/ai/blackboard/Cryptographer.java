@@ -73,25 +73,11 @@ public final class Cryptographer {
          * Reset the domain objects and all knowledge sources and clean the
          * blackboard for our new problem.
          */
-
-        controller.reset();
-
-        /**
-         * Connect to the brain and wake the system
-         */
-
-        controller.connect();
-
-        /**
-         * Clean the blackboard
-         */
-
         blackboard.reset();
 
         /**
          * Assert the problem at the blackboard
          */
-
         if (!blackboard.assertProblem(ciphertext)) {
             if (log.isErrorEnabled()) {
                 log.error(SystemConstants.NO_ASSERT_ERROR);
@@ -99,6 +85,16 @@ public final class Cryptographer {
 
             return SystemConstants.NO_ASSERT_ERROR;
         }
+        
+        /**
+         * Reset the controller
+         */
+        controller.reset();
+
+        /**
+         * Connect to the brain and wake the system
+         */
+        controller.connect();
 
         /**
          * Kick start the controller

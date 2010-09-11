@@ -16,12 +16,13 @@
  */
 package org.dlw.ai.blackboard;
 
+import java.util.Collections;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceType;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
 import org.dlw.ai.blackboard.knowledge.primitive.KnowledgeSourcesImpl;
+import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.SystemConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
@@ -38,10 +39,6 @@ import org.dlw.ai.blackboard.util.UniversalContext;
 public class Controller {
 
     /**
-     * Attribute for solved status
-     */
-    // private boolean done;
-    /**
      * Attribute active or current knowledge source
      */
     private KnowledgeSource activeKnowledgeSource;
@@ -51,6 +48,8 @@ public class Controller {
      */
     private static final Log log = LogFactory.getLog(Controller.class);
 
+    private Logger logger;
+    
     /**
      * Attribute enum state of the controller
      */
@@ -70,7 +69,15 @@ public class Controller {
      * Public constructor
      */
     public Controller() {
+        
+        logger = Logger.getInstance();
+        logger.wrap(log);
+        
+        /**
+         * State - initializing
+         */
         this.state = ControllerState.INITIALIZING;
+        
     }
 
     /**
@@ -114,41 +121,42 @@ public class Controller {
     public final void processNextHint() {
 
         state = ControllerState.SELECTING;
-        // controller cycles all KS in collection and calls startKS on each
 
-        // controller picks (next) best hint based on priorities and assumptions
-
-        // controller adds hint (KS connects to blackboard)
-
+        KnowledgeSourcesImpl knowledgeSources = (KnowledgeSourcesImpl) brain
+        .getKnowledgeSources();
+        
+        Collections.sort(knowledgeSources);
+        
+        for (KnowledgeSource ks : knowledgeSources) {
+            
+            logger.info(ks.toString()); // for debugging
+            
+            // evaluate
+            knowledgeSources.startKnowledgeSource(ks);
+            
+            // assertions higher priority than assumption
+            
+            // then priority and assumption
+            // if not empty
+            if (!ks.getPastAssumptions().isEmpty()) {
+                logger.info("past assumption baby!");
+                activeKnowledgeSource = ks;
+                addHint(ks);
+            }
+            
+        }
+        
         // evaluate and makes or retract assumption
 
         // update blackboard
+        
 
-        /**
-         * Set the active knowledge source to evaluate
-         */
-        KnowledgeSourcesImpl knowledgesources = (KnowledgeSourcesImpl) brain
-                .getKnowledgeSources();
-
-        /**
-         * Get next knowledge source
-         */
-        // activeKnowledgeSource = knowledgesources.get(index);
-        /**
-         * Pass expert to the blackboard
-         */
-        //addHint(activeKnowledgeSource);
-
-        /**
-         * Tell the expert to evaluate or do his thing at the blackboard (checks
-         * rules and makes assertion on match consequent)
-         */
-        //blackboard.getActiveKnowledgeSource().evaluate();
+        // notify all dependents
 
         /**
          * Expert stands down
          */
-        //removeHint(activeKnowledgeSource);
+        removeHint(activeKnowledgeSource);
 
     }
 

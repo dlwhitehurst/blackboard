@@ -95,7 +95,7 @@ public class Affirmation {
      * @return String
      */
     public String cipherText() {
-        return cipherLetter.getCipherLetter();
+        return cipherLetter.value();
     }
 
     /**
@@ -136,7 +136,7 @@ public class Affirmation {
 
         boolean result = false;
 
-        Stack<Assumption> stack = this.cipherLetter.getAffirmations()
+        Stack<Assumption> stack = this.cipherLetter.getAffirmation()
                 .getStatements();
         for (int i = 0; i < stack.size(); i++) {
             Assumption assumption = stack.pop();
@@ -175,7 +175,7 @@ public class Affirmation {
     public boolean cipherLetterHasAssumption() {
         boolean result = false;
 
-        Stack<Assumption> stack = this.cipherLetter.getAffirmations()
+        Stack<Assumption> stack = this.cipherLetter.getAffirmation()
                 .getStatements();
         if (stack.size() > 0) {
             result = true;

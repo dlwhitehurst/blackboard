@@ -39,12 +39,13 @@ public class CipherLetter extends BlackboardObject {
     /**
      * Attribute Affirmation object or data structure Stack of statements
      */
-    protected Affirmation affirmations = new Affirmation();
+    protected Affirmation affirmation = new Affirmation();
 
     /**
-     * Default constructor
+     * Private constructor
      */
-    public CipherLetter() {
+    @SuppressWarnings("unused")
+    private CipherLetter() {
     }
 
     /**
@@ -57,34 +58,23 @@ public class CipherLetter extends BlackboardObject {
         this.cipherLetter = cipherLetter;
     }
 
-    /**
-     * @return the String cipherLetter
-     */
-    public String getCipherLetter() {
+    public String value() {
         return cipherLetter;
-    }
-
-    /**
-     * @param cipherLetter
-     *            the String cipherLetter
-     */
-    public void setCipherLetter(String cipherLetter) {
-        this.cipherLetter = cipherLetter;
     }
 
     /**
      * @return the Affirmation object affirmations
      */
-    public Affirmation getAffirmations() {
-        return affirmations;
+    public Affirmation getAffirmation() {
+        return affirmation;
     }
 
     /**
      * @param affirmations
      *            the affirmations to set
      */
-    public void setAffirmations(Affirmation affirmations) {
-        this.affirmations = affirmations;
+    public void setAffirmation(Affirmation affirmation) {
+        this.affirmation = affirmation;
     }
 
     @Override
@@ -92,6 +82,4 @@ public class CipherLetter extends BlackboardObject {
         // TODO Auto-generated method stub
         
     }
-
-
 }

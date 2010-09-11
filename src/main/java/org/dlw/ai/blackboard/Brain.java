@@ -86,7 +86,6 @@ public final class Brain {
         } catch (CollectionLoadingException e) {
             logger.error("Some failure occurred loading knowledge source collection.");
         }
-
     }
 
     /**

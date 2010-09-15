@@ -36,12 +36,12 @@ public final class SystemConstants {
     /**
      * The cryptogram sentence or string could not be asserted.
      */
-    public static final String NO_ASSERT_ERROR = "Could not assert problem!";
+    public static final String NO_ASSERT_ERROR = "I could not assert the problem!";
 
     /**
      * The system could not solve the cipher.
      */
-    public static final String NO_SOLVE_ERROR = "Could not decipher the asserted problem!";
+    public static final String NO_SOLVE_ERROR = "I could not decipher the asserted problem!";
 
     /**
      * The empty string is not acceptable as a cipher letter input.

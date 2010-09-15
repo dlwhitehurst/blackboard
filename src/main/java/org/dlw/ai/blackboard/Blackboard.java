@@ -22,7 +22,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.domain.Affirmation;
 import org.dlw.ai.blackboard.domain.Alphabet;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.BlackboardObject;
@@ -30,7 +29,9 @@ import org.dlw.ai.blackboard.domain.CipherLetter;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.util.BlackboardUtil;
 import org.dlw.ai.blackboard.util.Logger;
+import org.dlw.ai.blackboard.util.MessageConstants;
 import org.dlw.ai.blackboard.util.SentenceUtil;
 import org.dlw.ai.blackboard.util.StringTrimmer;
 import org.dlw.ai.blackboard.util.SystemConstants;
@@ -64,6 +65,9 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      */
     private Logger logger;
 
+    /**
+     * Attribute active knowledge source
+     */
     private KnowledgeSource activeKnowledgeSource;
 
     /**
@@ -88,6 +92,9 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      */
     public final Sentence retrieveSolution() {
 
+        /**
+         * Protects premature use of method
+         */
         if (!isSolved()) {
             return new Sentence(SystemConstants.EARLY_RETRIEVAL_ERROR);
         }
@@ -116,8 +123,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         /**
          * Notify
          */
-        logger
-                .info("Blackboard has been cleaned and ready for problem solving.");
+        logger.info(MessageConstants.BLACKBOARD_RESET);
     }
 
     /**
@@ -144,39 +150,10 @@ public class Blackboard extends ArrayList<BlackboardObject> {
             result = sentence.isSolved();
         }
 
-        /**
-         * need method to show blackboard solution anytime this method is
-         * called. Also, the entire sentence should be underline with
-         * affirmations.
-         */
-
-        outputProgress(sentence);
-
         return result;
 
     }
 
-    /**
-     * Private method to output the sentence and underline any corrected cipher
-     * letters. Also any letters that are underlined are plaintext letters
-     * (Alphabets) and also Affirmations exist in blackboard problem domain.
-     */
-    private void outputProgress(Sentence sentence) {
-
-        logger.info("ORIGINAL: " + sentence.value());
-
-        String markers = getAffirmationMarkings(sentence);
-
-        /**
-         * Use this to show that no markers exist
-         */
-        if (markers.equals("")) {
-            markers = "___________________________";
-        }
-
-        logger.info("PROGRESS: " + markers);
-
-    }
 
     /**
      * Public boolean method to assert our problem with the blackboard
@@ -289,22 +266,32 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         } else { // assumption only
 
         }
-
+        
+        BlackboardUtil.outputSnapshot(this);
     }
 
+    /**
+     * Private method to update blackboard with a new Alphabet when an assertion
+     * is given for a particular cipher letter. Also register the assertion (assumption) 
+     * with the blackboard as well.
+     * 
+     * @param sentence
+     * @param assumption
+     */
     private void updateAffirmationAssertions(Sentence sentence,
             Assumption assumption) {
+        
+        assumption.register();
+        
         for (Word word : sentence.getWords()) {
             for (CipherLetter cipherLetter : word.getLetters()) {
                 if (cipherLetter.value().equals(assumption.getCipherLetter())) {
                     Alphabet alphabet = new Alphabet(assumption
                             .getCipherLetter(), assumption.getPlainLetter());
                     alphabet.register();
-                    Affirmation affirmation = cipherLetter.getAffirmation();
-                    affirmation.setCipherLetter(cipherLetter);
-                    affirmation.setSolvedLetter(alphabet);
-                    affirmation.getStatements().push(assumption);
-                    cipherLetter.setAffirmation(affirmation);
+                    alphabet.getAffirmations().getStatements().push(assumption);
+                    cipherLetter.getAffirmation().setCipherLetter(cipherLetter);
+                    cipherLetter.getAffirmation().setSolvedLetter(alphabet);
                 }
             }
         }
@@ -322,42 +309,6 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         this.activeKnowledgeSource = null;
     }
 
-    /**
-     * Private method to get affirmation markings for console output line below
-     * working sentence
-     * 
-     * @param sentence
-     * @return
-     */
-    private String getAffirmationMarkings(Sentence sentence) {
-
-        String markerLine = "";
-        int wordcount = 0;
-        int loopcount = 0;
-
-        List<Word> words = sentence.getWords();
-        wordcount = words.size();
-
-        for (Word word : words) {
-
-            List<CipherLetter> list = word.getLetters();
-
-            for (CipherLetter letter : list) {
-                if (letter.getAffirmation().getSolvedLetter() != null) {
-                        // affirmation and we have an assertion
-                        markerLine = markerLine.concat(letter.getAffirmation().getSolvedLetter().getPlainLetter()); // was underscore
-                    } else {
-                        markerLine = markerLine.concat(letter.value()); // was space
-                    }
-            }
-            if (loopcount < wordcount) {
-                markerLine = markerLine.concat(" ");
-            }
-            loopcount++;
-
-        }
-        return markerLine;
-    }
 
     /**
      * @param activeKnowledgeSource

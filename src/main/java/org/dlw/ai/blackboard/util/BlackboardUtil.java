@@ -159,6 +159,7 @@ public final class BlackboardUtil {
 
     }
     
+
     /**
      * Private method to get affirmation markings for console output line below
      * working sentence

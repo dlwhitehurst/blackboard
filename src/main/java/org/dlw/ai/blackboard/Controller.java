@@ -131,31 +131,12 @@ public class Controller {
         Collections.sort(knowledgeSources);
         
         for (KnowledgeSource ks : knowledgeSources) {
-            
-            logger.info(ks.toString()); // for debugging
-            
-            // evaluate
-            knowledgeSources.startKnowledgeSource(ks);
-            
-            // assertions higher priority than assumption
-            
-            // then priority and assumption
-            // if not empty
-            if (!ks.getPastAssumptions().isEmpty()) {
-                logger.info("past assumption baby!");
-                activeKnowledgeSource = ks;
-                addHint(ks);
-            }
-            
+
+            activeKnowledgeSource = ks;
+            addHint(ks);
+        
         }
         
-        // evaluate and makes or retract assumption
-
-        // update blackboard
-        
-
-        // notify all dependents
-
         /**
          * Expert stands down
          */

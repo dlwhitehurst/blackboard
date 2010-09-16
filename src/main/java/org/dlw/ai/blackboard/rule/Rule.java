@@ -16,7 +16,8 @@
  */
 package org.dlw.ai.blackboard.rule;
 
-import java.util.ArrayList;
+import org.dlw.ai.blackboard.domain.Antecedent;
+import org.dlw.ai.blackboard.domain.Consequent;
 
 /**
  * <p>
@@ -36,15 +37,16 @@ import java.util.ArrayList;
  */
 public class Rule {
 
-    /**
-     * String that exists before or wildcard pattern
-     */
-    protected String antecedent;
+    protected Antecedent antecedent;
 
-    /**
-     * Actual pattern choices in a collection
-     */
-    protected ArrayList<String> consequents;
+    protected Consequent consequent;
+    
+    protected RuleType ruleType;
+    
+    protected String before;
+    
+    protected String after;
+    
 
     /**
      * Default constructor
@@ -56,12 +58,12 @@ public class Rule {
      * Loaded constructor
      * 
      * @param antecedent
-     *            the String antecedent defining this rule.
-     * @param consequents
-     *            the ArrayList of consequents following this rule and
+     *            the Antecedent defining this rule.
+     * @param consequent
+     *            the Consequent following this rule and
      *            antecedent
      */
-    public Rule(final String antecedent, final ArrayList<String> consequents) {
+    public Rule(final Antecedent antecedent, final Consequent consequent) {
 
         /**
          * set antecedent
@@ -73,90 +75,13 @@ public class Rule {
          * set final ArrayList of consequents
          */
 
-        this.consequents = consequents;
+        this.consequent = consequent;
     }
 
     /**
-     * 
-     * 
-     * @param antecedent
-     *            the String antecedent to remove
-     * @return boolean primitive
+     * @return Antecedent
      */
-    public boolean removeAntecedent(final String antecedent) {
-        return false;
-    }
-
-    /**
-     * 
-     * 
-     * @param consequent
-     *            the String consequent to remove
-     * @return boolean primitive
-     */
-    public boolean removeConsequent(final String consequent) {
-        return false;
-    }
-
-    /**
-     * Accept antecedent and consequent pair, only single antecedent exists
-     * 
-     * @param antecedent
-     *            the String antecedent to bind
-     * @param consequent
-     *            the String consequent to bing
-     * @return boolean primitive
-     */
-    public boolean bind(final String antecedent, final String consequent) {
-
-        boolean result = false;
-
-        if (antecedent == null) {
-            this.antecedent = new String(antecedent);
-
-            if (consequents == null) {
-                consequents = new ArrayList<String>();
-                consequents.add(consequent);
-            } else {
-                consequents.add(consequent);
-            }
-
-            result = true;
-        }
-
-        if (antecedent != null && antecedent.equals(this.antecedent)) {
-            if (consequents == null) {
-                consequents = new ArrayList<String>();
-                consequents.add(consequent);
-            } else {
-                consequents.add(consequent);
-            }
-
-            result = true;
-        }
-
-        if (antecedent != null && !antecedent.equals(this.antecedent)) {
-            result = false;
-        }
-
-        return result;
-    }
-
-    /**
-     * Antecedent exists, possible consequent matching
-     * 
-     * @param antecedent
-     *            the String antecedent matching
-     * @return boolean primitive
-     */
-    public boolean isPossible(final String antecedent) {
-        return false;
-    }
-
-    /**
-     * @return String
-     */
-    public String getAntecedent() {
+    public Antecedent getAntecedent() {
         return antecedent;
     }
 
@@ -164,23 +89,66 @@ public class Rule {
      * @param antecedent
      *            the String to set
      */
-    public void setAntecedent(String antecedent) {
+    public void setAntecedent(Antecedent antecedent) {
         this.antecedent = antecedent;
     }
 
     /**
-     * @return ArrayList
+     * @return Consequent
      */
-    public ArrayList<String> getConsequents() {
-        return consequents;
+    public Consequent getConsequent() {
+        return consequent;
     }
 
     /**
-     * @param consequents
-     *            the ArrayList to set
+     * @param consequent
+     *            the Consequent to set
      */
-    public void setConsequents(ArrayList<String> consequents) {
-        this.consequents = consequents;
+    public void setConsequent(Consequent consequent) {
+        this.consequent = consequent;
+    }
+
+
+    /**
+     * @return the before
+     */
+    public String getBefore() {
+        return before;
+    }
+
+    /**
+     * @param before the before to set
+     */
+    public void setBefore(String before) {
+        this.before = before;
+    }
+
+    /**
+     * @return the after
+     */
+    public String getAfter() {
+        return after;
+    }
+
+    /**
+     * @param after the after to set
+     */
+    public void setAfter(String after) {
+        this.after = after;
+    }
+
+    /**
+     * @return the ruleType
+     */
+    public RuleType getRuleType() {
+        return ruleType;
+    }
+
+    /**
+     * @param ruleType the ruleType to set
+     */
+    public void setRuleType(RuleType ruleType) {
+        this.ruleType = ruleType;
     }
 
 }

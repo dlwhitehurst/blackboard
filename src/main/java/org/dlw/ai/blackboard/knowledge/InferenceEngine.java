@@ -16,10 +16,7 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
-import java.util.ArrayList;
-
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.rule.Rule;
 
 /**
  * This interface provides service hooks for loading rules and
@@ -37,14 +34,5 @@ public interface InferenceEngine {
      * assumptions or assertions
      */
     void evaluate(Sentence sentence);
-
-    /**
-     * Public method to implement a list of rules to be used for
-     * evaluation
-     * 
-     * @param rules
-     *            the {@link java.util.ArrayList} containing rules
-     */
-    void loadRules(ArrayList<Rule> rules);
 
 }

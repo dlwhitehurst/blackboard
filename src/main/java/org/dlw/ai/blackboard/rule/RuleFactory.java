@@ -16,10 +16,10 @@
  */
 package org.dlw.ai.blackboard.rule;
 
-import java.util.ArrayList;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.domain.Antecedent;
+import org.dlw.ai.blackboard.domain.Consequent;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceType;
 
@@ -72,11 +72,9 @@ public final class RuleFactory {
             log.info("Creating "
                     + KnowledgeSourceConstants.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE
                     + " rule.");
-            rule.setAntecedent("W");
-            ArrayList<String> consequents = new ArrayList<String>();
-            String cons = "V";
-            consequents.add(cons);
-            rule.setConsequents(consequents);
+            
+            rule = loadConversionRule(rule, "W","V");
+            
            
             break;
 
@@ -120,6 +118,15 @@ public final class RuleFactory {
             log.info("Creating "
                     + KnowledgeSourceConstants.SOLVED_KNOWLEDGE_SOURCE
                     + " rule.");
+            Antecedent antecedent = new Antecedent();
+            antecedent.setFullyQualifiedClass("org.dlw.ai.blackboard.Blackboard");
+            antecedent.setMethodName("isSolved");
+            Consequent consequent = new Consequent();
+            consequent.setFullyQualifiedClass("org.dlw.ai.blackboard.Controller");
+            consequent.setMethodName("done");
+            
+            rule = loadMethodRule(rule, antecedent, consequent);
+            
             break;
 
         case VOWEL_KNOWLEDGE_SOURCE:
@@ -142,4 +149,21 @@ public final class RuleFactory {
         return rule;
     }
 
+    private static Rule loadMethodRule(Rule rule, Antecedent antecedent, Consequent consequent) {
+        
+        rule.setAntecedent(antecedent);
+        rule.setConsequent(consequent);
+        rule.setRuleType(RuleType.METHOD);
+         
+        
+        return rule;
+        
+    }
+    
+    private static Rule loadConversionRule(Rule rule, final String cipher, final String plainText) {
+        rule.setBefore("W");
+        rule.setAfter("V");
+        rule.setRuleType(RuleType.CONVERSION);
+        return rule;
+    }
 }

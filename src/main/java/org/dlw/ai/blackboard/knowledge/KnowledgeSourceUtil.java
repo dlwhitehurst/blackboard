@@ -16,7 +16,9 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -37,6 +39,7 @@ import org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource;
 import org.dlw.ai.blackboard.rule.Rule;
 import org.dlw.ai.blackboard.rule.RuleFactory;
+import org.dlw.ai.blackboard.util.Logger;
 
 /**
  * The KnowledgeSourceUtil class is used to provide static methods to stage-load
@@ -52,6 +55,11 @@ public final class KnowledgeSourceUtil {
      * Attribute commons-logging class instance
      */
     private static final Log log = LogFactory.getLog(KnowledgeSourceUtil.class);
+
+    /**
+     * Attribute class logger
+     */
+    private static Logger logger;
 
     /**
      * Hidden constructor
@@ -222,5 +230,28 @@ public final class KnowledgeSourceUtil {
 
         return ks;
     }
+    
+    public static void evaluationResponse(KnowledgeSource knowledgeSource, String response) {
 
+        /**
+         * Timestamp
+         */
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date now = calendar.getTime();
+        Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
+        
+        /**
+         * Initialize logger
+         */
+        logger = Logger.getInstance();
+        logger.wrap(log);
+
+        logger.info("##############################################################################");
+        logger.info("## " +  knowledgeSource.toString() + ":EVALUATION " + currentTimestamp);
+        logger.info("##############################################################################");
+        
+        logger.info(response);
+        logger.info("##############################################################################");
+        
+    }
 }

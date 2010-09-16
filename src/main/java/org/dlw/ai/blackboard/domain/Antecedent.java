@@ -25,6 +25,9 @@ public class Antecedent {
     protected String fullyQualifiedClass;
     
     protected String methodName;
+    
+    protected String basic;
+    
 
     /**
      * @return the fullyQualifiedClass
@@ -52,6 +55,20 @@ public class Antecedent {
      */
     public void setMethodName(String methodName) {
         this.methodName = methodName;
+    }
+
+    /**
+     * @return the basic
+     */
+    public String getBasic() {
+        return basic;
+    }
+
+    /**
+     * @param basic the basic to set
+     */
+    public void setBasic(String basic) {
+        this.basic = basic;
     }
 
 }

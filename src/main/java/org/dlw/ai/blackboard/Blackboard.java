@@ -235,7 +235,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      */
     public final void connect(KnowledgeSource ks) {
 
-        ks.evaluate();
+        ks.evaluate(getSentence());
 
         ConcurrentLinkedQueue<Assumption> queue = ks.getPastAssumptions();
 
@@ -262,7 +262,8 @@ public class Blackboard extends ArrayList<BlackboardObject> {
                 updateAffirmationAssertions(sentence, assumption);
 
             } else { // assumption only
-                ks.evaluate(getSentence());
+                //ks.evaluate(getSentence()); redundant
+                // what goes on here?
             }
         }
 

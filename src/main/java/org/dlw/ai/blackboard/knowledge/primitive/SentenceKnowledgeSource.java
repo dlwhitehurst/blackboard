@@ -35,6 +35,8 @@ import org.dlw.ai.blackboard.rule.Rule;
 public class SentenceKnowledgeSource extends KnowledgeSource implements
         InferenceEngine {
 
+    private ArrayList<Rule> rules = new ArrayList<Rule>();
+    
     /*
      * (non-Javadoc)
      * 

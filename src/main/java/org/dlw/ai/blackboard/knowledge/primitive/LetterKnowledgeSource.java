@@ -16,14 +16,11 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import java.util.ArrayList;
-
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
-import org.dlw.ai.blackboard.rule.Rule;
 
 // TODO - this class may be meaningless
 
@@ -33,8 +30,6 @@ import org.dlw.ai.blackboard.rule.Rule;
  * 
  */
 public class LetterKnowledgeSource extends KnowledgeSource implements InferenceEngine {
-    
-    private ArrayList<Rule> rules = new ArrayList<Rule>();
     
     /*
      * (non-Javadoc)
@@ -67,15 +62,6 @@ public class LetterKnowledgeSource extends KnowledgeSource implements InferenceE
         return KnowledgeSourceConstants.LETTER_KNOWLEDGE_SOURCE;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
-     */
-    public void evaluate() {
-        // TODO Auto-generated method stub
-    }
-
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#reset()
      */
@@ -87,24 +73,6 @@ public class LetterKnowledgeSource extends KnowledgeSource implements InferenceE
     public void notifyDependents(String direction, Assumption statement) {
         // TODO Auto-generated method stub
         
-    }
-
-    public void loadRules(ArrayList<Rule> rules) {
-        this.setRules(rules);
-    }
-
-    /**
-     * @param rules the rules to set
-     */
-    public void setRules(ArrayList<Rule> rules) {
-        this.rules = rules;
-    }
-
-    /**
-     * @return the rules
-     */
-    public ArrayList<Rule> getRules() {
-        return rules;
     }
 
     public void evaluate(Sentence sentence) {

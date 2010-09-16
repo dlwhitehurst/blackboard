@@ -16,30 +16,16 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
-import org.dlw.ai.blackboard.domain.Antecedent;
-import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.CipherLetter;
-import org.dlw.ai.blackboard.domain.Consequent;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.domain.Word;
 import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
-import org.dlw.ai.blackboard.rule.Rule;
-import org.dlw.ai.blackboard.rule.RuleType;
 import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.MessageConstants;
-import org.dlw.ai.blackboard.util.ReflectionUtil;
-import org.dlw.ai.blackboard.util.SentenceUtil;
 
 /**
  * @author dlwhitehurst
@@ -49,7 +35,6 @@ import org.dlw.ai.blackboard.util.SentenceUtil;
 public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource
         implements InferenceEngine {
 
-    private ArrayList<Rule> rules = new ArrayList<Rule>();
 
     /**
      * Commons logging class instance
@@ -61,6 +46,9 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource
      */
     private Logger logger;
 
+    /**
+     * Default constructor
+     */
     public DirectSubstitutionKnowledgeSource() {
 
         /**
@@ -103,105 +91,6 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource
         return KnowledgeSourceConstants.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE;
     }
 
-    /**
-     * Public implementation for this object's evaluation of the sentence on the
-     * blackboard
-     */
-    public void evaluate(Sentence sentence) {
-
-        List<Rule> rules = this.getRules();
-
-        for (Rule rule : rules) {
-            Antecedent antecedent = rule.getAntecedent();
-            Consequent consequent = rule.getConsequent();
-            RuleType ruleType = rule.getRuleType();
-
-            switch (ruleType) {
-
-            case METHOD:
-                if (ReflectionUtil.isAntecedent(antecedent
-                        .getFullyQualifiedClass(), antecedent.getMethodName())) {
-                    ReflectionUtil.execConsequent(consequent
-                            .getFullyQualifiedClass(), consequent
-                            .getMethodName());
-                }
-                break;
-
-            case CONVERSION:
-                List<Word> words = SentenceUtil.getWords(sentence);
-                List<CipherLetter> letters;
-
-                for (Word word : words) {
-                    letters = SentenceUtil.getLetters(word);
-
-                    for (CipherLetter letter : letters) {
-                        for (Rule convRule : rules) {
-
-                            String cipher = convRule.getBefore();
-                            String plainText = convRule.getAfter();
-
-                            if (letter.value().equals(cipher)) {
-                                makeAssertion(cipher, plainText);
-                                Assertion assertion = new Assertion();
-                                assertion.setCipherLetter(cipher);
-                                assertion.setPlainLetter(plainText);
-                                assertion
-                                        .setReason(MessageConstants.SUBSTITUTION_ASSERT);
-
-                                Stack<Assumption> stack = letter
-                                        .getAffirmation().getStatements();
-                                stack.add(assertion);
-                                KnowledgeSourceUtil.evaluationResponse(this,
-                                        MessageConstants.SUBSTITUTION_ASSERT
-                                                + antecedent + " = "
-                                                + consequent + ".");
-                            }
-                        }
-
-                    }
-                }
-
-                break;
-
-            }
-
-        }
-
-    }
-
-    /**
-     * Private method to store an assertion
-     * 
-     * @param antecedent
-     * @param consequent
-     */
-    private void makeAssertion(String cipher, String plainText) {
-
-        /**
-         * Create and load an Assertion
-         */
-        Assertion assertion = new Assertion();
-        assertion.setCipherLetter(cipher);
-        assertion.setPlainLetter(plainText);
-        assertion.setReason("An assertion was given to describe a direct substitution.");
-
-        /**
-         * Create a data-structure to hold Assumptions
-         */
-        ConcurrentLinkedQueue<Assumption> queue = new ConcurrentLinkedQueue<Assumption>();
-
-        /**
-         * Load our Assertion
-         */
-        queue.add(assertion);
-
-        /**
-         * Add Assumption/Assertion queue to this specific knowledge source
-         */
-        this.setPastAssumptions(queue);
-
-    }
-
     /*
      * (non-Javadoc)
      * 
@@ -213,17 +102,11 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource
         // TODO Auto-generated method stub
         super.reset();
     }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#loadRules
-     * (java.util.ArrayList)
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.InferenceEngine#evaluate(org.dlw.ai.blackboard.domain.Sentence)
      */
-    @Override
-    public void loadRules(ArrayList<Rule> rules) {
-        this.setRules(rules);
+    public void evaluate(Sentence sentence) {
+        KnowledgeSourceUtil.considerRules(this, sentence, "", MessageConstants.SUBSTITUTION_ASSERT);
     }
 
     /*
@@ -237,21 +120,6 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource
     public void notifyDependents(String direction, Assumption statement) {
         // TODO Auto-generated method stub
         super.notifyDependents(direction, statement);
-    }
-
-    /**
-     * @param rules
-     *            the rules to set
-     */
-    public void setRules(ArrayList<Rule> rules) {
-        this.rules = rules;
-    }
-
-    /**
-     * @return the rules
-     */
-    public ArrayList<Rule> getRules() {
-        return rules;
     }
 
 }

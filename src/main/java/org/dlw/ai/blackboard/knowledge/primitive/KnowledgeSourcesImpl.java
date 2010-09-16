@@ -17,14 +17,11 @@
 package org.dlw.ai.blackboard.knowledge.primitive;
 
 import java.util.ArrayList;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
 import org.dlw.ai.blackboard.Controller;
-import org.dlw.ai.blackboard.domain.Assertion;
-import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.exception.CollectionLoadingException;
@@ -306,12 +303,6 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
         }
     }
 
-    public void startAllKnowledgeSources() {
-        for (KnowledgeSource knowledgeSource : this) {
-            startKnowledgeSource(knowledgeSource);
-        }
-    }
-
     /**
      * Public method to iterate over all knowledgesources and load rules and
      * context
@@ -462,6 +453,11 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
                     "Could not load collection due to object or collection constraint.");
         }
 
+    }
+
+    public void startAllKnowledgeSources() {
+        // TODO Auto-generated method stub
+        
     }
 
 }

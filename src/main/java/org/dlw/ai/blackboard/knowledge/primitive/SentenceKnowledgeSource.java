@@ -35,6 +35,7 @@ import org.dlw.ai.blackboard.rule.Rule;
 public class SentenceKnowledgeSource extends KnowledgeSource implements
         InferenceEngine {
 
+    @SuppressWarnings("unused")
     private ArrayList<Rule> rules = new ArrayList<Rule>();
     
     /*
@@ -92,7 +93,7 @@ public class SentenceKnowledgeSource extends KnowledgeSource implements
     }
 
     public void loadRules(ArrayList<Rule> rules) {
-        // TODO Auto-generated method stub
+        this.rules = rules;
         
     }
 

@@ -17,11 +17,23 @@
 package org.dlw.ai.blackboard.knowledge;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.dlw.ai.blackboard.BlackboardContext;
+import org.dlw.ai.blackboard.domain.Antecedent;
+import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.domain.CipherLetter;
+import org.dlw.ai.blackboard.domain.Consequent;
 import org.dlw.ai.blackboard.domain.Sentence;
+import org.dlw.ai.blackboard.domain.Word;
 import org.dlw.ai.blackboard.rule.Rule;
+import org.dlw.ai.blackboard.rule.RuleType;
+import org.dlw.ai.blackboard.util.MessageConstants;
+import org.dlw.ai.blackboard.util.ReflectionUtil;
+import org.dlw.ai.blackboard.util.SentenceUtil;
 
 /**
  * This interface defines the signature knowledge source object. Any default
@@ -37,14 +49,20 @@ import org.dlw.ai.blackboard.rule.Rule;
  */
 public abstract class KnowledgeSource extends BlackboardContext implements InferenceEngine, Comparable<KnowledgeSource>{
 
+    /**
+     * Attribute priority
+     */
     private Integer priority;
+
+    /**
+     * Attribute to hold rules for KnowledgeSource
+     */
+    private ArrayList<Rule> rules = new ArrayList<Rule>();
     
     /**
      * Reset knowledge source
      */
-    public void reset() {
-        // TODO - implement
-    }
+    public abstract void reset();
 
     /**
      * Find dependent knowledge sources and tell them to add, retract, etc. a
@@ -53,18 +71,7 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
      * @param direction
      * @param statement
      */
-    public void notifyDependents(String direction, Assumption statement) {
-        // TODO - implement
-    }
-
-    public void evaluate() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    public void loadRules(ArrayList<Rule> rules) {
-
-    }
+    public abstract void notifyDependents(String direction, Assumption statement);
 
     /* (non-Javadoc)
      * @see java.lang.Comparable#compareTo(java.lang.Object)
@@ -75,8 +82,6 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
      * @see org.dlw.ai.blackboard.knowledge.InferenceEngine#evaluate(org.dlw.ai.blackboard.domain.Sentence)
      */
     public void evaluate(Sentence sentence) {
-        // TODO Auto-generated method stub
-        
     }
 
     /**
@@ -93,4 +98,19 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
         return priority;
     }
 
+    /**
+     * @param rules
+     *            the rules to set
+     */
+    public void setRules(ArrayList<Rule> rules) {
+        this.rules = rules;
+    }
+
+    /**
+     * @return the rules
+     */
+    public ArrayList<Rule> getRules() {
+        return rules;
+    }
+    
 }

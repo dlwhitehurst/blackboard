@@ -71,7 +71,7 @@ public final class Main {
         logger.wrap(log);
         
         /**
-         * Solve our problem
+         * Solve our cryptogram problem
          */
         final String answer = solveProblem(CODED_STRING);
 

@@ -154,7 +154,6 @@ public class Blackboard extends ArrayList<BlackboardObject> {
 
     }
 
-
     /**
      * Public boolean method to assert our problem with the blackboard
      * 
@@ -236,53 +235,53 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      */
     public final void connect(KnowledgeSource ks) {
 
+        ks.evaluate();
+
         ConcurrentLinkedQueue<Assumption> queue = ks.getPastAssumptions();
-        Assumption assumption = queue.peek();
 
-        /**
-         * Is this an assertion (assumption)? If so, then replace every
-         * occurrence with an Alphabet type. Also, notify all dependent
-         * knowledge sources to make any adjustments if assertions are made.
-         */
-        if (!assumption.isRetractable()) { // assertion
+        if (queue.size() > 0) {
+            Assumption assumption = queue.peek();
 
             /**
-             * Search the ArrayList for our one and only sentence
+             * Is this an assertion (assumption)? If so, then replace every
+             * occurrence with an Alphabet type. Also, notify all dependent
+             * knowledge sources to make any adjustments if assertions are made.
              */
-            Sentence sentence = null;
-            sentence = getSentence();
+            if (!assumption.isRetractable()) { // assertion
 
-            /**
-             * replace all cipher letters with plaintext equivalent declared by
-             * the assertion
-             */
-            // updateSentence(sentence, assumption.getPlainLetter());
-            /**
-             * make affirmation statement on letter-stack (push assumption
-             * (assertion))
-             */
-            updateAffirmationAssertions(sentence, assumption);
+                /**
+                 * Search the ArrayList for our one and only sentence
+                 */
+                Sentence sentence = null;
+                sentence = getSentence();
 
-        } else { // assumption only
+                /**
+                 * make affirmation statement on letter-stack (push assumption
+                 * (assertion))
+                 */
+                updateAffirmationAssertions(sentence, assumption);
 
+            } else { // assumption only
+                ks.evaluate(getSentence());
+            }
         }
-        
+
         BlackboardUtil.outputSnapshot(this);
     }
 
     /**
      * Private method to update blackboard with a new Alphabet when an assertion
-     * is given for a particular cipher letter. Also register the assertion (assumption) 
-     * with the blackboard as well.
+     * is given for a particular cipher letter. Also register the assertion
+     * (assumption) with the blackboard as well.
      * 
      * @param sentence
      * @param assumption
      */
     private void updateAffirmationAssertions(Sentence sentence,
             Assumption assumption) {
-        
+
         assumption.register();
-        
+
         for (Word word : sentence.getWords()) {
             for (CipherLetter cipherLetter : word.getLetters()) {
                 if (cipherLetter.value().equals(assumption.getCipherLetter())) {
@@ -308,7 +307,6 @@ public class Blackboard extends ArrayList<BlackboardObject> {
     public final void disconnect(KnowledgeSource ks) {
         this.activeKnowledgeSource = null;
     }
-
 
     /**
      * @param activeKnowledgeSource
@@ -345,5 +343,27 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         }
 
         return sentence;
+    }
+
+    public boolean cipherLetterExists(String letter) {
+
+        boolean result = false;
+
+        for (BlackboardObject obj : this) {
+            if (obj.getClass().equals(
+                    org.dlw.ai.blackboard.domain.CipherLetter.class)) {
+                CipherLetter cipherLetter = (CipherLetter) obj;
+                if (cipherLetter.value().equals(letter)) {
+                    result = true;
+                }
+            }
+        }
+        return result;
+
+    }
+
+    public void createAlphabet(String cipher, String plainText) {
+        Alphabet alphabet = new Alphabet(cipher, plainText);
+        alphabet.register();
     }
 }

@@ -85,6 +85,9 @@ public class Controller {
      * 
      */
     public final void done() {
+
+        System.exit(0); // Temporary for testing
+        
         state = ControllerState.SOLVED;
     }
 
@@ -94,7 +97,7 @@ public class Controller {
      * @return boolean primitive
      */
     public final boolean isSolved() {
-
+        
         boolean result = false;
 
         if (state == ControllerState.SOLVED) {

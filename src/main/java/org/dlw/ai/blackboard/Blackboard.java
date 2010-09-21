@@ -268,6 +268,8 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         }
 
         BlackboardUtil.outputSnapshot(this);
+        BlackboardUtil.outputProgress(this);
+
     }
 
     /**

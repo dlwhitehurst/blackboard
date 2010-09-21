@@ -16,6 +16,8 @@
  */
 package org.dlw.ai.blackboard.domain;
 
+import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+
 /**
  * <p>
  * The {@link Assumption} class is a retractable statement made about a
@@ -36,6 +38,10 @@ package org.dlw.ai.blackboard.domain;
  */
 public class Assumption extends BlackboardObject {
 
+    protected KnowledgeSource creator;
+    
+    protected BlackboardObject target;
+    
     protected String reason;
     
     protected String cipherLetter;
@@ -98,6 +104,34 @@ public class Assumption extends BlackboardObject {
      */
     public void setPlainLetter(String plainLetter) {
         this.plainLetter = plainLetter;
+    }
+
+    /**
+     * @return the creator
+     */
+    public KnowledgeSource getCreator() {
+        return creator;
+    }
+
+    /**
+     * @param creator the creator to set
+     */
+    public void setCreator(KnowledgeSource creator) {
+        this.creator = creator;
+    }
+
+    /**
+     * @return the target
+     */
+    public BlackboardObject getTarget() {
+        return target;
+    }
+
+    /**
+     * @param target the target to set
+     */
+    public void setTarget(BlackboardObject target) {
+        this.target = target;
     }
 
 }

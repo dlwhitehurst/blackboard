@@ -50,7 +50,7 @@ public final class Main {
     private static final String CODED_STRING = "Q AZWS DSSC KAS DXZNN DASNN";
 
     /**
-     * Attribute class logger
+     * Attribute class log
      */
     private static final Log log = LogFactory.getLog(Main.class);
 

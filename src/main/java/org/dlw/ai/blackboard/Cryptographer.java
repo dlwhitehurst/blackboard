@@ -18,6 +18,7 @@ package org.dlw.ai.blackboard;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.SystemConstants;
 
 /**
@@ -55,9 +56,27 @@ public final class Cryptographer {
     private Brain brain;
 
     /**
-     * Attribute class logger
+     * Attribute class log
      */
     private static final Log log = LogFactory.getLog(Cryptographer.class);
+
+    /**
+     * Attribute class logger
+     */
+    private final Logger logger;
+
+    /**
+     * Default constructor
+     */
+    public Cryptographer() {
+
+        /**
+         * initialize logger
+         */
+        logger = Logger.getInstance();
+        logger.wrap(log);
+
+    }
 
     /**
      * Public method to decipher the coded cipher text
@@ -79,13 +98,10 @@ public final class Cryptographer {
          * Assert the problem at the blackboard
          */
         if (!blackboard.assertProblem(ciphertext)) {
-            if (log.isErrorEnabled()) {
-                log.error(SystemConstants.NO_ASSERT_ERROR);
-            }
-
+            logger.error(SystemConstants.NO_ASSERT_ERROR);
             return SystemConstants.NO_ASSERT_ERROR;
         }
-        
+
         /**
          * Reset the controller
          */
@@ -164,7 +180,7 @@ public final class Cryptographer {
                 this.getController().done();
                 return blackboard.retrieveSolution().value();
             }
-            break; //  TODO - remove
+            break; // TODO - remove
         }
 
         return SystemConstants.NO_SOLVE_ERROR;

@@ -60,6 +60,9 @@ public final class Brain {
      */
     private final Log log = LogFactory.getLog(Brain.class);
     
+    /**
+     * Attribute class logger
+     */
     private final Logger logger;
     
     /**

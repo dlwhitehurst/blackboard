@@ -38,4 +38,6 @@ public final class MessageConstants {
     public static final String SUBSTITUTION_ASSERT = "An assertion was made to support a direct substitution. ";
 
     public static final String SENTENCE_SOLVED = "My evaluation has determined that the cryptogram has been solved.";
+
+    public static final String UNKNOWN_KNOWLEDGE_SOURCE = "Unknown knowledge source detected.";
 }

@@ -32,7 +32,7 @@ import java.util.List;
  * question, exclamation, or command, and consisting of a main clause and
  * sometimes one or more subordinate clauses."</i></blockquote>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

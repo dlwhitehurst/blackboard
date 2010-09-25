@@ -25,7 +25,7 @@ package org.dlw.ai.blackboard.domain;
  * 
  * <blockquote><i>Cipher - "(def.) a secret or disguised way of writing: a code."</i></blockquote>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

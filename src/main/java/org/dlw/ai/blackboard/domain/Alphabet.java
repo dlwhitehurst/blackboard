@@ -38,7 +38,7 @@ import org.dlw.ai.blackboard.util.SystemConstants;
  * order, used to represent the basic sounds of a language; in particular, the
  * set of letters from A to Z"</i></blockquote>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

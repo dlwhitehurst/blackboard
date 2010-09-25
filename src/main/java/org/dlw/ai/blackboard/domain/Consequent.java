@@ -17,7 +17,7 @@
 package org.dlw.ai.blackboard.domain;
 
 /**
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  *
  */
 public class Consequent {

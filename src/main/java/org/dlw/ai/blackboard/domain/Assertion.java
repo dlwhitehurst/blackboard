@@ -29,7 +29,7 @@ package org.dlw.ai.blackboard.domain;
  * <blockquote><i>Assertion - "(def.) a confident or forceful statement of fact
  * or belief"</i></blockquote>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

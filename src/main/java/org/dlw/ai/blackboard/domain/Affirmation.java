@@ -45,7 +45,7 @@ import java.util.Stack;
  * <blockquote><i>Affirmation - "(def.) statement of facts; asserted strongly
  * and publicly (at the blackboard perchance?)</i></blockquote>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

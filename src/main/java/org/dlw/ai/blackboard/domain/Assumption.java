@@ -32,7 +32,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
  * <blockquote><i>Assumption -"(def.) a statement that is accepted as true or as
  * certain to happen, without proof "</i></blockquote>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

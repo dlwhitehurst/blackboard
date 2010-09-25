@@ -25,7 +25,6 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.rule.Rule;
 
-// TODO - this class may be meaningless
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>

@@ -18,6 +18,8 @@ package org.dlw.ai.blackboard.knowledge;
 
 import java.util.ArrayList;
 
+import javax.persistence.*;
+
 import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
@@ -32,9 +34,11 @@ import org.dlw.ai.blackboard.rule.Rule;
  * directly within the implementation.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC (Hibernate)
+ * @version 1.0.0-RC (hibernate-mysql branch)
  * 
  */
+@Entity
+@Table(name="knowledge_source")
 public abstract class KnowledgeSource extends BlackboardContext implements InferenceEngine, Comparable<KnowledgeSource>{
 
     private Long id;
@@ -101,6 +105,21 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
      */
     public ArrayList<Rule> getRules() {
         return rules;
+    }
+
+    /**
+     * @return the id
+     */
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
     
 }

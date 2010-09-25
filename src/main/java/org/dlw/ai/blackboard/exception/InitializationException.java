@@ -20,7 +20,7 @@ package org.dlw.ai.blackboard.exception;
  * This class provides an Exception that can be thrown when the initialization
  * of objects with attribute data fails.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  *
  */
 public class InitializationException extends Exception {

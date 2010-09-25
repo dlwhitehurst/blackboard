@@ -20,7 +20,7 @@ package org.dlw.ai.blackboard.exception;
  * This class provides an Exception that can be thrown when the loading
  * of objects into a collection fails.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  *
  */
 public final class CollectionLoadingException extends Exception {

@@ -19,6 +19,7 @@ package org.dlw.ai.blackboard;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.domain.BaseObject;
 
 /**
  * <p>
@@ -38,7 +39,12 @@ import org.dlw.ai.blackboard.domain.Assumption;
  * 
  * 
  */
-public class BlackboardContext {
+public class BlackboardContext extends BaseObject {
+
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = -545460787166534024L;
 
     /**
      * Attribute blackboard
@@ -122,6 +128,24 @@ public class BlackboardContext {
     public final void setPastAssumptions(
             ConcurrentLinkedQueue<Assumption> pastAssumptions) {
         this.pastAssumptions = pastAssumptions;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

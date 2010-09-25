@@ -28,7 +28,7 @@ import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.MessageConstants;
 
 /**
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

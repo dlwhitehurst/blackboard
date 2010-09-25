@@ -46,7 +46,7 @@ import org.dlw.ai.blackboard.util.UniversalContext;
  * {@link org.dlw.ai.blackboard.Main}.
  * </p>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * @since 1.0
  * 

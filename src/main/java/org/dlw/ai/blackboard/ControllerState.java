@@ -8,7 +8,7 @@ package org.dlw.ai.blackboard;
  * is driven by KnowledgeSource(s) and the controller state machine has named states as
  * defined here.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * 
  */
 public enum ControllerState {

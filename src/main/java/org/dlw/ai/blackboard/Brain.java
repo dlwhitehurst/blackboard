@@ -44,7 +44,7 @@ import org.dlw.ai.blackboard.util.Logger;
  * the skull of vertebrates, functioning as the coordinating center of sensation
  * and intellectual and nervous activity.</i></blockquote>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

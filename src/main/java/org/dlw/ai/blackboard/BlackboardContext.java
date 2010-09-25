@@ -33,7 +33,7 @@ import org.dlw.ai.blackboard.domain.Assumption;
  * {@link org.dlw.ai.blackboard.Main}.
  * </p>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  * 

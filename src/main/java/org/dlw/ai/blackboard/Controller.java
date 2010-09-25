@@ -32,7 +32,7 @@ import org.dlw.ai.blackboard.util.UniversalContext;
  * to evaluate the current blackboard state and accept hints and try them in
  * turn until the problem is solved.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

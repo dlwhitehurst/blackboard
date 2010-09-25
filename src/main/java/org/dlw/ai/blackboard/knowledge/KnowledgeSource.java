@@ -41,6 +41,11 @@ import org.dlw.ai.blackboard.rule.Rule;
 @Table(name="knowledge_source")
 public abstract class KnowledgeSource extends BlackboardContext implements InferenceEngine, Comparable<KnowledgeSource>{
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = 3094361637466019949L;
+
     private Long id;
     
     /**
@@ -120,6 +125,33 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.BlackboardContext#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return super.equals(o);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.BlackboardContext#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return super.hashCode();
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.BlackboardContext#toString()
+     */
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return super.toString();
     }
     
 }

@@ -33,7 +33,7 @@ import java.util.Stack;
  * typically shown with a space on either side when written or
  * printed."</i></blockquote>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

@@ -17,23 +17,11 @@
 package org.dlw.ai.blackboard.knowledge;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.dlw.ai.blackboard.BlackboardContext;
-import org.dlw.ai.blackboard.domain.Antecedent;
-import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.CipherLetter;
-import org.dlw.ai.blackboard.domain.Consequent;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.domain.Word;
 import org.dlw.ai.blackboard.rule.Rule;
-import org.dlw.ai.blackboard.rule.RuleType;
-import org.dlw.ai.blackboard.util.MessageConstants;
-import org.dlw.ai.blackboard.util.ReflectionUtil;
-import org.dlw.ai.blackboard.util.SentenceUtil;
 
 /**
  * This interface defines the signature knowledge source object. Any default
@@ -44,7 +32,7 @@ import org.dlw.ai.blackboard.util.SentenceUtil;
  * directly within the implementation.
  * 
  * @author dlwhitehurst
- * @version 1.0.0-RC
+ * @version 1.0.0-RC (Hibernate)
  * 
  */
 public abstract class KnowledgeSource extends BlackboardContext implements InferenceEngine, Comparable<KnowledgeSource>{

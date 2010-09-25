@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <table name="knowledge_source">
+        <column>id</column>
+        <column>name</column>
+        <row>
+            <value description="id">-1</value>
+            <value description="name">Pool Hustler</value>
+        </row>
+        <row>
+            <value description="id">-2</value>
+            <value description="name">Con Artist</value>
+        </row>
+    </table>
+</dataset>

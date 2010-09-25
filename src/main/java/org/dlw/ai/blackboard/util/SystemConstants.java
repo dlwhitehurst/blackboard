@@ -21,7 +21,7 @@ package org.dlw.ai.blackboard.util;
  * constants are not part of the API. They are, however part of the default
  * implementation.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

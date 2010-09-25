@@ -20,7 +20,7 @@ package org.dlw.ai.blackboard.util;
  * This utility class provides runtime thread processes for audible system output in
  * addition to console or file level logging. 
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

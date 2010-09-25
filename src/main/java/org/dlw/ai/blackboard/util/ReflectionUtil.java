@@ -19,7 +19,7 @@ package org.dlw.ai.blackboard.util;
 import java.lang.reflect.Method;
 
 /**
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  *
  */
 public final class ReflectionUtil {

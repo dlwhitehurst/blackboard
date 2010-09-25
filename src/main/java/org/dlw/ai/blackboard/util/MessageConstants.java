@@ -20,7 +20,7 @@ package org.dlw.ai.blackboard.util;
  * This class is used to maintain all Strings that are used for informational messages
  * while logging.  These messages are not errors.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  *
  */
 public final class MessageConstants {

@@ -21,7 +21,7 @@ import org.apache.commons.logging.Log;
 /**
  * This class is used to wrap and protect log-level use
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  *
  */
 public class LogWrapper implements Log {

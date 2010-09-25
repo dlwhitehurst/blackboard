@@ -20,7 +20,7 @@ package org.dlw.ai.blackboard.util;
  * This class is used to provide string utility functions for trimming String
  * objects.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  */
 public final class StringTrimmer {

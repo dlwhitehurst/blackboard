@@ -23,7 +23,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * This class is used as a universal utility that can provide access to the
  * Spring application context, statically, from anywhere in the application.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  */
 public final class UniversalContext {

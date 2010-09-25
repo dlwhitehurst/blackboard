@@ -28,7 +28,7 @@ import org.dlw.ai.blackboard.domain.Word;
  * This class is used to provide utility functions for sentence blackboard
  * objects.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  */
 public final class SentenceUtil {

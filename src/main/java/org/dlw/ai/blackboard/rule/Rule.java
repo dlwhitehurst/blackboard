@@ -31,7 +31,7 @@ import org.dlw.ai.blackboard.domain.Consequent;
  * particular sphere of knowledge, describing or prescribing what is possible or
  * allowable : the rules of grammar."</i></blockquote>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

@@ -16,11 +16,11 @@
  */
 package org.dlw.ai.blackboard.rule;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.ArrayList;
+
 import org.dlw.ai.blackboard.domain.Antecedent;
 import org.dlw.ai.blackboard.domain.Consequent;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.exception.UnknownKnowledgeSourceException;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceType;
 
 /**
@@ -30,125 +30,91 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceType;
  * {@link org.dlw.ai.blackboard.knowledge.KnowledgeSourceType}
  * </p>
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */
 public final class RuleFactory {
 
-    /**
-     * Attribute commons-logging class instance
-     */
-    private static final Log log = LogFactory.getLog(RuleFactory.class);
-
     private RuleFactory() {
     }
 
-    public static Rule createRule(KnowledgeSourceType type) {
-
+    public static ArrayList<Rule> createRules(KnowledgeSourceType type) {
+        ArrayList<Rule> rules = new ArrayList<Rule>();
+        
         Rule rule = new Rule();
 
         switch (type) {
 
         case COMMON_PREFIX_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_PREFIX_KNOWLEDGE_SOURCE
-                    + " rule.");
             break;
 
         case COMMON_SUFFIX_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE
-                    + " rule.");
             break;
 
         case CONSONANT_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.CONSONANT_KNOWLEDGE_SOURCE
-                    + " rule.");
             break;
 
         case DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE
-                    + " rule.");
-            
-            rule = loadConversionRule(rule, "W","V");
-            
-           
+            rule = ruleDirectSubstitutionKS(rule);
+            rules.add(rule);
             break;
 
         case DOUBLE_LETTER_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.DOUBLE_LETTER_KNOWLEDGE_SOURCE
-                    + " rule.");
             break;
-
+            
         case LEGAL_STRING_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.LEGAL_STRING_KNOWLEDGE_SOURCE
-                    + " rule.");
             break;
 
         case LETTER_FREQUENCY_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.LETTER_FREQUENCY_KNOWLEDGE_SOURCE
-                    + " rule.");
             break;
 
         case PATTERN_MATCHING_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.PATTERN_MATCHING_KNOWLEDGE_SOURCE
-                    + " rule.");
             break;
 
         case SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE
-                    + " rule.");
             break;
 
         case SMALL_WORD_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.SMALL_WORD_KNOWLEDGE_SOURCE
-                    + " rule.");
             break;
 
         case SOLVED_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.SOLVED_KNOWLEDGE_SOURCE
-                    + " rule.");
-            Antecedent antecedent = new Antecedent();
-            antecedent.setFullyQualifiedClass("org.dlw.ai.blackboard.Blackboard");
-            antecedent.setMethodName("isSolved");
-            Consequent consequent = new Consequent();
-            consequent.setFullyQualifiedClass("org.dlw.ai.blackboard.Controller");
-            consequent.setMethodName("done");
-            
-            rule = loadMethodRule(rule, antecedent, consequent);
-            
+            rule = ruleSolvedKS(rule);
+            rules.add(rule);
             break;
 
         case VOWEL_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.VOWEL_KNOWLEDGE_SOURCE
-                    + " rule.");
             break;
 
         case WORD_STRUCTURE_KNOWLEDGE_SOURCE:
-            log.info("Creating "
-                    + KnowledgeSourceConstants.WORD_STRUCTURE_KNOWLEDGE_SOURCE
-                    + " rule.");
             break;
 
         default:
-            log.info("Default error!");
-
+            throw new UnknownKnowledgeSourceException("Unknown knowledge source detected");
         }
+        
+        return rules;
+    }
+
+    private static Rule ruleDirectSubstitutionKS(Rule rule) {
+        rule = loadConversionRule(rule, "W","V");
+        return rule;
+    }
+    
+    private static Rule ruleSolvedKS(Rule rule) {
+
+        Antecedent antecedent = new Antecedent();
+        antecedent.setFullyQualifiedClass("org.dlw.ai.blackboard.Blackboard");
+        antecedent.setMethodName("isSolved");
+        Consequent consequent = new Consequent();
+        consequent.setFullyQualifiedClass("org.dlw.ai.blackboard.Controller");
+        consequent.setMethodName("done");
+        
+        rule = loadMethodRule(rule, antecedent, consequent);
         
         return rule;
     }
-
+    
     private static Rule loadMethodRule(Rule rule, Antecedent antecedent, Consequent consequent) {
         
         rule.setAntecedent(antecedent);
@@ -161,8 +127,8 @@ public final class RuleFactory {
     }
     
     private static Rule loadConversionRule(Rule rule, final String cipher, final String plainText) {
-        rule.setBefore("W");
-        rule.setAfter("V");
+        rule.setBefore(cipher);
+        rule.setAfter(plainText);
         rule.setRuleType(RuleType.CONVERSION);
         return rule;
     }

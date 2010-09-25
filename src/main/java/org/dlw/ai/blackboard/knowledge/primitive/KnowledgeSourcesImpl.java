@@ -26,6 +26,7 @@ import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.exception.CollectionLoadingException;
 import org.dlw.ai.blackboard.exception.InitializationException;
+import org.dlw.ai.blackboard.exception.UnknownKnowledgeSourceException;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceType;
@@ -63,11 +64,15 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
      * Commons logging class instance
      */
     private final Log log = LogFactory.getLog(KnowledgeSources.class);
+    
+    private final Logger logger;
 
     /**
      * Default constructor
      */
     public KnowledgeSourcesImpl() {
+        logger = Logger.getInstance();
+        logger.wrap(log);
     }
 
     /**
@@ -315,7 +320,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
              */
             try {
                 loadRulesAndContext(knowledgeSource);
-            } catch (InitializationException e) {
+            } catch (UnknownKnowledgeSourceException e) {
                 e.printStackTrace();
                 throw new InitializationException(
                         "Initialization failed due to error loading rules and context for some knowledge source.");
@@ -335,7 +340,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
      * @return {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
      */
     private KnowledgeSource loadRulesAndContext(KnowledgeSource ks)
-            throws InitializationException {
+            throws UnknownKnowledgeSourceException {
 
         Blackboard blackboard = (Blackboard) UniversalContext
                 .getApplicationContext().getBean("blackboard");
@@ -434,7 +439,8 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
         }
 
         else {
-            // TODO - handle this truly exceptional logic event
+            logger.error("This knowledge source instance could not be identified.");
+            throw new UnknownKnowledgeSourceException("This knowledge source instance could not be identified.");
         }
 
         return ks;

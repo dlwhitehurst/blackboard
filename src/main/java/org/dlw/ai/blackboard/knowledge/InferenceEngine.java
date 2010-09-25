@@ -23,7 +23,7 @@ import org.dlw.ai.blackboard.domain.Sentence;
  * then providing evaluation of problems using these rules for
  * objects similar and including the {@link KnowledgeSource}
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  *
  */

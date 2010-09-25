@@ -19,7 +19,7 @@ package org.dlw.ai.blackboard.knowledge;
 /**
  * This class is used to provide static constants for naming knowledge sources
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

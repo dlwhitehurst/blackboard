@@ -31,12 +31,14 @@ import org.dlw.ai.blackboard.rule.Rule;
  * interface and the extension {@link org.dlw.ai.blackboard.BlackboardContext}
  * directly within the implementation.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC (Hibernate)
  * 
  */
 public abstract class KnowledgeSource extends BlackboardContext implements InferenceEngine, Comparable<KnowledgeSource>{
 
+    private Long id;
+    
     /**
      * Attribute priority
      */

@@ -22,7 +22,7 @@ package org.dlw.ai.blackboard.knowledge;
  * that this is an implementation enumerated type and should not be considered
  * API. These enumerations are specific to the default implementation.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

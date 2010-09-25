@@ -47,7 +47,7 @@ import org.dlw.ai.blackboard.util.SentenceUtil;
  * The KnowledgeSourceUtil class is used to provide static methods to stage-load
  * data into all KnowledgeSources
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

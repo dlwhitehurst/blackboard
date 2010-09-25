@@ -26,7 +26,7 @@ import org.dlw.ai.blackboard.exception.InitializationException;
  * collection type based on her requirements and handle these operations through
  * implementation.
  * 
- * @author dlwhitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */

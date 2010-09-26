@@ -46,7 +46,15 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
      */
     private static final long serialVersionUID = 3094361637466019949L;
 
+    /**
+     * Attribute id or primary key
+     */
     private Long id;
+    
+    /**
+     * Attribute name of KnowledgeSource (type extension)
+     */
+    private String name;
     
     /**
      * Attribute priority
@@ -150,8 +158,22 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
      */
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        return this.name;
+    }
+
+    /**
+     * @return the name
+     */
+    @Column(name="name",nullable=false,length=50)    
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
     
 }

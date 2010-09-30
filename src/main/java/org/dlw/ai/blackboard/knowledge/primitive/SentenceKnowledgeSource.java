@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.InferenceEngine;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.rule.Rule;
 
@@ -31,9 +31,14 @@ import org.dlw.ai.blackboard.rule.Rule;
  * @version 1.0.0-RC
  * 
  */
-public class SentenceKnowledgeSource extends KnowledgeSource implements
+public class SentenceKnowledgeSource extends AbstractKnowledgeSource implements
         InferenceEngine {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = -8260075649431321553L;
+    
     @SuppressWarnings("unused")
     private ArrayList<Rule> rules = new ArrayList<Rule>();
     
@@ -102,7 +107,7 @@ public class SentenceKnowledgeSource extends KnowledgeSource implements
     }
 
     @Override
-    public int compareTo(KnowledgeSource o) {
+    public int compareTo(AbstractKnowledgeSource o) {
         int priorityCmp = this.getPriority().compareTo(o.getPriority());
         return (priorityCmp != 0 ? priorityCmp : 0 );
     }

@@ -19,7 +19,7 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.InferenceEngine;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
@@ -65,7 +65,7 @@ public class CommonPrefixKnowledgeSource extends StringKnowledgeSource implement
      * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#compareTo(org.dlw.ai.blackboard.knowledge.KnowledgeSource)
      */
     @Override
-    public int compareTo(KnowledgeSource o) {
+    public int compareTo(AbstractKnowledgeSource o) {
         int priorityCmp = this.getPriority().compareTo(o.getPriority());
         return (priorityCmp != 0 ? priorityCmp : 0 );
     }

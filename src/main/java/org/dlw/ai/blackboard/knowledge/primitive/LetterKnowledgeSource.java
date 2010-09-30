@@ -19,7 +19,7 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.InferenceEngine;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
 /**
@@ -27,7 +27,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * @version 1.0.0-RC
  * 
  */
-public class LetterKnowledgeSource extends KnowledgeSource implements InferenceEngine {
+public class LetterKnowledgeSource extends AbstractKnowledgeSource implements InferenceEngine {
     
     /*
      * (non-Javadoc)
@@ -79,7 +79,7 @@ public class LetterKnowledgeSource extends KnowledgeSource implements InferenceE
     }
 
     @Override
-    public int compareTo(KnowledgeSource o) {
+    public int compareTo(AbstractKnowledgeSource o) {
         int priorityCmp = this.getPriority().compareTo(o.getPriority());
         return (priorityCmp != 0 ? priorityCmp : 0 );
     }

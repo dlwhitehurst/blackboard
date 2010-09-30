@@ -39,21 +39,13 @@ import org.dlw.ai.blackboard.rule.Rule;
  */
 @Entity
 @Table(name="knowledge_source")
-public abstract class KnowledgeSource extends BlackboardContext implements InferenceEngine, Comparable<KnowledgeSource>{
+public abstract class AbstractKnowledgeSource extends BlackboardContext implements InferenceEngine, Comparable<AbstractKnowledgeSource>{
 
     /**
      * unique serial identifier
      */
     private static final long serialVersionUID = 3094361637466019949L;
-
-    /**
-     * Attribute id or primary key
-     */
-    private Long id;
     
-    /**
-     * Attribute name of KnowledgeSource (type extension)
-     */
     private String name;
     
     /**
@@ -83,7 +75,7 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
     /* (non-Javadoc)
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-    public abstract int compareTo(KnowledgeSource o);
+    public abstract int compareTo(AbstractKnowledgeSource o);
 
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.InferenceEngine#evaluate(org.dlw.ai.blackboard.domain.Sentence)
@@ -118,21 +110,6 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
      */
     public ArrayList<Rule> getRules() {
         return rules;
-    }
-
-    /**
-     * @return the id
-     */
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
     }
 
     /* (non-Javadoc)

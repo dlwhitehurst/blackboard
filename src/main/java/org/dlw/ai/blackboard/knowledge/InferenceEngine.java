@@ -21,7 +21,7 @@ import org.dlw.ai.blackboard.domain.Sentence;
 /**
  * This interface provides service hooks for loading rules and
  * then providing evaluation of problems using these rules for
- * objects similar and including the {@link KnowledgeSource}
+ * objects similar and including the {@link AbstractKnowledgeSource}
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC

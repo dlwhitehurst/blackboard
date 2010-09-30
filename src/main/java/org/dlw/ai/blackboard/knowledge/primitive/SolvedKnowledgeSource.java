@@ -17,25 +17,13 @@
 package org.dlw.ai.blackboard.knowledge.primitive;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
-import org.dlw.ai.blackboard.domain.Antecedent;
-import org.dlw.ai.blackboard.domain.Assertion;
-import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.CipherLetter;
-import org.dlw.ai.blackboard.domain.Consequent;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.domain.Word;
 import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
 import org.dlw.ai.blackboard.rule.Rule;
-import org.dlw.ai.blackboard.rule.RuleType;
 import org.dlw.ai.blackboard.util.MessageConstants;
-import org.dlw.ai.blackboard.util.ReflectionUtil;
-import org.dlw.ai.blackboard.util.SentenceUtil;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
@@ -45,6 +33,11 @@ import org.dlw.ai.blackboard.util.SentenceUtil;
 public class SolvedKnowledgeSource extends SentenceKnowledgeSource implements
         InferenceEngine {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = -7129896322940388384L;
+    
     private ArrayList<Rule> rules = new ArrayList<Rule>();
     
     /* (non-Javadoc)

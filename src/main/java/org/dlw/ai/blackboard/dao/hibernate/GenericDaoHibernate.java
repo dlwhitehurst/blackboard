@@ -90,7 +90,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public List<T> getAllDistinct() {
         Collection result = new LinkedHashSet(getAll());
         return new ArrayList(result);

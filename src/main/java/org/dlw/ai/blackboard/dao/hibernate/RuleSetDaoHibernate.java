@@ -22,7 +22,6 @@ import java.util.Map;
 import org.dlw.ai.blackboard.dao.RuleSetDao;
 import org.dlw.ai.blackboard.exception.RuleSetNameNotFoundException;
 import org.dlw.ai.blackboard.rule.RuleSet;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
  * @author @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
@@ -39,6 +38,7 @@ public class RuleSetDaoHibernate extends GenericDaoHibernate<RuleSet, Long> impl
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.dao.RuleSetDao#getRuleSets()
      */
+    @SuppressWarnings("unchecked")
     public List<RuleSet> getRuleSets() {
         return getHibernateTemplate().find("from RuleSet r order by upper(r.name)");
     }

@@ -19,7 +19,7 @@ package org.dlw.ai.blackboard.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource;
 
 /**
  * <p>
@@ -43,7 +43,7 @@ public abstract class Dependent {
      * Attribute collection of participating experts, thinkers, or general
      * consults.
      */
-    protected List<KnowledgeSource> references = new ArrayList<KnowledgeSource>();
+    protected List<AbstractKnowledgeSource> references = new ArrayList<AbstractKnowledgeSource>();
 
     /**
      * Public method to add a new knowledge source reference
@@ -51,7 +51,7 @@ public abstract class Dependent {
      * @param ref
      * @return
      */
-    public boolean addReference(KnowledgeSource ref) {
+    public boolean addReference(AbstractKnowledgeSource ref) {
         return references.add(ref);
     }
 
@@ -70,7 +70,7 @@ public abstract class Dependent {
      * @param ref
      * @return
      */
-    public boolean removeReference(KnowledgeSource ref) {
+    public boolean removeReference(AbstractKnowledgeSource ref) {
         return references.remove(ref);
     }
 

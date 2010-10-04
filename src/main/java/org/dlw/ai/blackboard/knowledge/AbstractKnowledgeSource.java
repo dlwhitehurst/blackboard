@@ -24,6 +24,7 @@ import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.rule.Rule;
+import org.dlw.ai.blackboard.rule.RuleSet;
 
 /**
  * This interface defines the signature knowledge source object. Any default
@@ -56,7 +57,7 @@ public abstract class AbstractKnowledgeSource extends BlackboardContext implemen
     /**
      * Attribute to hold rules for KnowledgeSource
      */
-    private ArrayList<Rule> rules = new ArrayList<Rule>();
+    private RuleSet ruleSet = null;
     
     /**
      * Reset knowledge source
@@ -95,21 +96,6 @@ public abstract class AbstractKnowledgeSource extends BlackboardContext implemen
      */
     public Integer getPriority() {
         return priority;
-    }
-
-    /**
-     * @param rules
-     *            the rules to set
-     */
-    public void setRules(ArrayList<Rule> rules) {
-        this.rules = rules;
-    }
-
-    /**
-     * @return the rules
-     */
-    public ArrayList<Rule> getRules() {
-        return rules;
     }
 
     /* (non-Javadoc)
@@ -151,6 +137,20 @@ public abstract class AbstractKnowledgeSource extends BlackboardContext implemen
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the ruleSet
+     */
+    public RuleSet getRuleSet() {
+        return ruleSet;
+    }
+
+    /**
+     * @param ruleSet the ruleSet to set
+     */
+    public void setRuleSet(RuleSet ruleSet) {
+        this.ruleSet = ruleSet;
     }
     
 }

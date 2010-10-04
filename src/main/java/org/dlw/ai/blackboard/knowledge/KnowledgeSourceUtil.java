@@ -110,79 +110,80 @@ public final class KnowledgeSourceUtil {
         case COMMON_PREFIX_KNOWLEDGE_SOURCE:
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.COMMON_PREFIX_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            // TODO - use Dao get RuleSet by name and set
+            ks.setRuleSet(null);
             break;
 
         case COMMON_SUFFIX_KNOWLEDGE_SOURCE:
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.COMMON_SUFFIX_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         case CONSONANT_KNOWLEDGE_SOURCE: // 3
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.CONSONANT_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         case DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE: // 4
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         case DOUBLE_LETTER_KNOWLEDGE_SOURCE: // 5
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.DOUBLE_LETTER_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         case LEGAL_STRING_KNOWLEDGE_SOURCE: // 6
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.LEGAL_STRING_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         case LETTER_FREQUENCY_KNOWLEDGE_SOURCE: // 7
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.LETTER_FREQUENCY_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         case PATTERN_MATCHING_KNOWLEDGE_SOURCE: // 8
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.PATTERN_MATCHING_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         case SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE: // 9
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         case SMALL_WORD_KNOWLEDGE_SOURCE: // 10
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.SMALL_WORD_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         case SOLVED_KNOWLEDGE_SOURCE: // 11
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.SOLVED_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         case VOWEL_KNOWLEDGE_SOURCE: // 12
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.VOWEL_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         case WORD_STRUCTURE_KNOWLEDGE_SOURCE: // 13
             rules = RuleFactory
                     .createRules(KnowledgeSourceType.WORD_STRUCTURE_KNOWLEDGE_SOURCE);
-            ks.setRules(rules);
+            ks.setRuleSet(null);
             break;
 
         default:
@@ -243,7 +244,7 @@ public final class KnowledgeSourceUtil {
      */
     public static void considerRules(AbstractKnowledgeSource ks, Sentence sentence,
             String methodMessage, String conversionMessage) {
-        List<Rule> rules = ks.getRules();
+        List<Rule> rules = null; //ks.getRules();
 
         for (Rule rule : rules) {
             Antecedent antecedent = rule.getAntecedent();

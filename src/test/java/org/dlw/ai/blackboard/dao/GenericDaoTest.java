@@ -23,7 +23,7 @@ public class GenericDaoTest extends BaseDaoTestCase {
     }
 
     @Test
-    public void getUser() {
+    public void getRuleSet() {
         RuleSet ruleSet = genericDao.get(-1L);
         assertNotNull(ruleSet);
         assertEquals("PatternMatching",ruleSet.getName());

@@ -16,17 +16,43 @@
  */
 package org.dlw.ai.blackboard.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+
+import org.dlw.ai.blackboard.rule.Rule;
+
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  *
  */
-public class Antecedent {
+@Entity
+@Table(name="antecedent")
+public class Antecedent extends BaseObject {
     
-    protected String fullyQualifiedClass;
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = 2299632874123077597L;
     
-    protected String methodName;
+    private Long id;
     
-    protected String basic;
+    
+    /**
+     * Attribute parent
+     */
+    private Rule antecedentRule;
+
+    private String fullyQualifiedClass;
+    
+    private String methodName;
+    
+    private String basic;
+    
     
 
     /**
@@ -70,5 +96,57 @@ public class Antecedent {
     public void setBasic(String basic) {
         this.basic = basic;
     }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    /**
+     * @return the id
+     */
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the antecedentRule
+     */
+    @OneToOne
+    public Rule getAntecedentRule() {
+        return antecedentRule;
+    }
+
+    /**
+     * @param antecedentRule the antecedentRule to set
+     */
+    public void setAntecedentRule(Rule antecedentRule) {
+        this.antecedentRule = antecedentRule;
+    }
+
+
+
 
 }

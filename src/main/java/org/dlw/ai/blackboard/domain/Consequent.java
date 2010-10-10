@@ -16,12 +16,37 @@
  */
 package org.dlw.ai.blackboard.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.dlw.ai.blackboard.rule.Rule;
+
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  *
  */
-public class Consequent {
+@Entity
+@Table(name="consequent")
+public class Consequent extends BaseObject {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = 8267513493727068318L;
+
+    private Long id;
+
+    
+    /**
+     * Attribute parent
+     */
+    private Rule consequentRule;
+    
     protected String fullyQualifiedClass;
     
     protected String methodName;
@@ -53,5 +78,55 @@ public class Consequent {
     public void setMethodName(String methodName) {
         this.methodName = methodName;
     }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    /**
+     * @return the id
+     */
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the consequentRule
+     */
+    @OneToOne
+    public Rule getConsequentRule() {
+        return consequentRule;
+    }
+
+    /**
+     * @param consequentRule the consequentRule to set
+     */
+    public void setConsequentRule(Rule consequentRule) {
+        this.consequentRule = consequentRule;
+    }
+
     
 }

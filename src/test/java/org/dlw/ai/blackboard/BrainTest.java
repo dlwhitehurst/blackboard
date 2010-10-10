@@ -3,7 +3,7 @@ package org.dlw.ai.blackboard;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.dlw.ai.blackboard.knowledge.primitive.KnowledgeSourcesImpl;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourcesImpl;
 import org.dlw.ai.blackboard.util.UniversalContext;
 import org.junit.Before;
 import org.junit.Test;

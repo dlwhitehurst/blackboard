@@ -28,7 +28,7 @@ import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.CipherLetter;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource;
 import org.dlw.ai.blackboard.util.BlackboardUtil;
 import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.MessageConstants;
@@ -68,7 +68,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
     /**
      * Attribute active knowledge source
      */
-    private KnowledgeSource activeKnowledgeSource;
+    private AbstractKnowledgeSource activeKnowledgeSource;
 
     /**
      * Default constructor
@@ -230,10 +230,10 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * blackboard model to evaluate the problem domain
      * 
      * @param ks
-     *            the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource} at
+     *            the {@link org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource} at
      *            the board (presently)
      */
-    public final void connect(KnowledgeSource ks) {
+    public final void connect(AbstractKnowledgeSource ks) {
 
         ks.evaluate(getSentence());
 
@@ -304,10 +304,10 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * model
      * 
      * @param ks
-     *            the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
+     *            the {@link org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource}
      *            steps back from the board
      */
-    public final void disconnect(KnowledgeSource ks) {
+    public final void disconnect(AbstractKnowledgeSource ks) {
         this.activeKnowledgeSource = null;
     }
 
@@ -315,14 +315,14 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * @param activeKnowledgeSource
      *            the activeKnowledgeSource to set
      */
-    public void setActiveKnowledgeSource(KnowledgeSource activeKnowledgeSource) {
+    public void setActiveKnowledgeSource(AbstractKnowledgeSource activeKnowledgeSource) {
         this.activeKnowledgeSource = activeKnowledgeSource;
     }
 
     /**
      * @return the activeKnowledgeSource
      */
-    public KnowledgeSource getActiveKnowledgeSource() {
+    public AbstractKnowledgeSource getActiveKnowledgeSource() {
         return activeKnowledgeSource;
     }
 

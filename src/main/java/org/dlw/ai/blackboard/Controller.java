@@ -20,8 +20,8 @@ import java.util.Collections;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.KnowledgeSourcesImpl;
+import org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourcesImpl;
 import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.SystemConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
@@ -41,7 +41,7 @@ public class Controller {
     /**
      * Attribute active or current knowledge source
      */
-    private KnowledgeSource activeKnowledgeSource;
+    private AbstractKnowledgeSource activeKnowledgeSource;
 
     /**
      * Attribute class logger
@@ -130,7 +130,7 @@ public class Controller {
         
         Collections.sort(knowledgeSources);
         
-        for (KnowledgeSource ks : knowledgeSources) {
+        for (AbstractKnowledgeSource ks : knowledgeSources) {
 
             activeKnowledgeSource = ks;
             addHint(ks);
@@ -174,7 +174,7 @@ public class Controller {
      * @param hint
      *            the KnowledgeSource (or Expert) to provide hint for solution
      */
-    private void addHint(KnowledgeSource hint) {
+    private void addHint(AbstractKnowledgeSource hint) {
 
         blackboard = (Blackboard) UniversalContext.getApplicationContext()
                 .getBean("blackboard");
@@ -197,7 +197,7 @@ public class Controller {
      * @param hint
      *            the KnowledgeSource (or Expert)
      */
-    private void removeHint(KnowledgeSource hint) {
+    private void removeHint(AbstractKnowledgeSource hint) {
 
         blackboard.disconnect(hint);
 

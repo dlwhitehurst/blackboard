@@ -16,10 +16,30 @@
  */
 package org.dlw.ai.blackboard.dao.hibernate;
 
+import static org.junit.Assert.assertNotNull;
+
+import org.dlw.ai.blackboard.dao.BaseDaoTestCase;
+import org.junit.Before;
+import org.junit.Test;
+
 /**
- * @author @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  *
  */
-public class RuleSetDaoHibernateTest {
+public class RuleSetDaoHibernateTest extends BaseDaoTestCase {
+
+    /**
+     * @throws java.lang.Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @Test
+    public void tryTest() {
+        String myString = new String("Hello");
+        assertNotNull(myString);
+    }
+    
 
 }

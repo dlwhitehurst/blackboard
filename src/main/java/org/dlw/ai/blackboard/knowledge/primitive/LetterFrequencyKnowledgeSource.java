@@ -27,6 +27,11 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 public class LetterFrequencyKnowledgeSource extends LetterKnowledgeSource implements
         InferenceEngine {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = -8863429625582362040L;
+
     /*
      * (non-Javadoc)
      * 

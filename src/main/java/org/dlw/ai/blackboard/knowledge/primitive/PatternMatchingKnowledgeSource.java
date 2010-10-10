@@ -27,6 +27,11 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 public class PatternMatchingKnowledgeSource extends WordKnowledgeSource implements
         InferenceEngine {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = -7043778616273782432L;
+
     /*
      * (non-Javadoc)
      * 

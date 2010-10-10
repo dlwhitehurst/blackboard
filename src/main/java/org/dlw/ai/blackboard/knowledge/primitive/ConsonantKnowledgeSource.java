@@ -27,6 +27,12 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 public class ConsonantKnowledgeSource extends LetterKnowledgeSource implements
         InferenceEngine {
 
+
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = -6680468003597506424L;
+
     /*
      * (non-Javadoc)
      * 

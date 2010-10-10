@@ -35,6 +35,10 @@ import org.dlw.ai.blackboard.util.MessageConstants;
 public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource
         implements InferenceEngine {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = 356412919991462052L;
 
     /**
      * Commons logging class instance

@@ -27,6 +27,11 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 public class LegalStringKnowledgeSource extends StringKnowledgeSource implements
         InferenceEngine {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = 4579670117184769983L;
+
     /*
      * (non-Javadoc)
      * 

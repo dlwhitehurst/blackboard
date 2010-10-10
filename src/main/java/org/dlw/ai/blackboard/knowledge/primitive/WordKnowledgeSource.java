@@ -34,6 +34,11 @@ import org.dlw.ai.blackboard.rule.Rule;
 public class WordKnowledgeSource extends AbstractKnowledgeSource implements
         InferenceEngine {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = -4931267265674436051L;
+
     /*
      * (non-Javadoc)
      * 

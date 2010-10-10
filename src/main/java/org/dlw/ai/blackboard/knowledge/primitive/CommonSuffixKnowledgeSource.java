@@ -27,6 +27,12 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 public class CommonSuffixKnowledgeSource extends StringKnowledgeSource implements
         InferenceEngine {
 
+
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = -8082563789192930654L;
+
     /*
      * (non-Javadoc)
      * 

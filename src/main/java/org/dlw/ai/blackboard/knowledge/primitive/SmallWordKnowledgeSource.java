@@ -31,6 +31,14 @@ import org.dlw.ai.blackboard.rule.Rule;
 public class SmallWordKnowledgeSource extends WordKnowledgeSource implements
         InferenceEngine {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = -7119272605131087859L;
+    
+    /**
+     * 
+     */
     protected ArrayList<Rule> rules;
     
     /*

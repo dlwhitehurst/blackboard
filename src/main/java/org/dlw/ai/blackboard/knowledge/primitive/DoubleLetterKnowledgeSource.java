@@ -27,6 +27,11 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 public class DoubleLetterKnowledgeSource extends StringKnowledgeSource implements
         InferenceEngine {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = 7309307539029399083L;
+
     /*
      * (non-Javadoc)
      * 

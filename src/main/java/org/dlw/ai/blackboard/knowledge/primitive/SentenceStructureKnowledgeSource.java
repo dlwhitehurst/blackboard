@@ -27,6 +27,11 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 public class SentenceStructureKnowledgeSource extends SentenceKnowledgeSource
         implements InferenceEngine {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = -3429504143671407871L;
+
     /*
      * (non-Javadoc)
      * 

@@ -27,6 +27,11 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 public class WordStructureKnowledgeSource extends WordKnowledgeSource implements
         InferenceEngine {
 
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = 5986138599394698108L;
+
     /*
      * (non-Javadoc)
      * 

@@ -1,6 +1,7 @@
 package org.dlw.ai.blackboard.rule;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.OneToMany;
+
 
 import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 
@@ -46,21 +49,22 @@ public class RuleSet {
     /**
      * Attribute to hold rules for KnowledgeSource
      */
-    private ArrayList<Rule> rules = new ArrayList<Rule>();
+    private List<Rule> rules = new ArrayList<Rule>();
     
 
     /**
      * @param rules
      *            the rules to set
      */
-    public void setRules(ArrayList<Rule> rules) {
+    public void setRules(List<Rule> rules) {
         this.rules = rules;
     }
 
     /**
      * @return the rules
      */
-    public ArrayList<Rule> getRules() {
+    @OneToMany(mappedBy="rset")
+    public List<Rule> getRules() {
         return rules;
     }
 

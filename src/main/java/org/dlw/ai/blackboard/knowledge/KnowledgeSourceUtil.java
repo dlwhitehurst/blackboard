@@ -71,10 +71,10 @@ public final class KnowledgeSourceUtil {
     }
 
     /**
-     * Public method to load any {@link AbstractKnowledgeSource} with blackboard context
+     * Public method to load any {@link KnowledgeSource} with blackboard context
      * 
      * @param ks
-     *            the {@link AbstractKnowledgeSource} being loaded
+     *            the {@link KnowledgeSource} being loaded
      * @param type
      *            the {@link KnowledgeSourceType} enum
      * @param controller
@@ -84,7 +84,7 @@ public final class KnowledgeSourceUtil {
      *            the {@link org.dlw.ai.blackboard.Blackboard} data structure
      * @return
      */
-    public AbstractKnowledgeSource loadContext(AbstractKnowledgeSource ks,
+    public KnowledgeSource loadContext(KnowledgeSource ks,
             Controller controller, Blackboard blackboard) {
 
         ks.setBlackboard(blackboard);
@@ -95,13 +95,13 @@ public final class KnowledgeSourceUtil {
 
     /**
      * Public method to load {@link Rule} objects for any
-     * {@link AbstractKnowledgeSource}
+     * {@link KnowledgeSource}
      * 
      * @param ks
      * @param type
      * @return
      */
-    public AbstractKnowledgeSource loadRules(AbstractKnowledgeSource ks,
+    public KnowledgeSource loadRules(KnowledgeSource ks,
             KnowledgeSourceType type) throws UnknownKnowledgeSourceException {
 
         
@@ -170,7 +170,7 @@ public final class KnowledgeSourceUtil {
      * @param ks
      * @param ruleSet
      */
-    private void loadRuleSet(AbstractKnowledgeSource ks, String name) {
+    private void loadRuleSet(KnowledgeSource ks, String name) {
 
         /**
          * Initialize logger
@@ -199,11 +199,11 @@ public final class KnowledgeSourceUtil {
      * Public method to output a response after a KnowledgeSource evaluation has
      * been made.
      * @param knowledgeSource
-     *      the {@link AbstractKnowledgeSource} 
+     *      the {@link KnowledgeSource} 
      * @param response
      *      the String response
      */
-    public static void evaluationResponse(AbstractKnowledgeSource knowledgeSource,
+    public static void evaluationResponse(KnowledgeSource knowledgeSource,
             String response) {
 
         /**
@@ -236,7 +236,7 @@ public final class KnowledgeSourceUtil {
      * Public method to consider rules based on {@link org.dlw.ai.blackboard.rule.RuleType}
      * 
      * @param ks
-     *  the {@link AbstractKnowledgeSource}
+     *  the {@link KnowledgeSource}
      * @param sentence
      *  the {@link org.dlw.ai.blackboard.domain.Sentence} object
      * @param methodMessage
@@ -244,7 +244,7 @@ public final class KnowledgeSourceUtil {
      * @param conversionMessage
      *  the String message if RuleType CONVERSION
      */
-    public static void considerRules(AbstractKnowledgeSource ks, Sentence sentence,
+    public static void considerRules(KnowledgeSource ks, Sentence sentence,
             String methodMessage, String conversionMessage) {
         List<Rule> rules = null; //ks.getRules();
 /*
@@ -310,13 +310,13 @@ public final class KnowledgeSourceUtil {
      * Private method to store an assertion
      * 
      * @param ks
-     *  the {@link AbstractKnowledgeSource} object
+     *  the {@link KnowledgeSource} object
      * @param cipher
      *  the String cipher letter
      *  @param plainText
      *  the String plain text letter
      */
-    private static void makeAssertion(AbstractKnowledgeSource ks, String cipher, String plainText) {
+    private static void makeAssertion(KnowledgeSource ks, String cipher, String plainText) {
 
         /**
          * Create and load an Assertion

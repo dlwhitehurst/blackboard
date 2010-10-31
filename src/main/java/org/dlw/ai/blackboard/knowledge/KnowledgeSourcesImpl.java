@@ -60,7 +60,7 @@ import org.dlw.ai.blackboard.util.UniversalContext;
  * @since 1.0
  * 
  */
-public final class KnowledgeSourcesImpl extends ArrayList<AbstractKnowledgeSource>
+public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
         implements KnowledgeSources {
 
     /**
@@ -304,7 +304,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<AbstractKnowledgeSourc
      * Public method to give DirectSubstitutionKnowledgeSource its initial
      * conditions (our hint)
      */
-    public void startKnowledgeSource(AbstractKnowledgeSource knowledgeSource) {
+    public void startKnowledgeSource(KnowledgeSource knowledgeSource) {
         Blackboard blackboard = knowledgeSource.getBlackboard();
         for (int i=0; i<blackboard.size(); i++) {
             BlackboardObject obj = blackboard.get(i);
@@ -321,7 +321,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<AbstractKnowledgeSourc
      * context
      */
     public void initializeKnowledgeSources() throws InitializationException {
-        for (AbstractKnowledgeSource knowledgeSource : this) {
+        for (KnowledgeSource knowledgeSource : this) {
 
             /**
              * Initialize
@@ -343,11 +343,11 @@ public final class KnowledgeSourcesImpl extends ArrayList<AbstractKnowledgeSourc
      * source type
      * 
      * @param ks
-     *            the {@link org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource}
+     *            the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
      *            needing rules and context
-     * @return {@link org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource}
+     * @return {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
      */
-    private void loadRulesAndContext(AbstractKnowledgeSource ks)
+    private void loadRulesAndContext(KnowledgeSource ks)
             throws UnknownKnowledgeSourceException {
 
         Blackboard blackboard = (Blackboard) UniversalContext
@@ -457,7 +457,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<AbstractKnowledgeSourc
 
     }
 
-    private void addKS(AbstractKnowledgeSource ks) throws CollectionLoadingException {
+    private void addKS(KnowledgeSource ks) throws CollectionLoadingException {
 
         Logger logger = Logger.getInstance();
         logger.wrap(log);

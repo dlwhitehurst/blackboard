@@ -39,7 +39,7 @@ import org.dlw.ai.blackboard.rule.RuleSet;
  */
 @Entity
 @Table(name="knowledge_source")
-public abstract class AbstractKnowledgeSource extends BlackboardContext implements InferenceEngine, Comparable<AbstractKnowledgeSource>{
+public abstract class KnowledgeSource extends BlackboardContext implements InferenceEngine, Comparable<KnowledgeSource>{
 
     /**
      * unique serial identifier
@@ -75,7 +75,7 @@ public abstract class AbstractKnowledgeSource extends BlackboardContext implemen
     /* (non-Javadoc)
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-    public abstract int compareTo(AbstractKnowledgeSource o);
+    public abstract int compareTo(KnowledgeSource o);
 
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.InferenceEngine#evaluate(org.dlw.ai.blackboard.domain.Sentence)

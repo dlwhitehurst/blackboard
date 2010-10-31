@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.InferenceEngine;
-import org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.rule.Rule;
 
 /**
@@ -29,7 +29,7 @@ import org.dlw.ai.blackboard.rule.Rule;
  * @version 1.0.0-RC
  * 
  */
-public class StringKnowledgeSource extends AbstractKnowledgeSource implements
+public class StringKnowledgeSource extends KnowledgeSource implements
         InferenceEngine {
 
     /**
@@ -70,7 +70,7 @@ public class StringKnowledgeSource extends AbstractKnowledgeSource implements
     }
 
     @Override
-    public int compareTo(AbstractKnowledgeSource o) {
+    public int compareTo(KnowledgeSource o) {
         int priorityCmp = this.getPriority().compareTo(o.getPriority());
         return (priorityCmp != 0 ? priorityCmp : 0 );
     }

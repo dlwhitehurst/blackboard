@@ -63,9 +63,9 @@ public interface KnowledgeSources {
     /**
      * 
      * @param knowledgeSource
-     *   the {@link AbstractKnowledgeSource} to activate
+     *   the {@link KnowledgeSource} to activate
      */
-    void startKnowledgeSource(AbstractKnowledgeSource knowledgeSource);
+    void startKnowledgeSource(KnowledgeSource knowledgeSource);
     
     /**
      * This method is called once when controller begins

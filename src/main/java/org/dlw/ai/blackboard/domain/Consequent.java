@@ -21,14 +21,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.dlw.ai.blackboard.rule.Rule;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
- * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
+ * This class provides the "then" part of the conditional that makes up the
+ * {@link org.dlw.ai.blackboard.rule.Rule} object.  The rule is not complete 
+ * without the {@link org.dlw.ai.blackboard.domain.Antecedent} object.
  *
+ * <blockquote><i>Antecedent - "(def.) following as a result or effect.</i></blockquote>
+ *  
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
+ * @version 1.0.0-RC
  */
 @Entity
 @Table(name="consequent")
@@ -39,41 +48,58 @@ public class Consequent extends BaseObject {
      */
     private static final long serialVersionUID = 8267513493727068318L;
 
+    /**
+     * Primary key object
+     */
     private Long id;
-
     
     /**
      * Attribute parent
      */
-    private Rule consequentRule;
+    private Rule rule;
     
+    /**
+     * Attribute class name
+     */
     protected String fullyQualifiedClass;
     
+    /**
+     * Attribute method name
+     */
     protected String methodName;
+    
+    /**
+     * Attribute pure String antecedent
+     */
+    protected String basic;
 
     /**
-     * @return the fullyQualifiedClass
+     * @return the String class name (fully qualified)
      */
+    @Column(name="class_name",nullable=false,length=40)    
     public String getFullyQualifiedClass() {
         return fullyQualifiedClass;
     }
 
     /**
-     * @param fullyQualifiedClass the fullyQualifiedClass to set
+     * @param fullyQualifiedClass 
+     *   the fullyQualifiedClass String to set
      */
     public void setFullyQualifiedClass(String fullyQualifiedClass) {
         this.fullyQualifiedClass = fullyQualifiedClass;
     }
 
     /**
-     * @return the methodName
+     * @return the String methodName
      */
+    @Column(name="method_name",nullable=false,length=40)    
     public String getMethodName() {
         return methodName;
     }
 
     /**
-     * @param methodName the methodName to set
+     * @param methodName 
+     *   the methodName to set
      */
     public void setMethodName(String methodName) {
         this.methodName = methodName;
@@ -98,7 +124,7 @@ public class Consequent extends BaseObject {
     }
 
     /**
-     * @return the id
+     * @return the {@link java.lang.Long } id
      */
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -113,20 +139,37 @@ public class Consequent extends BaseObject {
         this.id = id;
     }
 
+
     /**
-     * @return the consequentRule
+     * @return the basic
+     */
+    @Column(name="basic_stmt",nullable=false,length=40)    
+    public String getBasic() {
+        return basic;
+    }
+
+    /**
+     * @param basic the basic to set
+     */
+    public void setBasic(String basic) {
+        this.basic = basic;
+    }
+
+    /**
+     * @return the rule
      */
     @OneToOne
-    public Rule getConsequentRule() {
-        return consequentRule;
+    @Cascade({CascadeType.ALL})
+    @JoinColumn(name="rule_fk")    
+    public Rule getRule() {
+        return rule;
     }
 
     /**
-     * @param consequentRule the consequentRule to set
+     * @param rule the rule to set
      */
-    public void setConsequentRule(Rule consequentRule) {
-        this.consequentRule = consequentRule;
+    public void setRule(Rule rule) {
+        this.rule = rule;
     }
-
     
 }

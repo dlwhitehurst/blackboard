@@ -17,7 +17,6 @@
 package org.dlw.ai.blackboard.dao.hibernate;
 
 import java.util.List;
-import java.util.Map;
 
 import org.dlw.ai.blackboard.dao.RuleSetDao;
 import org.dlw.ai.blackboard.exception.RuleSetNameNotFoundException;
@@ -35,6 +34,7 @@ public class RuleSetDaoHibernate extends GenericDaoHibernate<RuleSet, Long> impl
     public RuleSetDaoHibernate() {
         super(RuleSet.class);
     }
+    
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.dao.RuleSetDao#getRuleSets()
      */
@@ -46,75 +46,31 @@ public class RuleSetDaoHibernate extends GenericDaoHibernate<RuleSet, Long> impl
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.dao.RuleSetDao#loadRuleSetByName(java.lang.String)
      */
-    public RuleSet loadRuleSetByName(String name)
+    @SuppressWarnings("unchecked")
+    public RuleSet getRuleSetByName(String name)
             throws RuleSetNameNotFoundException {
-        // TODO Auto-generated method stub
-        return null;
+        List<RuleSet> ruleSet = getHibernateTemplate().find("from RuleSet where name=?", name);
+        if (ruleSet == null || ruleSet.isEmpty()) {
+            throw new RuleSetNameNotFoundException("name '" + name + "' not found...");
+        } else {
+            return (RuleSet) ruleSet.get(0);
+        }
     }
 
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.dao.RuleSetDao#saveRuleSet(org.dlw.ai.blackboard.rule.RuleSet)
      */
     public RuleSet saveRuleSet(RuleSet ruleSet) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.dao.GenericDao#exists(java.io.Serializable)
-     */
-    public boolean exists(Long id) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.dao.GenericDao#findByNamedQuery(java.lang.String, java.util.Map)
-     */
-    public List<RuleSet> findByNamedQuery(String queryName,
-            Map<String, Object> queryParams) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.dao.GenericDao#get(java.io.Serializable)
-     */
-    public RuleSet get(Long id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.dao.GenericDao#getAll()
-     */
-    public List<RuleSet> getAll() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.dao.GenericDao#getAllDistinct()
-     */
-    public List<RuleSet> getAllDistinct() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.dao.GenericDao#remove(java.io.Serializable)
-     */
-    public void remove(Long id) {
-        // TODO Auto-generated method stub
-
+        getHibernateTemplate().saveOrUpdate(ruleSet);
+        getHibernateTemplate().flush();
+        return ruleSet;
     }
 
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.dao.GenericDao#save(java.lang.Object)
      */
-    public RuleSet save(RuleSet object) {
-        // TODO Auto-generated method stub
-        return null;
+    public RuleSet save(RuleSet ruleSet) {
+        return this.saveRuleSet(ruleSet);
     }
 
 }

@@ -17,6 +17,9 @@
 package org.dlw.ai.blackboard.exception;
 
 /**
+ * This class is used to represent an exception where the {@link org.dlw.ai.blackboard.rule.RuleSet}
+ * being searched does not exist.
+ * 
  * @author @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  *
  */
@@ -30,6 +33,7 @@ public class RuleSetNameNotFoundException extends Exception {
     /**
      * Constructor
      * @param err
+     *   the string error to be propagated.
      */
     public RuleSetNameNotFoundException(String err) {
         super(err);

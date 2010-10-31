@@ -17,31 +17,27 @@
 package org.dlw.ai.blackboard.knowledge;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Stack;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
 import org.dlw.ai.blackboard.Controller;
-import org.dlw.ai.blackboard.domain.Antecedent;
+import org.dlw.ai.blackboard.dao.RuleSetDao;
+import org.dlw.ai.blackboard.dao.hibernate.RuleSetDaoHibernate;
 import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.CipherLetter;
-import org.dlw.ai.blackboard.domain.Consequent;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.domain.Word;
+import org.dlw.ai.blackboard.exception.RuleSetNameNotFoundException;
 import org.dlw.ai.blackboard.exception.UnknownKnowledgeSourceException;
 import org.dlw.ai.blackboard.rule.Rule;
-import org.dlw.ai.blackboard.rule.RuleFactory;
-import org.dlw.ai.blackboard.rule.RuleType;
+import org.dlw.ai.blackboard.rule.RuleSet;
 import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.MessageConstants;
-import org.dlw.ai.blackboard.util.ReflectionUtil;
-import org.dlw.ai.blackboard.util.SentenceUtil;
+import org.dlw.ai.blackboard.util.UniversalContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * The KnowledgeSourceUtil class is used to provide static methods to stage-load
@@ -53,6 +49,8 @@ import org.dlw.ai.blackboard.util.SentenceUtil;
  */
 public final class KnowledgeSourceUtil {
 
+    private RuleSetDao dao; 
+    
     /**
      * Attribute commons-logging class instance
      */
@@ -64,9 +62,12 @@ public final class KnowledgeSourceUtil {
     private static Logger logger;
 
     /**
-     * Hidden constructor
+     * Default constructor
      */
-    private KnowledgeSourceUtil() {
+    public KnowledgeSourceUtil() {
+        dao = (RuleSetDaoHibernate) UniversalContext
+        .getApplicationContext().getBean("ruleSetDao");
+
     }
 
     /**
@@ -83,7 +84,7 @@ public final class KnowledgeSourceUtil {
      *            the {@link org.dlw.ai.blackboard.Blackboard} data structure
      * @return
      */
-    public static AbstractKnowledgeSource loadContext(AbstractKnowledgeSource ks,
+    public AbstractKnowledgeSource loadContext(AbstractKnowledgeSource ks,
             Controller controller, Blackboard blackboard) {
 
         ks.setBlackboard(blackboard);
@@ -100,90 +101,62 @@ public final class KnowledgeSourceUtil {
      * @param type
      * @return
      */
-    public static AbstractKnowledgeSource loadRules(AbstractKnowledgeSource ks,
+    public AbstractKnowledgeSource loadRules(AbstractKnowledgeSource ks,
             KnowledgeSourceType type) throws UnknownKnowledgeSourceException {
 
-        ArrayList<Rule> rules = new ArrayList<Rule>();
         
         switch (type) {
 
         case COMMON_PREFIX_KNOWLEDGE_SOURCE:
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.COMMON_PREFIX_KNOWLEDGE_SOURCE);
-            // TODO - use Dao get RuleSet by name and set
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "CommonPrefix");
             break;
 
         case COMMON_SUFFIX_KNOWLEDGE_SOURCE:
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.COMMON_SUFFIX_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "CommonSuffix");
             break;
 
         case CONSONANT_KNOWLEDGE_SOURCE: // 3
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.CONSONANT_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "Consonant");
             break;
 
         case DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE: // 4
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "DirectSubstitution");
             break;
 
         case DOUBLE_LETTER_KNOWLEDGE_SOURCE: // 5
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.DOUBLE_LETTER_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "DoubleLetter");
             break;
 
         case LEGAL_STRING_KNOWLEDGE_SOURCE: // 6
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.LEGAL_STRING_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "LegalString");
             break;
 
         case LETTER_FREQUENCY_KNOWLEDGE_SOURCE: // 7
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.LETTER_FREQUENCY_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "LetterFrequency");
             break;
 
         case PATTERN_MATCHING_KNOWLEDGE_SOURCE: // 8
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.PATTERN_MATCHING_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "PatternMatching");
             break;
 
         case SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE: // 9
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "SentenceStructure");
             break;
 
         case SMALL_WORD_KNOWLEDGE_SOURCE: // 10
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.SMALL_WORD_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "SmallWord");
             break;
 
         case SOLVED_KNOWLEDGE_SOURCE: // 11
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.SOLVED_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "Solved");
             break;
 
         case VOWEL_KNOWLEDGE_SOURCE: // 12
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.VOWEL_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "Vowel");
             break;
 
         case WORD_STRUCTURE_KNOWLEDGE_SOURCE: // 13
-            rules = RuleFactory
-                    .createRules(KnowledgeSourceType.WORD_STRUCTURE_KNOWLEDGE_SOURCE);
-            ks.setRuleSet(null);
+            loadRuleSet(ks, "WordStructure");
             break;
 
         default:
@@ -191,6 +164,35 @@ public final class KnowledgeSourceUtil {
         }
 
         return ks;
+    }
+
+    /**
+     * @param ks
+     * @param ruleSet
+     */
+    private void loadRuleSet(AbstractKnowledgeSource ks, String name) {
+
+        /**
+         * Initialize logger
+         */
+        logger = Logger.getInstance();
+        logger.wrap(log);
+
+        /**
+         * Create a RuleSet
+         */
+        RuleSet ruleSet = null;
+        try {
+            ruleSet = dao.getRuleSetByName(name);
+        } catch (RuleSetNameNotFoundException e) {
+            logger.info("System error: RuleSet name provided does not exist");
+            e.printStackTrace();
+        } 
+        
+        /**
+         * Set RuleSet on KnowledgeSource
+         */
+        ks.setRuleSet(ruleSet);
     }
 
     /**
@@ -245,7 +247,7 @@ public final class KnowledgeSourceUtil {
     public static void considerRules(AbstractKnowledgeSource ks, Sentence sentence,
             String methodMessage, String conversionMessage) {
         List<Rule> rules = null; //ks.getRules();
-
+/*
         for (Rule rule : rules) {
             Antecedent antecedent = rule.getAntecedent();
             Consequent consequent = rule.getConsequent();
@@ -301,6 +303,7 @@ public final class KnowledgeSourceUtil {
                 break;
             }
         }
+        */
     }
 
     /**

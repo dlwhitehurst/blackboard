@@ -37,7 +37,6 @@ import org.dlw.ai.blackboard.domain.BaseObject;
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
- * 
  */
 public class BlackboardContext extends BaseObject {
 

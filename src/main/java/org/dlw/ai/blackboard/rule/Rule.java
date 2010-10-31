@@ -16,7 +16,17 @@
  */
 package org.dlw.ai.blackboard.rule;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import org.dlw.ai.blackboard.domain.Antecedent;
+import org.dlw.ai.blackboard.domain.BaseObject;
 import org.dlw.ai.blackboard.domain.Consequent;
 
 /**
@@ -24,7 +34,7 @@ import org.dlw.ai.blackboard.domain.Consequent;
  * This class defines a rule for the blackboard framework. Rules are kept in a
  * collection within the knowledge source for the default implementation and
  * apply specifically to statements given by the subject
- * {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}.
+ * {@link org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource}.
  * </p>
  * 
  * <blockquote><i>Rule - "(def.) a law or principle that operates within a
@@ -35,18 +45,49 @@ import org.dlw.ai.blackboard.domain.Consequent;
  * @version 1.0.0-RC
  * 
  */
-public class Rule {
+@Entity
+@Table(name="rule")
+public class Rule extends BaseObject {
+    
+    /**
+     * unique serial identifier
+     */
+    private static final long serialVersionUID = 1752654049647426358L;
 
-    protected Antecedent antecedent;
+    /**
+     * Primary key object
+     */
+    private Long id;
+    
+    /**
+     * Attribute antecedent (if-part)
+     */
+    private Antecedent antecedent;
 
-    protected Consequent consequent;
+    /**
+     * Attribute consequent (then-part)
+     */
+    private Consequent consequent;
     
-    protected RuleType ruleType;
+    /**
+     * Attribute rule type string
+     */
+    private String ruleType;
     
-    protected String before;
+    /**
+     * Attribute initial letter
+     */
+    private String before;
     
-    protected String after;
-    
+    /**
+     * Attribute deciphered letter
+     */
+    private String after;
+  
+    /**
+     * Attribute parent rset
+     */
+    private RuleSet rset;
 
     /**
      * Default constructor
@@ -55,34 +96,36 @@ public class Rule {
     }
 
     /**
-     * Loaded constructor
-     * 
-     * @param antecedent
-     *            the Antecedent defining this rule.
-     * @param consequent
-     *            the Consequent following this rule and
-     *            antecedent
+     * @return the before
      */
-    public Rule(final Antecedent antecedent, final Consequent consequent) {
+    @Column(name="before_str",nullable=false,length=10)    
+    public String getBefore() {
+        return before;
+    }
 
-        /**
-         * set antecedent
-         */
-
-        this.antecedent = antecedent;
-
-        /**
-         * set final ArrayList of consequents
-         */
-
-        this.consequent = consequent;
+    /**
+     * @return the after
+     */
+    @Column(name="after_str",nullable=false,length=10)    
+    public String getAfter() {
+        return after;
     }
 
     /**
      * @return Antecedent
      */
+    @OneToOne(mappedBy = "rule")
     public Antecedent getAntecedent() {
         return antecedent;
+    }
+
+
+    /**
+     * @return Consequent
+     */
+    @OneToOne(mappedBy = "rule")
+    public Consequent getConsequent() {
+        return consequent;
     }
 
     /**
@@ -94,13 +137,6 @@ public class Rule {
     }
 
     /**
-     * @return Consequent
-     */
-    public Consequent getConsequent() {
-        return consequent;
-    }
-
-    /**
      * @param consequent
      *            the Consequent to set
      */
@@ -109,46 +145,91 @@ public class Rule {
     }
 
 
-    /**
-     * @return the before
-     */
-    public String getBefore() {
-        return before;
-    }
 
     /**
-     * @param before the before to set
+     * @param before t
+     *   the before String to set
      */
     public void setBefore(String before) {
         this.before = before;
     }
 
-    /**
-     * @return the after
-     */
-    public String getAfter() {
-        return after;
-    }
 
     /**
-     * @param after the after to set
+     * @param after
+     *   the after String to set
      */
     public void setAfter(String after) {
         this.after = after;
     }
 
     /**
-     * @return the ruleType
+     * @return the {@link org.dlw.ai.blackboard.rule.RuleSet} object
      */
-    public RuleType getRuleType() {
+    @ManyToOne
+    public RuleSet getRset() {
+        return rset;
+    }
+
+    /**
+     * @param rset 
+     *   the {@link org.dlw.ai.blackboard.rule.RuleSet} to set
+     */
+    public void setRset(RuleSet rset) {
+        this.rset = rset;
+    }
+
+    /**
+     * @return the Long id
+     */
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id 
+     *   the id Long to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    /**
+     * @return the rule type String
+     */
+    @Column(name="rule_type")
+    public String getRuleType() {
         return ruleType;
     }
 
     /**
-     * @param ruleType the ruleType to set
+     * @param ruleType 
+     *   the ruleType String to set
      */
-    public void setRuleType(RuleType ruleType) {
+    public void setRuleType(String ruleType) {
         this.ruleType = ruleType;
     }
+
 
 }

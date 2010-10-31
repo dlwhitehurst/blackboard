@@ -347,7 +347,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<AbstractKnowledgeSourc
      *            needing rules and context
      * @return {@link org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource}
      */
-    private AbstractKnowledgeSource loadRulesAndContext(AbstractKnowledgeSource ks)
+    private void loadRulesAndContext(AbstractKnowledgeSource ks)
             throws UnknownKnowledgeSourceException {
 
         Blackboard blackboard = (Blackboard) UniversalContext
@@ -355,108 +355,98 @@ public final class KnowledgeSourcesImpl extends ArrayList<AbstractKnowledgeSourc
         Controller controller = (Controller) UniversalContext
                 .getApplicationContext().getBean("controller");
 
+        KnowledgeSourceUtil ksUtil = new KnowledgeSourceUtil();
+        ksUtil.loadContext(ks, controller, blackboard);
+
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource) {
             ks.setPriority(new Integer(4));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.COMMON_PREFIX_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.COMMON_SUFFIX_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.CONSONANT_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource) {
             ks.setPriority(new Integer(2));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.DOUBLE_LETTER_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.LEGAL_STRING_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.LETTER_FREQUENCY_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource) {
             ks.setPriority(new Integer(4));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.PATTERN_MATCHING_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource) {
             ks.setPriority(new Integer(3));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.SMALL_WORD_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource) {
             ks.setPriority(new Integer(1)); // top priority
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.SOLVED_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.VOWEL_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            KnowledgeSourceUtil.loadContext(ks, controller, blackboard);
-            KnowledgeSourceUtil.loadRules(ks,
+            ksUtil.loadRules(ks,
                     KnowledgeSourceType.WORD_STRUCTURE_KNOWLEDGE_SOURCE);
-            return ks;
+            return;
         }
 
         else {

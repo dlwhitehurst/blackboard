@@ -18,17 +18,27 @@ package org.dlw.ai.blackboard.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
 
 import org.dlw.ai.blackboard.rule.Rule;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
 
 /**
+ * This class provides the "if" part of a conditional that is used to define a
+ * {@link org.dlw.ai.blackboard.rule.Rule} object.  The rule is not complete 
+ * without the {@link org.dlw.ai.blackboard.domain.Consequent} object.
+ * 
+ * <blockquote><i>Antecedent - "(def.) a thing or event that existed before or 
+ * logically precedes another.</i></blockquote> 
+ * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- *
+ * @version 1.0.0-RC
  */
 @Entity
 @Table(name="antecedent")
@@ -39,59 +49,74 @@ public class Antecedent extends BaseObject {
      */
     private static final long serialVersionUID = 2299632874123077597L;
     
+    /**
+     * Primary key object
+     */
     private Long id;
-    
     
     /**
      * Attribute parent
      */
-    private Rule antecedentRule;
-
+    private Rule rule;
+    
+    /**
+     * Attribute class name
+     */
     private String fullyQualifiedClass;
     
+    /**
+     * Attribute method name
+     */
     private String methodName;
     
+    /**
+     * Attribute pure String antecedent
+     */
     private String basic;
     
-    
-
     /**
-     * @return the fullyQualifiedClass
+     * @return the String class name (fully qualified)
      */
+    @Column(name="class_name",nullable=false,length=40)    
     public String getFullyQualifiedClass() {
         return fullyQualifiedClass;
     }
 
     /**
-     * @param fullyQualifiedClass the fullyQualifiedClass to set
+     * @param fullyQualifiedClass 
+     *   the fullyQualifiedClass String to set
      */
     public void setFullyQualifiedClass(String fullyQualifiedClass) {
         this.fullyQualifiedClass = fullyQualifiedClass;
     }
 
     /**
-     * @return the methodName
+     * @return the String methodName
      */
+    @Column(name="method_name",nullable=false,length=40)    
     public String getMethodName() {
         return methodName;
     }
 
     /**
-     * @param methodName the methodName to set
+     * @param methodName 
+     *   the methodName to set
      */
     public void setMethodName(String methodName) {
         this.methodName = methodName;
     }
 
     /**
-     * @return the basic
+     * @return the String antecedent
      */
+    @Column(name="basic_stmt",nullable=false,length=40)    
     public String getBasic() {
         return basic;
     }
 
     /**
-     * @param basic the basic to set
+     * @param basic 
+     *   the String antecedent to set
      */
     public void setBasic(String basic) {
         this.basic = basic;
@@ -116,7 +141,7 @@ public class Antecedent extends BaseObject {
     }
 
     /**
-     * @return the id
+     * @return the {@link java.lang.Long } id
      */
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -132,21 +157,20 @@ public class Antecedent extends BaseObject {
     }
 
     /**
-     * @return the antecedentRule
+     * @return the {@link org.dlw.ai.blackboard.rule.Rule} object
      */
     @OneToOne
-    public Rule getAntecedentRule() {
-        return antecedentRule;
+    @Cascade({CascadeType.ALL})
+    @JoinColumn(name="rule_fk")    
+    public Rule getRule() {
+        return rule;
     }
 
     /**
-     * @param antecedentRule the antecedentRule to set
+     * @param rule the {@link org.dlw.ai.blackboard.rule.Rule} to set
      */
-    public void setAntecedentRule(Rule antecedentRule) {
-        this.antecedentRule = antecedentRule;
+    public void setRule(Rule rule) {
+        this.rule = rule;
     }
-
-
-
 
 }

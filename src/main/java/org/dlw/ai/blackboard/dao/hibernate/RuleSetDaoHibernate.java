@@ -24,7 +24,7 @@ import org.dlw.ai.blackboard.rule.RuleSet;
 
 /**
  * @author @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- *
+ * @version 1.0.0-RC
  */
 public class RuleSetDaoHibernate extends GenericDaoHibernate<RuleSet, Long> implements RuleSetDao {
 

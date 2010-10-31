@@ -28,23 +28,29 @@ import java.util.List;
 public interface RuleSetDao extends GenericDao<RuleSet, Long> {
 
     /**
+     * This method signature requires one argument, the name and it will return a RuleSet object.
      * 
      * @param name
-     * @return
+     *   the name of the {@link org.dlw.ai.blackboard.rule.RuleSet}
+     * @return {@link org.dlw.ai.blackboard.rule.RuleSet}
      * @throws RuleSetNameNotFoundException
      */
-    RuleSet loadRuleSetByName(String name) throws RuleSetNameNotFoundException;
+    RuleSet getRuleSetByName(String name) throws RuleSetNameNotFoundException;
 
     /**
+     * This method signature requires no arguments. It returns a list of RuleSets.
      * 
-     * @return
+     * @return a {@link java.util.List} of {@link org.dlw.ai.blackboard.rule.RuleSet} objects
      */
     List<RuleSet> getRuleSets();
 
     /**
+     * This method signature requires a single argument, or {@link org.dlw.ai.blackboard.rule.RuleSet}.
+     * The method saves the RuleSet and returns the object to the caller.
      * 
      * @param ruleSet
-     * @return
+     *   the RuleSet to persist
+     * @return {@link org.dlw.ai.blackboard.rule.RuleSet}
      */
     RuleSet saveRuleSet(RuleSet ruleSet);
 

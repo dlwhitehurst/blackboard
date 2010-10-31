@@ -1,15 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <table name="knowledge_source">
+    <table name="ruleset">
         <column>id</column>
         <column>name</column>
         <row>
             <value description="id">-1</value>
-            <value description="name">Pool Hustler</value>
+            <value description="name">PatternMatching</value>
         </row>
         <row>
             <value description="id">-2</value>
-            <value description="name">Con Artist</value>
+            <value description="name">Solved</value>
+        </row>
+        <row>
+            <value description="id">-3</value>
+            <value description="name">SentenceStructure</value>
+        </row>
+        <row>
+            <value description="id">-4</value>
+            <value description="name">SmallWord</value>
+        </row>
+        <row>
+            <value description="id">-5</value>
+            <value description="name">WordStructure</value>
+        </row>
+        <row>
+            <value description="id">-6</value>
+            <value description="name">LegalString</value>
+        </row>
+        <row>
+            <value description="id">-7</value>
+            <value description="name">DoubleLetter</value>
+        </row>
+        <row>
+            <value description="id">-8</value>
+            <value description="name">CommonSuffix</value>
+        </row>
+        <row>
+            <value description="id">-9</value>
+            <value description="name">CommonPrefix</value>
+        </row>
+        <row>
+            <value description="id">-10</value>
+            <value description="name">LetterFrequency</value>
+        </row>
+        <row>
+            <value description="id">-11</value>
+            <value description="name">Consonant</value>
+        </row>
+        <row>
+            <value description="id">-12</value>
+            <value description="name">Vowel</value>
+        </row>
+        <row>
+            <value description="id">-13</value>
+            <value description="name">DirectSubstitution</value>
+        </row>
+    </table>
+
+    <table name="rule">
+        <column>id</column>
+        <column>before_str</column>
+        <column>after_str</column>
+        <column>rset_id</column>
+        <column>rule_type</column>
+        <row>
+            <value description="id">-100</value>
+            <value description="before_str">W</value>
+            <value description="after_str">V</value>
+            <value description="rset_id">-13</value>
+            <value description="rule_type">CONVERSION</value>
+        </row>
+        <row>
+            <value description="id">-101</value>
+            <value description="before_str"></value>
+            <value description="after_str"></value>
+            <value description="rset_id">-2</value>
+            <value description="rule_type">METHOD</value>
+        </row>
+
+    </table>
+
+    <table name="consequent">
+        <column>id</column>
+        <column>basic_stmt</column>
+        <column>class_name</column>
+        <column>method_name</column>
+        <column>rule_fk</column>
+        <row>
+            <value description="id">-1</value>
+            <value description="basic_stmt"></value>
+            <value description="class_name">org.dlw.ai.blackboard.Controller</value>
+            <value description="method_name">done</value>
+            <value description="rule_fk">-101</value>
+        </row>
+    </table>
+
+    <table name="antecedent">
+        <column>id</column>
+        <column>basic_stmt</column>
+        <column>class_name</column>
+        <column>method_name</column>
+        <column>rule_fk</column>
+        <row>
+            <value description="id">-1</value>
+            <value description="basic_stmt"></value>
+            <value description="class_name">org.dlw.ai.blackboard.Blackboard</value>
+            <value description="method_name">isSolved</value>
+            <value description="rule_fk">-101</value>
         </row>
     </table>
 </dataset>

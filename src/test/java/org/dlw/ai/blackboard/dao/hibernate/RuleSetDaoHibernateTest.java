@@ -16,11 +16,19 @@
  */
 package org.dlw.ai.blackboard.dao.hibernate;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
+
+import java.util.List;
 
 import org.dlw.ai.blackboard.dao.BaseDaoTestCase;
+import org.dlw.ai.blackboard.dao.RuleSetDao;
+import org.dlw.ai.blackboard.domain.Antecedent;
+import org.dlw.ai.blackboard.domain.Consequent;
+import org.dlw.ai.blackboard.rule.Rule;
+import org.dlw.ai.blackboard.rule.RuleSet;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
@@ -28,6 +36,9 @@ import org.junit.Test;
  */
 public class RuleSetDaoHibernateTest extends BaseDaoTestCase {
 
+    @Autowired
+    private RuleSetDao dao;
+    
     /**
      * @throws java.lang.Exception
      */
@@ -36,10 +47,40 @@ public class RuleSetDaoHibernateTest extends BaseDaoTestCase {
     }
 
     @Test
-    public void tryTest() {
-        String myString = new String("Hello");
-        assertNotNull(myString);
+    public void testGetRuleSets() throws Exception {
+        List<RuleSet> ruleSets = dao.getRuleSets();
+        assertNotNull(ruleSets);
+        assertEquals(13, ruleSets.size());
+        RuleSet ruleSet = ruleSets.get(0);
+        assertTrue(ruleSet.getName().equals("CommonPrefix"));
+    
+    }
+
+    @Test
+    public void testGetRuleSetByName() throws Exception {
+        RuleSet ruleSet = dao.getRuleSetByName("LegalString");
+        assertNotNull(ruleSet);
+        assertTrue(ruleSet.getName().equals("LegalString"));
+        
+    }
+
+    @Test
+    public void testGetAntecendentAndConsequent() throws Exception {
+        RuleSet ruleSet = dao.getRuleSetByName("Solved");
+        assertNotNull(ruleSet);
+        
+        List<Rule> rules = ruleSet.getRules();
+        Rule rule = rules.get(0);
+        
+        Antecedent antecedent = rule.getAntecedent();
+        Consequent consequent = rule.getConsequent();
+        
+        assertTrue(antecedent.getFullyQualifiedClass().equals("org.dlw.ai.blackboard.Blackboard"));
+        assertTrue(antecedent.getMethodName().equals("isSolved"));
+
+        assertTrue(consequent.getFullyQualifiedClass().equals("org.dlw.ai.blackboard.Controller"));
+        assertTrue(consequent.getMethodName().equals("done"));
+        
     }
     
-
 }

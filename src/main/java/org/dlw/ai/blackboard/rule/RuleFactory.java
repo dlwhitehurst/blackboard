@@ -119,7 +119,7 @@ public final class RuleFactory {
         
         rule.setAntecedent(antecedent);
         rule.setConsequent(consequent);
-        rule.setRuleType(RuleType.METHOD);
+        //rule.setRuleType(RuleType.METHOD);
          
         
         return rule;
@@ -129,7 +129,7 @@ public final class RuleFactory {
     private static Rule loadConversionRule(Rule rule, final String cipher, final String plainText) {
         rule.setBefore(cipher);
         rule.setAfter(plainText);
-        rule.setRuleType(RuleType.CONVERSION);
+        //rule.setRuleType(RuleType.CONVERSION);
         return rule;
     }
 }

@@ -18,6 +18,7 @@ package org.dlw.ai.blackboard;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.rule.RuleType;
 import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
@@ -69,7 +70,7 @@ public final class Main {
          */
         Logger logger = Logger.getInstance();
         logger.wrap(log);
-        
+
         /**
          * Solve our cryptogram problem
          */

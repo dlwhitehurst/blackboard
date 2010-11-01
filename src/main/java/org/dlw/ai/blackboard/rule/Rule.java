@@ -34,7 +34,7 @@ import org.dlw.ai.blackboard.domain.Consequent;
  * This class defines a rule for the blackboard framework. Rules are kept in a
  * collection within the knowledge source for the default implementation and
  * apply specifically to statements given by the subject
- * {@link org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource}.
+ * {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}.
  * </p>
  * 
  * <blockquote><i>Rule - "(def.) a law or principle that operates within a

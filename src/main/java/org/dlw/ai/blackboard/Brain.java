@@ -27,7 +27,7 @@ import org.dlw.ai.blackboard.util.Logger;
 /**
  * <p>
  * This class manages the collection of
- * {@link org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource} type instances. It
+ * {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource} type instances. It
  * acts as a brain or collection of cummulative knowledge sources. The
  * {@link Controller} will get these knowledge sources when the problem solving
  * begins. An interesting class, the {@link Brain} acts as the librarian and

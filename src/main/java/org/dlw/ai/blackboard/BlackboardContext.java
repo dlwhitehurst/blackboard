@@ -24,7 +24,7 @@ import org.dlw.ai.blackboard.domain.BaseObject;
 /**
  * <p>
  * This class is used as an attribute addition (extension) that defines the
- * implemented {@link org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource}(s) in
+ * implemented {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}(s) in
  * package {@link org.dlw.ai.blackboard.knowledge.primitive}.
  * </p>
  * 

@@ -22,7 +22,7 @@ package org.dlw.ai.blackboard.domain;
  * not retractable. Once the {@link Assertion} has been made, the
  * {@link org.dlw.ai.blackboard.Cryptographer} has accepted the
  * {@link Assumption} to be true and will no longer allow the
- * {@link org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource} to interject its
+ * {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource} to interject its
  * thoughts or facts surrounding the assertion's domain.
  * </p>
  * 

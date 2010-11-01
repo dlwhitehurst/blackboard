@@ -16,7 +16,7 @@
  */
 package org.dlw.ai.blackboard.domain;
 
-import org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 
 /**
  * <p>
@@ -38,7 +38,7 @@ import org.dlw.ai.blackboard.knowledge.AbstractKnowledgeSource;
  */
 public class Assumption extends BlackboardObject {
 
-    protected AbstractKnowledgeSource creator;
+    protected KnowledgeSource creator;
     
     protected BlackboardObject target;
     
@@ -109,14 +109,14 @@ public class Assumption extends BlackboardObject {
     /**
      * @return the creator
      */
-    public AbstractKnowledgeSource getCreator() {
+    public KnowledgeSource getCreator() {
         return creator;
     }
 
     /**
      * @param creator the creator to set
      */
-    public void setCreator(AbstractKnowledgeSource creator) {
+    public void setCreator(KnowledgeSource creator) {
         this.creator = creator;
     }
 

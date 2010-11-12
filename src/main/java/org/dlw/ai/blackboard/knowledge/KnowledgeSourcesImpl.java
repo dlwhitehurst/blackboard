@@ -22,7 +22,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
 import org.dlw.ai.blackboard.BlackboardContext;
-import org.dlw.ai.blackboard.Controller;
 import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.exception.CollectionLoadingException;
@@ -346,7 +345,6 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
      * @param ks
      *            the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
      *            needing rules and context
-     * @return {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
      */
     private void loadRulesAndContext(KnowledgeSource ks)
             throws UnknownKnowledgeSourceException {

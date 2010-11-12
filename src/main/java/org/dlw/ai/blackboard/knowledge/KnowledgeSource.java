@@ -24,13 +24,8 @@ import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.rule.RuleSet;
 
 /**
- * This interface defines the signature knowledge source object. Any default
- * implementation e.g.
- * {@link org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource}
- * extends {@link InferenceEngine} ultimately through the implementation of this
- * interface and the extension {@link org.dlw.ai.blackboard.BlackboardContext}
- * directly within the implementation.
- * 
+ * This interface defines the signature knowledge source object.  
+ *  
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC (hibernate-mysql branch)
  * 

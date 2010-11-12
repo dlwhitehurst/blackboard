@@ -21,7 +21,7 @@ import org.dlw.ai.blackboard.exception.InitializationException;
 
 /**
  * The KnowledgeSources interface represents some form of collections object
- * that is used to hold individual or unique {@link KnowSource} objects. A reset
+ * that is used to hold individual or unique {@link KnowledgeSource} objects. A reset
  * and load method signature are provided so that the developer can choose a
  * collection type based on her requirements and handle these operations through
  * implementation.

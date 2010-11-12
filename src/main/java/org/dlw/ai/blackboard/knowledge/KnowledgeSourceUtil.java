@@ -23,8 +23,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.Blackboard;
-import org.dlw.ai.blackboard.Controller;
 import org.dlw.ai.blackboard.dao.RuleSetDao;
 import org.dlw.ai.blackboard.dao.hibernate.RuleSetDaoHibernate;
 import org.dlw.ai.blackboard.domain.Assertion;
@@ -37,7 +35,6 @@ import org.dlw.ai.blackboard.rule.RuleSet;
 import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.MessageConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * The KnowledgeSourceUtil class is used to provide static methods to stage-load
@@ -75,8 +72,10 @@ public final class KnowledgeSourceUtil {
      * {@link KnowledgeSource}
      * 
      * @param ks
+     *   the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource} reference
      * @param type
-     * @return
+     *   the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSourceType}
+     * @return a loaded {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
      */
     public KnowledgeSource loadRules(KnowledgeSource ks,
             KnowledgeSourceType type) throws UnknownKnowledgeSourceException {
@@ -145,7 +144,9 @@ public final class KnowledgeSourceUtil {
 
     /**
      * @param ks
-     * @param ruleSet
+     *    the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
+     * @param name
+     *  the String name
      */
     private void loadRuleSet(KnowledgeSource ks, String name) {
 

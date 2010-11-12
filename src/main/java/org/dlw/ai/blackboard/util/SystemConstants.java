@@ -33,6 +33,8 @@ public final class SystemConstants {
     private SystemConstants() {
     }
 
+    public static final String BLACKBOARD_CONTEXT = "Blackboard Context";
+    
     /**
      * The cryptogram sentence or string could not be asserted.
      */

@@ -70,8 +70,8 @@ public class CipherLetter extends BlackboardObject {
     }
 
     /**
-     * @param affirmations
-     *            the affirmations to set
+     * @param affirmation
+     *   the {@link org.dlw.ai.blackboard.domain.Affirmation} to set
      */
     public void setAffirmation(Affirmation affirmation) {
         this.affirmation = affirmation;

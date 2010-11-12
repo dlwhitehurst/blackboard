@@ -67,7 +67,7 @@ public class Sentence extends BlackboardObject {
     /**
      * Return the current value of of the sentence
      * 
-     * @return
+     * @return the string value for the sentence
      */
     public String value() {
         return sentence;
@@ -76,7 +76,7 @@ public class Sentence extends BlackboardObject {
     /**
      * Public method to determine if the sentence has been solved
      * 
-     * @return
+     * @return boolean true if solved
      */
     public boolean isSolved() {
 

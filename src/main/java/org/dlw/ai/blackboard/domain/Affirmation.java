@@ -20,7 +20,7 @@ import java.util.Stack;
 
 /**
  *<p>
- * This class is a literal {@link java.util.Stack} of assumptions about a
+ * This class is a literal stack of assumptions about a
  * particular blackboard object. Some assumptions are more opportunistic, such
  * as assertions.
  *</p>
@@ -38,7 +38,7 @@ import java.util.Stack;
  * The {@link Affirmation} is a collection of statements {@link Assumption}
  * and/or {@link Assertion} about a particular domain object. A number of
  * assumptions could define an {@link Assertion} but the {@link Affirmation} is
- * the public offering that this {@Link CipherLetter} is ready to be
+ * the public offering that this {@link CipherLetter} is ready to be
  * considered.
  * </p>
  * 
@@ -80,7 +80,6 @@ public class Affirmation {
     /**
      * Retract a statement
      * 
-     * @param statement
      */
     public Assumption pop() {
         return statements.pop();
@@ -192,7 +191,8 @@ public class Affirmation {
     }
 
     /**
-     * @param {@link CipherLetter} the cipherLetter to set
+     * @param cipherLetter
+     *   the {@link CipherLetter} to set
      */
     public void setCipherLetter(CipherLetter cipherLetter) {
         this.cipherLetter = cipherLetter;

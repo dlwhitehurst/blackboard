@@ -49,7 +49,8 @@ public abstract class Dependent {
      * Public method to add a new knowledge source reference
      * 
      * @param ref
-     * @return
+     *    the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource} reference
+     * @return true if success
      */
     public boolean addReference(KnowledgeSource ref) {
         return references.add(ref);
@@ -58,7 +59,7 @@ public abstract class Dependent {
     /**
      * Public method to return the number of knowledge source references
      * 
-     * @return
+     * @return integer number of references
      */
     public int numberOfReferences() {
         return references.size();
@@ -68,7 +69,8 @@ public abstract class Dependent {
      * Public method to remove a knowledge source reference
      * 
      * @param ref
-     * @return
+     *   the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource} reference
+     * @return true if success
      */
     public boolean removeReference(KnowledgeSource ref) {
         return references.remove(ref);

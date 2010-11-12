@@ -68,7 +68,7 @@ public class Word extends BlackboardObject {
     /**
      * Public method to return the value or the string word
      * 
-     * @return
+     * @return word as String
      */
     public String value() {
         return word;
@@ -77,7 +77,7 @@ public class Word extends BlackboardObject {
     /**
      * Public method to determine if the word has been solved
      * 
-     * @return
+     * @return boolean true if solved
      */
     public boolean isSolved() {
 
@@ -129,7 +129,7 @@ public class Word extends BlackboardObject {
     /**
      * Public getter for list of cipher letters
      * 
-     * @return
+     * @return list of CipherLetter(s)
      */
     public List<CipherLetter> getLetters() {
         return letters;

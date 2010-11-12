@@ -69,7 +69,7 @@ public final class Main {
          */
         Logger logger = Logger.getInstance();
         logger.wrap(log);
-
+        
         /**
          * Solve our cryptogram problem
          */

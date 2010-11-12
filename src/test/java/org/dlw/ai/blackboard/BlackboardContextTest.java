@@ -29,55 +29,22 @@ public class BlackboardContextTest {
     @Before
     public void setUp() throws Exception {
 
-        blackboard = (Blackboard) UniversalContext.getApplicationContext()
-                .getBean("blackboard");
-        blackboardContext = new BlackboardContext();
+        blackboard = BlackboardContext.getInstance().getBlackboard();
 
-        controller = (Controller) UniversalContext.getApplicationContext()
-                .getBean("controller");
-        blackboardContext = new BlackboardContext();
-
-        pastAssumptions = new ConcurrentLinkedQueue<Assumption>();
-
-    }
-
-    @Test
-    public void testSetBlackboard() {
-        blackboardContext.setBlackboard(blackboard);
-        // should continue
+        controller = BlackboardContext.getInstance().getController();
     }
 
     @Test
     public void testGetBlackboard() throws AssertionError {
-        blackboardContext.setBlackboard(blackboard);
         blackboard = blackboardContext.getBlackboard();
         assertNotNull(blackboard);
     }
 
-    @Test
-    public void testSetController() {
-        blackboardContext.setController(controller);
-        // should continue
-    }
 
     @Test
     public void testGetController() throws AssertionError {
-        blackboardContext.setController(controller);
         controller = blackboardContext.getController();
         assertNotNull(controller);
-    }
-
-    @Test
-    public void testSetPastAssumptions() {
-        blackboardContext.setPastAssumptions(pastAssumptions);
-        // should continue
-    }
-
-    @Test
-    public void testGetPastAssumtions() throws AssertionError {
-        blackboardContext.setPastAssumptions(pastAssumptions);
-        pastAssumptions = blackboardContext.getPastAssumptions();
-        assertNotNull(pastAssumptions);
     }
 
     /**

@@ -11,9 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
 
-
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
-
 /**
  * This interface defines the signature knowledge source object. Any default
  * implementation e.g.

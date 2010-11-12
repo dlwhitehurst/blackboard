@@ -71,29 +71,6 @@ public final class KnowledgeSourceUtil {
     }
 
     /**
-     * Public method to load any {@link KnowledgeSource} with blackboard context
-     * 
-     * @param ks
-     *            the {@link KnowledgeSource} being loaded
-     * @param type
-     *            the {@link KnowledgeSourceType} enum
-     * @param controller
-     *            the {@link org.dlw.ai.blackboard.Controller} of the problem
-     *            domain
-     * @param blackboard
-     *            the {@link org.dlw.ai.blackboard.Blackboard} data structure
-     * @return
-     */
-    public KnowledgeSource loadContext(KnowledgeSource ks,
-            Controller controller, Blackboard blackboard) {
-
-        ks.setBlackboard(blackboard);
-        ks.setController(controller);
-
-        return ks;
-    }
-
-    /**
      * Public method to load {@link Rule} objects for any
      * {@link KnowledgeSource}
      * 

@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.Controller;
 import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.Sentence;
@@ -305,7 +306,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
      * conditions (our hint)
      */
     public void startKnowledgeSource(KnowledgeSource knowledgeSource) {
-        Blackboard blackboard = knowledgeSource.getBlackboard();
+        Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
         for (int i=0; i<blackboard.size(); i++) {
             BlackboardObject obj = blackboard.get(i);
             if (obj.getClass().equals(
@@ -350,13 +351,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
     private void loadRulesAndContext(KnowledgeSource ks)
             throws UnknownKnowledgeSourceException {
 
-        Blackboard blackboard = (Blackboard) UniversalContext
-                .getApplicationContext().getBean("blackboard");
-        Controller controller = (Controller) UniversalContext
-                .getApplicationContext().getBean("controller");
-
         KnowledgeSourceUtil ksUtil = new KnowledgeSourceUtil();
-        ksUtil.loadContext(ks, controller, blackboard);
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource) {
             ks.setPriority(new Integer(4));

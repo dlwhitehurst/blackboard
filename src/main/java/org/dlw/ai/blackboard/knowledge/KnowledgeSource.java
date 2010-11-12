@@ -16,12 +16,14 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.domain.BaseObject;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.rule.RuleSet;
 
@@ -39,29 +41,41 @@ import org.dlw.ai.blackboard.rule.RuleSet;
  */
 @Entity
 @Table(name="knowledge_source")
-public abstract class KnowledgeSource extends BlackboardContext implements InferenceEngine, Comparable<KnowledgeSource>{
+public abstract class KnowledgeSource extends BaseObject implements Comparable<KnowledgeSource>{
 
     /**
      * unique serial identifier
      */
     private static final long serialVersionUID = 3094361637466019949L;
     
-    private String name;
+    protected String name;
     
     /**
      * Attribute priority
      */
-    private Integer priority;
+    protected Integer priority;
 
     /**
      * Attribute to hold rules for KnowledgeSource
      */
-    private RuleSet ruleSet = null;
+    protected RuleSet ruleSet = null;
+
+    /**
+     * Attribute queue of assumptions made by KnowledgeSource
+     */
+    protected ConcurrentLinkedQueue<Assumption> pastAssumptions = new ConcurrentLinkedQueue<Assumption>();
     
     /**
      * Reset knowledge source
      */
     public abstract void reset();
+    
+    /**
+     * Evaluate sentence and provide expertise
+     * @param sentence
+     */
+    public abstract void evaluate(Sentence sentence);
+    
 
     /**
      * Find dependent knowledge sources and tell them to add, retract, etc. a
@@ -77,17 +91,12 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
      */
     public abstract int compareTo(KnowledgeSource o);
 
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.InferenceEngine#evaluate(org.dlw.ai.blackboard.domain.Sentence)
-     */
-    public void evaluate(Sentence sentence) {
-    }
-
     /**
      * @param priority the priority to set
      */
     public void setPriority(Integer priority) {
         this.priority = priority;
+        
     }
 
     /**
@@ -95,32 +104,6 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
      */
     public Integer getPriority() {
         return priority;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.BlackboardContext#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object o) {
-        // TODO Auto-generated method stub
-        return super.equals(o);
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.BlackboardContext#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.BlackboardContext#toString()
-     */
-    @Override
-    public String toString() {
-        return this.name;
     }
 
     /**
@@ -150,6 +133,20 @@ public abstract class KnowledgeSource extends BlackboardContext implements Infer
      */
     public void setRuleSet(RuleSet ruleSet) {
         this.ruleSet = ruleSet;
+    }
+
+    /**
+     * @param pastAssumptions the pastAssumptions to set
+     */
+    public void setPastAssumptions(ConcurrentLinkedQueue<Assumption> pastAssumptions) {
+        this.pastAssumptions = pastAssumptions;
+    }
+
+    /**
+     * @return the pastAssumptions
+     */
+    public ConcurrentLinkedQueue<Assumption> getPastAssumptions() {
+        return pastAssumptions;
     }
     
 }

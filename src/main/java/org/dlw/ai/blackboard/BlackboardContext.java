@@ -16,16 +16,13 @@
  */
 package org.dlw.ai.blackboard;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
-
-import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.BaseObject;
+import org.dlw.ai.blackboard.util.SystemConstants;
+import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
  * <p>
- * This class is used as an attribute addition (extension) that defines the
- * implemented {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}(s) in
- * package {@link org.dlw.ai.blackboard.knowledge.primitive}.
+ * This singleton class can be used by any class to obtain the blackboard and 
+ * controller instances.
  * </p>
  * 
  * <p>
@@ -38,13 +35,13 @@ import org.dlw.ai.blackboard.domain.BaseObject;
  * @version 1.0.0-RC
  * 
  */
-public class BlackboardContext extends BaseObject {
+public final class BlackboardContext {
 
     /**
-     * unique serial identifier
+     * Attribute singleton instance
      */
-    private static final long serialVersionUID = -545460787166534024L;
-
+    private static BlackboardContext instance;
+    
     /**
      * Attribute blackboard
      */
@@ -56,31 +53,22 @@ public class BlackboardContext extends BaseObject {
     private Controller controller;
 
     /**
-     * Attribute queue of assumptions made by KnowledgeSource
+     * Hidden constructor
      */
-    private ConcurrentLinkedQueue<Assumption> pastAssumptions = new ConcurrentLinkedQueue<Assumption>();
-
-    /**
-     * Default constructor
-     */
-    public BlackboardContext() {
+    private BlackboardContext() {
+        this.blackboard = (Blackboard) UniversalContext.getApplicationContext().getBean("blackboard");
+        this.controller = (Controller) UniversalContext.getApplicationContext().getBean("controller");
     }
-
+    
     /**
-     * Loaded constructor
-     * 
-     * @param blackboard
-     *              the {@link Blackboard} object needed
-     * @param controller 
-     *              the {@link Controller} object needed
-     * @param pastAssumptions
-     *              the {@link ConcurrentLinkedQueue} object data structure
+     * Method to return singleton instance
+     * @return
      */
-    public BlackboardContext(final Blackboard blackboard, final Controller controller,
-            final ConcurrentLinkedQueue<Assumption> pastAssumptions) {
-        this.blackboard = blackboard;
-        this.controller = controller;
-        this.pastAssumptions = pastAssumptions;
+    public static BlackboardContext getInstance() {
+        if (instance == null) {
+            instance = new BlackboardContext();
+        }
+        return instance;
     }
 
     /**
@@ -113,22 +101,6 @@ public class BlackboardContext extends BaseObject {
         this.controller = controller;
     }
 
-    /**
-     * @return the {@link ConcurrentLinkedQueue} object pastAssumptions
-     */
-    public final ConcurrentLinkedQueue<Assumption> getPastAssumptions() {
-        return pastAssumptions;
-    }
-
-    /**
-     * @param pastAssumptions
-     *            the {@link ConcurrentLinkedQueue} pastAssumptions to set
-     */
-    public final void setPastAssumptions(
-            ConcurrentLinkedQueue<Assumption> pastAssumptions) {
-        this.pastAssumptions = pastAssumptions;
-    }
-
     @Override
     public boolean equals(Object o) {
         // TODO Auto-generated method stub
@@ -143,8 +115,7 @@ public class BlackboardContext extends BaseObject {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return null;
+        return SystemConstants.BLACKBOARD_CONTEXT;
     }
 
 }

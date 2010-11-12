@@ -16,7 +16,9 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
+import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.domain.Sentence;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
 /**
@@ -24,62 +26,73 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * @version 1.0.0-RC
  * 
  */
-public class LegalStringKnowledgeSource extends StringKnowledgeSource implements
-        InferenceEngine {
+public class LegalStringKnowledgeSource extends StringKnowledgeSource {
 
+    
     /**
      * unique serial identifier
      */
     private static final long serialVersionUID = 4579670117184769983L;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        return super.equals(obj);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return KnowledgeSourceConstants.LEGAL_STRING_KNOWLEDGE_SOURCE;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
-     */
-    public void evaluate() {
-        // TODO Auto-generated method stub
-    }
 
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#reset()
      */
     @Override
     public void reset() {
+        return;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#evaluate(org.dlw.ai.blackboard.domain.Sentence)
+     */
+    @Override
+    public void evaluate(Sentence sentence) {
+        return;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
+     */
+    @Override
+    public void notifyDependents(String direction, Assumption statement) {
         // TODO Auto-generated method stub
-        super.reset();
+        super.notifyDependents(direction, statement);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#compareTo(org.dlw.ai.blackboard.knowledge.KnowledgeSource)
+     */
+    @Override
+    public int compareTo(KnowledgeSource o) {
+        // TODO Auto-generated method stub
+        return super.compareTo(o);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#toString()
+     */
+    @Override
+    public String toString() {
+        return KnowledgeSourceConstants.LEGAL_STRING_KNOWLEDGE_SOURCE;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return super.equals(o);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return super.hashCode();
     }
 
 }

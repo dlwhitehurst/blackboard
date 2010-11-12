@@ -16,7 +16,6 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
 /**
@@ -24,8 +23,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * @version 1.0.0-RC
  * 
  */
-public class VowelKnowledgeSource extends LetterKnowledgeSource implements
-        InferenceEngine {
+public class VowelKnowledgeSource extends LetterKnowledgeSource {
 
     /**
      * unique serial identifier

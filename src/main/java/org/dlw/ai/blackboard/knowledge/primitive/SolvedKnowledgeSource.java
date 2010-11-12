@@ -18,8 +18,9 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 
 import java.util.ArrayList;
 
+import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
 import org.dlw.ai.blackboard.rule.Rule;
@@ -30,8 +31,7 @@ import org.dlw.ai.blackboard.util.MessageConstants;
  * @version 1.0.0-RC
  * 
  */
-public class SolvedKnowledgeSource extends SentenceKnowledgeSource implements
-        InferenceEngine {
+public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
 
     /**
      * unique serial identifier
@@ -39,49 +39,6 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource implements
     private static final long serialVersionUID = -7129896322940388384L;
     
     private ArrayList<Rule> rules = new ArrayList<Rule>();
-    
-    /* (non-Javadoc)
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + ((rules == null) ? 0 : rules.hashCode());
-        return result;
-    }
-
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        SolvedKnowledgeSource other = (SolvedKnowledgeSource) obj;
-        if (rules == null) {
-            if (other.rules != null)
-                return false;
-        } else if (!rules.equals(other.rules))
-            return false;
-        return true;
-    }
-
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.knowledge.SentenceKnowledgeSource#toString()
-     */
-    @Override
-    public String toString() {
-        return KnowledgeSourceConstants.SOLVED_KNOWLEDGE_SOURCE;
-    }
 
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#reset()
@@ -98,6 +55,59 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource implements
     @Override
     public void evaluate(Sentence sentence) {
         KnowledgeSourceUtil.considerRules(this, sentence, MessageConstants.SENTENCE_SOLVED, "");
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#evaluate()
+     */
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
+        super.evaluate();
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
+     */
+    @Override
+    public void notifyDependents(String direction, Assumption statement) {
+        // TODO Auto-generated method stub
+        super.notifyDependents(direction, statement);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#compareTo(org.dlw.ai.blackboard.knowledge.KnowledgeSource)
+     */
+    @Override
+    public int compareTo(KnowledgeSource o) {
+        // TODO Auto-generated method stub
+        return super.compareTo(o);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#toString()
+     */
+    @Override
+    public String toString() {
+        return KnowledgeSourceConstants.SOLVED_KNOWLEDGE_SOURCE;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return super.equals(o);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return super.hashCode();
     }
 
 }    

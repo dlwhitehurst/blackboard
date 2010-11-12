@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.rule.Rule;
@@ -31,8 +30,7 @@ import org.dlw.ai.blackboard.rule.Rule;
  * @version 1.0.0-RC
  * 
  */
-public class SentenceKnowledgeSource extends KnowledgeSource implements
-        InferenceEngine {
+public class SentenceKnowledgeSource extends KnowledgeSource {
 
     /**
      * unique serial identifier
@@ -42,37 +40,6 @@ public class SentenceKnowledgeSource extends KnowledgeSource implements
     @SuppressWarnings("unused")
     private ArrayList<Rule> rules = new ArrayList<Rule>();
     
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        return super.equals(obj);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return KnowledgeSourceConstants.SENTENCE_KNOWLEDGE_SOURCE;
-    }
 
     /*
      * (non-Javadoc)
@@ -96,11 +63,6 @@ public class SentenceKnowledgeSource extends KnowledgeSource implements
         
     }
 
-    public void loadRules(ArrayList<Rule> rules) {
-        this.rules = rules;
-        
-    }
-
     public void evaluate(Sentence sentence) {
         // TODO Auto-generated method stub
         
@@ -110,6 +72,23 @@ public class SentenceKnowledgeSource extends KnowledgeSource implements
     public int compareTo(KnowledgeSource o) {
         int priorityCmp = this.getPriority().compareTo(o.getPriority());
         return (priorityCmp != 0 ? priorityCmp : 0 );
+    }
+
+    @Override
+    public String toString() {
+        return KnowledgeSourceConstants.SENTENCE_KNOWLEDGE_SOURCE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
 }

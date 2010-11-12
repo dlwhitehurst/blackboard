@@ -18,7 +18,6 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
@@ -27,43 +26,13 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * @version 1.0.0-RC
  * 
  */
-public class LetterKnowledgeSource extends KnowledgeSource implements InferenceEngine {
+public class LetterKnowledgeSource extends KnowledgeSource {
     
     /**
      * unique serial identifier
      */
     private static final long serialVersionUID = 6596912609964805999L;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        return true;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return KnowledgeSourceConstants.LETTER_KNOWLEDGE_SOURCE;
-    }
 
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#reset()
@@ -89,5 +58,29 @@ public class LetterKnowledgeSource extends KnowledgeSource implements InferenceE
         return (priorityCmp != 0 ? priorityCmp : 0 );
     }
 
-    
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.domain.BaseObject#toString()
+     */
+    @Override
+    public String toString() {
+        return KnowledgeSourceConstants.LETTER_KNOWLEDGE_SOURCE;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.domain.BaseObject#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.domain.BaseObject#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }

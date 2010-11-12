@@ -18,31 +18,21 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
  * 
  */
-public class CommonPrefixKnowledgeSource extends StringKnowledgeSource implements
-        InferenceEngine {
+public class CommonPrefixKnowledgeSource extends StringKnowledgeSource {
 
     /**
      * unique serial identifier
      */
     private static final long serialVersionUID = 2808716412471354046L;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
-     */
-    public void evaluate() {
-        // TODO - implement
-        // BlackboardContext parent has what we need for this method
-    }
 
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#reset()
@@ -70,14 +60,6 @@ public class CommonPrefixKnowledgeSource extends StringKnowledgeSource implement
         return (priorityCmp != 0 ? priorityCmp : 0 );
     }
 
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        return super.equals(obj);
-    }
 
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#evaluate(org.dlw.ai.blackboard.domain.Sentence)
@@ -89,12 +71,30 @@ public class CommonPrefixKnowledgeSource extends StringKnowledgeSource implement
     }
 
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#hashCode()
+     * @see org.dlw.ai.blackboard.domain.BaseObject#toString()
+     */
+    @Override
+    public String toString() {
+        return KnowledgeSourceConstants.COMMON_PREFIX_KNOWLEDGE_SOURCE;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.domain.BaseObject#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.domain.BaseObject#hashCode()
      */
     @Override
     public int hashCode() {
         // TODO Auto-generated method stub
-        return super.hashCode();
+        return 0;
     }
+
 
 }

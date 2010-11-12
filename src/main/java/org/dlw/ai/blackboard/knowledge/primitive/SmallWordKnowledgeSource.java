@@ -19,7 +19,6 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 import java.util.ArrayList;
 
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.rule.Rule;
 
@@ -28,8 +27,7 @@ import org.dlw.ai.blackboard.rule.Rule;
  * @version 1.0.0-RC
  * 
  */
-public class SmallWordKnowledgeSource extends WordKnowledgeSource implements
-        InferenceEngine {
+public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 
     /**
      * unique serial identifier
@@ -89,14 +87,6 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource implements
     public void reset() {
         // TODO Auto-generated method stub
         super.reset();
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.WordKnowledgeSource#loadRules(java.util.ArrayList)
-     */
-    @Override
-    public void loadRules(ArrayList<Rule> rules) {
-        this.rules = rules;
     }
 
     /* (non-Javadoc)

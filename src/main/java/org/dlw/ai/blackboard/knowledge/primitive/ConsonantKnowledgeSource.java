@@ -16,7 +16,9 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
+import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.domain.Sentence;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
 /**
@@ -24,46 +26,13 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * @version 1.0.0-RC
  * 
  */
-public class ConsonantKnowledgeSource extends LetterKnowledgeSource implements
-        InferenceEngine {
+public class ConsonantKnowledgeSource extends LetterKnowledgeSource {
 
 
     /**
      * unique serial identifier
      */
     private static final long serialVersionUID = -6680468003597506424L;
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        return super.equals(obj);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return KnowledgeSourceConstants.CONSONANT_KNOWLEDGE_SOURCE;
-    }
 
     /*
      * (non-Javadoc)
@@ -81,6 +50,59 @@ public class ConsonantKnowledgeSource extends LetterKnowledgeSource implements
     public void reset() {
         // TODO Auto-generated method stub
         super.reset();
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
+     */
+    @Override
+    public void notifyDependents(String direction, Assumption statement) {
+        // TODO Auto-generated method stub
+        super.notifyDependents(direction, statement);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#evaluate(org.dlw.ai.blackboard.domain.Sentence)
+     */
+    @Override
+    public void evaluate(Sentence sentence) {
+        // TODO Auto-generated method stub
+        super.evaluate(sentence);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#compareTo(org.dlw.ai.blackboard.knowledge.KnowledgeSource)
+     */
+    @Override
+    public int compareTo(KnowledgeSource o) {
+        // TODO Auto-generated method stub
+        return super.compareTo(o);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#toString()
+     */
+    @Override
+    public String toString() {
+        return KnowledgeSourceConstants.CONSONANT_KNOWLEDGE_SOURCE;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return super.equals(o);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return super.hashCode();
     }
 
 }

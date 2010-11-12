@@ -16,7 +16,6 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 
 /**
@@ -24,8 +23,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
  * @version 1.0.0-RC
  * 
  */
-public class PatternMatchingKnowledgeSource extends WordKnowledgeSource implements
-        InferenceEngine {
+public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
 
     /**
      * unique serial identifier

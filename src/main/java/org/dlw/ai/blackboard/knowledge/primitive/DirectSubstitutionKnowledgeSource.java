@@ -21,7 +21,6 @@ import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
 import org.dlw.ai.blackboard.util.Logger;
@@ -32,8 +31,7 @@ import org.dlw.ai.blackboard.util.MessageConstants;
  * @version 1.0.0-RC
  * 
  */
-public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource
-        implements InferenceEngine {
+public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 
     /**
      * unique serial identifier

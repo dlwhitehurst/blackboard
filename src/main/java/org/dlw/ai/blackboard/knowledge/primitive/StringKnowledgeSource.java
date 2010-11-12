@@ -20,8 +20,8 @@ import java.util.ArrayList;
 
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.rule.Rule;
 
 /**
@@ -29,22 +29,13 @@ import org.dlw.ai.blackboard.rule.Rule;
  * @version 1.0.0-RC
  * 
  */
-public class StringKnowledgeSource extends KnowledgeSource implements
-        InferenceEngine {
+public class StringKnowledgeSource extends KnowledgeSource {
 
     /**
      * unique serial identifier
      */
     private static final long serialVersionUID = -5375853570131422732L;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
-     */
-    public void evaluate() {
-        // TODO Auto-generated method stub
-    }
 
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#reset()
@@ -59,16 +50,6 @@ public class StringKnowledgeSource extends KnowledgeSource implements
         
     }
 
-    public void loadRules(ArrayList<Rule> rules) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    public void evaluate(Sentence sentence) {
-        // TODO Auto-generated method stub
-        
-    }
-
     @Override
     public int compareTo(KnowledgeSource o) {
         int priorityCmp = this.getPriority().compareTo(o.getPriority());
@@ -76,30 +57,37 @@ public class StringKnowledgeSource extends KnowledgeSource implements
     }
 
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.BlackboardContext#equals(java.lang.Object)
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate(org.dlw.ai.blackboard.domain.Sentence)
+     */
+    @Override
+    public void evaluate(Sentence sentence) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.domain.BaseObject#toString()
+     */
+    @Override
+    public String toString() {
+        return KnowledgeSourceConstants.STRING_KNOWLEDGE_SOURCE;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.domain.BaseObject#equals(java.lang.Object)
      */
     @Override
     public boolean equals(Object o) {
         // TODO Auto-generated method stub
-        return super.equals(o);
+        return false;
     }
 
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.BlackboardContext#hashCode()
+     * @see org.dlw.ai.blackboard.domain.BaseObject#hashCode()
      */
     @Override
     public int hashCode() {
         // TODO Auto-generated method stub
-        return super.hashCode();
+        return 0;
     }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.BlackboardContext#toString()
-     */
-    @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
-    }
-
 }

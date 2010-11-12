@@ -16,14 +16,10 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import java.util.ArrayList;
-
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.knowledge.InferenceEngine;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
-import org.dlw.ai.blackboard.rule.Rule;
 
 
 /**
@@ -31,45 +27,13 @@ import org.dlw.ai.blackboard.rule.Rule;
  * @version 1.0.0-RC
  * 
  */
-public class WordKnowledgeSource extends KnowledgeSource implements
-        InferenceEngine {
+public class WordKnowledgeSource extends KnowledgeSource {
 
     /**
      * unique serial identifier
      */
     private static final long serialVersionUID = -4931267265674436051L;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        return super.equals(obj);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return KnowledgeSourceConstants.WORD_KNOWLEDGE_SOURCE;
-    }
 
     /*
      * (non-Javadoc)
@@ -93,11 +57,6 @@ public class WordKnowledgeSource extends KnowledgeSource implements
         
     }
 
-    public void loadRules(ArrayList<Rule> rules) {
-        // TODO Auto-generated method stub
-        
-    }
-
     public void evaluate(Sentence sentence) {
         // TODO Auto-generated method stub
         
@@ -107,6 +66,23 @@ public class WordKnowledgeSource extends KnowledgeSource implements
     public int compareTo(KnowledgeSource o) {
         int priorityCmp = this.getPriority().compareTo(o.getPriority());
         return (priorityCmp != 0 ? priorityCmp : 0 );
+    }
+
+    @Override
+    public String toString() {
+        return KnowledgeSourceConstants.WORD_KNOWLEDGE_SOURCE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
 }

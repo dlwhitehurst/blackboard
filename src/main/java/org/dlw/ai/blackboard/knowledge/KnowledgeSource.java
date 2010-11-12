@@ -18,10 +18,6 @@ package org.dlw.ai.blackboard.knowledge;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.BaseObject;
 import org.dlw.ai.blackboard.domain.Sentence;
@@ -39,16 +35,12 @@ import org.dlw.ai.blackboard.rule.RuleSet;
  * @version 1.0.0-RC (hibernate-mysql branch)
  * 
  */
-@Entity
-@Table(name="knowledge_source")
 public abstract class KnowledgeSource extends BaseObject implements Comparable<KnowledgeSource>{
 
     /**
      * unique serial identifier
      */
     private static final long serialVersionUID = 3094361637466019949L;
-    
-    protected String name;
     
     /**
      * Attribute priority
@@ -104,21 +96,6 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
      */
     public Integer getPriority() {
         return priority;
-    }
-
-    /**
-     * @return the name
-     */
-    @Column(name="name",nullable=false,length=50)    
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**

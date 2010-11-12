@@ -165,7 +165,7 @@ public final class BlackboardUtil {
      * working sentence
      * 
      * @param sentence
-     * @return
+     * @return a special string of underscores
      */
     private static String getAffirmationMarkings(Sentence sentence) {
 
@@ -200,8 +200,8 @@ public final class BlackboardUtil {
     /**
      * Public method to get assertion statements
      * 
-     * @param blackboard
-     * @return
+     * @param blackboard {@link org.dlw.ai.blackboard.Blackboard} reference
+     * @return a list of {@link org.dlw.ai.blackboard.domain.Assertion}(s)
      */
     public static List<Assertion> getAssertionStatements(Blackboard blackboard) {
         ArrayList<Assertion> assertions = new ArrayList<Assertion>();

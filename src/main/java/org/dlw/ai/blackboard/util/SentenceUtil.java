@@ -44,7 +44,7 @@ public final class SentenceUtil {
      *      the cipher letter String to change
      * @param plain
      *      the plain text String replacement
-     * @return
+     * @return updated sentence String
      */
     public static Sentence updateAllOccurrences(Sentence sentence,
             String cipher, String plain) {

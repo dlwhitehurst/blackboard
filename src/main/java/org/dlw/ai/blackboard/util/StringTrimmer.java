@@ -36,7 +36,7 @@ public final class StringTrimmer {
      * 
      * @param source
      *            the source String object to trim
-     * @return String
+     * @return left trimmed String
      */
     public static String ltrim(String source) {
         return source.replaceAll("^\\s+", "");
@@ -47,7 +47,7 @@ public final class StringTrimmer {
      * 
      * @param source
      *            the source String object to trim
-     * @return String
+     * @return right trimmed String
      */
     public static String rtrim(String source) {
         return source.replaceAll("\\s+$", "");
@@ -59,6 +59,7 @@ public final class StringTrimmer {
      * 
      * @param source
      *            the source String object to revise
+     * @return space defragged String
      */
     public static String itrim(String source) {
         return source.replaceAll("\\b\\s{2,}\\b", " ");
@@ -77,7 +78,7 @@ public final class StringTrimmer {
      * Public method to trim whitespace from ends only
      * 
      * @param source
-     * @return
+     * @return left and right trimmed String
      */
     public static String lrtrim(String source) {
         return ltrim(rtrim(source));

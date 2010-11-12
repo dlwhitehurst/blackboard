@@ -168,7 +168,7 @@ public final class Cryptographer {
      * Private method to loop while the controller processes hints to solve the
      * puzzle.
      * 
-     * @return
+     * @return solution as String
      */
     private String runController() {
 

@@ -329,7 +329,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
     /**
      * Public method to get the problem domain sentence
      * 
-     * @return
+     * @return String sentence
      */
     public Sentence getSentence() {
 

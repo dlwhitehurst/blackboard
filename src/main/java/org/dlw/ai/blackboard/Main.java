@@ -85,7 +85,7 @@ public final class Main {
      * Private method to solve the cryptogram problem
      * 
      * @param ciphertext
-     * @return
+     * @return solution as String
      */
     private static String solveProblem(final String ciphertext) {
 

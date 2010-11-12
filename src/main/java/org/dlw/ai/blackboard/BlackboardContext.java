@@ -62,7 +62,7 @@ public final class BlackboardContext {
     
     /**
      * Method to return singleton instance
-     * @return
+     * @return {@link BlackboardContext}
      */
     public static BlackboardContext getInstance() {
         if (instance == null) {

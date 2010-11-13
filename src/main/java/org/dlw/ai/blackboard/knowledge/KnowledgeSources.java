@@ -33,7 +33,7 @@ import org.dlw.ai.blackboard.exception.InitializationException;
 public interface KnowledgeSources {
 
     /**
-     * This method is used to load and initial knowledge sources
+     * Load and initialize knowledge sources
      * 
      * @throws InitializationException
      * @throws CollectionLoadingException
@@ -41,7 +41,7 @@ public interface KnowledgeSources {
     void init() throws InitializationException, CollectionLoadingException;
 
     /**
-     * This method is used to clear, reset, load and initialize the knowledge
+     * Clear, reset, load and initialize the knowledge
      * sources collection
      */
     void reset() throws InitializationException, CollectionLoadingException;

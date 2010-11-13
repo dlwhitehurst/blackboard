@@ -40,6 +40,7 @@ import org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource;
+import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.UniversalContext;
 

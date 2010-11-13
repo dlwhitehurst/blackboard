@@ -53,19 +53,11 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
     protected ConcurrentLinkedQueue<Assumption> pastAssumptions = new ConcurrentLinkedQueue<Assumption>();
     
     /**
-     * Reset knowledge source clearing all past assumptions
-     */
-    public void reset() {
-        pastAssumptions.clear();
-    }
-    
-    /**
      * Evaluate sentence and provide expertise
      * @param sentence
      *   the domain problem {@link org.dlw.ai.blackboard.domain.Sentence}
      */
     public abstract void evaluate(Sentence sentence);
-    
 
     /**
      * Find dependent knowledge sources and tell them to add, retract, etc. a
@@ -93,7 +85,6 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
      */
     public void setPriority(Integer priority) {
         this.priority = priority;
-        
     }
 
     /**
@@ -132,5 +123,11 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
     public ConcurrentLinkedQueue<Assumption> getPastAssumptions() {
         return pastAssumptions;
     }
-    
+
+    /**
+     * Reset knowledge source clearing all past assumptions
+     */
+    public void reset() {
+        pastAssumptions.clear();
+    }
 }

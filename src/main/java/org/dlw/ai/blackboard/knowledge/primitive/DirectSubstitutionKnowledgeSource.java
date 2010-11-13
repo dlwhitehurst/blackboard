@@ -21,8 +21,8 @@ import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
+import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.MessageConstants;
 
@@ -93,17 +93,6 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
         return KnowledgeSourceConstants.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#reset()
-     */
-    @Override
-    public void reset() {
-        // TODO Auto-generated method stub
-        super.reset();
-    }
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.InferenceEngine#evaluate(org.dlw.ai.blackboard.domain.Sentence)
      */

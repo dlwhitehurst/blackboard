@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.rule.Rule;
+import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 
 /**
@@ -48,14 +48,6 @@ public class SentenceKnowledgeSource extends KnowledgeSource {
      */
     public void evaluate() {
         // TODO Auto-generated method stub
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#reset()
-     */
-    public void reset() {
-        // TODO Auto-generated method stub
-        
     }
 
     public void notifyDependents(String direction, Assumption statement) {

@@ -19,8 +19,8 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
+import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.util.MessageConstants;
 
 /**
@@ -35,15 +35,6 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
      */
     private static final long serialVersionUID = -7129896322940388384L;
     
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#reset()
-     */
-    @Override
-    public void reset() {
-        // TODO Auto-generated method stub
-        super.reset();
-    }
-
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#evaluate(org.dlw.ai.blackboard.domain.Sentence)
      */

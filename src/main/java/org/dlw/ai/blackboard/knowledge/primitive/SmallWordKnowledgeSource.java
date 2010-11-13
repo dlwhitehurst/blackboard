@@ -19,8 +19,8 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 import java.util.ArrayList;
 
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.rule.Rule;
+import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
@@ -78,15 +78,6 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
      */
     public void evaluate() {
         //this.getBlackboard().get(index)
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.WordKnowledgeSource#reset()
-     */
-    @Override
-    public void reset() {
-        // TODO Auto-generated method stub
-        super.reset();
     }
 
     /* (non-Javadoc)

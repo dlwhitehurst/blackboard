@@ -19,7 +19,7 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
@@ -32,15 +32,6 @@ public class LetterKnowledgeSource extends KnowledgeSource {
      * unique serial identifier
      */
     private static final long serialVersionUID = 6596912609964805999L;
-
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#reset()
-     */
-    public void reset() {
-        // TODO Auto-generated method stub
-        
-    }
 
     public void notifyDependents(String direction, Assumption statement) {
         // TODO Auto-generated method stub

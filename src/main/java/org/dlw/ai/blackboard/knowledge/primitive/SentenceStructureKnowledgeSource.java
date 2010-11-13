@@ -19,7 +19,7 @@ package org.dlw.ai.blackboard.knowledge.primitive;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
@@ -40,15 +40,6 @@ public class SentenceStructureKnowledgeSource extends SentenceKnowledgeSource {
      */
     public void evaluate() {
         // TODO Auto-generated method stub
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#reset()
-     */
-    @Override
-    public void reset() {
-        // TODO Auto-generated method stub
-        super.reset();
     }
 
     /* (non-Javadoc)

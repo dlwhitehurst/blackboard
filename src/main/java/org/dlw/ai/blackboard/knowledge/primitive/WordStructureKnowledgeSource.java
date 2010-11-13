@@ -16,7 +16,7 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
@@ -71,15 +71,6 @@ public class WordStructureKnowledgeSource extends WordKnowledgeSource {
      */
     public void evaluate() {
         // TODO Auto-generated method stub
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.WordKnowledgeSource#reset()
-     */
-    @Override
-    public void reset() {
-        // TODO Auto-generated method stub
-        super.reset();
     }
 
 }

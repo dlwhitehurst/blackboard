@@ -53,13 +53,16 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
     protected ConcurrentLinkedQueue<Assumption> pastAssumptions = new ConcurrentLinkedQueue<Assumption>();
     
     /**
-     * Reset knowledge source
+     * Reset knowledge source clearing all past assumptions
      */
-    public abstract void reset();
+    public void reset() {
+        pastAssumptions.clear();
+    }
     
     /**
      * Evaluate sentence and provide expertise
      * @param sentence
+     *   the domain problem {@link org.dlw.ai.blackboard.domain.Sentence}
      */
     public abstract void evaluate(Sentence sentence);
     
@@ -69,10 +72,17 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
      * statement
      * 
      * @param direction
+     *   the String direction
      * @param statement
+     *   the {@link org.dlw.ai.blackboard.domain.Assumption} or assumed statement of fact.
      */
     public abstract void notifyDependents(String direction, Assumption statement);
 
+    /**
+     * Utilizes Comparator method based on priority attribute for sorting
+     * @param o
+     *   the object being compared, e.g. {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
+     */
     /* (non-Javadoc)
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
@@ -101,14 +111,16 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
     }
 
     /**
-     * @param ruleSet the ruleSet to set
+     * @param ruleSet 
+     *   the {@link org.dlw.ai.blackboard.rule.RuleSet} to set
      */
     public void setRuleSet(RuleSet ruleSet) {
         this.ruleSet = ruleSet;
     }
 
     /**
-     * @param pastAssumptions the pastAssumptions to set
+     * @param pastAssumptions 
+     *   the collection of pastAssumptions to set
      */
     public void setPastAssumptions(ConcurrentLinkedQueue<Assumption> pastAssumptions) {
         this.pastAssumptions = pastAssumptions;

@@ -42,6 +42,7 @@ import org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.util.Logger;
+import org.dlw.ai.blackboard.util.RuleSetConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
@@ -73,7 +74,10 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
      * Commons logging class instance
      */
     private final Log log = LogFactory.getLog(KnowledgeSources.class);
-    
+
+    /**
+     * Attribute class logger
+     */
     private final Logger logger;
 
     /**
@@ -107,6 +111,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
         /**
          * Load all with BlackboardContext and Rules
          */
+
         try {
             initializeKnowledgeSources();
         } catch (InitializationException iex) {
@@ -302,12 +307,11 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
     }
 
     /**
-     * Public method to give DirectSubstitutionKnowledgeSource its initial
-     * conditions (our hint)
+     * Public method to allow a single KnowledgeSource to evaluate the sentence
      */
     public void startKnowledgeSource(KnowledgeSource knowledgeSource) {
         Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
-        for (int i=0; i<blackboard.size(); i++) {
+        for (int i = 0; i < blackboard.size(); i++) {
             BlackboardObject obj = blackboard.get(i);
             if (obj.getClass().equals(
                     org.dlw.ai.blackboard.domain.Sentence.class)) {
@@ -318,7 +322,17 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
     }
 
     /**
-     * Public method to iterate over all knowledgesources and load rules and
+     * Public method to allow all KnowledgeSources to evaluate the sentence at once
+     */
+    public void startAllKnowledgeSources() {
+        for (int i = 0; i < this.size(); i++) {
+            KnowledgeSource ks = (KnowledgeSource) this.get(i);
+            startKnowledgeSource(ks);
+        }
+    }
+
+    /**
+     * Public method to iterate over all KnowledgeSources, load rules and
      * context
      */
     public void initializeKnowledgeSources() throws InitializationException {
@@ -338,7 +352,6 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
         }
     }
 
-
     /**
      * Private method to specifically load rules and context based on knowledge
      * source type
@@ -354,103 +367,98 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource) {
             ks.setPriority(new Integer(4));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.COMMON_PREFIX_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.COMMON_PREFIX);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.COMMON_SUFFIX_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.COMMON_SUFFIX);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.CONSONANT_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.CONSONANT);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource) {
             ks.setPriority(new Integer(2));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.DIRECT_SUBSTITUTION);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.DOUBLE_LETTER_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.DOUBLE_LETTER);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.LEGAL_STRING_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.LEGAL_STRING);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.LETTER_FREQUENCY_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.LETTER_FREQUENCY);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource) {
             ks.setPriority(new Integer(4));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.PATTERN_MATCHING_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.PATTERN_MATCHING);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.SENTENCE_STRUCTURE);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource) {
             ks.setPriority(new Integer(3));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.SMALL_WORD_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.SMALL_WORD);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource) {
             ks.setPriority(new Integer(1)); // top priority
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.SOLVED_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.SOLVED);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.VOWEL_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.VOWEL);
             return;
         }
 
         if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource) {
             ks.setPriority(new Integer(5));
-            ksUtil.loadRules(ks,
-                    KnowledgeSourceType.WORD_STRUCTURE_KNOWLEDGE_SOURCE);
+            ksUtil.loadRuleSet(ks, RuleSetConstants.WORD_STRUCTURE);
             return;
         }
 
         else {
             logger.error("This knowledge source instance could not be identified.");
-            throw new UnknownKnowledgeSourceException("This knowledge source instance could not be identified.");
+            throw new UnknownKnowledgeSourceException(
+                    "This knowledge source instance could not be identified.");
         }
-
 
     }
 
+    /**
+     * Private method to add KnowledgeSources to itself
+     * 
+     * @param ks
+     *            the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
+     *            reference
+     * @throws CollectionLoadingException
+     */
     private void addKS(KnowledgeSource ks) throws CollectionLoadingException {
 
         Logger logger = Logger.getInstance();
@@ -463,11 +471,6 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
                     "Could not load collection due to object or collection constraint.");
         }
 
-    }
-
-    public void startAllKnowledgeSources() {
-        // TODO Auto-generated method stub
-        
     }
 
 }

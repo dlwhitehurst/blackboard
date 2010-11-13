@@ -38,7 +38,8 @@ import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
  * The KnowledgeSourceUtil class is used to provide static methods to stage-load
- * data into all KnowledgeSources
+ * data into all KnowledgeSources. This class is not part of the API because it 
+ * is only used to assist in the implementation of the example cryptogram problem.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0-RC
@@ -68,87 +69,12 @@ public final class KnowledgeSourceUtil {
     }
 
     /**
-     * Public method to load {@link Rule} objects for any
-     * {@link KnowledgeSource}
-     * 
-     * @param ks
-     *   the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource} reference
-     * @param type
-     *   the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSourceType}
-     * @return a loaded {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
-     */
-    public KnowledgeSource loadRules(KnowledgeSource ks,
-            KnowledgeSourceType type) throws UnknownKnowledgeSourceException {
-
-        
-        switch (type) {
-
-        case COMMON_PREFIX_KNOWLEDGE_SOURCE:
-            loadRuleSet(ks, "CommonPrefix");
-            break;
-
-        case COMMON_SUFFIX_KNOWLEDGE_SOURCE:
-            loadRuleSet(ks, "CommonSuffix");
-            break;
-
-        case CONSONANT_KNOWLEDGE_SOURCE: // 3
-            loadRuleSet(ks, "Consonant");
-            break;
-
-        case DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE: // 4
-            loadRuleSet(ks, "DirectSubstitution");
-            break;
-
-        case DOUBLE_LETTER_KNOWLEDGE_SOURCE: // 5
-            loadRuleSet(ks, "DoubleLetter");
-            break;
-
-        case LEGAL_STRING_KNOWLEDGE_SOURCE: // 6
-            loadRuleSet(ks, "LegalString");
-            break;
-
-        case LETTER_FREQUENCY_KNOWLEDGE_SOURCE: // 7
-            loadRuleSet(ks, "LetterFrequency");
-            break;
-
-        case PATTERN_MATCHING_KNOWLEDGE_SOURCE: // 8
-            loadRuleSet(ks, "PatternMatching");
-            break;
-
-        case SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE: // 9
-            loadRuleSet(ks, "SentenceStructure");
-            break;
-
-        case SMALL_WORD_KNOWLEDGE_SOURCE: // 10
-            loadRuleSet(ks, "SmallWord");
-            break;
-
-        case SOLVED_KNOWLEDGE_SOURCE: // 11
-            loadRuleSet(ks, "Solved");
-            break;
-
-        case VOWEL_KNOWLEDGE_SOURCE: // 12
-            loadRuleSet(ks, "Vowel");
-            break;
-
-        case WORD_STRUCTURE_KNOWLEDGE_SOURCE: // 13
-            loadRuleSet(ks, "WordStructure");
-            break;
-
-        default:
-            throw new UnknownKnowledgeSourceException(MessageConstants.UNKNOWN_KNOWLEDGE_SOURCE);
-        }
-
-        return ks;
-    }
-
-    /**
      * @param ks
      *    the {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
      * @param name
      *  the String name
      */
-    private void loadRuleSet(KnowledgeSource ks, String name) {
+    public void loadRuleSet(KnowledgeSource ks, String name) {
 
         /**
          * Initialize logger

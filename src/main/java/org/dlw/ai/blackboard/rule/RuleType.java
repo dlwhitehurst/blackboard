@@ -17,24 +17,34 @@
 package org.dlw.ai.blackboard.rule;
 
 /**
+ * This class defines static string names for different types of Rules.  These
+ * types are each evaluated differently based on the type of information the 
+ * Rule object holds.
+ * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  *
  */
-public enum RuleType {
+public final class RuleType {
 
     /**
-     * Public static final enumeration describing method ruling
+     * Hidden constructor
      */
-    METHOD,
-
-    /**
-     * Public static final enumeration describing direct replacement ruling
-     */
-    CONVERSION,
+    private RuleType() {
+    }
     
     /**
-     * Public static final enumeration describing regex replacement ruling
+     * A method rule
      */
-    REGEX,
-
+    public static final String METHOD = "method";
+    
+    /**
+     * A conversion rule
+     */
+    public static final String CONVERSION = "conversion";
+    
+    /**
+     * A regular expression rule
+     */
+    public static final String REGEX = "regex";
+    
 }

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
 
+import org.dlw.ai.blackboard.domain.BaseObject;
+
 /**
  * This class represents the collection of similar Rule objects.
  * 
@@ -19,8 +21,8 @@ import javax.persistence.OneToMany;
  * 
  */
 @Entity
-@Table(name="ruleset")
-public class RuleSet {
+@Table(name = "ruleset")
+public class RuleSet extends BaseObject {
 
     /**
      * unique serial identifier
@@ -31,22 +33,20 @@ public class RuleSet {
      * Attribute id or primary key
      */
     private Long id;
-    
+
     /**
      * Attribute name of KnowledgeSource (type extension)
      */
     private String name;
-    
 
     /**
      * Attribute to hold rules for KnowledgeSource
      */
     private List<Rule> rules = new ArrayList<Rule>();
-    
 
     /**
      * @param rules
-     *            the rules to set
+     *  the rules to set
      */
     public void setRules(List<Rule> rules) {
         this.rules = rules;
@@ -55,39 +55,69 @@ public class RuleSet {
     /**
      * @return the rules
      */
-    @OneToMany(mappedBy="rset")
+    @OneToMany(mappedBy = "rset")
     public List<Rule> getRules() {
         return rules;
     }
 
     /**
-     * @return the id
+     * @return a Long integer primary key id
      */
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
 
     /**
-     * @param id the id to set
+     * @param id
+     *  the id to set
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * @return the name
+     * @return a String name for this RuleSet
      */
-    @Column(name="name",nullable=false,length=50)    
+    @Column(name = "name", nullable = false, length = 50)
     public String getName() {
         return name;
     }
 
     /**
-     * @param name the name to set
+     * @param name
+     *  the String name to set
      */
     public void setName(String name) {
         this.name = name;
     }
-    
+
+    @Override
+    public String toString() {
+        return getName();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        boolean result = false;
+
+        if (o.getClass().getCanonicalName()
+                .equals(this.getClass().getCanonicalName())) {
+            RuleSet ruleSet = (RuleSet) o;
+            if (ruleSet.getRules().equals(this.getRules())) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 }

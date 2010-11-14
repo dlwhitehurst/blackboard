@@ -64,13 +64,4 @@ public class VowelKnowledgeSource extends LetterKnowledgeSource {
         return KnowledgeSourceConstants.VOWEL_KNOWLEDGE_SOURCE;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
-     */
-    public void evaluate() {
-        // TODO Auto-generated method stub
-    }
-
 }

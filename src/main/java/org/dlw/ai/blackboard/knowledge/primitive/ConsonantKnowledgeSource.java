@@ -34,15 +34,6 @@ public class ConsonantKnowledgeSource extends LetterKnowledgeSource {
      */
     private static final long serialVersionUID = -6680468003597506424L;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.knowledge.LetterKnowledgeSource#evaluate()
-     */
-    public void evaluate() {
-        // TODO Auto-generated method stub
-    }
-
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
      */

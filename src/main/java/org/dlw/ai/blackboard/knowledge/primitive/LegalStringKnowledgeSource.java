@@ -35,14 +35,6 @@ public class LegalStringKnowledgeSource extends StringKnowledgeSource {
     private static final long serialVersionUID = 4579670117184769983L;
 
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#evaluate(org.dlw.ai.blackboard.domain.Sentence)
-     */
-    @Override
-    public void evaluate(Sentence sentence) {
-        return;
-    }
-
-    /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
      */
     @Override

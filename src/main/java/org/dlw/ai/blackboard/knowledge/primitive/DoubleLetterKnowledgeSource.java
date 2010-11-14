@@ -62,13 +62,4 @@ public class DoubleLetterKnowledgeSource extends StringKnowledgeSource {
         return KnowledgeSourceConstants.DOUBLE_LETTER_KNOWLEDGE_SOURCE;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
-     */
-    public void evaluate() {
-        // TODO Auto-generated method stub
-    }
-
 }

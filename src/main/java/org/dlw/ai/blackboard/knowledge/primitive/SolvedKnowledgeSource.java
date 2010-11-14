@@ -36,23 +36,6 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
     private static final long serialVersionUID = -7129896322940388384L;
     
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#evaluate(org.dlw.ai.blackboard.domain.Sentence)
-     */
-    @Override
-    public void evaluate(Sentence sentence) {
-        KnowledgeSourceUtil.considerRules(this, sentence, MessageConstants.SENTENCE_SOLVED, "");
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#evaluate()
-     */
-    @Override
-    public void evaluate() {
-        // TODO Auto-generated method stub
-        super.evaluate();
-    }
-
-    /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
      */
     @Override

@@ -46,15 +46,6 @@ public class StringKnowledgeSource extends KnowledgeSource {
     }
 
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate(org.dlw.ai.blackboard.domain.Sentence)
-     */
-    @Override
-    public void evaluate(Sentence sentence) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.domain.BaseObject#toString()
      */
     @Override

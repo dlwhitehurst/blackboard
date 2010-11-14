@@ -38,11 +38,6 @@ public class LetterKnowledgeSource extends KnowledgeSource {
         
     }
 
-    public void evaluate(Sentence sentence) {
-        // TODO Auto-generated method stub
-        
-    }
-
     @Override
     public int compareTo(KnowledgeSource o) {
         int priorityCmp = this.getPriority().compareTo(o.getPriority());

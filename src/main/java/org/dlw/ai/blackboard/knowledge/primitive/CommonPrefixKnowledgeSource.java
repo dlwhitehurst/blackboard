@@ -51,16 +51,6 @@ public class CommonPrefixKnowledgeSource extends StringKnowledgeSource {
         return (priorityCmp != 0 ? priorityCmp : 0 );
     }
 
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#evaluate(org.dlw.ai.blackboard.domain.Sentence)
-     */
-    @Override
-    public void evaluate(Sentence sentence) {
-        // TODO Auto-generated method stub
-        super.evaluate(sentence);
-    }
-
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.domain.BaseObject#toString()
      */

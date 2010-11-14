@@ -16,6 +16,8 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
+import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
@@ -62,13 +64,22 @@ public class LetterFrequencyKnowledgeSource extends LetterKnowledgeSource {
         return KnowledgeSourceConstants.LETTER_FREQUENCY_KNOWLEDGE_SOURCE;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.knowledge.LetterKnowledgeSource#evaluate()
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
      */
-    public void evaluate() {
+    @Override
+    public void notifyDependents(String direction, Assumption statement) {
         // TODO Auto-generated method stub
+        super.notifyDependents(direction, statement);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#compareTo(org.dlw.ai.blackboard.knowledge.KnowledgeSource)
+     */
+    @Override
+    public int compareTo(KnowledgeSource o) {
+        // TODO Auto-generated method stub
+        return super.compareTo(o);
     }
 
 }

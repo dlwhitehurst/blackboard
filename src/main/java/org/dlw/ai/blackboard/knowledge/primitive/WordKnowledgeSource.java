@@ -35,15 +35,6 @@ public class WordKnowledgeSource extends KnowledgeSource {
     private static final long serialVersionUID = -4931267265674436051L;
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
-     */
-    public void evaluate() {
-        // TODO Auto-generated method stub
-    }
-
     public void notifyDependents(String direction, Assumption statement) {
         // TODO Auto-generated method stub
         

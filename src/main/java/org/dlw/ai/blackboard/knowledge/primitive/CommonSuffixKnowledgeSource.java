@@ -31,15 +31,6 @@ public class CommonSuffixKnowledgeSource extends StringKnowledgeSource {
      */
     private static final long serialVersionUID = -8082563789192930654L;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
-     */
-    public void evaluate() {
-        // TODO Auto-generated method stub
-    }
-
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.domain.BaseObject#toString()
      */

@@ -16,15 +16,8 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.Blackboard;
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
-import org.dlw.ai.blackboard.util.Logger;
-import org.dlw.ai.blackboard.util.MessageConstants;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
@@ -39,26 +32,10 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
     private static final long serialVersionUID = 356412919991462052L;
 
     /**
-     * Commons logging class instance
-     */
-    private final Log log = LogFactory.getLog(Blackboard.class);
-
-    /**
-     * Attribute class logger
-     */
-    private Logger logger;
-
-    /**
      * Default constructor
      */
     public DirectSubstitutionKnowledgeSource() {
-
-        /**
-         * Initialize logger
-         */
-        logger = Logger.getInstance();
-        logger.wrap(log);
-
+        
     }
 
     /*
@@ -91,13 +68,6 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
     @Override
     public String toString() {
         return KnowledgeSourceConstants.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.InferenceEngine#evaluate(org.dlw.ai.blackboard.domain.Sentence)
-     */
-    public void evaluate(Sentence sentence) {
-        KnowledgeSourceUtil.considerRules(this, sentence, "", MessageConstants.SUBSTITUTION_ASSERT);
     }
 
     /*

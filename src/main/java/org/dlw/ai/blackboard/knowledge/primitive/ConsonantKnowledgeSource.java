@@ -17,8 +17,6 @@
 package org.dlw.ai.blackboard.knowledge.primitive;
 
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
@@ -44,47 +42,11 @@ public class ConsonantKnowledgeSource extends LetterKnowledgeSource {
     }
 
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#evaluate(org.dlw.ai.blackboard.domain.Sentence)
-     */
-    @Override
-    public void evaluate(Sentence sentence) {
-        // TODO Auto-generated method stub
-        super.evaluate(sentence);
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#compareTo(org.dlw.ai.blackboard.knowledge.KnowledgeSource)
-     */
-    @Override
-    public int compareTo(KnowledgeSource o) {
-        // TODO Auto-generated method stub
-        return super.compareTo(o);
-    }
-
-    /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#toString()
      */
     @Override
     public String toString() {
         return KnowledgeSourceConstants.CONSONANT_KNOWLEDGE_SOURCE;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object o) {
-        // TODO Auto-generated method stub
-        return super.equals(o);
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
     }
 
 }

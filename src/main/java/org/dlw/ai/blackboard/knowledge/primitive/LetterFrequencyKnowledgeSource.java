@@ -17,7 +17,6 @@
 package org.dlw.ai.blackboard.knowledge.primitive;
 
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
@@ -31,28 +30,6 @@ public class LetterFrequencyKnowledgeSource extends LetterKnowledgeSource {
      * unique serial identifier
      */
     private static final long serialVersionUID = -8863429625582362040L;
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        return super.equals(obj);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
-    }
 
     /*
      * (non-Javadoc)
@@ -71,15 +48,6 @@ public class LetterFrequencyKnowledgeSource extends LetterKnowledgeSource {
     public void notifyDependents(String direction, Assumption statement) {
         // TODO Auto-generated method stub
         super.notifyDependents(direction, statement);
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#compareTo(org.dlw.ai.blackboard.knowledge.KnowledgeSource)
-     */
-    @Override
-    public int compareTo(KnowledgeSource o) {
-        // TODO Auto-generated method stub
-        return super.compareTo(o);
     }
 
 }

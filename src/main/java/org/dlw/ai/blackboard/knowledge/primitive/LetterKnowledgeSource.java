@@ -17,7 +17,6 @@
 package org.dlw.ai.blackboard.knowledge.primitive;
 
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
@@ -35,13 +34,6 @@ public class LetterKnowledgeSource extends KnowledgeSource {
 
     public void notifyDependents(String direction, Assumption statement) {
         // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public int compareTo(KnowledgeSource o) {
-        int priorityCmp = this.getPriority().compareTo(o.getPriority());
-        return (priorityCmp != 0 ? priorityCmp : 0 );
     }
 
     /* (non-Javadoc)
@@ -50,23 +42,5 @@ public class LetterKnowledgeSource extends KnowledgeSource {
     @Override
     public String toString() {
         return KnowledgeSourceConstants.LETTER_KNOWLEDGE_SOURCE;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.domain.BaseObject#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object o) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.domain.BaseObject#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return 0;
     }
 }

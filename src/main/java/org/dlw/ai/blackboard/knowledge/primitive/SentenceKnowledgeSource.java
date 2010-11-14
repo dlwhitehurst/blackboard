@@ -16,12 +16,8 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import java.util.ArrayList;
-
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
-import org.dlw.ai.blackboard.rule.Rule;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 
@@ -37,41 +33,13 @@ public class SentenceKnowledgeSource extends KnowledgeSource {
      */
     private static final long serialVersionUID = -8260075649431321553L;
     
-    @SuppressWarnings("unused")
-    private ArrayList<Rule> rules = new ArrayList<Rule>();
-    
-
     public void notifyDependents(String direction, Assumption statement) {
         // TODO Auto-generated method stub
-        
-    }
-
-    public void evaluate(Sentence sentence) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public int compareTo(KnowledgeSource o) {
-        int priorityCmp = this.getPriority().compareTo(o.getPriority());
-        return (priorityCmp != 0 ? priorityCmp : 0 );
     }
 
     @Override
     public String toString() {
         return KnowledgeSourceConstants.SENTENCE_KNOWLEDGE_SOURCE;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return 0;
     }
 
 }

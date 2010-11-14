@@ -17,8 +17,6 @@
 package org.dlw.ai.blackboard.knowledge.primitive;
 
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.Sentence;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
@@ -44,38 +42,11 @@ public class LegalStringKnowledgeSource extends StringKnowledgeSource {
     }
 
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#compareTo(org.dlw.ai.blackboard.knowledge.KnowledgeSource)
-     */
-    @Override
-    public int compareTo(KnowledgeSource o) {
-        // TODO Auto-generated method stub
-        return super.compareTo(o);
-    }
-
-    /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#toString()
      */
     @Override
     public String toString() {
         return KnowledgeSourceConstants.LEGAL_STRING_KNOWLEDGE_SOURCE;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object o) {
-        // TODO Auto-generated method stub
-        return super.equals(o);
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
     }
 
 }

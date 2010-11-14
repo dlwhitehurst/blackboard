@@ -25,7 +25,6 @@ import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
  */
 public class CommonSuffixKnowledgeSource extends StringKnowledgeSource {
 
-
     /**
      * unique serial identifier
      */
@@ -37,24 +36,6 @@ public class CommonSuffixKnowledgeSource extends StringKnowledgeSource {
     @Override
     public String toString() {
         return KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.domain.BaseObject#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object o) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.domain.BaseObject#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return 0;
     }
 
 }

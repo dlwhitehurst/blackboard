@@ -16,12 +16,16 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.BaseObject;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.rule.RuleSet;
+import org.dlw.ai.blackboard.util.Logger;
 
 /**
  * This interface defines the signature knowledge source object.  
@@ -36,6 +40,16 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
      * unique serial identifier
      */
     private static final long serialVersionUID = 3094361637466019949L;
+
+    /**
+     * Commons logging class instance
+     */
+    protected final Log log = LogFactory.getLog(KnowledgeSource.class);
+
+    /**
+     * Attribute class logger
+     */
+    protected Logger logger;
     
     /**
      * Attribute priority
@@ -57,7 +71,20 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
      * @param sentence
      *   the domain problem {@link org.dlw.ai.blackboard.domain.Sentence}
      */
-    public abstract void evaluate(Sentence sentence);
+    public void evaluate(Sentence sentence) {
+
+        /**
+         * Initialize logger
+         */
+        logger = Logger.getInstance();
+        logger.wrap(log);
+
+        List<String> messages = KnowledgeSourceUtil.considerRules(this, sentence);
+        
+        for (String message: messages) {
+            logger.info(message);
+        }
+    }
 
     /**
      * Find dependent knowledge sources and tell them to add, retract, etc. a
@@ -69,16 +96,6 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
      *   the {@link org.dlw.ai.blackboard.domain.Assumption} or assumed statement of fact.
      */
     public abstract void notifyDependents(String direction, Assumption statement);
-
-    /**
-     * Utilizes Comparator method based on priority attribute for sorting
-     * @param o
-     *   the object being compared, e.g. {@link org.dlw.ai.blackboard.knowledge.KnowledgeSource}
-     */
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    public abstract int compareTo(KnowledgeSource o);
 
     /**
      * @param priority the priority to set
@@ -130,4 +147,48 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
     public void reset() {
         pastAssumptions.clear();
     }
+    
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+
+        boolean result = false;
+
+        if (obj.getClass().getCanonicalName().equals(this.getClass().getCanonicalName())) {
+            KnowledgeSource ks = (KnowledgeSource) obj;
+            if (ks.toString().equals(this.toString())) {
+                if (ks.getRuleSet().equals(this.getRuleSet())) {
+                    if (ks.getPastAssumptions().equals(this.getPastAssumptions())) {
+                        result = true;
+                    }
+                }
+            }
+        }
+        
+        return result;
+    }
+    
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return -1;
+    }
+
+    /**
+     * Implementation based on priority ordering
+     */
+    public int compareTo(KnowledgeSource o) {
+        int priorityCmp = this.getPriority().compareTo(o.getPriority());
+        return (priorityCmp != 0 ? priorityCmp : 0 );
+    }
+    
 }

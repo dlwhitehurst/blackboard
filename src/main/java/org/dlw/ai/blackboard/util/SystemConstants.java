@@ -38,7 +38,7 @@ public final class SystemConstants {
     /**
      * The cryptogram sentence or string could not be asserted.
      */
-    public static final String NO_ASSERT_ERROR = "I could not assert the problem!";
+    public static final String NO_PROBLEM_ASSERT_ERROR = "I could not assert the problem!";
 
     /**
      * The system could not solve the cipher.

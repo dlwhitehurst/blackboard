@@ -16,8 +16,6 @@
  */
 package org.dlw.ai.blackboard;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.util.SystemConstants;
 
 /**
@@ -50,11 +48,6 @@ public final class Cryptographer {
     private Controller controller;
 
     /**
-     * Attribute class log
-     */
-    private static final Log log = LogFactory.getLog(Cryptographer.class);
-
-    /**
      * Default constructor
      */
     public Cryptographer() {
@@ -70,9 +63,6 @@ public final class Cryptographer {
      */
     public String decipher(String ciphertext) {
 
-        /**
-         * Initialize
-         */
         init();
 
         /**
@@ -85,14 +75,12 @@ public final class Cryptographer {
          * Assert the problem at the blackboard
          */
         if (!blackboard.assertProblem(ciphertext)) {
-            log.error(SystemConstants.NO_ASSERT_ERROR);
-            return SystemConstants.NO_ASSERT_ERROR;
+            return SystemConstants.NO_PROBLEM_ASSERT_ERROR;
         }
 
         /**
          * Reset the controller
          */
-
         controller.reset();
 
         /**
@@ -101,7 +89,7 @@ public final class Cryptographer {
         controller.connect();
 
         /**
-         * Kick start the controller
+         * Start the controller
          */
         return runController();
 

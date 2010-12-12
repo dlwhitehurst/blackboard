@@ -18,7 +18,6 @@ package org.dlw.ai.blackboard;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.SystemConstants;
 
 /**
@@ -35,7 +34,7 @@ import org.dlw.ai.blackboard.util.SystemConstants;
  * </p>
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  * 
  */
 public final class Cryptographer {
@@ -51,31 +50,14 @@ public final class Cryptographer {
     private Controller controller;
 
     /**
-     * Attribute brain or source of knowledge
-     */
-    private Brain brain;
-
-    /**
      * Attribute class log
      */
     private static final Log log = LogFactory.getLog(Cryptographer.class);
 
     /**
-     * Attribute class logger
-     */
-    private final Logger logger;
-
-    /**
      * Default constructor
      */
     public Cryptographer() {
-
-        /**
-         * initialize logger
-         */
-        logger = Logger.getInstance();
-        logger.wrap(log);
-
     }
 
     /**
@@ -89,6 +71,11 @@ public final class Cryptographer {
     public String decipher(String ciphertext) {
 
         /**
+         * Initialize
+         */
+        init();
+
+        /**
          * Reset the domain objects and all knowledge sources and clean the
          * blackboard for our new problem.
          */
@@ -98,13 +85,14 @@ public final class Cryptographer {
          * Assert the problem at the blackboard
          */
         if (!blackboard.assertProblem(ciphertext)) {
-            logger.error(SystemConstants.NO_ASSERT_ERROR);
+            log.error(SystemConstants.NO_ASSERT_ERROR);
             return SystemConstants.NO_ASSERT_ERROR;
         }
 
         /**
          * Reset the controller
          */
+
         controller.reset();
 
         /**
@@ -120,48 +108,12 @@ public final class Cryptographer {
     }
 
     /**
-     * @param blackboard
-     *            the blackboard to set
+     * Initialize the cryptographer and get the context objects
      */
-    public void setBlackboard(Blackboard blackboard) {
-        this.blackboard = blackboard;
-    }
-
-    /**
-     * @return the blackboard
-     */
-    public Blackboard getBlackboard() {
-        return blackboard;
-    }
-
-    /**
-     * @param controller
-     *            the controller to set
-     */
-    public void setController(Controller controller) {
-        this.controller = controller;
-    }
-
-    /**
-     * @return the controller
-     */
-    public Controller getController() {
-        return controller;
-    }
-
-    /**
-     * @param brain
-     *            the brain to set
-     */
-    public void setBrain(Brain brain) {
-        this.brain = brain;
-    }
-
-    /**
-     * @return the brain
-     */
-    public Brain getBrain() {
-        return brain;
+    private void init() {
+        BlackboardContext context = BlackboardContext.getInstance();
+        this.blackboard = context.getBlackboard();
+        this.controller = context.getController();
     }
 
     /**
@@ -177,7 +129,7 @@ public final class Cryptographer {
             controller.processNextHint();
 
             if (blackboard.isSolved()) {
-                this.getController().done();
+                controller.done();
                 return blackboard.retrieveSolution().value();
             }
             break; // TODO - remove

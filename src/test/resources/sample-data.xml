@@ -68,14 +68,28 @@
             <value description="before_str">W</value>
             <value description="after_str">V</value>
             <value description="rset_id">-13</value>
-            <value description="rule_type">CONVERSION</value>
+            <value description="rule_type">conversion</value>
         </row>
         <row>
             <value description="id">-101</value>
             <value description="before_str"></value>
             <value description="after_str"></value>
             <value description="rset_id">-2</value>
-            <value description="rule_type">METHOD</value>
+            <value description="rule_type">method</value>
+        </row>
+        <row>
+            <value description="id">-102</value>
+            <value description="before_str">?</value>
+            <value description="after_str">I</value>
+            <value description="rset_id">-4</value>
+            <value description="rule_type">regex</value>
+        </row>
+        <row>
+            <value description="id">-103</value>
+            <value description="before_str">?</value>
+            <value description="after_str">A</value>
+            <value description="rset_id">-4</value>
+            <value description="rule_type">regex</value>
         </row>
 
     </table>

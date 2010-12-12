@@ -46,7 +46,7 @@ public abstract class BlackboardObject extends Dependent {
     /**
      * Each blackboard object can also remove itself or resign from the problem
      * domain, e.g. {@link CipherLetter} objects can remove themselves and allow
-     * an {@link Alphabet} or plaintext equivalent to be its representative
+     * an {@link Letter} or plaintext equivalent to be its representative
      */
     public final void resign() {
         Blackboard blackboard = (Blackboard) UniversalContext

@@ -19,8 +19,8 @@ package org.dlw.ai.blackboard.domain;
 /**
  * <p>This class is used to represent the cryptic letter or alphabet used by
  * the initial cryptogram. These letter objects will ultimately be decoded
- * into understandable {@link Alphabet}. No conversion is kept here, however
- * the {@link Alphabet} class will keep a mapping as the cipher letters are
+ * into understandable {@link Letter}. No conversion is kept here, however
+ * the {@link Letter} class will keep a mapping as the cipher letters are
  * decoded.</p>
  * 
  * <blockquote><i>Cipher - "(def.) a secret or disguised way of writing: a code."</i></blockquote>

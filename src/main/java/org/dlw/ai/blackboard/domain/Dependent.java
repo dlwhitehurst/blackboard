@@ -76,6 +76,11 @@ public abstract class Dependent {
         return references.remove(ref);
     }
 
-    public abstract void notifyDependents();
+    public void notifyDependents() {
+        // call evaluate on all dependents
+        for (KnowledgeSource knowledgeSource : references) {
+            knowledgeSource.evaluate();
+        }
+    }
 
 }

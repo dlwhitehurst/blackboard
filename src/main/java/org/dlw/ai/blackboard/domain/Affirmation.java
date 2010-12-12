@@ -30,7 +30,7 @@ import java.util.Stack;
  * letter at any time and can be used to set the "affirmed" character if assumed
  * to have a plain-text solution back to the cipher character if needed. The
  * {@link Affirmation#plainText} method, however will only return the plain-text
- * character if an {@link Alphabet} object has been created and placed on the
+ * character if an {@link Letter} object has been created and placed on the
  * {@link org.dlw.ai.blackboard.Blackboard}.
  * </p>
  * 
@@ -60,7 +60,7 @@ public class Affirmation {
      * The plaintext equivalent relating to this affirmation. We think this is
      * the logical letter replacement or solution for the ciphertext letter
      */
-    private Alphabet solvedLetter;
+    private Letter solvedLetter;
 
     /**
      * Our stack of assumptions. Remember that assertions extend assumption
@@ -114,7 +114,7 @@ public class Affirmation {
     public boolean isPlainLetterAsserted() {
         boolean result = false;
 
-        Stack<Assumption> stack = this.solvedLetter.getAffirmations()
+        Stack<Assumption> stack = this.solvedLetter.getAffirmation()
                 .getStatements();
         for (int i = 0; i < stack.size(); i++) {
             Assumption assumption = stack.pop();
@@ -156,7 +156,7 @@ public class Affirmation {
     public boolean plainLetterHasAssumption() {
         boolean result = false;
 
-        Stack<Assumption> stack = this.solvedLetter.getAffirmations()
+        Stack<Assumption> stack = this.solvedLetter.getAffirmation()
                 .getStatements();
         if (stack.size() > 0) {
             result = true;
@@ -199,9 +199,9 @@ public class Affirmation {
     }
 
     /**
-     * @return {@link Alphabet}
+     * @return {@link Letter}
      */
-    public Alphabet getSolvedLetter() {
+    public Letter getSolvedLetter() {
         return solvedLetter;
     }
 
@@ -209,7 +209,7 @@ public class Affirmation {
      * @param solvedLetter
      *            the solvedLetter to set
      */
-    public void setSolvedLetter(Alphabet solvedLetter) {
+    public void setSolvedLetter(Letter solvedLetter) {
         this.solvedLetter = solvedLetter;
     }
 

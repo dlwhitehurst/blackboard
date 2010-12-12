@@ -5,11 +5,7 @@
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="cryptographer"
-          class="org.dlw.ai.blackboard.Cryptographer"> 
-          <property name="blackboard" ref="blackboard" />
-          <property name="brain" ref="brain" />
-          <property name="controller" ref="controller" />
-    </bean>
+          class="org.dlw.ai.blackboard.Cryptographer" /> 
 
     <bean id="controller"
           class="org.dlw.ai.blackboard.Controller" />

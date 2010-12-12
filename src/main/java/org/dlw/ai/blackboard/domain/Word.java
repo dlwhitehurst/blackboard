@@ -40,9 +40,9 @@ import java.util.Stack;
 public class Word extends BlackboardObject {
 
     /**
-     * List of cipher letters that make up this ciphered word
+     * List of letters that make up this word
      */
-    private List<CipherLetter> letters = new ArrayList<CipherLetter>();
+    private List<Letter> letters = new ArrayList<Letter>();
 
     /**
      * The string word
@@ -94,10 +94,10 @@ public class Word extends BlackboardObject {
         /**
          * Iterate over all letters, be sure there is an assertion for each
          */
-        List<CipherLetter> list = this.getLetters();
+        List<Letter> list = this.getLetters();
         int count = list.size();
 
-        for (CipherLetter letter : list) {
+        for (Letter letter : list) {
             Stack<Assumption> stack = letter.getAffirmation().getStatements();
             for (int i = 0; i < stack.size(); i++) {
                 Assumption assumption = stack.pop();
@@ -122,7 +122,7 @@ public class Word extends BlackboardObject {
      * 
      * @param letters
      */
-    public void setLetters(List<CipherLetter> letters) {
+    public void setLetters(List<Letter> letters) {
         this.letters = letters;
     }
 
@@ -131,14 +131,8 @@ public class Word extends BlackboardObject {
      * 
      * @return list of CipherLetter(s)
      */
-    public List<CipherLetter> getLetters() {
+    public List<Letter> getLetters() {
         return letters;
-    }
-
-    @Override
-    public void notifyDependents() {
-        // TODO Auto-generated method stub
-
     }
 
 }

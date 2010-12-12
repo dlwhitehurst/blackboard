@@ -16,14 +16,12 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.BaseObject;
-import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.rule.RuleSet;
 import org.dlw.ai.blackboard.util.Logger;
 
@@ -71,20 +69,7 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
      * @param sentence
      *   the domain problem {@link org.dlw.ai.blackboard.domain.Sentence}
      */
-    public void evaluate(Sentence sentence) {
-
-        /**
-         * Initialize logger
-         */
-        logger = Logger.getInstance();
-        logger.wrap(log);
-
-        List<String> messages = KnowledgeSourceUtil.considerRules(this, sentence);
-        
-        for (String message: messages) {
-            logger.info(message);
-        }
-    }
+    public abstract void evaluate();
 
     /**
      * Find dependent knowledge sources and tell them to add, retract, etc. a

@@ -46,4 +46,10 @@ public class StringKnowledgeSource extends KnowledgeSource {
         return KnowledgeSourceConstants.STRING_KNOWLEDGE_SOURCE;
     }
 
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

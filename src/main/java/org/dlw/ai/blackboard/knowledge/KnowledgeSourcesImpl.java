@@ -149,7 +149,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
         }
 
         /**
-         * Load all with BlackboardContext and Rules
+         * Load all with rules and priorities
          */
         try {
             initializeKnowledgeSources();
@@ -304,31 +304,6 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
                         KnowledgeSourceConstants.DIRECT_SUBSTITUTION_KNOWLEDGE_SOURCE);
 
         addKS(directSubstitutionKnowledgeSource);
-    }
-
-    /**
-     * Public method to allow a single KnowledgeSource to evaluate the sentence
-     */
-    public void startKnowledgeSource(KnowledgeSource knowledgeSource) {
-        Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
-        for (int i = 0; i < blackboard.size(); i++) {
-            BlackboardObject obj = blackboard.get(i);
-            if (obj.getClass().equals(
-                    org.dlw.ai.blackboard.domain.Sentence.class)) {
-                Sentence sentence = (Sentence) obj;
-                knowledgeSource.evaluate(sentence);
-            }
-        }
-    }
-
-    /**
-     * Public method to allow all KnowledgeSources to evaluate the sentence at once
-     */
-    public void startAllKnowledgeSources() {
-        for (int i = 0; i < this.size(); i++) {
-            KnowledgeSource ks = (KnowledgeSource) this.get(i);
-            startKnowledgeSource(ks);
-        }
     }
 
     /**

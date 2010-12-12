@@ -16,8 +16,24 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
+import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.domain.Letter;
+import org.dlw.ai.blackboard.domain.Sentence;
+import org.dlw.ai.blackboard.domain.Word;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.rule.Rule;
+import org.dlw.ai.blackboard.rule.RuleSet;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.util.MessageConstants;
+import org.dlw.ai.blackboard.util.SentenceUtil;
+import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
@@ -30,6 +46,11 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
      * unique serial identifier
      */
     private static final long serialVersionUID = 356412919991462052L;
+
+    /**
+     * Commons logging class instance
+     */
+    private final Log log = LogFactory.getLog(DirectSubstitutionKnowledgeSource.class);
 
     /*
      * (non-Javadoc)
@@ -44,7 +65,7 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
     /*
      * (non-Javadoc)
      * 
-     * @seeorg.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#
+     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#
      * notifyDependents(java.lang.String,
      * org.dlw.ai.blackboard.domain.Assumption)
      */
@@ -52,6 +73,80 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
     public void notifyDependents(String direction, Assumption statement) {
         // TODO Auto-generated method stub
         super.notifyDependents(direction, statement);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
+     */
+    @Override
+    public void evaluate() {
+
+        Blackboard blackboard = (Blackboard) UniversalContext
+                .getApplicationContext().getBean("blackboard");
+        Sentence sentence = blackboard.getSentence();
+
+        RuleSet set = this.getRuleSet();
+
+        List<Rule> rules = set.getRules();
+
+        for (int i = 0; i < rules.size(); i++) {
+            Rule rule = rules.get(i);
+            processConversionRule(sentence, rule, this);
+        }
+    }
+
+    private void processConversionRule(Sentence sentence, Rule rule,
+            KnowledgeSource ks) {
+
+        List<Word> words = SentenceUtil.getWords(sentence);
+        List<Letter> letters;
+
+        for (Word word : words) {
+            letters = SentenceUtil.getLetters(word);
+
+            String cipher = rule.getBefore();
+            String plainText = rule.getAfter();
+
+            for (Letter letter : letters) {
+
+                if (letter.value().equals(cipher)) {
+                    makeAssertion(ks, cipher, plainText);
+                    log.info("processConversionRule->The DirectSubstitutionKnowledgeSource made an assertion to change the letter " + cipher + " to letter " + plainText + ".");
+                    return;
+                }
+            }
+        }
+
+    }
+    
+    private void makeAssertion(KnowledgeSource ks, String cipher,
+            String plainText) {
+
+        /**
+         * Create and load an Assertion
+         */
+        Assertion assertion = new Assertion();
+        assertion.setCipherLetter(cipher);
+        assertion.setPlainLetter(plainText);
+        assertion.setReason(MessageConstants.SUBSTITUTION_ASSERT);
+
+        /**
+         * Get data-structure to hold new Assertion
+         */
+        ConcurrentLinkedQueue<Assumption> queue = ks.getPastAssumptions();
+
+        /**
+         * Load our Assertion
+         */
+        queue.add(assertion);
+
+        /**
+         * Add Assumption/Assertion queue to this specific knowledge source
+         */
+        ks.setPastAssumptions(queue);
+
     }
 
 }

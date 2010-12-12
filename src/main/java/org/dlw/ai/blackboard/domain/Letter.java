@@ -82,17 +82,9 @@ public class Letter extends BlackboardObject {
      * @param cipherLetter
      * @param plainLetter
      */
-    public Letter(final String cipherLetter, final String plainLetter) {
-        if (cipherLetter.equals("") && log.isErrorEnabled()) {
-            log.error(SystemConstants.EMPTY_CIPHER_LETTER_ERROR);
-        }
-
-        if (plainLetter.equals("") && log.isErrorEnabled()) {
-            log.error(SystemConstants.EMPTY_PLAIN_LETTER_ERROR);
-        }
+    public Letter(final String cipherLetter) {
 
         this.cipherLetter = cipherLetter;
-        this.plainLetter = plainLetter;
 
     }
 

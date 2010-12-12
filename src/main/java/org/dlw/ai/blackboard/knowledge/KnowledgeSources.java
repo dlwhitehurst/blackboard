@@ -60,17 +60,4 @@ public interface KnowledgeSources {
      */
     void initializeKnowledgeSources() throws InitializationException;
 
-    /**
-     * 
-     * @param knowledgeSource
-     *   the {@link KnowledgeSource} to activate
-     */
-    void startKnowledgeSource(KnowledgeSource knowledgeSource);
-    
-    /**
-     * This method is called once when controller begins
-     */
-    void startAllKnowledgeSources();
-    
-
 }

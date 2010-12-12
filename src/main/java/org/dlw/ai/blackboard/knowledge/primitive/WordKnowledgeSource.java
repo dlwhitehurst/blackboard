@@ -43,4 +43,10 @@ public class WordKnowledgeSource extends KnowledgeSource {
         return KnowledgeSourceConstants.WORD_KNOWLEDGE_SOURCE;
     }
 
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

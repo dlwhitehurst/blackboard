@@ -54,7 +54,7 @@ public class Affirmation {
     /**
      * The cipher letter relating to this affirmation
      */
-    private CipherLetter cipherLetter;
+    private Letter cipherLetter;
 
     /**
      * The plaintext equivalent relating to this affirmation. We think this is
@@ -186,7 +186,7 @@ public class Affirmation {
     /**
      * @return {@link CipherLetter}
      */
-    public CipherLetter getCipherLetter() {
+    public Letter getCipherLetter() {
         return cipherLetter;
     }
 
@@ -194,7 +194,7 @@ public class Affirmation {
      * @param cipherLetter
      *   the {@link CipherLetter} to set
      */
-    public void setCipherLetter(CipherLetter cipherLetter) {
+    public void setCipherLetter(Letter cipherLetter) {
         this.cipherLetter = cipherLetter;
     }
 

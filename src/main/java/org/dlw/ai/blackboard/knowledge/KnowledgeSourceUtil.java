@@ -22,13 +22,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.Blackboard;
 import org.dlw.ai.blackboard.dao.RuleSetDao;
 import org.dlw.ai.blackboard.dao.hibernate.RuleSetDaoHibernate;
 import org.dlw.ai.blackboard.domain.Antecedent;
 import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.CipherLetter;
 import org.dlw.ai.blackboard.domain.Consequent;
+import org.dlw.ai.blackboard.domain.Letter;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
 import org.dlw.ai.blackboard.exception.RuleSetNameNotFoundException;
@@ -113,16 +114,14 @@ public final class KnowledgeSourceUtil {
      *            the {@link KnowledgeSource}
      * @param sentence
      *            the {@link org.dlw.ai.blackboard.domain.Sentence} object
-     * @param methodMessage
-     *            the String message if RuleType METHOD
-     * @param conversionMessage
-     *            the String message if RuleType CONVERSION
      */
-    public static List<String> considerRules(KnowledgeSource ks, Sentence sentence) {
+    public static List<String> considerRules(KnowledgeSource ks) {
         
         ArrayList<String> msgs = new ArrayList<String>();
         
-        List<Rule> rules = ks.getRuleSet().getRules();
+        RuleSet set = ks.getRuleSet();
+        
+        List<Rule> rules = set.getRules();
 
         for (int i = 0; i < rules.size(); i++) {
             Rule rule = rules.get(i);
@@ -137,6 +136,10 @@ public final class KnowledgeSourceUtil {
             }
 
             if (ruleType.equals(RuleType.CONVERSION)) {
+                Blackboard blackboard = (Blackboard) UniversalContext.getApplicationContext()
+                .getBean("blackboard");
+                Sentence sentence = blackboard.getSentence();
+               
                 processConversionRule(sentence, rule, ks);
             }
         }
@@ -175,7 +178,7 @@ public final class KnowledgeSourceUtil {
     private static void processConversionRule(Sentence sentence, Rule rule,
             KnowledgeSource ks) {
         List<Word> words = SentenceUtil.getWords(sentence);
-        List<CipherLetter> letters;
+        List<Letter> letters;
 
         for (Word word : words) {
             letters = SentenceUtil.getLetters(word);
@@ -183,7 +186,7 @@ public final class KnowledgeSourceUtil {
             String cipher = rule.getBefore();
             String plainText = rule.getAfter();
 
-            for (CipherLetter letter : letters) {
+            for (Letter letter : letters) {
 
                 if (letter.value().equals(cipher)) {
                     makeAssertion(ks, cipher, plainText);

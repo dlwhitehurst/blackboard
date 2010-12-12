@@ -17,12 +17,13 @@
 package org.dlw.ai.blackboard;
 
 import java.util.Collections;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourcesImpl;
-import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.SystemConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
@@ -33,7 +34,7 @@ import org.dlw.ai.blackboard.util.UniversalContext;
  * turn until the problem is solved.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  * 
  */
 public class Controller {
@@ -48,8 +49,6 @@ public class Controller {
      */
     private static final Log log = LogFactory.getLog(Controller.class);
 
-    private Logger logger;
-    
     /**
      * Attribute enum state of the controller
      */
@@ -69,15 +68,10 @@ public class Controller {
      * Public constructor
      */
     public Controller() {
-        
-        logger = Logger.getInstance();
-        logger.wrap(log);
-        
         /**
          * State - initializing
          */
         this.state = ControllerState.INITIALIZING;
-        
     }
 
     /**
@@ -87,7 +81,7 @@ public class Controller {
     public final void done() {
 
         System.exit(0); // Temporary for testing
-        
+
         state = ControllerState.SOLVED;
     }
 
@@ -97,7 +91,7 @@ public class Controller {
      * @return boolean primitive
      */
     public final boolean isSolved() {
-        
+
         boolean result = false;
 
         if (state == ControllerState.SOLVED) {
@@ -123,24 +117,47 @@ public class Controller {
      */
     public final void processNextHint() {
 
-        state = ControllerState.SELECTING;
-
         KnowledgeSourcesImpl knowledgeSources = (KnowledgeSourcesImpl) brain
-        .getKnowledgeSources();
-        
+                .getKnowledgeSources();
+
         Collections.sort(knowledgeSources);
-        
+
+        /**
+         * go thru ks experts and choose the best one to go to the blackboard
+         */
         for (KnowledgeSource ks : knowledgeSources) {
 
-            activeKnowledgeSource = ks;
-            addHint(ks);
-        
+            ks.evaluate();
+
+            ConcurrentLinkedQueue<Assumption> queue = ks.getPastAssumptions();
+
+            if (queue.size() > 0) {
+                activeKnowledgeSource = ks;
+                break;
+            }
+
         }
-        
-        /**
-         * Expert stands down
-         */
-        removeHint(activeKnowledgeSource);
+
+        log.info("processNextHint->The "
+                + activeKnowledgeSource.toString() + " is now active.");
+
+        if (activeKnowledgeSource != null) {
+
+            /**
+             * Take a turn at the board
+             */
+            visitBlackboard(activeKnowledgeSource);
+
+            /**
+             * Step down and give the next expert a chance
+             */
+            leaveBlackboard(activeKnowledgeSource);
+            
+            /**
+             * Null activeKnowledgeSource
+             */
+            activeKnowledgeSource = null;
+        }
 
     }
 
@@ -150,6 +167,8 @@ public class Controller {
      * brain is called.
      */
     public final void reset() {
+
+        activeKnowledgeSource = null;
 
         /**
          * kill any existing Brain
@@ -169,47 +188,35 @@ public class Controller {
     }
 
     /**
-     * Private method to add a hint to the blackboard problem
+     * Private method for KnowledgeSource expert to have a turn at the
+     * blackboard problem
      * 
      * @param hint
-     *            the KnowledgeSource (or Expert) to provide hint for solution
+     *            the KnowledgeSource (or Expert) to provide input for solution
      */
-    private void addHint(KnowledgeSource hint) {
+    private void visitBlackboard(KnowledgeSource hint) {
 
         blackboard = (Blackboard) UniversalContext.getApplicationContext()
                 .getBean("blackboard");
 
-        blackboard.connect(hint);
+        log.info("visitBlackboard-> Controller is now connecting "
+                + hint.toString() + " to the blackboard.");
 
-        if (log.isInfoEnabled()) {
-            log.info("Controller-addHint(): Controller has connected knowledge source to blackboard: "
-                            + hint.toString());
-        } else {
-            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-            System.exit(0); // die
-        }
+        blackboard.connect(hint);
 
     }
 
     /**
-     * Private method to remove a hint from the blackboard problem
+     * Private method to leave or disengage from the blackboard.
      * 
      * @param hint
      *            the KnowledgeSource (or Expert)
      */
-    private void removeHint(KnowledgeSource hint) {
+    private void leaveBlackboard(KnowledgeSource hint) {
 
         blackboard.disconnect(hint);
-
-        if (log.isInfoEnabled()) {
-            log
-                    .info("Controller-removeHint(): Controller has disconnected knowledge source from blackboard: "
-                            + hint.toString());
-        } else {
-            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-            System.exit(0); // die
-        }
-
+        log.info("leaveBlackboard-> Controller has disconnected the "
+                + hint.toString() + " from the blackboard.");
     }
 
     /**
@@ -218,10 +225,8 @@ public class Controller {
     public final void connect() {
 
         brain.engage();
-
         if (log.isInfoEnabled()) {
-            log
-                    .info("Controller-connect(): Controller and Brain are now connected.");
+            log.info("Controller::connect-> Controller and Brain are now connected.");
         } else {
             System.err.println(SystemConstants.INFO_LEVEL_FATAL);
             System.exit(0); // die

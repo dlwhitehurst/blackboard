@@ -22,15 +22,13 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.domain.Alphabet;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.BlackboardObject;
-import org.dlw.ai.blackboard.domain.CipherLetter;
+import org.dlw.ai.blackboard.domain.Letter;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.util.BlackboardUtil;
-import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.MessageConstants;
 import org.dlw.ai.blackboard.util.SentenceUtil;
 import org.dlw.ai.blackboard.util.StringTrimmer;
@@ -49,7 +47,7 @@ import org.dlw.ai.blackboard.util.SystemConstants;
  * </p>
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  * 
  */
 @SuppressWarnings("serial")
@@ -61,26 +59,9 @@ public class Blackboard extends ArrayList<BlackboardObject> {
     private final Log log = LogFactory.getLog(Blackboard.class);
 
     /**
-     * Attribute class logger
-     */
-    private Logger logger;
-
-    /**
-     * Attribute active knowledge source
-     */
-    private KnowledgeSource activeKnowledgeSource;
-
-    /**
      * Default constructor
      */
     public Blackboard() {
-
-        /**
-         * Initialize logger
-         */
-        logger = Logger.getInstance();
-        logger.wrap(log);
-
     }
 
     /**
@@ -99,15 +80,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
             return new Sentence(SystemConstants.EARLY_RETRIEVAL_ERROR);
         }
 
-        Sentence sentence = null;
-
-        for (BlackboardObject obj : this) {
-            if (obj.getClass().equals(
-                    org.dlw.ai.blackboard.domain.Sentence.class)) {
-                sentence = (Sentence) obj;
-            }
-        }
-        return sentence;
+        return getSentence();
     }
 
     /**
@@ -115,15 +88,11 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      */
     public final void reset() {
 
-        /**
-         * Clear the blackboard array
-         */
         this.clear();
 
-        /**
-         * Notify
-         */
-        logger.info(MessageConstants.BLACKBOARD_RESET);
+        if (log.isDebugEnabled()) {
+            log.debug(MessageConstants.BLACKBOARD_RESET);
+        }
     }
 
     /**
@@ -174,54 +143,55 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         Sentence sentence = new Sentence(code);
 
         /**
-         * This is important!
-         */
-        sentence.register();
-
-        /**
          * Establish initial sentence, word, and letter hierarchy. WARNING: This
          * method should be called after any modification to the blackboard
          * sentence.
          */
-        updateSentenceHierarchy(true);
+        buildSentenceGraph(sentence);
 
+        /**
+         * Register the sentence, the words, and each cipher letter with the
+         * blackboard. This method adds each domain object to the blackboard
+         * object collection or ArrayList<BlackboardObject>
+         */
+        registerBlackboardObjects(sentence);
+
+        /**
+         * Return a true result
+         */
         return result;
     }
 
-    /**
-     * Private method to update the hierarchical structure of the blackboard
-     * sentence object. This method also registers each object (and type) in the
-     * flat array of the blackboard data-structure if the initial parameter is
-     * set to true.
-     * 
-     * @param initial
-     */
-    private void updateSentenceHierarchy(boolean initial) {
-
-        /**
-         * Search the ArrayList for our one and only sentence
-         */
-        Sentence sentence = null;
-        sentence = getSentence();
+    private void buildSentenceGraph(Sentence sentence) {
 
         List<Word> words = SentenceUtil.getWords(sentence);
         sentence.setWords(words);
 
         for (Word word : words) {
-
-            if (initial) {
-                word.register();
-            }
-
-            List<CipherLetter> letters = SentenceUtil.getLetters(word);
+            List<Letter> letters = SentenceUtil.getLetters(word);
             word.setLetters(letters);
+        }
+    }
 
-            for (CipherLetter letter : letters) {
-                if (initial) {
-                    letter.register();
-                }
+    /**
+     * 
+     * @param sentence
+     */
+    private void registerBlackboardObjects(Sentence sentence) {
+
+        sentence.register();
+
+        List<Word> words = SentenceUtil.getWords(sentence);
+
+        for (Word word : words) {
+
+            word.register();
+
+            List<Letter> letters = SentenceUtil.getLetters(word);
+
+            for (Letter letter : letters) {
+                letter.register();
             }
-
         }
     }
 
@@ -235,39 +205,24 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      */
     public final void connect(KnowledgeSource ks) {
 
-        ks.evaluate(getSentence());
-
         ConcurrentLinkedQueue<Assumption> queue = ks.getPastAssumptions();
 
         if (queue.size() > 0) {
-            Assumption assumption = queue.peek();
 
-            /**
-             * Is this an assertion (assumption)? If so, then replace every
-             * occurrence with an Alphabet type. Also, notify all dependent
-             * knowledge sources to make any adjustments if assertions are made.
-             */
-            if (!assumption.isRetractable()) { // assertion
+            Assumption assumption = queue.peek();
 
                 /**
                  * Search the ArrayList for our one and only sentence
                  */
-                Sentence sentence = null;
-                sentence = getSentence();
+                Sentence sentence = getSentence();
 
                 /**
-                 * make affirmation statement on letter-stack (push assumption
-                 * (assertion))
+                 * make affirmation statement on letter-stack (push assumptions)
                  */
-                updateAffirmationAssertions(sentence, assumption);
-
-            } else { // assumption only
-                //ks.evaluate(getSentence()); redundant
-                // what goes on here?
-            }
+                updateAffirmations(sentence, assumption);
         }
 
-        BlackboardUtil.outputSnapshot(this);
+        //BlackboardUtil.outputSnapshot(this);
         BlackboardUtil.outputProgress(this);
 
     }
@@ -280,20 +235,28 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      * @param sentence
      * @param assumption
      */
-    private void updateAffirmationAssertions(Sentence sentence,
-            Assumption assumption) {
+    private void updateAffirmations(Sentence sentence, Assumption assumption) {
 
         assumption.register();
 
         for (Word word : sentence.getWords()) {
-            for (CipherLetter cipherLetter : word.getLetters()) {
+            for (Letter cipherLetter : word.getLetters()) {
                 if (cipherLetter.value().equals(assumption.getCipherLetter())) {
-                    Alphabet alphabet = new Alphabet(assumption
-                            .getCipherLetter(), assumption.getPlainLetter());
-                    alphabet.register();
-                    alphabet.getAffirmations().getStatements().push(assumption);
-                    cipherLetter.getAffirmation().setCipherLetter(cipherLetter);
-                    cipherLetter.getAffirmation().setSolvedLetter(alphabet);
+                    cipherLetter.setPlainLetter(assumption.getPlainLetter());
+//                    cipherLetter.
+//                    Letter alphabet = new Letter(
+//                            assumption.getCipherLetter(),
+//                            assumption.getPlainLetter());
+//                    alphabet.register();
+
+//                    log.info("updateAffirmations-> "
+//                            + alphabet.getCipherLetter() + "->"
+//                            + alphabet.getPlainLetter() + ": "
+//                            + assumption.getReason());
+
+//                    alphabet.getAffirmation().getStatements().push(assumption);
+//                    cipherLetter.getAffirmation().setCipherLetter(cipherLetter);
+//                    cipherLetter.getAffirmation().setSolvedLetter(alphabet);
                 }
             }
         }
@@ -308,22 +271,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      *            steps back from the board
      */
     public final void disconnect(KnowledgeSource ks) {
-        this.activeKnowledgeSource = null;
-    }
-
-    /**
-     * @param activeKnowledgeSource
-     *            the activeKnowledgeSource to set
-     */
-    public void setActiveKnowledgeSource(KnowledgeSource activeKnowledgeSource) {
-        this.activeKnowledgeSource = activeKnowledgeSource;
-    }
-
-    /**
-     * @return the activeKnowledgeSource
-     */
-    public KnowledgeSource getActiveKnowledgeSource() {
-        return activeKnowledgeSource;
+        // TODO - pending removal
     }
 
     /**
@@ -348,25 +296,41 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         return sentence;
     }
 
+    /**
+     * This method returns true if a cipher letter exists on the blackboard.
+     * 
+     * @param letter
+     *            the String letter
+     * @return a boolean if exists
+     */
     public boolean cipherLetterExists(String letter) {
 
         boolean result = false;
 
-        for (BlackboardObject obj : this) {
-            if (obj.getClass().equals(
-                    org.dlw.ai.blackboard.domain.CipherLetter.class)) {
-                CipherLetter cipherLetter = (CipherLetter) obj;
-                if (cipherLetter.value().equals(letter)) {
-                    result = true;
-                }
-            }
-        }
+//        for (BlackboardObject obj : this) {
+//            if (obj.getClass().equals(
+//                    org.dlw.ai.blackboard.domain.CipherLetter.class)) {
+//                CipherLetter cipherLetter = (CipherLetter) obj;
+//                if (cipherLetter.value().equals(letter)) {
+//                    result = true;
+//                }
+//            }
+//        }
         return result;
 
     }
 
-    public void createAlphabet(String cipher, String plainText) {
-        Alphabet alphabet = new Alphabet(cipher, plainText);
-        alphabet.register();
-    }
+    /**
+     * This method creates a new plain text alphabet to replace the cipher
+     * letter and registers itself with the blackboard.
+     * 
+     * @param cipher
+     *            the String cipher letter
+     * @param plainText
+     *            the String plain text letter
+     */
+//    public void createAlphabet(String cipher, String plainText) {
+//        Letter alphabet = new Letter(cipher, plainText);
+//        alphabet.register();
+//    }
 }

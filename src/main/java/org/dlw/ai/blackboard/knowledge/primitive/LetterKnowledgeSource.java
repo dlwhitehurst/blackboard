@@ -43,4 +43,10 @@ public class LetterKnowledgeSource extends KnowledgeSource {
     public String toString() {
         return KnowledgeSourceConstants.LETTER_KNOWLEDGE_SOURCE;
     }
+
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
+        
+    }
 }

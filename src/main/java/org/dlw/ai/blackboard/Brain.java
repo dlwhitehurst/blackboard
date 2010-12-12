@@ -22,7 +22,6 @@ import org.dlw.ai.blackboard.exception.CollectionLoadingException;
 import org.dlw.ai.blackboard.exception.InitializationException;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSources;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourcesImpl;
-import org.dlw.ai.blackboard.util.Logger;
 
 /**
  * <p>
@@ -45,7 +44,7 @@ import org.dlw.ai.blackboard.util.Logger;
  * and intellectual and nervous activity.</i></blockquote>
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  * 
  */
 public final class Brain {
@@ -61,21 +60,9 @@ public final class Brain {
     private final Log log = LogFactory.getLog(Brain.class);
     
     /**
-     * Attribute class logger
-     */
-    private final Logger logger;
-    
-    /**
      * Default constructor
      */
-    public Brain() {
-
-        /**
-         * initialize logger
-         */
-        logger = Logger.getInstance();
-        logger.wrap(log);
-    }
+    public Brain() {}
 
     /**
      * Public method to engage and load knowledge sources (intelligence)
@@ -85,9 +72,9 @@ public final class Brain {
         try {
             knowledgeSources.init();
         } catch (InitializationException e) {
-            logger.error("Could not engage and initialize knowledge sources.");
+            log.error("Could not engage and initialize knowledge sources.");
         } catch (CollectionLoadingException e) {
-            logger.error("Some failure occurred loading knowledge source collection.");
+            log.error("Some failure occurred loading knowledge source collection.");
         }
     }
 

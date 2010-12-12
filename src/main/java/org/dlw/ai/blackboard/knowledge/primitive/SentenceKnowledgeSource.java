@@ -16,9 +16,24 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.domain.Antecedent;
 import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.domain.Consequent;
+import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
+import org.dlw.ai.blackboard.rule.Rule;
+import org.dlw.ai.blackboard.rule.RuleSet;
+import org.dlw.ai.blackboard.rule.RuleType;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
+import org.dlw.ai.blackboard.util.Logger;
+import org.dlw.ai.blackboard.util.ReflectionUtil;
+import org.dlw.ai.blackboard.util.UniversalContext;
 
 
 /**
@@ -28,6 +43,16 @@ import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
  */
 public class SentenceKnowledgeSource extends KnowledgeSource {
 
+    /**
+     * Commons logging class instance
+     */
+    private final Log log = LogFactory.getLog(SentenceKnowledgeSource.class);
+
+    /**
+     * Attribute class logger
+     */
+    private Logger logger;
+    
     /**
      * unique serial identifier
      */
@@ -40,6 +65,53 @@ public class SentenceKnowledgeSource extends KnowledgeSource {
     @Override
     public String toString() {
         return KnowledgeSourceConstants.SENTENCE_KNOWLEDGE_SOURCE;
+    }
+
+    /* (non-Javadoc)
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
+     */
+    @Override
+    public void evaluate() {
+
+        /**
+         * Initialize logger
+         */
+        logger = Logger.getInstance();
+        logger.wrap(log);
+
+        RuleSet set = this.getRuleSet();
+        
+        List<Rule> rules = set.getRules();
+
+        for (int i = 0; i < rules.size(); i++) {
+            Rule rule = rules.get(i);
+
+            Antecedent antecedent = rule.getAntecedent();
+            Consequent consequent = rule.getConsequent();
+
+                processMethodRule(antecedent, consequent);
+        }
+
+    }
+
+    /**
+     * Private method to process a method rule
+     * 
+     * @param antecedent
+     *   the {@link org.dlw.ai.blackboard.domain.Antecedent} reference
+     * @param consequent
+     *   the {@link org.dlw.ai.blackboard.domain.Consequent} reference
+     */
+    private void processMethodRule(Antecedent antecedent,
+            Consequent consequent) {
+        if (ReflectionUtil.isAntecedent(antecedent.getFullyQualifiedClass(),
+                antecedent.getMethodName())) {
+
+            ReflectionUtil.execConsequent(consequent.getFullyQualifiedClass(),
+                    consequent.getMethodName());
+        } else {
+            logger.info("Controller::processNextHint->The SolvedKnowledgeSource has NO hint at this time.");
+        }
     }
 
 }

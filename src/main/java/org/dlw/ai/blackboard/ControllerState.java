@@ -9,7 +9,7 @@ package org.dlw.ai.blackboard;
  * defined here.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  * 
  */
 public enum ControllerState {

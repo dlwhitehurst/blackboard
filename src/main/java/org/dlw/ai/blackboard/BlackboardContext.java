@@ -16,7 +16,6 @@
  */
 package org.dlw.ai.blackboard;
 
-import org.dlw.ai.blackboard.util.SystemConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
@@ -32,7 +31,7 @@ import org.dlw.ai.blackboard.util.UniversalContext;
  * </p>
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  * 
  */
 public final class BlackboardContext {
@@ -52,12 +51,15 @@ public final class BlackboardContext {
      */
     private Controller controller;
 
+    private Brain brain;
+    
     /**
      * Hidden constructor
      */
     private BlackboardContext() {
         this.blackboard = (Blackboard) UniversalContext.getApplicationContext().getBean("blackboard");
         this.controller = (Controller) UniversalContext.getApplicationContext().getBean("controller");
+        this.brain = (Brain) UniversalContext.getApplicationContext().getBean("brain");
     }
     
     /**
@@ -79,14 +81,6 @@ public final class BlackboardContext {
     }
 
     /**
-     * @param blackboard
-     *            the {@link Blackboard} object to set
-     */
-    public final void setBlackboard(Blackboard blackboard) {
-        this.blackboard = blackboard;
-    }
-
-    /**
      * @return the {@link Controller} object
      */
     public final Controller getController() {
@@ -94,28 +88,10 @@ public final class BlackboardContext {
     }
 
     /**
-     * @param controller
-     *            the {@link Controller} object to set
+     * @return the {@link Brain} object
      */
-    public final void setController(Controller controller) {
-        this.controller = controller;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public String toString() {
-        return SystemConstants.BLACKBOARD_CONTEXT;
+    public final Brain getBrain() {
+        return brain;
     }
 
 }

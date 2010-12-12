@@ -24,10 +24,9 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
-import org.dlw.ai.blackboard.domain.Alphabet;
+import org.dlw.ai.blackboard.domain.Letter;
 import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.BlackboardObject;
-import org.dlw.ai.blackboard.domain.CipherLetter;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
 
@@ -45,11 +44,6 @@ public final class BlackboardUtil {
     private static final Log log = LogFactory.getLog(BlackboardUtil.class);
 
     /**
-     * Attribute class logger
-     */
-    private static Logger logger;
-    
-    /**
      * Public method to output all flat-hierarchy blackboard objects
      * 
      * @param blackboard
@@ -63,50 +57,45 @@ public final class BlackboardUtil {
         java.util.Date now = calendar.getTime();
         Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
         
-        /**
-         * Initialize logger
-         */
-        logger = Logger.getInstance();
-        logger.wrap(log);
-        logger.info("##############################################################################");
-        logger.info("## BLACKBOARD SNAPSHOT " + currentTimestamp + " ###############################");
-        logger.info("##############################################################################");
+        log.debug("##############################################################################");
+        log.debug("## BLACKBOARD SNAPSHOT " + currentTimestamp + " ###############################");
+        log.debug("##############################################################################");
         
         for (BlackboardObject obj : blackboard) {
 
             if (obj.getClass().equals(
                     org.dlw.ai.blackboard.domain.Sentence.class)) {
                 Sentence sentence = (Sentence) obj;
-                logger.info("SENTENCE: " + sentence.value());
+                log.debug("SENTENCE: " + sentence.value());
             }
             
             if (obj.getClass().equals(
                     org.dlw.ai.blackboard.domain.Word.class)) {
                 Word word = (Word) obj;
-                logger.info("WORD: " + word.value());
+                log.debug("WORD: " + word.value());
             }
             
             if (obj.getClass().equals(
-                    org.dlw.ai.blackboard.domain.CipherLetter.class)) {
-                CipherLetter cipherLetter = (CipherLetter) obj;
-                logger.info("CIPHER: " + cipherLetter.value());
+                    org.dlw.ai.blackboard.domain.Letter.class)) {
+                Letter cipherLetter = (Letter) obj;
+                log.debug("CIPHER: " + cipherLetter.getCipherLetter());
             }
             
             if (obj.getClass().equals(
-                    org.dlw.ai.blackboard.domain.Alphabet.class)) {
-                Alphabet alphabet = (Alphabet) obj;
-                logger.info("ALPHABET: " + alphabet.getCipherLetter() + "=" + alphabet.getPlainLetter());
+                    org.dlw.ai.blackboard.domain.Letter.class)) {
+                Letter alphabet = (Letter) obj;
+                log.debug("ALPHABET: " + alphabet.getCipherLetter() + "=" + alphabet.getPlainLetter());
             }
 
             if (obj.getClass().equals(
                     org.dlw.ai.blackboard.domain.Assertion.class)) {
                 Assertion assertion = (Assertion) obj;
-                logger.info("ASSUMPTION: (retractable=" + assertion.isRetractable() + ") " + assertion.getReason());
+                log.debug("ASSUMPTION: (retractable=" + assertion.isRetractable() + ") " + assertion.getReason());
             }
         
         }
         
-        logger.info("##############################################################################");
+        log.debug("##############################################################################");
         
     }
 
@@ -124,12 +113,6 @@ public final class BlackboardUtil {
         java.util.Date now = calendar.getTime();
         Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
         
-        /**
-         * Initialize logger
-         */
-        logger = Logger.getInstance();
-        logger.wrap(log);
-
         Sentence sentence = null;
         
         for (BlackboardObject obj : blackboard) {
@@ -139,11 +122,11 @@ public final class BlackboardUtil {
             }
         }
 
-        logger.info("##############################################################################");
-        logger.info("## BLACKBOARD STATUS " + currentTimestamp + " #################################");
-        logger.info("##############################################################################");
+        log.debug("##############################################################################");
+        log.debug("## BLACKBOARD STATUS " + currentTimestamp + " #################################");
+        log.debug("##############################################################################");
         
-        logger.info("ORIGINAL: " + sentence.value());
+        log.debug("ORIGINAL: " + sentence.value());
 
         String markers = getAffirmationMarkings(sentence);
 
@@ -154,8 +137,8 @@ public final class BlackboardUtil {
             markers = "___________________________";
         }
 
-        logger.info("PROGRESS: " + markers);
-        logger.info("##############################################################################");
+        log.debug("PROGRESS: " + markers);
+        log.debug("##############################################################################");
 
     }
     
@@ -178,9 +161,9 @@ public final class BlackboardUtil {
 
         for (Word word : words) {
 
-            List<CipherLetter> list = word.getLetters();
+            List<Letter> list = word.getLetters();
 
-            for (CipherLetter letter : list) {
+            for (Letter letter : list) {
                 if (letter.getAffirmation().getSolvedLetter() != null) {
                         // affirmation and we have an assertion
                         markerLine = markerLine.concat(letter.getAffirmation().getSolvedLetter().getPlainLetter()); // was underscore

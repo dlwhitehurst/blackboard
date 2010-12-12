@@ -3,8 +3,10 @@ package org.dlw.ai.blackboard.rule;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -55,7 +57,7 @@ public class RuleSet extends BaseObject {
     /**
      * @return the rules
      */
-    @OneToMany(mappedBy = "rset")
+    @OneToMany(mappedBy = "rset",cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     public List<Rule> getRules() {
         return rules;
     }

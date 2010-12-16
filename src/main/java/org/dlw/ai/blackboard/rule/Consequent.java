@@ -37,7 +37,7 @@ import org.hibernate.annotations.CascadeType;
  * <blockquote><i>Antecedent - "(def.) following as a result or effect.</i></blockquote>
  *  
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  */
 @Entity
 @Table(name="consequent")

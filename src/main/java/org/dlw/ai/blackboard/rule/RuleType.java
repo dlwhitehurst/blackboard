@@ -22,7 +22,7 @@ package org.dlw.ai.blackboard.rule;
  * Rule object holds.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- *
+ * @version 1.0.0
  */
 public final class RuleType {
 

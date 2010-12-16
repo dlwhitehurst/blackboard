@@ -21,7 +21,7 @@ package org.dlw.ai.blackboard.exception;
  * of objects into a collection fails.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- *
+ * @version 1.0.0
  */
 public final class CollectionLoadingException extends Exception {
 

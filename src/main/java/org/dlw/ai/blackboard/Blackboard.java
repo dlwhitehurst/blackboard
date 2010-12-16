@@ -296,6 +296,12 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         return sentence;
     }
 
+    public Sentence getAssumedSentence() {
+        Sentence sentence = null;
+        sentence = SentenceUtil.getDirtySentence();
+        return sentence;
+    }
+    
     /**
      * This method returns true if a cipher letter exists on the blackboard.
      * 

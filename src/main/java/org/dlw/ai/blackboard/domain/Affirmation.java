@@ -46,7 +46,7 @@ import java.util.Stack;
  * and publicly (at the blackboard perchance?)</i></blockquote>
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  * 
  */
 public class Affirmation {
@@ -228,4 +228,15 @@ public class Affirmation {
         this.statements = statements;
     }
 
+    public boolean hasAssumption() {
+
+        boolean result = false;
+        
+        if (statements.size() > 0) {
+            result = true;
+        }
+
+        return result;
+        
+    }
 }

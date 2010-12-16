@@ -21,7 +21,7 @@ package org.dlw.ai.blackboard.exception;
  * being searched does not exist.
  * 
  * @author @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- *
+ * @version 1.0.0
  */
 public class RuleSetNameNotFoundException extends Exception {
 

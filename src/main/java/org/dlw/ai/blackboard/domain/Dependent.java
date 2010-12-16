@@ -34,7 +34,7 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
  * definition"</i></blockquote>
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  * 
  */
 public abstract class Dependent {

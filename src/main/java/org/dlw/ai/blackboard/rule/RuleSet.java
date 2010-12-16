@@ -19,7 +19,7 @@ import org.dlw.ai.blackboard.domain.BaseObject;
  * This class represents the collection of similar Rule objects.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC (hibernate-mysql branch)
+ * @version 1.0.0
  * 
  */
 @Entity

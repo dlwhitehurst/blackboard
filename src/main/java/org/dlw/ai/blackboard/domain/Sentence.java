@@ -33,7 +33,7 @@ import java.util.List;
  * sometimes one or more subordinate clauses."</i></blockquote>
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  * 
  */
 public class Sentence extends BlackboardObject {
@@ -115,6 +115,12 @@ public class Sentence extends BlackboardObject {
         return words;
     }
 
+    @Override
+    public void notifyDependents() {
+        // TODO Auto-generated method stub
+
+    }
+
     /**
      * @return the sentence
      */
@@ -123,17 +129,10 @@ public class Sentence extends BlackboardObject {
     }
 
     /**
-     * @param sentence
-     *            the sentence to set
+     * @param sentence the sentence to set
      */
     public void setSentence(String sentence) {
         this.sentence = sentence;
-    }
-
-    @Override
-    public void notifyDependents() {
-        // TODO Auto-generated method stub
-
     }
 
 }

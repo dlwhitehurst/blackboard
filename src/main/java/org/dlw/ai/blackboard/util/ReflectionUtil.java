@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- *
+ * @version 1.0.0
  */
 public final class ReflectionUtil {
     

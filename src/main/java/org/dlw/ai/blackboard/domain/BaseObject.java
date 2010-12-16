@@ -23,7 +23,7 @@ import java.io.Serializable;
  * equals() and hashCode() for uniqueness.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC (Hibernate)
+ * @version 1.0.0
  *
  */
 public abstract class BaseObject implements Serializable {

@@ -25,14 +25,14 @@ import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
 import org.dlw.ai.blackboard.dao.RuleSetDao;
 import org.dlw.ai.blackboard.dao.hibernate.RuleSetDaoHibernate;
-import org.dlw.ai.blackboard.domain.Antecedent;
 import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.Consequent;
 import org.dlw.ai.blackboard.domain.Letter;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
 import org.dlw.ai.blackboard.exception.RuleSetNameNotFoundException;
+import org.dlw.ai.blackboard.rule.Antecedent;
+import org.dlw.ai.blackboard.rule.Consequent;
 import org.dlw.ai.blackboard.rule.Rule;
 import org.dlw.ai.blackboard.rule.RuleSet;
 import org.dlw.ai.blackboard.rule.RuleType;
@@ -151,9 +151,9 @@ public final class KnowledgeSourceUtil {
      * Private method to process a method rule
      * 
      * @param antecedent
-     *   the {@link org.dlw.ai.blackboard.domain.Antecedent} reference
+     *   the {@link org.dlw.ai.blackboard.rule.Antecedent} reference
      * @param consequent
-     *   the {@link org.dlw.ai.blackboard.domain.Consequent} reference
+     *   the {@link org.dlw.ai.blackboard.rule.Consequent} reference
      */
     private static void processMethodRule(Antecedent antecedent,
             Consequent consequent) {

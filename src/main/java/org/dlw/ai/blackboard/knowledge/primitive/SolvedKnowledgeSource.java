@@ -20,9 +20,9 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.domain.Antecedent;
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.Consequent;
+import org.dlw.ai.blackboard.rule.Antecedent;
+import org.dlw.ai.blackboard.rule.Consequent;
 import org.dlw.ai.blackboard.rule.Rule;
 import org.dlw.ai.blackboard.rule.RuleSet;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
@@ -88,9 +88,9 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
      * Private method to process a method rule
      * 
      * @param antecedent
-     *   the {@link org.dlw.ai.blackboard.domain.Antecedent} reference
+     *   the {@link org.dlw.ai.blackboard.rule.Antecedent} reference
      * @param consequent
-     *   the {@link org.dlw.ai.blackboard.domain.Consequent} reference
+     *   the {@link org.dlw.ai.blackboard.rule.Consequent} reference
      */
     private void processMethodRule(Antecedent antecedent,
             Consequent consequent) {

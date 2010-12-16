@@ -18,10 +18,6 @@ package org.dlw.ai.blackboard.domain;
 
 import java.util.Stack;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.util.SystemConstants;
-
 /**
  * <p>
  * This class represents the knowledge that the {@link CipherLetter} has
@@ -41,7 +37,7 @@ import org.dlw.ai.blackboard.util.SystemConstants;
  * set of letters from A to Z"</i></blockquote>
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  * 
  */
 public class Letter extends BlackboardObject {
@@ -56,18 +52,12 @@ public class Letter extends BlackboardObject {
      */
     private String plainLetter;
     
-    private boolean asserted = false;
+    private boolean solved = false;
     
-
     /**
      * Affirmation (statements) made against this alphabet
      */
     protected Affirmation affirmation = new Affirmation();
-
-    /**
-     * Attribute class logger
-     */
-    private static final Log log = LogFactory.getLog(Letter.class);
 
     /**
      * No default constructor allowed
@@ -77,15 +67,12 @@ public class Letter extends BlackboardObject {
     }
 
     /**
-     * Loaded constructor only, both letters required
+     * Constructor
      * 
      * @param cipherLetter
-     * @param plainLetter
      */
     public Letter(final String cipherLetter) {
-
         this.cipherLetter = cipherLetter;
-
     }
 
     /**
@@ -136,7 +123,7 @@ public class Letter extends BlackboardObject {
     public String value() {
         String result = null;
         
-        if (asserted) {
+        if (isSolved()) {
             result =  getPlainLetter();
         } else {
             result = getCipherLetter();
@@ -145,23 +132,30 @@ public class Letter extends BlackboardObject {
         return result;
     } 
     
-    @Override
-    public void notifyDependents() {
-        // TODO Auto-generated method stub
-        
-    }
-   
     public boolean isAsserted() {
-        return asserted;
-    }
-
-    public void checkEvaluation() {
+        boolean result = false;
         Stack<Assumption> stack = getAffirmation().getStatements();
         for (int i = 0; i < stack.size(); i++) {
             Assumption assumption = stack.pop();
             if (!assumption.isRetractable()) {
-                asserted = true;
+                result = true;
+                
             }
         }
+        return result;
+    }
+
+    /**
+     * @return the solved
+     */
+    public boolean isSolved() {
+        return solved;
+    }
+
+    /**
+     * @param solved the solved to set
+     */
+    public void setSolved(boolean solved) {
+        this.solved = solved;
     }
 }

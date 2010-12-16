@@ -79,26 +79,8 @@ public class Controller {
      * 
      */
     public final void done() {
-
         System.exit(0); // Temporary for testing
-
         state = ControllerState.SOLVED;
-    }
-
-    /**
-     * Public method to determine if the controller is really finished
-     * 
-     * @return boolean primitive
-     */
-    public final boolean isSolved() {
-
-        boolean result = false;
-
-        if (state == ControllerState.SOLVED) {
-            result = true;
-        }
-
-        return result;
     }
 
     /**
@@ -107,8 +89,29 @@ public class Controller {
      * @return boolean primitive
      */
     public final boolean unableToProceed() {
-        // TODO - implement
-        return false;
+        boolean result = false;
+
+        if (state == ControllerState.STUCK) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    /**
+     * Public method to determine if the controller is done (solved)
+     * 
+     * @return boolean primitive
+     */
+    public boolean isSolved() {
+
+        boolean result = false;
+
+        if (state == ControllerState.SOLVED) {
+            result = true;
+        }
+
+        return result;
     }
 
     /**
@@ -128,6 +131,7 @@ public class Controller {
         for (KnowledgeSource ks : knowledgeSources) {
 
             ks.evaluate();
+            state = ControllerState.EVALUATING;
 
             ConcurrentLinkedQueue<Assumption> queue = ks.getPastAssumptions();
 
@@ -138,8 +142,8 @@ public class Controller {
 
         }
 
-        log.info("processNextHint->The "
-                + activeKnowledgeSource.toString() + " is now active.");
+        log.info("processNextHint->The " + activeKnowledgeSource.toString()
+                + " is now active.");
 
         if (activeKnowledgeSource != null) {
 
@@ -152,7 +156,7 @@ public class Controller {
              * Step down and give the next expert a chance
              */
             leaveBlackboard(activeKnowledgeSource);
-            
+
             /**
              * Null activeKnowledgeSource
              */
@@ -168,23 +172,22 @@ public class Controller {
      */
     public final void reset() {
 
-        activeKnowledgeSource = null;
-
         /**
-         * kill any existing Brain
+         * Dismiss experts
          */
+        activeKnowledgeSource = null;
         brain = null;
 
         /**
-         * Get an instance of Brain
+         * Gather new intelligence experts
          */
-        brain = (Brain) UniversalContext.getApplicationContext().getBean(
-                "brain");
+        brain = BlackboardContext.getInstance().getBrain();
 
         /**
-         * Reset state
+         * Initial controller state
          */
         state = ControllerState.INITIALIZING;
+
     }
 
     /**
@@ -194,15 +197,14 @@ public class Controller {
      * @param hint
      *            the KnowledgeSource (or Expert) to provide input for solution
      */
-    private void visitBlackboard(KnowledgeSource hint) {
+    private void visitBlackboard(KnowledgeSource ks) {
 
-        blackboard = (Blackboard) UniversalContext.getApplicationContext()
-                .getBean("blackboard");
+        blackboard = BlackboardContext.getInstance().getBlackboard();
 
         log.info("visitBlackboard-> Controller is now connecting "
-                + hint.toString() + " to the blackboard.");
+                + ks.toString() + " to the blackboard.");
 
-        blackboard.connect(hint);
+        blackboard.connect(ks);
 
     }
 
@@ -212,11 +214,12 @@ public class Controller {
      * @param hint
      *            the KnowledgeSource (or Expert)
      */
-    private void leaveBlackboard(KnowledgeSource hint) {
+    private void leaveBlackboard(KnowledgeSource ks) {
 
-        blackboard.disconnect(hint);
+        blackboard.disconnect(ks);
+        
         log.info("leaveBlackboard-> Controller has disconnected the "
-                + hint.toString() + " from the blackboard.");
+                + ks.toString() + " from the blackboard.");
     }
 
     /**

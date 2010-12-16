@@ -34,7 +34,7 @@ import org.dlw.ai.blackboard.domain.Word;
  * This class is used to provide utility functions for the blackboard object.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  */
 public final class BlackboardUtil {
 

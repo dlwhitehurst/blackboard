@@ -21,7 +21,7 @@ package org.dlw.ai.blackboard.util;
  * objects.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  */
 public final class StringTrimmer {
 

@@ -18,7 +18,7 @@ package org.dlw.ai.blackboard.exception;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- *
+ * @version 1.0.0
  */
 public class UnknownKnowledgeSourceException extends RuntimeException {
 

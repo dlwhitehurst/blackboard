@@ -29,7 +29,7 @@ import org.dlw.ai.blackboard.domain.Word;
  * objects.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC
+ * @version 1.0.0
  */
 public final class SentenceUtil {
 
@@ -97,6 +97,12 @@ public final class SentenceUtil {
         }
 
         return letters;
+    }
+    
+    public static Sentence getDirtySentence() {
+        Sentence sentence = null;
+        
+        return sentence;
     }
 
 }

@@ -24,6 +24,7 @@ import java.util.List;
  * RuleSet Data Access Object (GenericDao) interface.
  *
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
+ * @version 1.0.0
  */
 public interface RuleSetDao extends GenericDao<RuleSet, Long> {
 

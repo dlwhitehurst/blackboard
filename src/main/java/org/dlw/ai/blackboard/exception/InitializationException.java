@@ -21,7 +21,7 @@ package org.dlw.ai.blackboard.exception;
  * of objects with attribute data fails.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- *
+ * @version 1.0.0
  */
 public class InitializationException extends Exception {
 

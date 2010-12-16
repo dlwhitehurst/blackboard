@@ -25,9 +25,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.dlw.ai.blackboard.domain.Antecedent;
 import org.dlw.ai.blackboard.domain.BaseObject;
-import org.dlw.ai.blackboard.domain.Consequent;
 
 /**
  * <p>

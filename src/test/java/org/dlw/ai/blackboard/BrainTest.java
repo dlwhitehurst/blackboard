@@ -19,8 +19,7 @@ public class BrainTest {
 
     @Before
     public void setUp() throws Exception {
-        brain = (Brain) UniversalContext.getApplicationContext().getBean(
-                "brain");
+        brain = BlackboardContext.getInstance().getBrain();
 
     }
 

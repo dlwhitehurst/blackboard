@@ -34,8 +34,7 @@ public class BlackboardTest {
      */
     @Before
     public void setUp() throws Exception {
-        blackboard = (Blackboard) UniversalContext.getApplicationContext()
-        .getBean("blackboard");
+        blackboard = BlackboardContext.getInstance().getBlackboard();
     }
     
     @Test

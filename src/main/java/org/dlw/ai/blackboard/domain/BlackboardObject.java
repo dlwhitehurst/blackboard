@@ -17,6 +17,7 @@
 package org.dlw.ai.blackboard.domain;
 
 import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
@@ -38,8 +39,7 @@ public abstract class BlackboardObject extends Dependent {
      * object also represents itself within the blackboard domain.
      */
     public final void register() {
-        Blackboard blackboard = (Blackboard) UniversalContext
-                .getApplicationContext().getBean("blackboard");
+        Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
         blackboard.add(this);
     }
 
@@ -49,8 +49,7 @@ public abstract class BlackboardObject extends Dependent {
      * an {@link Letter} or plaintext equivalent to be its representative
      */
     public final void resign() {
-        Blackboard blackboard = (Blackboard) UniversalContext
-                .getApplicationContext().getBean("blackboard");
+        Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
         blackboard.remove(this);
     }
 

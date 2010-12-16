@@ -27,7 +27,6 @@ import org.dlw.ai.blackboard.rule.Consequent;
 import org.dlw.ai.blackboard.rule.Rule;
 import org.dlw.ai.blackboard.rule.RuleSet;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
-import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.ReflectionUtil;
 
 
@@ -43,11 +42,6 @@ public class SentenceKnowledgeSource extends KnowledgeSource {
      */
     private final Log log = LogFactory.getLog(SentenceKnowledgeSource.class);
 
-    /**
-     * Attribute class logger
-     */
-    private Logger logger;
-    
     /**
      * unique serial identifier
      */
@@ -67,12 +61,6 @@ public class SentenceKnowledgeSource extends KnowledgeSource {
      */
     @Override
     public void evaluate() {
-
-        /**
-         * Initialize logger
-         */
-        logger = Logger.getInstance();
-        logger.wrap(log);
 
         RuleSet set = this.getRuleSet();
         
@@ -105,7 +93,7 @@ public class SentenceKnowledgeSource extends KnowledgeSource {
             ReflectionUtil.execConsequent(consequent.getFullyQualifiedClass(),
                     consequent.getMethodName());
         } else {
-            logger.info("Controller::processNextHint->The SolvedKnowledgeSource has NO hint at this time.");
+            log.info("Controller::processNextHint->The SolvedKnowledgeSource has NO hint at this time.");
         }
     }
 

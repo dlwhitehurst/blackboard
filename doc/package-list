@@ -1,0 +1,9 @@
+org.dlw.ai.blackboard
+org.dlw.ai.blackboard.dao
+org.dlw.ai.blackboard.dao.hibernate
+org.dlw.ai.blackboard.domain
+org.dlw.ai.blackboard.exception
+org.dlw.ai.blackboard.knowledge
+org.dlw.ai.blackboard.knowledge.primitive
+org.dlw.ai.blackboard.rule
+org.dlw.ai.blackboard.util

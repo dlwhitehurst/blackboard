@@ -37,7 +37,6 @@ import org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
-import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.RuleSetConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
@@ -72,16 +71,9 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
     private final Log log = LogFactory.getLog(KnowledgeSources.class);
 
     /**
-     * Attribute class logger
-     */
-    private final Logger logger;
-
-    /**
      * Default constructor
      */
     public KnowledgeSourcesImpl() {
-        logger = Logger.getInstance();
-        logger.wrap(log);
     }
 
     /**
@@ -415,7 +407,7 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
         }
 
         else {
-            logger.error("This knowledge source instance could not be identified.");
+            log.error("This knowledge source instance could not be identified.");
             throw new UnknownKnowledgeSourceException(
                     "This knowledge source instance could not be identified.");
         }
@@ -432,11 +424,9 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
      */
     private void addKS(KnowledgeSource ks) throws CollectionLoadingException {
 
-        Logger logger = Logger.getInstance();
-        logger.wrap(log);
 
         if (this.add(ks)) {
-            logger.info(ks.toString() + " added.");
+            log.info(ks.toString() + " added.");
         } else {
             throw new CollectionLoadingException(
                     "Could not load collection due to object or collection constraint.");

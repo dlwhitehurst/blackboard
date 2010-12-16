@@ -23,7 +23,6 @@ import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.BaseObject;
 import org.dlw.ai.blackboard.rule.RuleSet;
-import org.dlw.ai.blackboard.util.Logger;
 
 /**
  * This interface defines the signature knowledge source object.  
@@ -44,11 +43,6 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
      */
     protected final Log log = LogFactory.getLog(KnowledgeSource.class);
 
-    /**
-     * Attribute class logger
-     */
-    protected Logger logger;
-    
     /**
      * Attribute priority
      */

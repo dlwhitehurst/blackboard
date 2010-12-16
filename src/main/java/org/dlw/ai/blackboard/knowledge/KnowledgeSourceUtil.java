@@ -36,7 +36,6 @@ import org.dlw.ai.blackboard.rule.Consequent;
 import org.dlw.ai.blackboard.rule.Rule;
 import org.dlw.ai.blackboard.rule.RuleSet;
 import org.dlw.ai.blackboard.rule.RuleType;
-import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.MessageConstants;
 import org.dlw.ai.blackboard.util.ReflectionUtil;
 import org.dlw.ai.blackboard.util.SentenceUtil;
@@ -62,11 +61,6 @@ public final class KnowledgeSourceUtil {
     private static final Log log = LogFactory.getLog(KnowledgeSourceUtil.class);
 
     /**
-     * Attribute class logger
-     */
-    private static Logger logger;
-
-    /**
      * Default constructor
      */
     public KnowledgeSourceUtil() {
@@ -84,19 +78,13 @@ public final class KnowledgeSourceUtil {
     public void loadRuleSet(KnowledgeSource ks, String name) {
 
         /**
-         * Initialize logger
-         */
-        logger = Logger.getInstance();
-        logger.wrap(log);
-
-        /**
          * Create a RuleSet
          */
         RuleSet ruleSet = null;
         try {
             ruleSet = dao.getRuleSetByName(name);
         } catch (RuleSetNameNotFoundException e) {
-            logger.info("System error: RuleSet name provided does not exist");
+            log.info("System error: RuleSet name provided does not exist");
             e.printStackTrace();
         }
 

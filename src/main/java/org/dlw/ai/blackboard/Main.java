@@ -18,7 +18,6 @@ package org.dlw.ai.blackboard;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
@@ -65,12 +64,6 @@ public final class Main {
     public static void main(String[] args) {
 
         /**
-         * Get our logger
-         */
-        Logger logger = Logger.getInstance();
-        logger.wrap(log);
-        
-        /**
          * Solve our cryptogram problem
          */
         final String answer = solveProblem(CODED_STRING);
@@ -78,7 +71,7 @@ public final class Main {
         /**
          * Notify results
          */
-        logger.info("SYSTEM FINAL REPLY: " + answer);
+        log.info("SYSTEM FINAL REPLY: " + answer);
     }
 
     /**

@@ -8,6 +8,11 @@ import org.dlw.ai.blackboard.util.UniversalContext;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
+ * @version 1.0.0
+ */
 public class BrainTest {
 
     private Brain brain;

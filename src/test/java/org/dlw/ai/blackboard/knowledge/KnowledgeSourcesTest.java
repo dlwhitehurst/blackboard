@@ -27,8 +27,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- *
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
+ * @version 1.0.0
  */
 public class KnowledgeSourcesTest {
 

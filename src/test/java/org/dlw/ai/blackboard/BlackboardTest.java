@@ -19,7 +19,7 @@ import org.junit.Test;
 
 /**
  * @author dlwhitehurst
- *
+ * @version 1.0.0
  */
 public class BlackboardTest {
 

@@ -22,8 +22,8 @@ import java.util.List;
 
 import org.dlw.ai.blackboard.dao.BaseDaoTestCase;
 import org.dlw.ai.blackboard.dao.RuleSetDao;
-import org.dlw.ai.blackboard.domain.Antecedent;
-import org.dlw.ai.blackboard.domain.Consequent;
+import org.dlw.ai.blackboard.rule.Antecedent;
+import org.dlw.ai.blackboard.rule.Consequent;
 import org.dlw.ai.blackboard.rule.Rule;
 import org.dlw.ai.blackboard.rule.RuleSet;
 import org.junit.Before;
@@ -32,7 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- *
+ * @version 1.0.0
  */
 public class RuleSetDaoHibernateTest extends BaseDaoTestCase {
 

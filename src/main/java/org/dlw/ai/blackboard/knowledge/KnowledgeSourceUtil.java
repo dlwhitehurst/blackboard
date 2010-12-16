@@ -23,6 +23,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.dao.RuleSetDao;
 import org.dlw.ai.blackboard.dao.hibernate.RuleSetDaoHibernate;
 import org.dlw.ai.blackboard.domain.Assertion;
@@ -124,8 +125,7 @@ public final class KnowledgeSourceUtil {
             }
 
             if (ruleType.equals(RuleType.CONVERSION)) {
-                Blackboard blackboard = (Blackboard) UniversalContext.getApplicationContext()
-                .getBean("blackboard");
+                Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
                 Sentence sentence = blackboard.getSentence();
                
                 processConversionRule(sentence, rule, ks);

@@ -18,7 +18,6 @@ package org.dlw.ai.blackboard.domain;
 
 import org.dlw.ai.blackboard.Blackboard;
 import org.dlw.ai.blackboard.BlackboardContext;
-import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
  * This class defines the abstract blackboard object. All objects that make up

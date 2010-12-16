@@ -123,7 +123,7 @@ public final class Cryptographer {
             break; // TODO - remove
         }
 
-        return SystemConstants.NO_SOLVE_ERROR;
+        return SystemConstants.NO_DECIPHER_ERROR;
     }
 
 }

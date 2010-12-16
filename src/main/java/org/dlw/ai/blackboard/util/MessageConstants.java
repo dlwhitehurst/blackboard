@@ -17,8 +17,8 @@
 package org.dlw.ai.blackboard.util;
 
 /**
- * This class is used to maintain all Strings that are used for informational messages
- * while logging.  These messages are not errors.
+ * This class is used to maintain all Strings that are used for informational
+ * messages while logging. These messages are not errors.
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0
@@ -28,8 +28,9 @@ public final class MessageConstants {
     /**
      * Hidden constructor
      */
-    private MessageConstants() { }
-    
+    private MessageConstants() {
+    }
+
     /**
      * Blackboard - reset method message
      */

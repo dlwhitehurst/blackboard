@@ -33,8 +33,6 @@ public final class SystemConstants {
     private SystemConstants() {
     }
 
-    public static final String BLACKBOARD_CONTEXT = "Blackboard Context";
-    
     /**
      * The cryptogram sentence or string could not be asserted.
      */
@@ -43,7 +41,7 @@ public final class SystemConstants {
     /**
      * The system could not solve the cipher.
      */
-    public static final String NO_SOLVE_ERROR = "I could not decipher the asserted problem!";
+    public static final String NO_DECIPHER_ERROR = "I could not decipher the asserted problem!";
 
     /**
      * The empty string is not acceptable as a cipher letter input.
@@ -65,9 +63,5 @@ public final class SystemConstants {
      */
     public static final String INFO_LEVEL_FATAL = "FATAL ERROR: The system requires INFO level logging.";
 
-    /**
-     * This error indicates that INFO level logging needs to be configured.
-     */
-    public static final String INFO_LEVEL_KS_FAIL = "FATAL ERROR: Either the knowledge source could not be loaded or INFO level logging is not configured.";
 
 }

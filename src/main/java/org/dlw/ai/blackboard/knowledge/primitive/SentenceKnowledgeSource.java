@@ -20,20 +20,15 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.Blackboard;
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.KnowledgeSourceUtil;
 import org.dlw.ai.blackboard.rule.Antecedent;
 import org.dlw.ai.blackboard.rule.Consequent;
 import org.dlw.ai.blackboard.rule.Rule;
 import org.dlw.ai.blackboard.rule.RuleSet;
-import org.dlw.ai.blackboard.rule.RuleType;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.util.Logger;
 import org.dlw.ai.blackboard.util.ReflectionUtil;
-import org.dlw.ai.blackboard.util.UniversalContext;
 
 
 /**

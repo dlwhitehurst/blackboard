@@ -20,10 +20,6 @@ import java.util.ArrayList;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.Blackboard;
-import org.dlw.ai.blackboard.BlackboardContext;
-import org.dlw.ai.blackboard.domain.BlackboardObject;
-import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.exception.CollectionLoadingException;
 import org.dlw.ai.blackboard.exception.InitializationException;
 import org.dlw.ai.blackboard.exception.UnknownKnowledgeSourceException;

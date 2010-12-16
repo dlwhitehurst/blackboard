@@ -25,7 +25,6 @@ import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourcesImpl;
 import org.dlw.ai.blackboard.util.SystemConstants;
-import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
  * The Controller class is used to orchestrate (state machine controller) the

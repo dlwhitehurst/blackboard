@@ -34,7 +34,6 @@ import org.dlw.ai.blackboard.rule.RuleSet;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.util.MessageConstants;
 import org.dlw.ai.blackboard.util.SentenceUtil;
-import org.dlw.ai.blackboard.util.UniversalContext;
 
 /**
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>

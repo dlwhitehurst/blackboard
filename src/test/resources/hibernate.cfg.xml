@@ -5,7 +5,7 @@
     <session-factory>
         <mapping class="org.dlw.ai.blackboard.rule.RuleSet"/>
         <mapping class="org.dlw.ai.blackboard.rule.Rule"/>
-        <mapping class="org.dlw.ai.blackboard.domain.Antecedent"/>
-        <mapping class="org.dlw.ai.blackboard.domain.Consequent"/>
+        <mapping class="org.dlw.ai.blackboard.rule.Antecedent"/>
+        <mapping class="org.dlw.ai.blackboard.rule.Consequent"/>
     </session-factory>
 </hibernate-configuration>

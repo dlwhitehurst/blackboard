@@ -16,7 +16,6 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
@@ -31,21 +30,22 @@ public class CommonPrefixKnowledgeSource extends StringKnowledgeSource {
      */
     private static final long serialVersionUID = 2808716412471354046L;
 
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
-     */
-    public void notifyDependents(String direction, Assumption statement) {
-        // TODO Auto-generated method stub
-        
-    }
-
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.domain.BaseObject#toString()
      */
     @Override
     public String toString() {
         return KnowledgeSourceConstants.COMMON_PREFIX_KNOWLEDGE_SOURCE;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
+     */
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
     }
 
 }

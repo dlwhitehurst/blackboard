@@ -16,7 +16,6 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
@@ -32,20 +31,21 @@ public class SentenceStructureKnowledgeSource extends SentenceKnowledgeSource {
     private static final long serialVersionUID = -3429504143671407871L;
 
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
-     */
-    @Override
-    public void notifyDependents(String direction, Assumption statement) {
-        // TODO Auto-generated method stub
-        super.notifyDependents(direction, statement);
-    }
-
-    /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#toString()
      */
     @Override
     public String toString() {
         return KnowledgeSourceConstants.SENTENCE_STRUCTURE_KNOWLEDGE_SOURCE;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
+     */
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
     }
 
 }

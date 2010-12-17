@@ -16,7 +16,6 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
@@ -34,19 +33,19 @@ public class WordKnowledgeSource extends KnowledgeSource {
     private static final long serialVersionUID = -4931267265674436051L;
 
 
-    public void notifyDependents(String direction, Assumption statement) {
-        // TODO Auto-generated method stub
-    }
-
     @Override
     public String toString() {
         return KnowledgeSourceConstants.WORD_KNOWLEDGE_SOURCE;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
+     */
     @Override
     public void evaluate() {
         // TODO Auto-generated method stub
-        
     }
 
 }

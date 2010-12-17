@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.rule.Antecedent;
 import org.dlw.ai.blackboard.rule.Consequent;
 import org.dlw.ai.blackboard.rule.Rule;
@@ -46,21 +45,13 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
     private final Log log = LogFactory.getLog(SolvedKnowledgeSource.class);
 
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
-     */
-    @Override
-    public void notifyDependents(String direction, Assumption statement) {
-        // TODO Auto-generated method stub
-        super.notifyDependents(direction, statement);
-    }
-
-    /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.SentenceKnowledgeSource#toString()
      */
     @Override
     public String toString() {
         return KnowledgeSourceConstants.SOLVED_KNOWLEDGE_SOURCE;
     }
+    
     /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
      */

@@ -65,19 +65,6 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
     /*
      * (non-Javadoc)
      * 
-     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#
-     * notifyDependents(java.lang.String,
-     * org.dlw.ai.blackboard.domain.Assumption)
-     */
-    @Override
-    public void notifyDependents(String direction, Assumption statement) {
-        // TODO Auto-generated method stub
-        super.notifyDependents(direction, statement);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
      * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
      */
     @Override

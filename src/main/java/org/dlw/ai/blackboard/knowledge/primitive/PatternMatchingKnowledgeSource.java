@@ -40,4 +40,14 @@ public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
         return KnowledgeSourceConstants.PATTERN_MATCHING_KNOWLEDGE_SOURCE;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
+     */
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
+    }
+
 }

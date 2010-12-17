@@ -66,17 +66,6 @@ public abstract class KnowledgeSource extends BaseObject implements Comparable<K
     public abstract void evaluate();
 
     /**
-     * Find dependent knowledge sources and tell them to add, retract, etc. a
-     * statement
-     * 
-     * @param direction
-     *   the String direction
-     * @param statement
-     *   the {@link org.dlw.ai.blackboard.domain.Assumption} or assumed statement of fact.
-     */
-    public abstract void notifyDependents(String direction, Assumption statement);
-
-    /**
      * @param priority the priority to set
      */
     public void setPriority(Integer priority) {

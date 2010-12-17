@@ -16,7 +16,6 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
@@ -41,13 +40,14 @@ public class SmallWordKnowledgeSource extends WordKnowledgeSource {
         return KnowledgeSourceConstants.SMALL_WORD_KNOWLEDGE_SOURCE;
     }
 
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.WordKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
      */
     @Override
-    public void notifyDependents(String direction, Assumption statement) {
+    public void evaluate() {
         // TODO Auto-generated method stub
-        super.notifyDependents(direction, statement);
     }
 
 }

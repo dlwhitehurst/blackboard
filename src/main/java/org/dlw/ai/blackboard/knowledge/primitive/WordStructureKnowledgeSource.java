@@ -39,5 +39,15 @@ public class WordStructureKnowledgeSource extends WordKnowledgeSource {
     public String toString() {
         return KnowledgeSourceConstants.WORD_STRUCTURE_KNOWLEDGE_SOURCE;
     }
+ 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
+     */
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
+    }
 
 }

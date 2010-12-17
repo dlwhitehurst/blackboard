@@ -58,12 +58,6 @@ public class Assumption extends BlackboardObject {
         return true;
     }
 
-    @Override
-    public void notifyDependents() {
-        // TODO Auto-generated method stub
-        
-    }
-
     /**
      * @return the reason
      */

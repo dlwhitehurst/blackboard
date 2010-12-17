@@ -16,7 +16,6 @@
  */
 package org.dlw.ai.blackboard.knowledge.primitive;
 
-import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
@@ -33,20 +32,21 @@ public class LegalStringKnowledgeSource extends StringKnowledgeSource {
     private static final long serialVersionUID = 4579670117184769983L;
 
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#notifyDependents(java.lang.String, org.dlw.ai.blackboard.domain.Assumption)
-     */
-    @Override
-    public void notifyDependents(String direction, Assumption statement) {
-        // TODO Auto-generated method stub
-        super.notifyDependents(direction, statement);
-    }
-
-    /* (non-Javadoc)
      * @see org.dlw.ai.blackboard.knowledge.primitive.StringKnowledgeSource#toString()
      */
     @Override
     public String toString() {
         return KnowledgeSourceConstants.LEGAL_STRING_KNOWLEDGE_SOURCE;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
+     */
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
     }
 
 }

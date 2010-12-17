@@ -17,9 +17,12 @@
 package org.dlw.ai.blackboard.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.util.DirectionConstants;
 
 /**
  * <p>
@@ -76,11 +79,32 @@ public abstract class Dependent {
         return references.remove(ref);
     }
 
-    public void notifyDependents() {
-        // call evaluate on all dependents
-        for (KnowledgeSource knowledgeSource : references) {
-            knowledgeSource.evaluate();
+    public void notify(String direction, Assumption statement) {
+        
+        /**
+         * Forward chaining Knowledge Sources
+         */
+        if (direction.equals(DirectionConstants.FORWARD)) {
+            for (KnowledgeSource knowledgeSource : references) {
+                knowledgeSource.getPastAssumptions().add(statement);
+            }
         }
+        
+        /**
+         * Reverse chaining Knowledge Sources
+         */
+        if (direction.equals(DirectionConstants.REVERSE)) {
+            for (KnowledgeSource knowledgeSource : references) {
+                ConcurrentLinkedQueue<Assumption> queue = knowledgeSource.getPastAssumptions();
+                Iterator<Assumption> iter = queue.iterator();
+                while (iter.hasNext()) {
+                    Assumption stmt = (Assumption) iter.next();
+                    if (stmt.equals(statement)) {
+                        iter.remove();
+                    }
+                }
+            }
+        } 
     }
 
 }

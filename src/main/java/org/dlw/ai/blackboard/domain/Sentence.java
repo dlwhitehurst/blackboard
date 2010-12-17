@@ -115,12 +115,6 @@ public class Sentence extends BlackboardObject {
         return words;
     }
 
-    @Override
-    public void notifyDependents() {
-        // TODO Auto-generated method stub
-
-    }
-
     /**
      * @return the sentence
      */

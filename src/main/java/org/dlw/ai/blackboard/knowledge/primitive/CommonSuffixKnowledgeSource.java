@@ -38,4 +38,14 @@ public class CommonSuffixKnowledgeSource extends StringKnowledgeSource {
         return KnowledgeSourceConstants.COMMON_SUFFIX_KNOWLEDGE_SOURCE;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.dlw.ai.blackboard.knowledge.KnowledgeSource#evaluate()
+     */
+    @Override
+    public void evaluate() {
+        // TODO Auto-generated method stub
+    }
+
 }

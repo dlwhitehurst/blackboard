@@ -22,6 +22,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.Letter;
@@ -70,8 +71,7 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
     @Override
     public void evaluate() {
 
-        Blackboard blackboard = (Blackboard) UniversalContext
-                .getApplicationContext().getBean("blackboard");
+        Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
         Sentence sentence = blackboard.getSentence();
 
         RuleSet set = this.getRuleSet();

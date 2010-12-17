@@ -6,7 +6,7 @@
     <groupId>org.dlw.ai.blackboard</groupId>
     <artifactId>blackboard</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0-RC</version>
+    <version>1.0-SNAPSHOT</version>
     <name>Blackboard</name>
     <inceptionYear>2010</inceptionYear>
     <url>http://www.dlwhitehurst.com</url>

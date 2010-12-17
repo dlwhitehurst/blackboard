@@ -28,7 +28,7 @@ import org.dlw.ai.blackboard.rule.RuleSet;
  * This interface defines the signature knowledge source object.  
  *  
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
- * @version 1.0.0-RC (hibernate-mysql branch)
+ * @version 1.0.0
  * 
  */
 public abstract class KnowledgeSource extends BaseObject implements Comparable<KnowledgeSource>{

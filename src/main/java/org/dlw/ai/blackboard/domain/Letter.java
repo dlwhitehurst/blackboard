@@ -52,7 +52,14 @@ public class Letter extends BlackboardObject {
      */
     private String plainLetter;
     
+    /**
+     * Attribute for solved (asserted)
+     */
     private boolean solved = false;
+    
+    private boolean vowel = false;
+    
+    private boolean consonant = false;
     
     /**
      * Affirmation (statements) made against this alphabet
@@ -158,4 +165,32 @@ public class Letter extends BlackboardObject {
     public void setSolved(boolean solved) {
         this.solved = solved;
     }
+
+	/**
+	 * @return the vowel
+	 */
+	public boolean isVowel() {
+		return vowel;
+	}
+
+	/**
+	 * @param vowel the vowel to set
+	 */
+	public void setVowel(boolean vowel) {
+		this.vowel = vowel;
+	}
+
+	/**
+	 * @return the consonant
+	 */
+	public boolean isConsonant() {
+		return consonant;
+	}
+
+	/**
+	 * @param consonant the consonant to set
+	 */
+	public void setConsonant(boolean consonant) {
+		this.consonant = consonant;
+	}
 }

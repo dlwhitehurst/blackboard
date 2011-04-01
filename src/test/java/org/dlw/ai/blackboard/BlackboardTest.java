@@ -13,7 +13,6 @@ import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.Letter;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
-import org.dlw.ai.blackboard.util.UniversalContext;
 import org.junit.Before;
 import org.junit.Test;
 

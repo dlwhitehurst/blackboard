@@ -29,6 +29,7 @@ import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
+import org.svs.datetime.TimeRecordUtil;
 
 /**
  * This class is used to provide utility functions for the blackboard object.
@@ -50,16 +51,9 @@ public final class BlackboardUtil {
      */
     public static void outputSnapshot(Blackboard blackboard) {
 
-        /**
-         * Timestamp
-         */
-        Calendar calendar = Calendar.getInstance();
-        java.util.Date now = calendar.getTime();
-        Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
-        
-        log.debug("##############################################################################");
-        log.debug("## BLACKBOARD SNAPSHOT " + currentTimestamp + " ###############################");
-        log.debug("##############################################################################");
+        log.debug("-----------------------------------------------------------------------------");
+        log.debug("-- BLACKBOARD SNAPSHOT " + TimeRecordUtil.getTimeStamp());
+        log.debug("-----------------------------------------------------------------------------");
         
         for (BlackboardObject obj : blackboard) {
 
@@ -95,7 +89,7 @@ public final class BlackboardUtil {
         
         }
         
-        log.debug("##############################################################################");
+        log.debug("-----------------------------------------------------------------------------");
         
     }
 
@@ -122,9 +116,9 @@ public final class BlackboardUtil {
             }
         }
 
-        log.debug("##############################################################################");
-        log.debug("## BLACKBOARD STATUS " + currentTimestamp + " #################################");
-        log.debug("##############################################################################");
+        log.debug("-----------------------------------------------------------------------------");
+        log.debug("-- THE BLACKBOARD " + currentTimestamp);
+        log.debug("-----------------------------------------------------------------------------");
         
         log.debug("ORIGINAL: " + sentence.value());
 
@@ -138,7 +132,7 @@ public final class BlackboardUtil {
         }
 
         log.debug("PROGRESS: " + markers);
-        log.debug("##############################################################################");
+        log.debug("-----------------------------------------------------------------------------");
 
     }
     

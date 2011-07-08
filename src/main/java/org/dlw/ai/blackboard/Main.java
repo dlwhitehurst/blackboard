@@ -19,6 +19,7 @@ package org.dlw.ai.blackboard;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.util.UniversalContext;
+import org.svs.datetime.TimeRecordUtil;
 
 /**
  * The Blackboard project is an example of an Artificial Intelligence model that
@@ -71,7 +72,12 @@ public final class Main {
         /**
          * Notify results
          */
-        log.info("SYSTEM FINAL REPLY: " + answer);
+
+        log.debug("-----------------------------------------------------------------------------");
+        log.debug("-- BLACKBOARD RESULTS " + TimeRecordUtil.getTimeStamp());
+        log.debug("-----------------------------------------------------------------------------");
+
+        log.info("- SYSTEM FINAL REPLY: " + answer);
     }
 
     /**

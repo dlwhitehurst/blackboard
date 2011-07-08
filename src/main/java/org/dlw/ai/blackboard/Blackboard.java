@@ -31,8 +31,8 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.util.BlackboardUtil;
 import org.dlw.ai.blackboard.util.MessageConstants;
 import org.dlw.ai.blackboard.util.SentenceUtil;
-import org.dlw.ai.blackboard.util.StringTrimmer;
 import org.dlw.ai.blackboard.util.SystemConstants;
+import org.svs.string.StringTrimmer;
 
 /**
  * This class is where the problem is addressed and solved. The blackboard is

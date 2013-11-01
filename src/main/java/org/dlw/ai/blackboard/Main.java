@@ -74,7 +74,7 @@ public final class Main {
          */
 
         log.debug("-----------------------------------------------------------------------------");
-//        log.debug("-- BLACKBOARD RESULTS " + TimeRecordUtil.getTimeStamp());
+////        log.debug("-- BLACKBOARD RESULTS " + TimeRecordUtil.getTimeStamp());
         log.debug("-----------------------------------------------------------------------------");
 
         log.info("- SYSTEM FINAL REPLY: " + answer);

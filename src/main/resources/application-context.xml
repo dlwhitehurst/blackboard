@@ -10,9 +10,6 @@
     <bean id="controller"
           class="org.dlw.ai.blackboard.Controller" />
 
-    <bean id="brain"
-          class="org.dlw.ai.blackboard.Brain" />
-
     <bean id="blackboard"
           class="org.dlw.ai.blackboard.Blackboard" >
     </bean>

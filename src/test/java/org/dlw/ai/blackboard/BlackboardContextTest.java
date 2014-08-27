@@ -14,7 +14,6 @@ public class BlackboardContextTest {
 
     private Blackboard blackboard;
     private Controller controller;
-    private Brain brain;
 
     /**
      * @throws java.lang.Exception
@@ -24,7 +23,6 @@ public class BlackboardContextTest {
 
         blackboard = BlackboardContext.getInstance().getBlackboard();
         controller = BlackboardContext.getInstance().getController();
-        brain = BlackboardContext.getInstance().getBrain();
     }
 
     @Test
@@ -36,11 +34,6 @@ public class BlackboardContextTest {
     @Test
     public void testGetController() throws AssertionError {
         assertNotNull(controller);
-    }
-
-    @Test
-    public void testGetBrain() throws AssertionError {
-        assertNotNull(brain);
     }
 
     /**

@@ -1,5 +1,5 @@
 /**
- * Copyright 2010 David L. Whitehurst
+ * Copyright 2010,2011,2012,2013,2014 David L. Whitehurst
  * 
  * Licensed under the Apache License, Version 2.0 
  * (the "License"); You may not use this file except 
@@ -18,8 +18,8 @@ package org.dlw.ai.blackboard;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dlw.ai.blackboard.util.TimeRecordUtil;
 import org.dlw.ai.blackboard.util.UniversalContext;
-import org.svs.datetime.TimeRecordUtil;
 
 /**
  * The Blackboard project is an example of an Artificial Intelligence model that
@@ -74,7 +74,7 @@ public final class Main {
          */
 
         log.debug("-----------------------------------------------------------------------------");
-////        log.debug("-- BLACKBOARD RESULTS " + TimeRecordUtil.getTimeStamp());
+        log.debug("-- BLACKBOARD RESULTS " + TimeRecordUtil.getTimeStamp());
         log.debug("-----------------------------------------------------------------------------");
 
         log.info("- SYSTEM FINAL REPLY: " + answer);

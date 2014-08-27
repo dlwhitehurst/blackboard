@@ -29,7 +29,6 @@ import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
-import org.svs.datetime.TimeRecordUtil;
 
 /**
  * This class is used to provide utility functions for the blackboard object.

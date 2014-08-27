@@ -51,7 +51,6 @@ public final class BlackboardContext {
      */
     private Controller controller;
 
-    private Brain brain;
     
     /**
      * Hidden constructor
@@ -59,7 +58,6 @@ public final class BlackboardContext {
     private BlackboardContext() {
         this.blackboard = (Blackboard) UniversalContext.getApplicationContext().getBean("blackboard");
         this.controller = (Controller) UniversalContext.getApplicationContext().getBean("controller");
-        this.brain = (Brain) UniversalContext.getApplicationContext().getBean("brain");
     }
     
     /**
@@ -85,13 +83,6 @@ public final class BlackboardContext {
      */
     public final Controller getController() {
         return controller;
-    }
-
-    /**
-     * @return the {@link Brain} object
-     */
-    public final Brain getBrain() {
-        return brain;
     }
 
 }

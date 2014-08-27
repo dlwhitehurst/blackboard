@@ -1,5 +1,5 @@
 /**
- * Copyright 2010 David L. Whitehurst
+ * Copyright 2010,2011,2012,2013,2014 David L. Whitehurst
  * 
  * Licensed under the Apache License, Version 2.0 
  * (the "License"); You may not use this file except 
@@ -75,7 +75,7 @@ public final class Cryptographer {
          * Assert the problem at the blackboard
          */
         if (!blackboard.assertProblem(ciphertext)) {
-            return SystemConstants.NO_PROBLEM_ASSERT_ERROR;
+            return SystemConstants.NO_ASSERT_ERROR;
         }
 
         /**
@@ -84,7 +84,7 @@ public final class Cryptographer {
         controller.reset();
 
         /**
-         * Connect to the brain and wake the system
+         * Connect with the controller and wake the system
          */
         controller.connect();
 

@@ -38,9 +38,9 @@ import org.dlw.ai.blackboard.rule.Rule;
 import org.dlw.ai.blackboard.rule.RuleSet;
 import org.dlw.ai.blackboard.rule.RuleType;
 import org.dlw.ai.blackboard.util.MessageConstants;
+import org.dlw.ai.blackboard.util.ReflectionUtil;
 import org.dlw.ai.blackboard.util.SentenceUtil;
 import org.dlw.ai.blackboard.util.UniversalContext;
-import org.svs.reflection.ReflectionUtil;
 
 
 /**

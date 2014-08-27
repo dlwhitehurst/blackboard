@@ -25,7 +25,7 @@ import org.dlw.ai.blackboard.rule.Consequent;
 import org.dlw.ai.blackboard.rule.Rule;
 import org.dlw.ai.blackboard.rule.RuleSet;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
-import org.svs.reflection.ReflectionUtil;
+import org.dlw.ai.blackboard.util.ReflectionUtil;
 
 
 /**

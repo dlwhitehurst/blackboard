@@ -1,5 +1,6 @@
 /**
- * Copyright 2010 David L. Whitehurst
+ * Copyright 2010,2011,2012,2013,2014 
+ * David L. Whitehurst
  *
  * Licensed under the Apache License, Version 2.0 
  * (the "License"); You may not use this file except 
@@ -22,7 +23,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.domain.Assumption;
+import org.dlw.ai.blackboard.exception.CollectionLoadingException;
+import org.dlw.ai.blackboard.exception.InitializationException;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.KnowledgeSources;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSourcesImpl;
 import org.dlw.ai.blackboard.util.SystemConstants;
 
@@ -44,6 +48,11 @@ public class Controller {
     private KnowledgeSource activeKnowledgeSource;
 
     /**
+     * Attribute collection and entire problem domain of knowledge sources
+     */
+    private final KnowledgeSourcesImpl knowledgeSources = new KnowledgeSourcesImpl();
+    
+    /**
      * Attribute class logger
      */
     private static final Log log = LogFactory.getLog(Controller.class);
@@ -52,11 +61,6 @@ public class Controller {
      * Attribute enum state of the controller
      */
     private ControllerState state;
-
-    /**
-     * Attribute brain or source of intelligence
-     */
-    private Brain brain;
 
     /**
      * Attribute blackboard or problem solving sandbox
@@ -119,8 +123,7 @@ public class Controller {
      */
     public final void processNextHint() {
 
-        KnowledgeSourcesImpl knowledgeSources = (KnowledgeSourcesImpl) brain
-                .getKnowledgeSources();
+        KnowledgeSourcesImpl knowledgeSources = (KnowledgeSourcesImpl) getKnowledgeSources();
 
         Collections.sort(knowledgeSources);
 
@@ -175,13 +178,15 @@ public class Controller {
          * Dismiss experts
          */
         activeKnowledgeSource = null;
-        brain = null;
 
-        /**
-         * Gather new intelligence experts
-         */
-        brain = BlackboardContext.getInstance().getBrain();
-
+        try {
+            knowledgeSources.reset();
+        } catch (InitializationException e) {
+            log.error("Could not reset and initialize knowledge sources.");
+        } catch (CollectionLoadingException e) {
+            log.error("Some failure occurred loading knowledge source collection.");
+        }
+        
         /**
          * Initial controller state
          */
@@ -194,7 +199,7 @@ public class Controller {
      * blackboard problem
      * 
      * @param hint
-     *            the KnowledgeSource (or Expert) to provide input for solution
+     *            the KnowledgeSource (or Expert) 
      */
     private void visitBlackboard(KnowledgeSource ks) {
 
@@ -222,17 +227,38 @@ public class Controller {
     }
 
     /**
-     * Connect and manage the Brain
+     * Connect and manage the brain
      */
     public final void connect() {
 
-        brain.engage();
+        engage();
         if (log.isInfoEnabled()) {
-            log.info("Controller::connect-> Controller and Brain are now connected.");
+            log.info("Controller::connect-> Controller has requested the brain employ the services of its knowledge experts.");
         } else {
             System.err.println(SystemConstants.INFO_LEVEL_FATAL);
             System.exit(0); // die
         }
+    }
+    /**
+     * Public method to engage and load knowledge sources (intelligence)
+     */
+    public void engage() {
+
+        try {
+            knowledgeSources.init();
+        } catch (InitializationException e) {
+            log.error("Could not engage and initialize knowledge sources.");
+        } catch (CollectionLoadingException e) {
+            log.error("Some failure occurred loading knowledge source collection.");
+        }
+    }
+
+
+    /**
+     * @return the knowledgeSources
+     */
+    public KnowledgeSources getKnowledgeSources() {
+        return knowledgeSources;
     }
 
 }

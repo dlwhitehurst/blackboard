@@ -1,5 +1,5 @@
 /**
- * Copyright 2010 David L. Whitehurst
+ * Copyright 2010-2014 David L. Whitehurst
  *
  * Licensed under the Apache License, Version 2.0
  * (the "License"); You may not use this file except

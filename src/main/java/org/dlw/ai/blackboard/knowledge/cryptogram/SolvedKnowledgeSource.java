@@ -14,7 +14,7 @@
  * License.
  * 
  */
-package org.dlw.ai.blackboard.knowledge.primitive;
+package org.dlw.ai.blackboard.knowledge.cryptogram;
 
 import java.util.List;
 

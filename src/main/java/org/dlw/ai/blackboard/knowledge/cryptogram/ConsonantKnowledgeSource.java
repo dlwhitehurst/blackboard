@@ -14,9 +14,8 @@
  * License.
  * 
  */
-package org.dlw.ai.blackboard.knowledge.primitive;
+package org.dlw.ai.blackboard.knowledge.cryptogram;
 
-import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
 /**
@@ -24,19 +23,20 @@ import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
  * @version 1.0.0
  * 
  */
-public class LetterKnowledgeSource extends KnowledgeSource {
-    
+public class ConsonantKnowledgeSource extends LetterKnowledgeSource {
+
+
     /**
      * unique serial identifier
      */
-    private static final long serialVersionUID = 6596912609964805999L;
+    private static final long serialVersionUID = -6680468003597506424L;
 
     /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.domain.BaseObject#toString()
+     * @see org.dlw.ai.blackboard.knowledge.primitive.LetterKnowledgeSource#toString()
      */
     @Override
     public String toString() {
-        return KnowledgeSourceConstants.LETTER_KNOWLEDGE_SOURCE;
+        return KnowledgeSourceConstants.CONSONANT_KNOWLEDGE_SOURCE;
     }
 
     /*
@@ -47,6 +47,6 @@ public class LetterKnowledgeSource extends KnowledgeSource {
     @Override
     public void evaluate() {
         // TODO Auto-generated method stub
-        
     }
+
 }

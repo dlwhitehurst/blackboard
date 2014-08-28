@@ -14,7 +14,7 @@
  * License.
  * 
  */
-package org.dlw.ai.blackboard.knowledge.primitive;
+package org.dlw.ai.blackboard.knowledge.cryptogram;
 
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;

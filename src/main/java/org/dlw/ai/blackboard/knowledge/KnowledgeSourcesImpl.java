@@ -23,19 +23,19 @@ import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.exception.CollectionLoadingException;
 import org.dlw.ai.blackboard.exception.InitializationException;
 import org.dlw.ai.blackboard.exception.UnknownKnowledgeSourceException;
-import org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource;
-import org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.CommonPrefixKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.CommonSuffixKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.ConsonantKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.DirectSubstitutionKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.DoubleLetterKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.LegalStringKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.LetterFrequencyKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.PatternMatchingKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.SentenceStructureKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.SmallWordKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.SolvedKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.VowelKnowledgeSource;
+import org.dlw.ai.blackboard.knowledge.cryptogram.WordStructureKnowledgeSource;
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 import org.dlw.ai.blackboard.util.RuleSetConstants;
 import org.dlw.ai.blackboard.util.UniversalContext;
@@ -328,79 +328,79 @@ public final class KnowledgeSourcesImpl extends ArrayList<KnowledgeSource>
 
         KnowledgeSourceUtil ksUtil = new KnowledgeSourceUtil();
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.CommonPrefixKnowledgeSource) {
             ks.setPriority(new Integer(4));
             ksUtil.loadRuleSet(ks, RuleSetConstants.COMMON_PREFIX);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.CommonSuffixKnowledgeSource) {
             ks.setPriority(new Integer(5));
             ksUtil.loadRuleSet(ks, RuleSetConstants.COMMON_SUFFIX);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.ConsonantKnowledgeSource) {
             ks.setPriority(new Integer(5));
             ksUtil.loadRuleSet(ks, RuleSetConstants.CONSONANT);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.DirectSubstitutionKnowledgeSource) {
             ks.setPriority(new Integer(2));
             ksUtil.loadRuleSet(ks, RuleSetConstants.DIRECT_SUBSTITUTION);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.DoubleLetterKnowledgeSource) {
             ks.setPriority(new Integer(5));
             ksUtil.loadRuleSet(ks, RuleSetConstants.DOUBLE_LETTER);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.LegalStringKnowledgeSource) {
             ks.setPriority(new Integer(5));
             ksUtil.loadRuleSet(ks, RuleSetConstants.LEGAL_STRING);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.LetterFrequencyKnowledgeSource) {
             ks.setPriority(new Integer(5));
             ksUtil.loadRuleSet(ks, RuleSetConstants.LETTER_FREQUENCY);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.PatternMatchingKnowledgeSource) {
             ks.setPriority(new Integer(4));
             ksUtil.loadRuleSet(ks, RuleSetConstants.PATTERN_MATCHING);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.SentenceStructureKnowledgeSource) {
             ks.setPriority(new Integer(5));
             ksUtil.loadRuleSet(ks, RuleSetConstants.SENTENCE_STRUCTURE);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.SmallWordKnowledgeSource) {
             ks.setPriority(new Integer(3));
             ksUtil.loadRuleSet(ks, RuleSetConstants.SMALL_WORD);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.SolvedKnowledgeSource) {
             ks.setPriority(new Integer(1)); // top priority
             ksUtil.loadRuleSet(ks, RuleSetConstants.SOLVED);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.VowelKnowledgeSource) {
             ks.setPriority(new Integer(5));
             ksUtil.loadRuleSet(ks, RuleSetConstants.VOWEL);
             return;
         }
 
-        if (ks instanceof org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource) {
+        if (ks instanceof org.dlw.ai.blackboard.knowledge.cryptogram.WordStructureKnowledgeSource) {
             ks.setPriority(new Integer(5));
             ksUtil.loadRuleSet(ks, RuleSetConstants.WORD_STRUCTURE);
             return;

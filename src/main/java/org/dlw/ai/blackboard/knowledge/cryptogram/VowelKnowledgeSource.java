@@ -14,7 +14,7 @@
  * License.
  * 
  */
-package org.dlw.ai.blackboard.knowledge.primitive;
+package org.dlw.ai.blackboard.knowledge.cryptogram;
 
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
@@ -23,21 +23,21 @@ import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
  * @version 1.0.0
  * 
  */
-public class PatternMatchingKnowledgeSource extends WordKnowledgeSource {
+public class VowelKnowledgeSource extends LetterKnowledgeSource {
 
     /**
      * unique serial identifier
      */
-    private static final long serialVersionUID = -7043778616273782432L;
+    private static final long serialVersionUID = -37857209445750951L;
 
     /*
      * (non-Javadoc)
      * 
-     * @see java.lang.Object#toString()
+     * @see org.dlw.ai.blackboard.knowledge.LetterKnowledgeSource#toString()
      */
     @Override
     public String toString() {
-        return KnowledgeSourceConstants.PATTERN_MATCHING_KNOWLEDGE_SOURCE;
+        return KnowledgeSourceConstants.VOWEL_KNOWLEDGE_SOURCE;
     }
 
     /*

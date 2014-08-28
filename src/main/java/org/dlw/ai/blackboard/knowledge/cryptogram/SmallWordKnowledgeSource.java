@@ -14,7 +14,7 @@
  * License.
  * 
  */
-package org.dlw.ai.blackboard.knowledge.primitive;
+package org.dlw.ai.blackboard.knowledge.cryptogram;
 
 import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
 
@@ -23,19 +23,21 @@ import org.dlw.ai.blackboard.util.KnowledgeSourceConstants;
  * @version 1.0.0
  * 
  */
-public class CommonPrefixKnowledgeSource extends StringKnowledgeSource {
+public class SmallWordKnowledgeSource extends WordKnowledgeSource {
 
     /**
      * unique serial identifier
      */
-    private static final long serialVersionUID = 2808716412471354046L;
-
-    /* (non-Javadoc)
-     * @see org.dlw.ai.blackboard.domain.BaseObject#toString()
+    private static final long serialVersionUID = -7119272605131087859L;
+    
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
-        return KnowledgeSourceConstants.COMMON_PREFIX_KNOWLEDGE_SOURCE;
+        return KnowledgeSourceConstants.SMALL_WORD_KNOWLEDGE_SOURCE;
     }
 
     /*

@@ -12,22 +12,22 @@ import org.junit.Test;
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0
  */
-public class BrainTest {
+public class ControllerTest {
 
-    private Brain brain;
+    private Controller controller;
 
     @Before
     public void setUp() throws Exception {
-        brain = BlackboardContext.getInstance().getBrain();
+        controller = BlackboardContext.getInstance().getController();
 
     }
 
     @Test
     public void engageTest() throws AssertionError {
-        brain.engage(); // load KnowledgeSources
-        assertNotNull(brain.getKnowledgeSources());
+        controller.engage(); // load KnowledgeSources
+        assertNotNull(controller.getKnowledgeSources());
 
-        KnowledgeSourcesImpl kss = (KnowledgeSourcesImpl) brain
+        KnowledgeSourcesImpl kss = (KnowledgeSourcesImpl) controller
                 .getKnowledgeSources();
         int count = kss.size();
 

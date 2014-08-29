@@ -27,7 +27,7 @@ import java.util.Stack;
  * </p>
  * 
  * <p>
- * The {@link Letter} tells us that we have knowledge of its meaning in two
+ * The {@link Alphabet} tells us that we have knowledge of its meaning in two
  * languages, the problem language (cipher) and the general dialect (english) in
  * our case.
  * </p>
@@ -40,9 +40,14 @@ import java.util.Stack;
  * @version 1.0.0
  * 
  */
-public class Letter extends BlackboardObject {
+public class Alphabet extends BlackboardObject {
 
     /**
+     * Affirmation (statements) made against this alphabet
+     */
+    protected Affirmation affirmations = new Affirmation();
+	
+	/**
      * Attribute cipher letter knowledge
      */
     private String cipherLetter;
@@ -52,25 +57,16 @@ public class Letter extends BlackboardObject {
      */
     private String plainLetter;
     
-    /**
-     * Attribute for solved (asserted)
-     */
-    private boolean solved = false;
-    
     private boolean vowel = false;
     
     private boolean consonant = false;
     
-    /**
-     * Affirmation (statements) made against this alphabet
-     */
-    protected Affirmation affirmation = new Affirmation();
 
     /**
      * No default constructor allowed
      */
     @SuppressWarnings("unused")
-    private Letter() {
+    private Alphabet() {
     }
 
     /**
@@ -78,70 +74,13 @@ public class Letter extends BlackboardObject {
      * 
      * @param cipherLetter
      */
-    public Letter(final String cipherLetter) {
+    public Alphabet(final String cipherLetter) {
         this.cipherLetter = cipherLetter;
     }
 
-    /**
-     * @return the cipherLetter
-     */
-    public String getCipherLetter() {
-        return cipherLetter;
-    }
-
-    /**
-     * @param cipherLetter
-     *            the cipherLetter to set
-     */
-    public void setCipherLetter(String cipherLetter) {
-        this.cipherLetter = cipherLetter;
-    }
-
-    /**
-     * @return the plainLetter
-     */
-    public String getPlainLetter() {
-        return plainLetter;
-    }
-
-    /**
-     * @param plainLetter
-     *            the plainLetter to set
-     */
-    public void setPlainLetter(String plainLetter) {
-        this.plainLetter = plainLetter;
-    }
-
-    /**
-     * @return the affirmations
-     */
-    public Affirmation getAffirmation() {
-        return affirmation;
-    }
-
-    /**
-     * @param affirmations
-     *            the affirmations to set
-     */
-    public void setAffirmation(Affirmation affirmation) {
-        this.affirmation = affirmation;
-    }
-
-    public String value() {
-        String result = null;
-        
-        if (isSolved()) {
-            result =  getPlainLetter();
-        } else {
-            result = getCipherLetter();
-        }
-        
-        return result;
-    } 
-    
     public boolean isAsserted() {
         boolean result = false;
-        Stack<Assumption> stack = getAffirmation().getStatements();
+        Stack<Assumption> stack = getAffirmations().getStatements();
         for (int i = 0; i < stack.size(); i++) {
             Assumption assumption = stack.pop();
             if (!assumption.isRetractable()) {
@@ -150,20 +89,6 @@ public class Letter extends BlackboardObject {
             }
         }
         return result;
-    }
-
-    /**
-     * @return the solved
-     */
-    public boolean isSolved() {
-        return solved;
-    }
-
-    /**
-     * @param solved the solved to set
-     */
-    public void setSolved(boolean solved) {
-        this.solved = solved;
     }
 
 	/**
@@ -193,4 +118,48 @@ public class Letter extends BlackboardObject {
 	public void setConsonant(boolean consonant) {
 		this.consonant = consonant;
 	}
+    /**
+     * @return the cipherLetter
+     */
+    public String getCipherLetter() {
+        return cipherLetter;
+    }
+
+    /**
+     * @param cipherLetter
+     *            the cipherLetter to set
+     */
+    public void setCipherLetter(String cipherLetter) {
+        this.cipherLetter = cipherLetter;
+    }
+
+    /**
+     * @return the plainLetter
+     */
+    public String getPlainLetter() {
+        return plainLetter;
+    }
+
+    /**
+     * @param plainLetter
+     *            the plainLetter to set
+     */
+    public void setPlainLetter(String plainLetter) {
+        this.plainLetter = plainLetter;
+    }
+    /**
+     * @return the affirmations
+     */
+    public Affirmation getAffirmations() {
+        return affirmations;
+    }
+
+    /**
+     * @param affirmations
+     *            the affirmations to set
+     */
+    public void setAffirmation(Affirmation affirmation) {
+        this.affirmations = affirmation;
+    }
+	
 }

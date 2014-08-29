@@ -24,7 +24,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.domain.BlackboardObject;
-import org.dlw.ai.blackboard.domain.Letter;
+import org.dlw.ai.blackboard.domain.Alphabet;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
 import org.dlw.ai.blackboard.knowledge.KnowledgeSource;
@@ -168,7 +168,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         sentence.setWords(words);
 
         for (Word word : words) {
-            List<Letter> letters = SentenceUtil.getLetters(word);
+            List<Alphabet> letters = SentenceUtil.getLetters(word);
             word.setLetters(letters);
         }
     }
@@ -187,9 +187,9 @@ public class Blackboard extends ArrayList<BlackboardObject> {
 
             word.register();
 
-            List<Letter> letters = SentenceUtil.getLetters(word);
+            List<Alphabet> letters = SentenceUtil.getLetters(word);
 
-            for (Letter letter : letters) {
+            for (Alphabet letter : letters) {
                 letter.register();
             }
         }
@@ -240,7 +240,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         assumption.register();
 
         for (Word word : sentence.getWords()) {
-            for (Letter cipherLetter : word.getLetters()) {
+            for (Alphabet cipherLetter : word.getLetters()) {
                 if (cipherLetter.value().equals(assumption.getCipherLetter())) {
                     cipherLetter.setPlainLetter(assumption.getPlainLetter());
 //                    cipherLetter.

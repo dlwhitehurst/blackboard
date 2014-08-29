@@ -30,7 +30,7 @@ import java.util.Stack;
  * letter at any time and can be used to set the "affirmed" character if assumed
  * to have a plain-text solution back to the cipher character if needed. The
  * {@link Affirmation#plainText} method, however will only return the plain-text
- * character if an {@link Letter} object has been created and placed on the
+ * character if an {@link Alphabet} object has been created and placed on the
  * {@link org.dlw.ai.blackboard.Blackboard}.
  * </p>
  * 
@@ -54,18 +54,18 @@ public class Affirmation {
     /**
      * The cipher letter relating to this affirmation
      */
-    private Letter cipherLetter;
+    private CipherLetter _cipherLetter;
 
     /**
-     * The plaintext equivalent relating to this affirmation. We think this is
+     * The plaintext equivalent relating to this affirmation. We "think" this is
      * the logical letter replacement or solution for the ciphertext letter
      */
-    private Letter solvedLetter;
+    private Alphabet _solvedLetter;
 
     /**
      * Our stack of assumptions. Remember that assertions extend assumption
      */
-    private Stack<Assumption> statements = new Stack<Assumption>();
+    private Stack<Assumption> _assumptions = new Stack<Assumption>();
 
     /**
      * Default constructor
@@ -74,19 +74,24 @@ public class Affirmation {
     }
 
     public void push(Assumption assumption) {
-        statements.push(assumption);
+        _assumptions.push(assumption);
     }
 
     /**
-     * Retract a statement
+     * Retract an Assumption
      * 
      */
     public Assumption pop() {
-        return statements.pop();
+        return _assumptions.pop();
     }
 
+    /**
+     * Get Assumption
+     * @param i
+     * @return
+     */
     public Assumption statementAt(int i) {
-        return statements.get(i);
+        return _assumptions.get(i);
     }
     /**
      * Public method to get ciphertext (rarely, may not be finished)
@@ -94,7 +99,7 @@ public class Affirmation {
      * @return String
      */
     public String cipherText() {
-        return cipherLetter.value();
+        return _cipherLetter.value();
     }
 
     /**
@@ -103,7 +108,7 @@ public class Affirmation {
      * @return String
      */
     public String plainText() {
-        return solvedLetter.getPlainLetter();
+        return _solvedLetter.getPlainLetter();
     }
 
     /**
@@ -114,7 +119,7 @@ public class Affirmation {
     public boolean isPlainLetterAsserted() {
         boolean result = false;
 
-        Stack<Assumption> stack = this.solvedLetter.getAffirmation()
+        Stack<Assumption> stack = this._solvedLetter.getAffirmations()
                 .getStatements();
         for (int i = 0; i < stack.size(); i++) {
             Assumption assumption = stack.pop();
@@ -135,7 +140,7 @@ public class Affirmation {
 
         boolean result = false;
 
-        Stack<Assumption> stack = this.cipherLetter.getAffirmation()
+        Stack<Assumption> stack = this._cipherLetter.getAffirmations()
                 .getStatements();
         for (int i = 0; i < stack.size(); i++) {
             Assumption assumption = stack.pop();
@@ -156,7 +161,7 @@ public class Affirmation {
     public boolean plainLetterHasAssumption() {
         boolean result = false;
 
-        Stack<Assumption> stack = this.solvedLetter.getAffirmation()
+        Stack<Assumption> stack = this._solvedLetter.getAffirmations()
                 .getStatements();
         if (stack.size() > 0) {
             result = true;
@@ -174,7 +179,7 @@ public class Affirmation {
     public boolean cipherLetterHasAssumption() {
         boolean result = false;
 
-        Stack<Assumption> stack = this.cipherLetter.getAffirmation()
+        Stack<Assumption> stack = this._cipherLetter.getAffirmations()
                 .getStatements();
         if (stack.size() > 0) {
             result = true;
@@ -186,38 +191,38 @@ public class Affirmation {
     /**
      * @return {@link CipherLetter}
      */
-    public Letter getCipherLetter() {
-        return cipherLetter;
+    public CipherLetter getCipherLetter() {
+        return _cipherLetter;
     }
 
     /**
      * @param cipherLetter
      *   the {@link CipherLetter} to set
      */
-    public void setCipherLetter(Letter cipherLetter) {
-        this.cipherLetter = cipherLetter;
+    public void setCipherLetter(CipherLetter cipherLetter) {
+        this._cipherLetter = cipherLetter;
     }
 
     /**
-     * @return {@link Letter}
+     * @return {@link Alphabet}
      */
-    public Letter getSolvedLetter() {
-        return solvedLetter;
+    public Alphabet getSolvedLetter() {
+        return _solvedLetter;
     }
 
     /**
      * @param solvedLetter
      *            the solvedLetter to set
      */
-    public void setSolvedLetter(Letter solvedLetter) {
-        this.solvedLetter = solvedLetter;
+    public void setSolvedLetter(Alphabet solvedLetter) {
+        this._solvedLetter = solvedLetter;
     }
 
     /**
      * @return Stack<Assumption>
      */
     public Stack<Assumption> getStatements() {
-        return statements;
+        return _assumptions;
     }
 
     /**
@@ -225,14 +230,14 @@ public class Affirmation {
      *            the statements to set
      */
     public void setStatements(Stack<Assumption> statements) {
-        this.statements = statements;
+        this._assumptions = statements;
     }
 
     public boolean hasAssumption() {
 
         boolean result = false;
         
-        if (statements.size() > 0) {
+        if (_assumptions.size() > 0) {
             result = true;
         }
 

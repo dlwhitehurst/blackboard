@@ -24,7 +24,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dlw.ai.blackboard.Blackboard;
-import org.dlw.ai.blackboard.domain.Letter;
+import org.dlw.ai.blackboard.domain.Alphabet;
 import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.BlackboardObject;
 import org.dlw.ai.blackboard.domain.Sentence;
@@ -69,14 +69,14 @@ public final class BlackboardUtil {
             }
             
             if (obj.getClass().equals(
-                    org.dlw.ai.blackboard.domain.Letter.class)) {
-                Letter cipherLetter = (Letter) obj;
+                    org.dlw.ai.blackboard.domain.Alphabet.class)) {
+                Alphabet cipherLetter = (Alphabet) obj;
                 log.debug("CIPHER: " + cipherLetter.getCipherLetter());
             }
             
             if (obj.getClass().equals(
-                    org.dlw.ai.blackboard.domain.Letter.class)) {
-                Letter alphabet = (Letter) obj;
+                    org.dlw.ai.blackboard.domain.Alphabet.class)) {
+                Alphabet alphabet = (Alphabet) obj;
                 log.debug("ALPHABET: " + alphabet.getCipherLetter() + "=" + alphabet.getPlainLetter());
             }
 
@@ -154,9 +154,9 @@ public final class BlackboardUtil {
 
         for (Word word : words) {
 
-            List<Letter> list = word.getLetters();
+            List<Alphabet> list = word.getLetters();
 
-            for (Letter letter : list) {
+            for (Alphabet letter : list) {
                 if (letter.getAffirmation().getSolvedLetter() != null) {
                         // affirmation and we have an assertion
                         markerLine = markerLine.concat(letter.getAffirmation().getSolvedLetter().getPlainLetter()); // was underscore

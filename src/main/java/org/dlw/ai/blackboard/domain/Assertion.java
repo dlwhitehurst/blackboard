@@ -39,6 +39,7 @@ public class Assertion extends Assumption {
      * (non-Javadoc)
      * 
      * @see org.dlw.ai.cryptogram.domain.Assumption#isRetractable()
+     * Please note that an assertion is never retractable.
      */
     @Override
     public final boolean isRetractable() {

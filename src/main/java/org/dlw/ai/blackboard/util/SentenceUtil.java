@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import org.dlw.ai.blackboard.domain.Letter;
+import org.dlw.ai.blackboard.domain.Alphabet;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
 
@@ -83,14 +83,14 @@ public final class SentenceUtil {
      * @return
      *      a List of cipher letter blackboard objects
      */
-    public static List<Letter> getLetters(final Word word) {
+    public static List<Alphabet> getLetters(final Word word) {
 
-        ArrayList<Letter> letters = new ArrayList<Letter>();
+        ArrayList<Alphabet> letters = new ArrayList<Alphabet>();
 
         int i = 0;
 
         for (i = 0; i < word.value().length(); i++) {
-            Letter letter = new Letter(word.value().substring(i,
+            Alphabet letter = new Alphabet(word.value().substring(i,
                     i + 1));
             letters.add(letter);
 

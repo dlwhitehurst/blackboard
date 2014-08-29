@@ -28,7 +28,7 @@ import org.dlw.ai.blackboard.dao.RuleSetDao;
 import org.dlw.ai.blackboard.dao.hibernate.RuleSetDaoHibernate;
 import org.dlw.ai.blackboard.domain.Assertion;
 import org.dlw.ai.blackboard.domain.Assumption;
-import org.dlw.ai.blackboard.domain.Letter;
+import org.dlw.ai.blackboard.domain.Alphabet;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
 import org.dlw.ai.blackboard.exception.RuleSetNameNotFoundException;
@@ -167,7 +167,7 @@ public final class KnowledgeSourceUtil {
     private static void processConversionRule(Sentence sentence, Rule rule,
             KnowledgeSource ks) {
         List<Word> words = SentenceUtil.getWords(sentence);
-        List<Letter> letters;
+        List<Alphabet> letters;
 
         for (Word word : words) {
             letters = SentenceUtil.getLetters(word);
@@ -175,7 +175,7 @@ public final class KnowledgeSourceUtil {
             String cipher = rule.getBefore();
             String plainText = rule.getAfter();
 
-            for (Letter letter : letters) {
+            for (Alphabet letter : letters) {
 
                 if (letter.value().equals(cipher)) {
                     makeAssertion(ks, cipher, plainText);

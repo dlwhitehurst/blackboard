@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.dlw.ai.blackboard.domain.BlackboardObject;
-import org.dlw.ai.blackboard.domain.Letter;
+import org.dlw.ai.blackboard.domain.Alphabet;
 import org.dlw.ai.blackboard.domain.Sentence;
 import org.dlw.ai.blackboard.domain.Word;
 import org.junit.Before;
@@ -53,8 +53,8 @@ public class BlackboardTest {
                 System.out.println("WORD: " + word.value());
             }
             if (obj.getClass().equals(
-                    org.dlw.ai.blackboard.domain.Letter.class)) {
-                Letter letter = (Letter) obj;
+                    org.dlw.ai.blackboard.domain.Alphabet.class)) {
+                Alphabet letter = (Alphabet) obj;
                 System.out.println("LETTER: " + letter.value());
             }
         }
@@ -87,8 +87,8 @@ public class BlackboardTest {
         for (Word word: words) {
             System.out.println(i + ":" + word.value());
             i++;
-            List<Letter> letters = word.getLetters();
-            for (Letter letter: letters) {
+            List<Alphabet> letters = word.getLetters();
+            for (Alphabet letter: letters) {
                 System.out.println(j + ":" + letter.value());
                 j++;
             }

@@ -177,7 +177,7 @@ public final class KnowledgeSourceUtil {
 
             for (Alphabet letter : letters) {
 
-                if (letter.value().equals(cipher)) {
+                if (letter.getCipherLetter().equals(cipher)) {
                     makeAssertion(ks, cipher, plainText);
                 }
             }

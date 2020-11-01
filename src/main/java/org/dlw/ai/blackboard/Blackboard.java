@@ -241,7 +241,7 @@ public class Blackboard extends ArrayList<BlackboardObject> {
 
         for (Word word : sentence.getWords()) {
             for (Alphabet cipherLetter : word.getLetters()) {
-                if (cipherLetter.value().equals(assumption.getCipherLetter())) {
+                if (cipherLetter.getCipherLetter().equals(assumption.getCipherLetter())) {
                     cipherLetter.setPlainLetter(assumption.getPlainLetter());
 //                    cipherLetter.
 //                    Letter alphabet = new Letter(

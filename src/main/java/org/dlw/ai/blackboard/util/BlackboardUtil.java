@@ -157,11 +157,11 @@ public final class BlackboardUtil {
             List<Alphabet> list = word.getLetters();
 
             for (Alphabet letter : list) {
-                if (letter.getAffirmation().getSolvedLetter() != null) {
+                if (letter.getAffirmations().getSolvedLetter() != null) {
                         // affirmation and we have an assertion
-                        markerLine = markerLine.concat(letter.getAffirmation().getSolvedLetter().getPlainLetter()); // was underscore
+                        markerLine = markerLine.concat(letter.getAffirmations().getSolvedLetter().getPlainLetter()); // was underscore
                     } else {
-                        markerLine = markerLine.concat(letter.value()); // was space
+                        markerLine = markerLine.concat(letter.getPlainLetter()); // was space
                     }
             }
             if (loopcount < wordcount) {

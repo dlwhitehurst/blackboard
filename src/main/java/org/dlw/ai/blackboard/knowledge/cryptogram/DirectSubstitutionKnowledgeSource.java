@@ -97,7 +97,7 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 
             for (Alphabet letter : letters) {
 
-                if (letter.value().equals(cipher)) {
+                if (letter.getCipherLetter().equals(cipher)) {
                     makeAssertion(ks, cipher, plainText);
                     log.info("processConversionRule->The DirectSubstitutionKnowledgeSource made an assertion to change the letter " + cipher + " to letter " + plainText + ".");
                     return;

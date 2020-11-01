@@ -1,5 +1,5 @@
-/**
- * Copyright 2010 David L. Whitehurst
+/*
+ * Copyright 2020 David L. Whitehurst
  *
  * Licensed under the Apache License, Version 2.0
  * (the "License"); You may not use this file except
@@ -14,6 +14,7 @@
  * License.
  *
  */
+
 package org.dlw.ai.blackboard;
 
 import java.util.ArrayList;

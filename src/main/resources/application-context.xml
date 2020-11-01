@@ -16,43 +16,43 @@
           
 	<!-- all working knowledge sources -->
     <bean id="solvedKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.SolvedKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.SolvedKnowledgeSource" />
 	
     <bean id="sentenceStructureKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.SentenceStructureKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.SentenceStructureKnowledgeSource" />
 
     <bean id="patternMatchingKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.PatternMatchingKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.PatternMatchingKnowledgeSource" />
 
     <bean id="smallWordKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.SmallWordKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.SmallWordKnowledgeSource" />
 
     <bean id="wordStructureKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.WordStructureKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.WordStructureKnowledgeSource" />
 
     <bean id="legalStringKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.LegalStringKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.LegalStringKnowledgeSource" />
 
     <bean id="doubleLetterKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.DoubleLetterKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.DoubleLetterKnowledgeSource" />
 
     <bean id="commonSuffixKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.CommonSuffixKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.CommonSuffixKnowledgeSource" />
 
     <bean id="commonPrefixKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.CommonPrefixKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.CommonPrefixKnowledgeSource" />
 
     <bean id="letterFrequencyKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.LetterFrequencyKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.LetterFrequencyKnowledgeSource" />
 
     <bean id="consonantKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.ConsonantKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.ConsonantKnowledgeSource" />
 
     <bean id="vowelKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.VowelKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.VowelKnowledgeSource" />
 
     <bean id="directSubstitutionKnowledgeSource"
-          class="org.dlw.ai.blackboard.knowledge.primitive.DirectSubstitutionKnowledgeSource" />
+          class="org.dlw.ai.blackboard.knowledge.cryptogram.DirectSubstitutionKnowledgeSource" />
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties"/>

@@ -55,7 +55,7 @@ public class BlackboardTest {
             if (obj.getClass().equals(
                     org.dlw.ai.blackboard.domain.Alphabet.class)) {
                 Alphabet letter = (Alphabet) obj;
-                System.out.println("LETTER: " + letter.value());
+                System.out.println("LETTER: " + letter.getCipherLetter());
             }
         }
         
@@ -89,7 +89,7 @@ public class BlackboardTest {
             i++;
             List<Alphabet> letters = word.getLetters();
             for (Alphabet letter: letters) {
-                System.out.println(j + ":" + letter.value());
+                System.out.println(j + ":" + letter.getCipherLetter());
                 j++;
             }
         }

@@ -1,7 +1,10 @@
+.DS_Store
 /target
-.settings
+.settings/
 .classpath
 .project
+.idea/
+
 doc/allclasses-frame.html
 
 doc/allclasses-noframe.html

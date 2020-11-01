@@ -23,27 +23,6 @@
         </license>
     </licenses>
 
-    <scm>
-        <connection>scm:git:git://github.com/dlwhitehurst/blackboard.git</connection>
-        <url>scm:git:git://github.com/dlwhitehurst/blackboard.git</url>
-    </scm>
-
-    <issueManagement>
-        <system>jira</system>
-        <url>http://www.solutionvisual.com:8080/jira/browse/BLKBD</url>
-    </issueManagement>
-    
-    <distributionManagement>
-        <site>
-            <id>website</id>
-            <url>ftp://capehenrytech.com/dlwhitehurst/blackboard</url>
-        </site>
-        <repository>
-            <id>repo</id>
-            <url>ftp://capehenrytech.com/dlwhitehurst/repo</url>
-        </repository>
-    </distributionManagement>
-
     <developers>
         <developer>
             <id>dlwhitehurst</id>
@@ -214,11 +193,6 @@
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>org.dlw</groupId>
-            <artifactId>svs-utility</artifactId>
-            <version>1.0.0-RC</version>
-        </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>

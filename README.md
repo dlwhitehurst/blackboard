@@ -1,4 +1,5 @@
-THE BLACKBOARD PROJECT (2010) 
+# blackboard  
+
 by David Whitehurst
 
 The blackboard model probably came about in 1962 when Allen Newell put these words to

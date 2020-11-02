@@ -4,6 +4,7 @@
 .classpath
 .project
 .idea/
+.git/
 
 doc/allclasses-frame.html
 

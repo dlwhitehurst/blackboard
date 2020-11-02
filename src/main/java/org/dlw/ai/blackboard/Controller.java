@@ -14,6 +14,7 @@
  * License.
  *
  */
+
 package org.dlw.ai.blackboard;
 
 import java.util.Collections;

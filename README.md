@@ -1,6 +1,6 @@
 # blackboard  
 
-by David Whitehurst
+by David L. Whitehurst
 
 The blackboard model probably came about in 1962 when Allen Newell put these words to
 paper, "metaphorically we can think of a set of workers, all looking at the same

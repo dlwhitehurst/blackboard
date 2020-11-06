@@ -14,6 +14,7 @@
  * License.
  *
  */
+
 package org.dlw.ai.blackboard.domain;
 
 import java.util.ArrayList;

@@ -107,8 +107,7 @@ public class Consequent extends BaseObject {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return null;
+        return "consequent(" + getId() + ")";
     }
 
     @Override

@@ -123,8 +123,7 @@ public class Antecedent extends BaseObject {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return null;
+        return "antecedent(" + getId() + ")";
     }
 
     @Override

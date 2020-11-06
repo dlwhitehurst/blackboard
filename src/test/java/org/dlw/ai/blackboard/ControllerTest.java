@@ -24,6 +24,8 @@ import org.dlw.ai.blackboard.knowledge.KnowledgeSourcesImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collections;
+
 /**
  * 
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
@@ -36,16 +38,16 @@ public class ControllerTest {
     @Before
     public void setUp() throws Exception {
         controller = BlackboardContext.getInstance().getController();
-
     }
 
     @Test
-    public void engageTest() throws AssertionError {
-        controller.engage(); // load KnowledgeSources
+    public void resetTest() throws AssertionError {
+        controller.reset();
         assertNotNull(controller.getKnowledgeSources());
 
         KnowledgeSourcesImpl kss = (KnowledgeSourcesImpl) controller
                 .getKnowledgeSources();
+        Collections.sort(kss);
         int count = kss.size();
 
         assertTrue(count == 13);

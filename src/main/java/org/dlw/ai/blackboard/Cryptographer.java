@@ -80,14 +80,10 @@ public final class Cryptographer {
         }
 
         /**
-         * Reset the controller
+         * Reset the controller, flushing active knowledge source and load
+         * all available knowledge sources.
          */
         controller.reset();
-
-        /**
-         * Connect with the controller and wake the system
-         */
-        controller.connect();
 
         /**
          * Start the controller

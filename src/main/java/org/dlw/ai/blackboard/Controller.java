@@ -168,18 +168,20 @@ public class Controller {
     }
 
     /**
-     * Public reset method to null the brain and knowledge sources and create a
-     * new brain. Knowledge sources are not created until the engage() method on
-     * brain is called.
+     * Public reset method to flush the expertise/knowledge sources and create a
+     * new collection of knowledge sources.
      */
     public final void reset() {
 
         /**
-         * Dismiss experts
+         * Dismiss any current expert on the floor
          */
         activeKnowledgeSource = null;
 
         try {
+            /**
+             * Reset/Initialize/Refresh collection of knowledge sources
+             */
             knowledgeSources.reset();
         } catch (InitializationException e) {
             log.error("Could not reset and initialize knowledge sources.");
@@ -225,34 +227,6 @@ public class Controller {
         log.info("leaveBlackboard-> Controller has disconnected the "
                 + ks.toString() + " from the blackboard.");
     }
-
-    /**
-     * Connect and manage the brain
-     */
-    public final void connect() {
-
-        engage();
-        if (log.isInfoEnabled()) {
-            log.info("Controller::connect-> Controller has requested the brain employ the services of its knowledge experts.");
-        } else {
-            System.err.println(SystemConstants.INFO_LEVEL_FATAL);
-            System.exit(0); // die
-        }
-    }
-    /**
-     * Public method to engage and load knowledge sources (intelligence)
-     */
-    public void engage() {
-
-        try {
-            knowledgeSources.init();
-        } catch (InitializationException e) {
-            log.error("Could not engage and initialize knowledge sources.");
-        } catch (CollectionLoadingException e) {
-            log.error("Some failure occurred loading knowledge source collection.");
-        }
-    }
-
 
     /**
      * @return the knowledgeSources

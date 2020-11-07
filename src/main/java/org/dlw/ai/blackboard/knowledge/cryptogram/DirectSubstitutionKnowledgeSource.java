@@ -14,6 +14,7 @@
  * License.
  *
  */
+
 package org.dlw.ai.blackboard.knowledge.cryptogram;
 
 import java.util.List;
@@ -36,6 +37,13 @@ import org.dlw.ai.blackboard.util.MessageConstants;
 import org.dlw.ai.blackboard.util.SentenceUtil;
 
 /**
+ * This knowledge source leans more toward a hint than an expert with
+ * participating knowledge. And for that matter, this knowledge source
+ * should have its place at the blackboard first.
+ *
+ * A single conversion rule is used to make the assertion that the cipher
+ * letter W should be the plain text V.
+ *
  * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
  * @version 1.0.0
  * 
@@ -70,12 +78,23 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
     @Override
     public void evaluate() {
 
+        log.info("Knowledge source begins to process ruleset against the current problem and existing affirmations.");
+
+        // Blackboard expected to be in problem-solving mode
         Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
+
+        // ########################################################
+        // TODO - this needs to be removed later after testing
+        //
+            blackboard.reset();
+            blackboard.assertProblem("Q AZWS DSSC KAS DXZNN DASNN");
+        //
+        // TODO - END
+        // ########################################################
+
         Sentence sentence = blackboard.getSentence();
-
-        RuleSet set = this.getRuleSet();
-
-        List<Rule> rules = set.getRules();
+        RuleSet ruleSet = this.getRuleSet();
+        List<Rule> rules = ruleSet.getRules();
 
         for (int i = 0; i < rules.size(); i++) {
             Rule rule = rules.get(i);
@@ -83,6 +102,16 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
         }
     }
 
+    /**
+     * Private method to process conversion rule against current problem.
+     *
+     * @param sentence
+     *    the problem Sentence
+     * @param rule
+     *    the Rule being considered
+     * @param ks
+     *    this Knowledge source
+     */
     private void processConversionRule(Sentence sentence, Rule rule,
             KnowledgeSource ks) {
 
@@ -99,14 +128,23 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
 
                 if (letter.getCipherLetter().equals(cipher)) {
                     makeAssertion(ks, cipher, plainText);
-                    log.info("processConversionRule->The DirectSubstitutionKnowledgeSource made an assertion to change the letter " + cipher + " to letter " + plainText + ".");
-                    return;
+                    log.info("processConversionRule->The DirectSubstitutionKnowledgeSource makes an assertion to set the plain text letter " + plainText + " for the cipher letter " + cipher + ".");
+                    //return;
                 }
             }
         }
-
     }
-    
+
+    /**
+     * Private method to make an assertion statement and file it.
+     *
+     * @param ks
+     *   this KnowledgeSource
+     * @param cipher
+     *   the current cipher letter
+     * @param plainText
+     *   the asserted plain text letter
+     */
     private void makeAssertion(KnowledgeSource ks, String cipher,
             String plainText) {
 

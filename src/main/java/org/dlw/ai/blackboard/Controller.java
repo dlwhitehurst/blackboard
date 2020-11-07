@@ -200,8 +200,8 @@ public class Controller {
      * Private method for KnowledgeSource expert to have a turn at the
      * blackboard problem
      * 
-     * @param hint
-     *            the KnowledgeSource (or Expert) 
+     * @param ks
+     *    the KnowledgeSource (or Expert)
      */
     private void visitBlackboard(KnowledgeSource ks) {
 

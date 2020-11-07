@@ -157,6 +157,10 @@ public class Blackboard extends ArrayList<BlackboardObject> {
          */
         registerBlackboardObjects(sentence);
 
+        if (log.isDebugEnabled()) {
+            log.debug(MessageConstants.BLACKBOARD_PROBLEM);
+        }
+
         /**
          * Return a true result
          */
@@ -206,6 +210,10 @@ public class Blackboard extends ArrayList<BlackboardObject> {
      */
     public final void connect(KnowledgeSource ks) {
 
+        // knowledge source has her turn at the board
+        ks.evaluate();
+
+        // get assumptions
         ConcurrentLinkedQueue<Assumption> queue = ks.getPastAssumptions();
 
         if (queue.size() > 0) {

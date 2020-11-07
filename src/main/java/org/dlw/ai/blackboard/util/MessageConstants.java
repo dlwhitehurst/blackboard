@@ -36,6 +36,8 @@ public final class MessageConstants {
      */
     public static final String BLACKBOARD_RESET = "Blackboard has been cleaned and ready for problem solving.";
 
+    public static final String BLACKBOARD_PROBLEM = "Blackboard has been loaded with an unsolved cryptogram problem set of blackboard objects.";
+
     public static final String SUBSTITUTION_ASSERT = "An assertion was given to describe a direct translation of a cipher letter.";
 
     public static final String SENTENCE_SOLVED = "My evaluation has determined that the cryptogram has been solved.";

@@ -16,17 +16,13 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
-import org.dlw.ai.blackboard.domain.Assertion;
-import org.dlw.ai.blackboard.domain.Assumption;
 import org.dlw.ai.blackboard.exception.CollectionLoadingException;
 import org.dlw.ai.blackboard.exception.InitializationException;
 import org.dlw.ai.blackboard.rule.RuleSet;
-import org.dlw.ai.blackboard.util.RuleSetConstants;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collections;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static org.junit.Assert.*;
 
@@ -36,12 +32,11 @@ import static org.junit.Assert.*;
  */
 public class DirectSubstitutionKnowledgeSourceTest {
 
-    private KnowledgeSourcesImpl knowledgeSources;
     private KnowledgeSource knowledgeSource;
 
     @Before
     public void setUp() throws Exception {
-        knowledgeSources = new KnowledgeSourcesImpl();
+        KnowledgeSourcesImpl knowledgeSources = new KnowledgeSourcesImpl();
 
         try {
             knowledgeSources.loadKnowledgeSources();
@@ -64,14 +59,14 @@ public class DirectSubstitutionKnowledgeSourceTest {
     }
 
     @Test
-    public void testDirectSubstitutionEvaluate() throws AssertionError {
+    public void testEvaluate() throws AssertionError {
 
         // This knowledge source will make an assertion statement, non-retractable during evaluation.
         knowledgeSource.evaluate();
 
-        // TODO - like this for experimentation and line debugging
-        assertNotNull(knowledgeSources);
-        assertNotNull(knowledgeSource);
+        assertNotNull(knowledgeSource.getPastAssumptions());
+        assertEquals(1, knowledgeSource.getPastAssumptions().size());
+        assertFalse(knowledgeSource.getPastAssumptions().remove().isRetractable());
 
     }
 }

@@ -46,7 +46,6 @@ public class LetterKnowledgeSource extends KnowledgeSource {
      */
     @Override
     public void evaluate() {
-        // TODO Auto-generated method stub
-        
+        // not used (overridden)
     }
 }

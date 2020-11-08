@@ -107,12 +107,10 @@ public class Blackboard extends ArrayList<BlackboardObject> {
 
         Sentence sentence = null;
 
-        /**
-         * Search the ArrayList for our sentence
-         */
+        /* Search the ArrayList for our sentence */
         sentence = getSentence();
 
-        /**
+        /*
          * If we have a sentence and the sentence is solved, then the blackboard
          * problem is solved.
          */
@@ -121,7 +119,6 @@ public class Blackboard extends ArrayList<BlackboardObject> {
         }
 
         return result;
-
     }
 
     /**

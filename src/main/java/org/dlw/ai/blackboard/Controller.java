@@ -82,7 +82,8 @@ public class Controller {
      * 
      */
     public final void done() {
-        System.exit(0); // Temporary for testing
+        log.info("done->The Controller has determined that our problem is solved! It is done.");
+//        System.exit(0); // Temporary for testing
         state = ControllerState.SOLVED;
     }
 

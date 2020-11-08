@@ -83,15 +83,6 @@ public class DirectSubstitutionKnowledgeSource extends LetterKnowledgeSource {
         // Blackboard expected to be in problem-solving mode
         Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
 
-        // ########################################################
-        // TODO - this needs to be removed later after testing
-        //
-            blackboard.reset();
-            blackboard.assertProblem("Q AZWS DSSC KAS DXZNN DASNN");
-        //
-        // TODO - END
-        // ########################################################
-
         Sentence sentence = blackboard.getSentence();
         RuleSet ruleSet = this.getRuleSet();
         List<Rule> rules = ruleSet.getRules();

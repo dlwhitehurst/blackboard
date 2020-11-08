@@ -16,6 +16,8 @@
  */
 package org.dlw.ai.blackboard.knowledge;
 
+import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.exception.CollectionLoadingException;
 import org.dlw.ai.blackboard.exception.InitializationException;
 import org.dlw.ai.blackboard.rule.RuleSet;
@@ -36,6 +38,12 @@ public class DirectSubstitutionKnowledgeSourceTest {
 
     @Before
     public void setUp() throws Exception {
+
+        // Get an instance of a "loaded" blackboard
+        Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
+        blackboard.reset();
+        blackboard.assertProblem("Q AZWS DSSC KAS DXZNN DASNN");
+
         KnowledgeSourcesImpl knowledgeSources = new KnowledgeSourcesImpl();
 
         try {

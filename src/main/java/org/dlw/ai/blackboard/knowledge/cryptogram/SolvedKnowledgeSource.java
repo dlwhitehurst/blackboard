@@ -14,6 +14,7 @@
  * License.
  *
  */
+
 package org.dlw.ai.blackboard.knowledge.cryptogram;
 
 import java.util.List;
@@ -89,13 +90,11 @@ public class SolvedKnowledgeSource extends SentenceKnowledgeSource {
         if (ReflectionUtil.isAntecedent(antecedent.getFullyQualifiedClass(),
                 antecedent.getMethodName())) {
 
+            log.info("processMethodRule->The SolvedKnowledgeSource is informing the controller that a solution has been found.");
             ReflectionUtil.execConsequent(consequent.getFullyQualifiedClass(),
                     consequent.getMethodName());
-            log.info("processMethodRule->The SolvedKnowledgeSource has informed the controller that a solution has been found.");
-            
-        } else {
-            log.info("processMethodRule->The SolvedKnowledgeSource makes no assumption at this time.");
-        }
+
+        } else log.info("processMethodRule->The SolvedKnowledgeSource makes no assumption at this time.");
     }
 
 }    

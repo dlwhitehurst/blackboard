@@ -17,21 +17,31 @@
 
 package org.dlw.ai.blackboard.knowledge;
 
+import org.dlw.ai.blackboard.Blackboard;
+import org.dlw.ai.blackboard.BlackboardContext;
 import org.dlw.ai.blackboard.exception.CollectionLoadingException;
 import org.dlw.ai.blackboard.exception.InitializationException;
 import org.dlw.ai.blackboard.rule.RuleSet;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Collections;
 
+import static org.junit.Assert.*;
+
 public class SolvedKnowledgeSourceTest {
 
-    private KnowledgeSourcesImpl knowledgeSources;
     private KnowledgeSource knowledgeSource;
 
     @Before
     public void setUp() throws Exception {
-        knowledgeSources = new KnowledgeSourcesImpl();
+
+        // Get an instance of a "loaded" blackboard
+        Blackboard blackboard = BlackboardContext.getInstance().getBlackboard();
+        blackboard.reset();
+        final boolean b = blackboard.assertProblem("Q AZWS DSSC KAS DXZNN DASNN");
+
+        KnowledgeSourcesImpl knowledgeSources = new KnowledgeSourcesImpl();
 
         try {
             knowledgeSources.loadKnowledgeSources();
@@ -49,10 +59,17 @@ public class SolvedKnowledgeSourceTest {
         Collections.sort(knowledgeSources);
 
         // index sets applicable knowledge source (review after sort)
-        knowledgeSource = (KnowledgeSource) knowledgeSources.get(1);
+        knowledgeSource = (KnowledgeSource) knowledgeSources.get(0);
 
         RuleSet ruleset = knowledgeSource.getRuleSet(); // DirectSubstitution
 
+    }
+
+    @Test
+    public void testEvaluate() throws AssertionError {
+
+        // This knowledge source will make an assertion statement, non-retractable during evaluation.
+        knowledgeSource.evaluate();
     }
 
 }

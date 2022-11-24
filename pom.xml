@@ -45,7 +45,7 @@
         <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
         <dbunit.schema>blackboard</dbunit.schema>
         <ehcache.version>1.5.0</ehcache.version>
-        <hibernate.version>3.3.1.GA</hibernate.version>
+        <hibernate.version>5.3.20.Final</hibernate.version>
         <hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
         <hibernate.entitymanager.version>3.4.0.GA</hibernate.entitymanager.version>
         <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
